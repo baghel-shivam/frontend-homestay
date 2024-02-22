@@ -2,8 +2,6 @@ import React from 'react'
 import Form from './Form'
 import img from '../Images/pic1.jpg'
 import img2 from '../Images/bg.jpg'
-// import img3 from '../Images/pic2.jpg'
-// import img4 from '../Images/pic3.jpg'
 
 export default function View_in_details() {
     return (
