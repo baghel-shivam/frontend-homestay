@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Styles/Landing.css'
 import Form from './Form'
 import bg from '../Images/bg.jpg'
@@ -35,7 +35,7 @@ export default function Landing() {
             <div id='Landing_form_container' style={contentContainerStyle}>
                 <div className="container text-center p-4" id='Child_form'>
                     <div className='Main_title'>
-                        <h1>Discover Unique <span id='homestay'>HomeStays</span> in Your Area</h1>
+                        <h1>Discover Unique <span id='homestay'>HomeStays</span> in Your Area.</h1>
                     </div>
                     <Form />
                 </div>

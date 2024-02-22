@@ -2,7 +2,7 @@ import './App.css';
 import Footer from './Components/Footer';
 import Header from './Components/Header';
 // import {BroserRoute}
-import { Router, Routes, BrowserRouter, Route } from 'react-router-dom';
+import { Routes, BrowserRouter, Route } from 'react-router-dom';
 // import 
 import Landing from './Components/Landing';
 import Rooms from './Components/Rooms';
@@ -10,6 +10,7 @@ import View_in_details from './Components/View_in_details';
 import Login from './Components/Login';
 import Otp from './Components/Otp';
 import Sign_up from './Components/Sign_up';
+
 
 function App() {
   return (
