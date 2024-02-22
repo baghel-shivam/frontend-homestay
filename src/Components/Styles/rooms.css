@@ -1,0 +1,12 @@
+#Room_card {
+    /* border: 2px solid red; */
+    width: 300px;
+    height: auto;
+    text-align: left;
+    overflow: hidden;
+    /* margin-top: 50px; */
+}
+
+#Room_card :hover {
+    /* box-shadow: 12px; */
+}
