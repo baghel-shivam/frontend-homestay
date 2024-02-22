@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Styles/Landing.css'
 import Form from './Form'
 import bg from '../Images/bg.jpg'
