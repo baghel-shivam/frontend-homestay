@@ -11,7 +11,7 @@ export default function Otp() {
                 <div className='p-4 rounded-3' id='Login_form'>
                     <h2 id='text_color'>OTP</h2>
                     <form onSubmit={handleSubmit}>
-                        <div class="mb-3 mt-4 mx-3">
+                        <div className="mb-3 mt-4 mx-3">
                             <input type="number" id='text_color' className=" form-control" placeholder="Enter OTP" />
                             <div className='mt-4'>
                                 {/* <span className=''>Don't Have account ? <span className='text-primary pointer-event'>Sign-up</span></span><br /> */}

@@ -1,12 +1,68 @@
-#Room_card {
-    /* border: 2px solid red; */
-    width: 300px;
-    height: auto;
-    text-align: left;
-    overflow: hidden;
-    /* margin-top: 50px; */
+:root {
+    --primary-color: #000000;
+    /* Change this to your primary color */
+    --secondary-color: #ffffff;
+    /* Change this to your secondary color */
 }
 
-#Room_card :hover {
-    /* box-shadow: 12px; */
+@media only screen and (max-width: 600px) {
+    #Room_card {
+        width: auto;
+        /* background-color: red; */
+        /* border: 2px solid red; */
+        height: auto;
+        text-align: left;
+        overflow: hidden;
+        background-color: rgb(238 238 238);
+        /* margin-top: 50px; */
+    }
+
+}
+
+@media only screen and (min-width: 600px) {
+
+    #Room_card {
+        width: 19rem;
+        max-width: 24rem;
+        min-width: 19rem;
+        height: auto;
+        text-align: left;
+        overflow: hidden;
+        /* margin:10px 0px; */
+        background-color: rgb(238 238 238);
+        /* margin-top: 50px; */
+    }
+
+}
+
+.card-div {
+    border: 1.5px solid transparent;
+    transition: border .5s;
+}
+
+.card-div:hover {
+    border-color: black;
+}
+
+.price-container {
+    background-color: rgb(238 238 238);
+}
+
+/* rgb(238 238 238) */
+.Room_div {
+    width: 100%;
+    margin-top: 80px;
+}
+
+.rate-bar {
+    height: 10px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgb(196, 196, 196);
+}
+
+.rate-bar-child {
+    height: 10px;
+    /* overflow: hidden; */
 }

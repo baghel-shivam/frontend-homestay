@@ -1,7 +1,7 @@
 :root {
-    --primary-color: #ffffff;
+    --primary-color: #000000;
     /* Change this to your primary color */
-    --secondary-color: #01C380;
+    --secondary-color: #ffffff;
     /* Change this to your secondary color */
 }
 
@@ -32,15 +32,21 @@
 }
 
 .sub_child {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2rem;
+    padding: 2rem;
+}
+#exampleFormControlInput1{
+    padding: 13px;
+    padding-left: 1.5rem;
+    border-radius: 2rem;
+
 }
 
 
 .Main_title h1 {
     font-family: Trebuchet MS, sans-seri;
     color: #ffffff;
-
     cursor: pointer;
     margin-bottom: 20px;
     font-size: 2.5rem;
@@ -49,6 +55,15 @@
 }
 
 #homestay {
-    color: #01C380;
+    color: #000000;
     text-shadow: 1px 2px 17px rgb(255, 255, 255), 5px 4px 20px rgbargb(255, 255, 255)
+}
+
+.Notify-div {
+    margin-top: 5rem;
+    width: 100%;
+}
+
+.card-body{
+    border-top: 1px solid rgb(160, 160, 160);
 }

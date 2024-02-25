@@ -15,7 +15,7 @@ export default function Login() {
                         <h2 id='text_color'>Login</h2>
 
                         <form onSubmit={handleSubmit}>
-                            <div class=" mb-3 mt-4 mx-3">
+                            <div className=" mb-3 mt-4 mx-3">
                                 <input type="number" id='text_color' className="form-control" placeholder="Enter number." />
                                 <div className='mt-4'>
                                     <span onClick={()=>navigate('/sing-up')} className=''>Don't Have an account ? <span className='pointer-event' id='text_color'> Sign-up</span></span><br />
