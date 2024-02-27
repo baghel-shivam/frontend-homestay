@@ -108,7 +108,7 @@ body {
 #button:hover {
   border: 1px solid var(--secondary-color);
   background-color: var(--secondary-color);
-  color:var(--primary-color) ;
+  color: var(--primary-color);
 }
 
 #Main-button {
@@ -174,4 +174,22 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.loading-css {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black */
+  z-index: -1; /* Behind other content */
+  top: 0;
+  left: 0;
+  display: grid;
+  place-content: center;
+
+  /* filter: blur(4px); */
+  z-index: 999999;
+
 }

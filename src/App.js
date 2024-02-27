@@ -11,6 +11,7 @@ import Login from './Components/Login';
 import Otp from './Components/Otp';
 import Sign_up from './Components/Sign_up';
 import Checkout from './Components/Checkout';
+import Loading from './Components/Loading';
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
-       
+   
         <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='/search-rooms' element={<Rooms />} />
@@ -28,6 +29,7 @@ function App() {
           <Route path='/otp' element={<Otp />} />
           <Route path='/sing-up' element={<Sign_up />} />
         </Routes>
+    
         <Footer />
       </BrowserRouter>
     </div>
