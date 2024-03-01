@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react'
-import axios from 'axios';
 import { useState } from 'react'
 // import { useHistory } from 'react-router-dom';
 
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { SearchRoomDeskTop } from '../Redux/Search_Room/Search_roomAction';
-// import { UseSelector } from 'react-redux';
 import Loading from './Loading';
 
 export default function Form() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [data, setData] = useState({ "checkin_date":'', "checkout_date":'' })
+    const [data, setData] = useState({ "checkin_date": '', "checkout_date": '' })
     const state1 = useSelector((state) => state?.SearchRoom)
     const [formError, setFormError] = useState()
 
@@ -56,46 +54,39 @@ export default function Form() {
         }
 
     }
-console.log(formError, 'hello this is comment')
-
 
     return (
         <div className='sub_child px-3 px-lg-5 '>
 
-            {state1.status === 'loading' ?
-                <>
-                    <Loading />
-                </> :
-                <>
+            {state1.status === 'loading' && <><Loading /></>}
 
-                    <form onSubmit={handleSubmit}>
-                        <div className="row">
-                            <div className="col-sm-12 col-md-6 col-lg-4 align-self-center my-1">
+            <form onSubmit={handleSubmit}>
+                <div className="row">
+                    <div className="col-sm-12 col-md-6 col-lg-4 align-self-center my-1">
+                        <label for="Location" id='color' className="col-sm-2  ">Location</label>
+                        <input type="location" required onChange={handleChange} value={data.location} name='location' className="form-control" id="exampleFormControlInput1" placeholder="Enter Location" />
+                    </div>
+                    <div className="col-sm-12 col-lg-3 col-md-6 align-self-center my-1">
+                        <label for="staticEmail" id='color' className="col-sm-2 text-center w-100">{formError?.error ? <span style={{ fontSize: "10px", color: 'red' }}> {formError?.error}</span> : 'Check in Date'}</label>
+                        <input type="date" required value={data.checkin_date} onChange={handleChange} name='checkin_date' className="form-control" id="exampleFormControlInput1" placeholder="Select Arrival" />
+                    </div>
+                    <div className="col-sm-12 col-lg-3 col-md-6 align-self-center my-1">
+                        <label for="staticEmail" id='color' className="col-sm-2 text-center w-100">Check out Date</label>
+                        <input type="date" required value={data.checkout_date} onChange={handleChange} name='checkout_date' className="form-control" id="exampleFormControlInput1" placeholder="Select Departure" />
 
-                                <label for="Location" id='color' className="col-sm-2  ">Location</label>
-                                <input type="location" required onChange={handleChange} value={data.location} name='location' className="form-control" id="exampleFormControlInput1" placeholder="Enter Location" />
+                    </div>
+                    <div className="col-sm-12 col-lg-2 col-md-6  align-self-center text-center my-1  px-0 px-sm-5">
+                        {/* <button  className='btn  px-4  mt-4'>Submit</button> */}
+                        <button className='m-auto mt-4' type='submit' id='Main-button' style={{ background: "black", color: 'white', borderRadius: '50%' }}>
+                            <i class="bi bi-search" type='submit' ></i>
 
-                            </div>
-                            <div className="col-sm-12 col-lg-3 col-md-6 align-self-center my-1">
-                                <label for="staticEmail" id='color' className="col-sm-2 text-center w-100">{formError?.error? <span style={{fontSize:"10px", color:'red'}}> {formError?.error}</span>:'Check in Date'}</label>
-                                <input type="date" required value={data.checkin_date} onChange={handleChange} name='checkin_date' className="form-control" id="exampleFormControlInput1" placeholder="Select Arrival" />
-                              
-
-                            </div>
-                            <div className="col-sm-12 col-lg-3 col-md-6 align-self-center my-1">
-                                <label for="staticEmail" id='color' className="col-sm-2 text-center w-100">Check out Date</label>
-
-                                <input type="date" required value={data.checkout_date} onChange={handleChange} name='checkout_date' className="form-control" id="exampleFormControlInput1" placeholder="Select Departure" />
-
-                            </div>
-                            <div className="col-sm-12 col-lg-2 col-md-6  align-self-center text-center my-1  px-0 px-sm-5">
-                                <button type='submit' id='Main-button' className='btn  px-4  mt-4'>Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                </>}
+                        </button>
+                    </div>
+                </div>
+            </form>
 
 
-        </div>
+
+        </div >
     )
 }

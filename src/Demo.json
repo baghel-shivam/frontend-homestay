@@ -1,0 +1,31 @@
+{
+    "title":"Top destination",
+    "city":[
+        {
+            "name":"New Delhi",
+            "img":"./src/images/city-img (1).jpg"
+
+        },
+        {
+            "name":"Lucknow",
+            "img":"Link"
+
+        },
+        {
+            "name":"Dubai",
+            "img":"Link"
+
+        },
+        {
+            "name":"Gurugram",
+            "img":"Link"
+
+        },
+        {
+            "name":"Noida",
+            "img":"Link"
+
+        }
+
+    ]
+}

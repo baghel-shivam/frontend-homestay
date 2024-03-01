@@ -5,9 +5,156 @@
     /* Change this to your secondary color */
 }
 
+.container-social {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.bi-whatsapp:hover {
+    color: #128c7e;
+    cursor: pointer;
+    transition-duration: .5s;
+
+}
+
+.bi-facebook:hover {
+    color: #316FF6;
+    cursor: pointer;
+    transition-duration: .5s;
+
+}
+
+.bi-instagram:hover {
+    color: #E1306C;
+    cursor: pointer;
+    transition-duration: .5s;
+
+}
+
+.bi-envelope:hover {
+    color: rgb(154, 154, 154);
+    cursor: pointer;
+    transition-duration: .5s;
+
+}
+
+.bi-twitter-x:hover {
+    color: #1DA1F2;
+    cursor: pointer;
+    transition-duration: .5s;
+
+}
+
+.bg-about-image {
+    width: 100%;
+    border-radius: 15px;
+    /* height: 60vh; */
+}
+
+.bg-image {
+    border-radius: 40px;
+    width: 80%;
+    margin: 2rem;
+    display: block;
+    object-fit: cover;
+    filter: blur(1px);
+}
+
+.container-about {
+    margin: 5rem 20px;
+}
+
+.container-contact {
+    margin: 0rem 20px;
+}
+
+.container-w-t-p-h {
+    background-color: aquamarine;
+    /* padding: 10px; */
+    margin: 10px 20px;
+    display: grid;
+    place-content: center;
+    border-radius: 20px;
+}
+
+.bi-hand-thumbs-down:hover {
+    /* background-color: red; */
+    color: red;
+    cursor: pointer;
+}
+
+.bi-hand-thumbs-up:hover {
+    /* background-color: red; */
+    color: green;
+    cursor: pointer;
+}
+
+.headings {
+    font-weight: 600;
+    font-size: 30px;
+    /* padding-bottom: 2rem; */
+    font-family: Trebuchet MS, sans-seri;
+    z-index: 99999;
+}
+
+.sub-heading {
+    font-weight: 600;
+    font-size: 18px;
+    /* text-align: left; */
+    /* padding-bottom: 2rem; */
+    font-family: Trebuchet MS, sans-seri;
+}
+
+
+.top-destination {
+    background-color: #ffffff;
+}
+
+.container-city {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.city-img {
+    position: relative;
+    height: 18vh;
+    width: 30vh;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.city-img-background {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: filter 0.5s ease;
+    /* Smooth transition effect */
+    filter: none;
+}
+
+.city-img:hover .city-img-background {
+    filter: blur(2px);
+    /* Remove blur effect on hover */
+}
+
+.image-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
 #Landing_form_container {
     padding: 20px;
-    height: 100vh;
+    height: 70vh;
     /* z-index: ; */
     z-index: 9999;
 }
@@ -15,7 +162,7 @@
 #Child_form {
     /* border: 1px solid; */
 
-    margin-top: 18%;
+    margin-top: 10%;
     width: 70%;
     /* z-index: 9999; */
     /* position:re;; */
@@ -25,18 +172,30 @@
 @media only screen and (max-width: 600px) {
 
     #Child_form {
-        margin-top: 40%;
+        margin-top: 10%;
         width: 100%;
 
+    }
+
+    #Main-button {
+        border: 1px solid var(--secondary-color);
+        padding: 10px;
+        height: 3rem;
+        width: 3rem;
+        margin-top: 23px;
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        /* text-align: center; */
     }
 }
 
 .sub_child {
-    background-color: rgba(255, 255, 255, 0.2);
+    /* background-color: rgba(255, 255, 255, 0.2); */
     border-radius: 2rem;
     padding: 2rem;
 }
-#exampleFormControlInput1{
+
+#exampleFormControlInput1 {
     padding: 13px;
     padding-left: 1.5rem;
     border-radius: 2rem;
@@ -64,6 +223,6 @@
     width: 100%;
 }
 
-.card-body{
+.card-body {
     border-top: 1px solid rgb(160, 160, 160);
 }
