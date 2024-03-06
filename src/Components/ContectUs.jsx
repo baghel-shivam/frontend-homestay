@@ -1,8 +1,8 @@
 import React from 'react'
 import img from '../Images/bg.jpg'
-export default function ContectUs() {
+export default function ContectUs(props) {
   return (
-    <div className='container-contact mb-5'>
+    <div className='container-contact mb-5' id="contact" ref={props.Ref}>
       <div className='mb-5'>
         <span className='headings mb-5'>Contact us</span>
         <hr style={{ width: '90%', margin: 'auto' }} />
@@ -33,7 +33,7 @@ export default function ContectUs() {
           </p>
         </div>
         <div className="col-12 col-lg-6">
-          <div className='bg-about-image'>
+          <div className='bg-about-image pt-5'>
             <img src={img} className="bg-image" />
           </div>
         </div>

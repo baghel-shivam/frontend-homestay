@@ -5,26 +5,120 @@
     /* Change this to your secondary color */
 }
 
+.result-text {
+    font-family: Trebuchet MS, sans-seri;
+    /* color: #ffffff; */
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    /* text-shadow: 1px 2px 17px rgb(99, 99, 99), 5px 4px 20px rgba(0, 0, 0, 1); */
+}
+
+
+.img-class{
+    height: 100px;
+    width: 110px;
+}
+
+.tag {
+    /* width: 10%; */
+    cursor: pointer;
+    top: -11%;
+    left:0%;
+    margin-left: -15px;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+  
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    border: 1px solid rgb(168, 168, 168);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.carousel:hover .carousel-control-prev,
+.carousel:hover .carousel-control-next {
+    opacity: 1;
+}
+
+.carousel-control-prev {
+    margin-top: 30%;
+    margin-left: 6px;
+}
+.card{
+    
+}
+.carousel-control-next {
+    margin-top: 30%;
+    margin-right: 6px;
+}
+
+
 @media only screen and (max-width: 600px) {
     #Room_card {
         width: auto;
-        /* background-color: red; */
-        /* border: 2px solid red; */
-        height: auto;
+        height: 100vh;
         text-align: left;
+        /* border: none; */
+
         overflow: hidden;
         background-color: rgb(238 238 238);
         /* margin-top: 50px; */
     }
 
+    .scroll-to-show-all-rooms {
+        overflow-y: scroll;
+        border: 2px solid red;
+        position: relative;
+        width: 94vh;
+        /* Assuming you intended to set the width to 94% of the viewport height */
+        max-height: calc(100vh - 100px);
+        /* Adjust 100px according to the height of your footer */
+    }
+
+    .footer {
+        /* Assuming your footer class is named 'footer' */
+        height: 100px;
+        /* Adjust the height according to your footer's height */
+        /* Add any other necessary styling for your footer */
+    }
+
+
+    .nav-form-parent {
+        margin: 0;
+        height: auto;
+        padding: 0;
+    }
 }
 
 @media only screen and (min-width: 600px) {
+    .room-collections {
+        /* border: 1px solid ; */
+
+    }
+
+    .scroll-to-show-all-rooms {
+        overflow-y: scroll;
+        height: 87vh;
+        /* border: 1px solid red; */
+    }
+
+    .nav-form-parent {
+        margin: 3rem 0rem;
+        height: auto;
+        padding: 0;
+    }
 
     #Room_card {
-        width: 19rem;
-        max-width: 24rem;
-        min-width: 19rem;
+        width: 100%;
         height: auto;
         text-align: left;
         overflow: hidden;

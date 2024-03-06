@@ -5,7 +5,7 @@ import img3 from '../Images/city-img (3).jpg'
 import img4 from '../Images/city-img (4).jpg'
 import img5 from '../Images/city-img (5).jpg'
 
-export default function TopDestination() {
+export default function TopDestination(props) {
     const Data =
     {
         "title": "Top destination",
@@ -39,12 +39,12 @@ export default function TopDestination() {
         ]
     }
     return (
-        <div className='top-destination py-5'>
+        <div className='top-destination py-5' >
 
             <span className='pb-4 headings'>Top Destinations</span>
             <div className="container-city">
                 {Data.city.map((item) => (
-                    <div className="city-img" >
+                    <div className="city-img my-2" >
                         <b className='image-content'>  {item.name}</b>
                         <img src={item.img} className='city-img-background' />
                     </div>

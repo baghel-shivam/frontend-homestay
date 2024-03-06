@@ -1,16 +1,16 @@
 import React from 'react'
 import img from '../Images/bg.jpg'
 
-export default function AboutUs() {
+export default function AboutUs(props) {
   return (
-    <div className='container-about'>
+    <div className='container-about' id='about' ref={props.Ref}>
       <div className='mb-5'>
         <span className='headings mb-5'>About us</span>
      <hr style={{width:'90%', margin:'auto'}}/>
       </div>
       <div className="row">
         <div className="col-12 col-lg-6">
-          <div className='bg-about-image'>
+          <div className='bg-about-image pt-5'>
             <img src={img} className="bg-image" />
           </div>
         </div>

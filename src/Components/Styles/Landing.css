@@ -5,6 +5,10 @@
     /* Change this to your secondary color */
 }
 
+.Room_div {
+    height: 100vh;
+}
+
 .container-social {
     margin-top: 30px;
     display: flex;
@@ -57,7 +61,7 @@
 .bg-image {
     border-radius: 40px;
     width: 80%;
-    margin: 2rem;
+    margin: auto;
     display: block;
     object-fit: cover;
     filter: blur(1px);
@@ -169,23 +173,73 @@
 
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 765px) {
+
+    .sub_child {
+        /* background-color: rgba(255, 255, 255, 0.2); */
+        border-radius: 2rem;
+        padding: 1rem;
+        margin-top: -2rem;
+
+    }
 
     #Child_form {
-        margin-top: 10%;
+        margin-top: 15%;
         width: 100%;
 
     }
 
     #Main-button {
         border: 1px solid var(--secondary-color);
-        padding: 10px;
+        padding: 0px;
         height: 3rem;
         width: 3rem;
         margin-top: 23px;
         background-color: var(--primary-color);
         color: var(--secondary-color);
         /* text-align: center; */
+    }
+
+    .Main_title h1 {
+        font-family: Trebuchet MS, sans-seri;
+        color: #ffffff;
+        cursor: pointer;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-shadow: 1px 2px 17px rgb(99, 99, 99), 5px 4px 20px rgba(0, 0, 0, 1);
+    }
+}
+
+@media only screen and (min-width: 765px) {
+    .nav-form {
+        border-right: 1px solid rgb(215, 215, 215);
+        height: 90vh;
+        padding: 20px 0px;
+    }
+
+    .nav-form-parent {
+        position: -webkit-sticky;
+        position: sticky;
+        height: 90vh;
+        top: 10%;
+        border-radius: 15px;
+        margin: 20px 0px;
+        /* Define the top position once */
+        left: 0;
+        /* Added a unit */
+        /* width: 20rem; */
+        border: 2px  solid rgb(233, 233, 233);;
+    }
+
+    .Main_title h1 {
+        font-family: Trebuchet MS, sans-seri;
+        color: #ffffff;
+        cursor: pointer;
+        margin-bottom: 20px;
+        font-size: 2.5rem;
+        font-weight: 600;
+        text-shadow: 1px 2px 17px rgb(99, 99, 99), 5px 4px 20px rgba(0, 0, 0, 1);
     }
 }
 
@@ -203,15 +257,6 @@
 }
 
 
-.Main_title h1 {
-    font-family: Trebuchet MS, sans-seri;
-    color: #ffffff;
-    cursor: pointer;
-    margin-bottom: 20px;
-    font-size: 2.5rem;
-    font-weight: 600;
-    text-shadow: 1px 2px 17px rgb(99, 99, 99), 5px 4px 20px rgba(0, 0, 0, 1);
-}
 
 #homestay {
     color: #000000;

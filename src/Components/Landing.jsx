@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import './Styles/Landing.css'
 import Form from './Form'
 import bg from '../Images/bg.jpg'
 import TopDestination from './TopDestination';
-import img from '../Images/city-img (1).jpg'
 import WhyBook from './WhyBook';
 import WasThisPageHelpfull from './WasThisPageHelpfull';
 import AboutUs from './AboutUs';
 import ContectUs from './ContectUs';
+import { StoreAbout_us_Ref, StoreContactRef , StoreLanding_Ref} from '../Redux/RefShare/Reference_Slice';
+import { useDispatch } from 'react-redux';
+
 
 export default function Landing() {
-    const wrapperStyle = {
-        // position: 'relative',
-        // height: '60%',
-        // overflow:'hidden',
-        // width: '100%',
-        // border:'2px solid red'
-    };
+    const ref_about = useRef(null)
+    const ref_landing = useRef(null)
+    const ref_contact = useRef(null)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(StoreContactRef(ref_contact.current))
+        dispatch(StoreAbout_us_Ref(ref_about.current))
+        dispatch(StoreLanding_Ref(ref_landing.current))
+    }, [dispatch])
+
 
     const bgStyle = {
         position: 'absolute',
@@ -36,16 +42,16 @@ export default function Landing() {
         position: 'relative',
         zIndex: '2',
     };
+
     return (
 
-        <div className='only_for_bg' style={wrapperStyle}>
+        <div className='only_for_bg' >
 
-            <div style={bgStyle}></div>
+            <div style={bgStyle} ref={ref_landing}></div>
 
             <div id='Landing_form_container' style={contentContainerStyle}>
                 <div className="container text-center p-4" id='Child_form'>
                     <div className='Main_title'>
-
                         <h1>Discover Unique <span id='homestay'>HomeStays</span> in Your Area.</h1>
                     </div>
                     <Form />
@@ -53,13 +59,12 @@ export default function Landing() {
             </div>
             <WhyBook />
             <div class="custom-hr">
-              <hr/>
+                <hr />
             </div>
-            <TopDestination />
-            {/* <hr/> */}
-            <AboutUs/>
-            <ContectUs/>
-            <WasThisPageHelpfull/>
+            <TopDestination  />
+            <AboutUs Ref={ref_about}/>
+            <ContectUs Ref={ref_contact} />
+            <WasThisPageHelpfull />
         </div>
 
     )

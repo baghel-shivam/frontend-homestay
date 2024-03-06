@@ -10,7 +10,7 @@ import Loading from './Loading';
 export default function Form() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [data, setData] = useState({ "checkin_date": '', "checkout_date": '' })
+    const [data, setData] = useState({ "checkin_date": null, "checkout_date": null, "location":'' })
     const state1 = useSelector((state) => state?.SearchRoom)
     const [formError, setFormError] = useState()
 
@@ -58,25 +58,24 @@ export default function Form() {
     return (
         <div className='sub_child px-3 px-lg-5 '>
 
-            {state1.status === 'loading' && <><Loading /></>}
+            {state1?.status === 'loading' && <><Loading /></>}
 
             <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-sm-12 col-md-6 col-lg-4 align-self-center my-1">
                         <label for="Location" id='color' className="col-sm-2  ">Location</label>
-                        <input type="location" required onChange={handleChange} value={data.location} name='location' className="form-control" id="exampleFormControlInput1" placeholder="Enter Location" />
+                        <input type="location" required onChange={handleChange} value={data?.location} name='location' className="form-control" id="exampleFormControlInput1" placeholder="Enter Location" />
                     </div>
                     <div className="col-sm-12 col-lg-3 col-md-6 align-self-center my-1">
                         <label for="staticEmail" id='color' className="col-sm-2 text-center w-100">{formError?.error ? <span style={{ fontSize: "10px", color: 'red' }}> {formError?.error}</span> : 'Check in Date'}</label>
-                        <input type="date" required value={data.checkin_date} onChange={handleChange} name='checkin_date' className="form-control" id="exampleFormControlInput1" placeholder="Select Arrival" />
+                        <input type="date" required value={data?.checkin_date} onChange={handleChange} name='checkin_date' className="form-control" id="exampleFormControlInput1" placeholder="Select Arrival" />
                     </div>
-                    <div className="col-sm-12 col-lg-3 col-md-6 align-self-center my-1">
+                    <div className="col-8 col-lg-3 col-md-6 align-self-center my-1">
                         <label for="staticEmail" id='color' className="col-sm-2 text-center w-100">Check out Date</label>
-                        <input type="date" required value={data.checkout_date} onChange={handleChange} name='checkout_date' className="form-control" id="exampleFormControlInput1" placeholder="Select Departure" />
+                        <input type="date" required value={data?.checkout_date} onChange={handleChange} name='checkout_date' className="form-control" id="exampleFormControlInput1" placeholder="Select Departure" />
 
                     </div>
-                    <div className="col-sm-12 col-lg-2 col-md-6  align-self-center text-center my-1  px-0 px-sm-5">
-                        {/* <button  className='btn  px-4  mt-4'>Submit</button> */}
+                    <div className="col-4 col-lg-2 col-md-6  align-self-center text-center my-1  px-0 px-sm-5">
                         <button className='m-auto mt-4' type='submit' id='Main-button' style={{ background: "black", color: 'white', borderRadius: '50%' }}>
                             <i class="bi bi-search" type='submit' ></i>
 
