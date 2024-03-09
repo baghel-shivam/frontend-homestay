@@ -13,11 +13,11 @@ export default function ContectUs(props) {
             <hr />
           </span>
           <div className="container-social px-5 mx-5">
-            <div><i class="bi bi-whatsapp fs-2"></i></div>
-            <div><i class="bi bi-facebook fs-2"></i></div>
-            <div><i class="bi bi-instagram fs-2"></i></div>
-            <div><i class="bi bi-envelope fs-2"></i></div>
-            <div><i class="bi bi-twitter-x fs-2"></i></div>
+            <div><i className="bi bi-whatsapp fs-2"></i></div>
+            <div><i className="bi bi-facebook fs-2"></i></div>
+            <div><i className="bi bi-instagram fs-2"></i></div>
+            <div><i className="bi bi-envelope fs-2"></i></div>
+            <div><i className="bi bi-twitter-x fs-2"></i></div>
           </div>
           <span className='sub-heading'>Purpose
             <hr /></span>

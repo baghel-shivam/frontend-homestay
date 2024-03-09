@@ -3,9 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const RefSlice = createSlice({
   name: 'ref',
   initialState: {
-    Contact_ref: null,
-    About_US_ref: null,
-    Landing_ref: null
+    Contact_ref: '', // Initialize as a string
+    About_US_ref: '', // Initialize as a string
+    Landing_ref: '', // Initialize as a string
   },
   reducers: {
     StoreContactRef(state, action) {
@@ -17,7 +17,6 @@ const RefSlice = createSlice({
     StoreLanding_Ref(state, action) {
       state.Landing_ref = action.payload;
     },
-
   },
 });
 

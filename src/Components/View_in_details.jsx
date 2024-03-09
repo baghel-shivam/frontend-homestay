@@ -35,6 +35,13 @@ export default function View_in_details() {
                 </div>
                 <div className="col-12 col-lg-6 col-md-6 text-left">
                     <div className="row bg-opacity-25 mx-lg-5 mx-0 mt-4 mt-lg-0 p-2 rounded-3 price-container">
+                        <div className="container">
+                            <div className=" text-start">
+                                <h4>Super OYO Collection O Le Noida Hotel Near Sector 76 Metro Station</h4>
+                                <p className='text-secondary'>B-1, Delta I, Greater Noida, Noida</p>
+                            </div>
+                            <hr />
+                        </div>
                         <div className="col text-start">
                             <span className='text-start pb-2' style={{ color: 'green' }}>Price start at</span>
                             <h3> &#8377; 999 </h3>
@@ -50,26 +57,53 @@ export default function View_in_details() {
                                 <div className="col-8">1 Room</div>
                             </div>
                         </div>
+                        <hr />
+                        <div className="text-start">
+                            <div className="row ">
+                                <div className="col-12 col-sm-12 col-lg-3 col-md-6 d-flex justify-content-center my-2">
+                                    <i className="bi bi-wifi fs-4"></i><span className="mt-1 mx-2">Wifi</span>
+                                </div>
+                                <div className="col-12 col-sm-12 col-lg-3 col-md-6 d-flex justify-content-center my-2">
+                                    <i className="bi bi-p-circle fs-4"></i><span className="mt-1 mx-2">Parking</span>
+                                </div>
+                                <div className="col-12  col-sm-12 col-lg-3 col-md-6 d-flex justify-content-center my-2">
+                                    <i className="bi bi-tv fs-4"></i><span className="mt-1 mx-2">TV</span>
+                                </div>
+                                <div className="col-12 col-sm-12 col-lg-3 col-md-6 d-flex justify-content-center my-2">
+                                    <i className="bi bi-power fs-4"></i><span className="mt-1 mx-2">Power Backup</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
                     </div>
-                    <div className="row bg-opacity-50 bg-light border border-1 text-success mt-4  mx-lg-5 mx-0 p-3 rounded-3">
+                    <div className="row bg-opacity-50 bg-light border border-1 text-success  my-2  mx-lg-5 mx-0 p-3 rounded-3">
                         <span className=''>Free Cancellation Till 07-Mar-2024 11:59</span>
                     </div>
-                    <div className="row bg-opacity-25 bg-success mt-4  mx-lg-5 mx-0 mx-md-5 px-5 p-3 rounded-3">
-                        <div className="col">
-                            <span>Check-in </span><br />
-                            <b className='fs-5'>12:00</b>
+                    <div className="row  my-2  mx-lg-5 mx-0 mx-md-5 px-5 p-3 rounded-3">
+
+                        <div className="col my-2 ">
+                            <div className='bg-opacity-25 py-1 bg-success rounded-2'>
+
+                                <span>Check-in </span><br />
+                                <span className=' text-secondary'>12:00</span>
+                            </div>
                         </div>
-                        <div className="col">
-                            <span>Check-out </span><br />
-                            <b className='fs-5'>11:00</b>
+                        <div className="col  my-2">
+
+                            <div className='bg-opacity-25 bg-success rounded-2 py-1 '>
+                                <span className='text-success'>Check-out </span><br />
+                                <span className=' text-secondary'>11:00</span>
+                            </div>
+
                         </div>
-                        {/* <span className=''>Free Cancellation Till 07-Mar-2024 11:59</span> */}
-                    </div>
-                    <div className='row mt-2  mx-lg-1 mx-0 mx-md-5 px-5 mx-5 p-3 rounded-3'>
-                        {/* <button id='button' className='btn py-3'>Book</button> */}
-                        <Link to={'/booking'} id="Main-button" className="btn btn-primary py-3" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Book</Link>
-                        <Checkout />
-                    </div>
+                        <div className="col  my-2">
+                            <Link to={'/booking'}  className="btn btn-success m-auto py-3 px-5" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Book</Link>
+                            <Checkout />
+                        </div>
+                     </div>
                 </div>
             </div>
             <h4 id='text_color' className='my-4'>Guest Reviews & Rating for Green Palms Hotel, Pacific Mall</h4>

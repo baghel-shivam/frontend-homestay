@@ -5,8 +5,31 @@
     /* Change this to your secondary color */
 }
 
-.Room_div {
-    height: 100vh;
+
+
+.check-in-check-out-date {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    margin: 10px auto; /* Auto margin for centering horizontally */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+
+#Main-button-details {
+    /* margin: auto; */
+    border: 1px solid var(--secondary-color);
+    /* padding: 0px 40px; */
+    display: grid;
+    place-content: center;
+    
+    min-height: 55px;
+    width: 100%;
+    /* margin-top: 23px; */
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    /* text-align: center; */
 }
 
 .container-social {
@@ -156,31 +179,55 @@
     z-index: 1;
 }
 
-#Landing_form_container {
-    padding: 20px;
-    height: 70vh;
-    /* z-index: ; */
-    z-index: 9999;
-}
+
 
 #Child_form {
-    /* border: 1px solid; */
-
     margin-top: 10%;
     width: 70%;
-    /* z-index: 9999; */
-    /* position:re;; */
 
+}
+
+.react-daterange-picker__wrapper {
+    padding: 13px;
+    padding-left: 1.5rem;
+    border-radius: 2rem;
+    background-color: #ffffff;
+    border: none !important;
+}
+
+.check-form {
+    display: flex;
+    /* justify-content: space-evenly; */
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 @media only screen and (max-width: 765px) {
-
+    .Room_div {
+        margin-top: 31px;
+      }
+    .check-form {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+    }
+    .Room_div {
+        height: auto;
+    }
     .sub_child {
         /* background-color: rgba(255, 255, 255, 0.2); */
         border-radius: 2rem;
-        padding: 1rem;
+        padding: 1rem 1rem;
         margin-top: -2rem;
 
+    }
+
+    #Landing_form_container {
+        /* padding: 20px; */
+        height: 61vh;
+        /* z-index: ; */
+        z-index: 9999;
     }
 
     #Child_form {
@@ -189,11 +236,10 @@
 
     }
 
-    #Main-button {
+    #Main-button-details {
+        /* width: 100%; */
         border: 1px solid var(--secondary-color);
         padding: 0px;
-        height: 3rem;
-        width: 3rem;
         margin-top: 23px;
         background-color: var(--primary-color);
         color: var(--secondary-color);
@@ -201,6 +247,7 @@
     }
 
     .Main_title h1 {
+        margin-top: 25px;
         font-family: Trebuchet MS, sans-seri;
         color: #ffffff;
         cursor: pointer;
@@ -212,10 +259,31 @@
 }
 
 @media only screen and (min-width: 765px) {
+    .Room_div {
+        margin-top: 80px;
+      }
     .nav-form {
         border-right: 1px solid rgb(215, 215, 215);
         height: 90vh;
         padding: 20px 0px;
+    }
+    .Room_div {
+        height: 100vh;
+    }
+    #Landing_form_container {
+        padding: 20px;
+        height: 70vh;
+        /* z-index: ; */
+        z-index: 9999;
+    }
+
+    .sub_child {
+        /* background-color: rgba(255, 255, 255, 0.2); */
+        border-radius: 2rem;
+        /* border: 2px solid; */
+        padding: 10px 1rem;
+        /* width: 80%; */
+        /* padding: 2rem; */
     }
 
     .nav-form-parent {
@@ -229,7 +297,8 @@
         left: 0;
         /* Added a unit */
         /* width: 20rem; */
-        border: 2px  solid rgb(233, 233, 233);;
+        border: 2px solid rgb(233, 233, 233);
+        ;
     }
 
     .Main_title h1 {
@@ -243,18 +312,6 @@
     }
 }
 
-.sub_child {
-    /* background-color: rgba(255, 255, 255, 0.2); */
-    border-radius: 2rem;
-    padding: 2rem;
-}
-
-#exampleFormControlInput1 {
-    padding: 13px;
-    padding-left: 1.5rem;
-    border-radius: 2rem;
-
-}
 
 
 
@@ -266,8 +323,4 @@
 .Notify-div {
     margin-top: 5rem;
     width: 100%;
-}
-
-.card-body {
-    border-top: 1px solid rgb(160, 160, 160);
 }

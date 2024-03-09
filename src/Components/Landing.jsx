@@ -58,7 +58,7 @@ export default function Landing() {
                 </div>
             </div>
             <WhyBook />
-            <div class="custom-hr">
+            <div className="custom-hr">
                 <hr />
             </div>
             <TopDestination  />

@@ -2,8 +2,33 @@
     --primary-color: #000000;
     /* Change this to your primary color */
     --secondary-color: #ffffff;
+    --success: rgb(31, 137, 31);
     /* Change this to your secondary color */
 }
+
+.btn-success {
+    background-color: var(--success);
+}
+
+.form-check-input {
+    cursor: pointer !important;
+}
+
+
+
+#exampleFormControlInput1 {
+    padding: 13px;
+    padding-left: 1.5rem;
+    border-radius: 2rem;
+    background-color: rgb(242, 242, 242);
+    /* padding:; */
+
+}
+
+.hr-line-inform-nav {
+    margin-top: 19px;
+}
+
 
 .result-text {
     font-family: Trebuchet MS, sans-seri;
@@ -16,21 +41,23 @@
 }
 
 
-.img-class{
-    height: 100px;
-    width: 110px;
-}
 
 .tag {
     /* width: 10%; */
     cursor: pointer;
     top: -11%;
-    left:0%;
+    left: 0%;
     margin-left: -15px;
     position: absolute;
     left: 0;
     z-index: 1;
-  
+
+}
+
+.card-title {
+    margin-top: -6px;
+    font-size: large;
+    font-family: Trebuchet MS, sans-seri;
 }
 
 .carousel-control-prev,
@@ -53,9 +80,19 @@
     margin-top: 30%;
     margin-left: 6px;
 }
-.card{
-    
+
+.card-hover-effect:hover{
+/* border: 2px solid red; */
+cursor: pointer;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
 }
+.border-none {
+    border: none !important;
+}
+
 .carousel-control-next {
     margin-top: 30%;
     margin-right: 6px;
@@ -63,6 +100,12 @@
 
 
 @media only screen and (max-width: 600px) {
+    .img-class {
+        height: 100px;
+        width: 110px;
+        margin-top: 28px;
+    }
+    
     #Room_card {
         width: auto;
         height: 100vh;
@@ -76,7 +119,6 @@
 
     .scroll-to-show-all-rooms {
         overflow-y: scroll;
-        border: 2px solid red;
         position: relative;
         width: 94vh;
         /* Assuming you intended to set the width to 94% of the viewport height */
@@ -91,6 +133,9 @@
         /* Add any other necessary styling for your footer */
     }
 
+    .card-body {
+        border-top: none !important;
+    }
 
     .nav-form-parent {
         margin: 0;
@@ -100,9 +145,23 @@
 }
 
 @media only screen and (min-width: 600px) {
+    .img-class {
+        height: 100px;
+        width: 110px;
+    }
+    
     .room-collections {
         /* border: 1px solid ; */
 
+    }
+    .nav--bar {
+        border-right: 2px solid rgb(235, 234, 234);
+    }
+    .react-daterange-picker__wrapper {
+        display: flex;
+        flex-wrap: wrap !important;
+        /* border: 1px solid gray !important; */
+        background-color: rgb(242, 242, 242);
     }
 
     .scroll-to-show-all-rooms {
@@ -139,7 +198,7 @@
 }
 
 .price-container {
-    background-color: rgb(238 238 238);
+    background-color: rgba(244, 244, 244, 0.862);
 }
 
 /* rgb(238 238 238) */

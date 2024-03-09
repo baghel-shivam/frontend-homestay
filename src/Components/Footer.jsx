@@ -41,13 +41,13 @@ export default function Footer() {
               <div className="d-flex mt-4 mx-auto" style={{ width: '100%', color: '#00000' }}>
 
                 <button className="btn btn-dark btn-flat px-3 mx-2">
-                  <i class="bi bi-facebook"></i>
+                  <i className="bi bi-facebook"></i>
                 </button>
                 <button className="btn btn-dark btn-flat px-3 mx-2">
-                  <i class="bi bi-twitter-x"></i>
+                  <i className="bi bi-twitter-x"></i>
                 </button>
                 <button className="btn btn-dark btn-flat px-3 mx-2">
-                  <i class="bi bi-instagram"></i>
+                  <i className="bi bi-instagram"></i>
                 </button>
               </div>
             </div>
