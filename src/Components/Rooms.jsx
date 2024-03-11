@@ -179,7 +179,7 @@ export default function Rooms() {
                     <div className='room-collections mt-5  px-lg-1 px-sm-0'>
                         {rooms?.map((item, roomIndex) => (
                             <>
-                                <div class="card border-none mb-3" >
+                                <div class="card border-none mb-3" key={roomIndex} >
                                     {item.suggested &&
                                         <div className='tag'>
                                             <img src={tag} className='img-class' alt='recommended tag' />

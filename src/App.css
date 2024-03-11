@@ -13,6 +13,11 @@
 #light_bg {
   background-color: #EAEEFF;
 }
+.bi-search {
+  background: #ffffff;
+  color: black;
+border-radius: .5rem;
+}
 
 #color {
   color: #000000;
@@ -109,15 +114,6 @@ body {
   color: var(--primary-color);
 }
 
-#Main-button {
-  border: 1px solid var(--secondary-color);
-  padding: 10px;
-  height: 3rem;
-  width: 3rem;
-  margin-top: 23px;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-}
 
 .navbar {
   border: 1px solid transparent;

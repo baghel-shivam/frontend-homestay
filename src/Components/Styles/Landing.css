@@ -9,11 +9,14 @@
 
 .check-in-check-out-date {
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    margin: 10px auto; /* Auto margin for centering horizontally */
+    margin: 10px auto;
+    /* Auto margin for centering horizontally */
     border-radius: 10px;
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
 }
 
 
@@ -23,7 +26,7 @@
     /* padding: 0px 40px; */
     display: grid;
     place-content: center;
-    
+
     min-height: 55px;
     width: 100%;
     /* margin-top: 23px; */
@@ -183,38 +186,44 @@
 
 #Child_form {
     margin-top: 10%;
-    width: 70%;
+    /* width: 70%; */
 
 }
 
 .react-daterange-picker__wrapper {
     padding: 13px;
+    
     padding-left: 1.5rem;
-    border-radius: 2rem;
+    border-radius: .5rem;
     background-color: #ffffff;
     border: none !important;
 }
 
-.check-form {
-    display: flex;
-    /* justify-content: space-evenly; */
-    justify-content: center;
-    flex-wrap: wrap;
-}
+
 
 @media only screen and (max-width: 765px) {
+    #Child_form {
+        margin-top: 10%;
+        width: 100%;
+
+    }
+
+
     .Room_div {
         margin-top: 31px;
-      }
+    }
+
     .check-form {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         margin-top: 2rem;
     }
+
     .Room_div {
         height: auto;
     }
+
     .sub_child {
         /* background-color: rgba(255, 255, 255, 0.2); */
         border-radius: 2rem;
@@ -259,17 +268,35 @@
 }
 
 @media only screen and (min-width: 765px) {
+    .check-form {
+        background: black;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        /* Center vertically */
+        justify-content: center;
+        /* Center horizontally */
+        border-radius: .5rem;
+        flex-wrap: wrap;
+        max-width: 655px;
+        min-width: 655px;
+        /* padding-bottom: ; */
+    }
+
     .Room_div {
         margin-top: 80px;
-      }
+    }
+
     .nav-form {
         border-right: 1px solid rgb(215, 215, 215);
         height: 90vh;
         padding: 20px 0px;
     }
+
     .Room_div {
         height: 100vh;
     }
+
     #Landing_form_container {
         padding: 20px;
         height: 70vh;
@@ -316,11 +343,57 @@
 
 
 #homestay {
+
     color: #000000;
-    text-shadow: 1px 2px 17px rgb(255, 255, 255), 5px 4px 20px rgbargb(255, 255, 255)
+    text-shadow: 0 1px 0 #ccc,
+        0 2px 0 #c9c9c9,
+        0 3px 0 #bbb,
+        0 4px 0 #b9b9b9,
+        0 5px 0 #aaa,
+        0 6px 1px rgba(0, 0, 0, .1),
+        0 0 5px rgba(0, 0, 0, .1),
+        0 1px 3px rgba(0, 0, 0, .3),
+        0 3px 5px rgba(0, 0, 0, .2),
+        0 5px 10px rgba(0, 0, 0, .25),
+        0 10px 10px rgba(0, 0, 0, .2),
+        0 20px 20px rgba(0, 0, 0, .15);
 }
 
 .Notify-div {
     margin-top: 5rem;
     width: 100%;
+}
+
+/* CHAT  */
+.gif-img-div {
+    border-radius: 50%;
+    overflow: hidden;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-chat {
+    background-color: transparent;
+    transform: scaleX(-1);
+    height: 200%;
+    width: 200%;
+    object-fit: cover;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+.chat-main-outline {
+    margin-right: -3rem;
+    cursor: pointer;
+    position: fixed;
+    top: 70%;
+    right: 0;
+    z-index: 9999;
+    transition: margin-right 0.5s ease;
+}
+
+.chat-main-outline:hover {
+    margin-right: 0rem;
 }

@@ -43,8 +43,8 @@ export default function TopDestination(props) {
 
             <span className='pb-4 headings'>Top Destinations</span>
             <div className="container-city">
-                {Data.city.map((item) => (
-                    <div className="city-img my-2" >
+                {Data.city.map((item, index) => (
+                    <div className="city-img my-2"  key={index}>
                         <b className='image-content'>  {item.name}</b>
                         <img src={item.img} className='city-img-background' />
                     </div>

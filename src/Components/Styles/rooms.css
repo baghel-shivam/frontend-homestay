@@ -18,9 +18,11 @@
 
 #exampleFormControlInput1 {
     padding: 13px;
+    min-width: 195px;
+    font-size: 18px;
     padding-left: 1.5rem;
-    border-radius: 2rem;
-    background-color: rgb(242, 242, 242);
+    border-radius: .5rem;
+    background-color: rgb(255, 255, 255);
     /* padding:; */
 
 }
@@ -76,19 +78,21 @@
     opacity: 1;
 }
 
+
 .carousel-control-prev {
     margin-top: 30%;
     margin-left: 6px;
 }
 
-.card-hover-effect:hover{
-/* border: 2px solid red; */
-cursor: pointer;
-border-top-right-radius: 10px;
-border-bottom-right-radius: 10px;
-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+.card-hover-effect:hover {
+    /* border: 2px solid red; */
+    cursor: pointer;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 }
+
 .border-none {
     border: none !important;
 }
@@ -105,7 +109,7 @@ box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         width: 110px;
         margin-top: 28px;
     }
-    
+
     #Room_card {
         width: auto;
         height: 100vh;
@@ -149,14 +153,16 @@ box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         height: 100px;
         width: 110px;
     }
-    
+
     .room-collections {
         /* border: 1px solid ; */
 
     }
+
     .nav--bar {
         border-right: 2px solid rgb(235, 234, 234);
     }
+
     .react-daterange-picker__wrapper {
         display: flex;
         flex-wrap: wrap !important;

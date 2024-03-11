@@ -74,10 +74,6 @@ export default function View_in_details() {
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </div>
                     <div className="row bg-opacity-50 bg-light border border-1 text-success  my-2  mx-lg-5 mx-0 p-3 rounded-3">
                         <span className=''>Free Cancellation Till 07-Mar-2024 11:59</span>
@@ -86,7 +82,6 @@ export default function View_in_details() {
 
                         <div className="col my-2 ">
                             <div className='bg-opacity-25 py-1 bg-success rounded-2'>
-
                                 <span>Check-in </span><br />
                                 <span className=' text-secondary'>12:00</span>
                             </div>
@@ -100,10 +95,10 @@ export default function View_in_details() {
 
                         </div>
                         <div className="col  my-2">
-                            <Link to={'/booking'}  className="btn btn-success m-auto py-3 px-5" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Book</Link>
+                            <Link to={'/booking'} className="btn btn-success m-auto py-3 px-5" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Book</Link>
                             <Checkout />
                         </div>
-                     </div>
+                    </div>
                 </div>
             </div>
             <h4 id='text_color' className='my-4'>Guest Reviews & Rating for Green Palms Hotel, Pacific Mall</h4>
