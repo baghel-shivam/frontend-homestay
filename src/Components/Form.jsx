@@ -83,8 +83,7 @@ export default function Form() {
             if (data) {
                 dispatch(SearchRoomDeskTop(data));
                 setTimeout(() => {
-                    // console.log()
-                    // navigate('/search-rooms');
+                    navigate('/search-rooms');
                 }, 1000);
             }
 

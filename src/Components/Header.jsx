@@ -53,9 +53,7 @@ export default function Header() {
                         </ul>
                         <form className="d-flex mx-4 d-none d-md-block d-lg-block">
                             <li className=" navbar-nav nav-item dropdown">
-                                {/* <span className='mt-2 mx-3 fs-5' style={{ ...style, fontFamily: 'Trebuchet MS, sans-seri', letterSpacing: '2px' }} >Name</span> */}
-
-
+                                <Link to='/add-homestay' className="nav-link active"  style={style} >Add Your HomeStay</Link>
                             </li>
                         </form>
                     </div>

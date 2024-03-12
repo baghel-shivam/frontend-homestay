@@ -3,7 +3,7 @@ import React from 'react'
 export default function WhyBook() {
     return (
         <div className='top-destination pt-4'>
-            <span className='pb-4 headings'>Why Stay with us?</span>
+            <span className='pb-4 headings'>Why Stay With Us?</span>
             <div className="container-city py-4">
                 <div className="advantages">
                     <div className="advantages-div">
