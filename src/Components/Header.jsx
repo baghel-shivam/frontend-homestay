@@ -29,6 +29,10 @@ export default function Header() {
                             <img src={img} style={{ height: '100%', width: '100%', borderRadius: '50%', }} role="button" aria-expanded="false" />
 
                             <ul className="dropdown-menu">
+                                <li>
+                            {/* <Link to='/add-homestay' className="dropdown-item"  style={style} >Add Your HomeStay</Link> */}
+
+                                </li>
                                 <li><a className="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style={style} >My profile</a></li>
                                 <li><a className="dropdown-item" style={style} >Sign out</a></li>
                             </ul>
@@ -40,6 +44,8 @@ export default function Header() {
                                 <Link onClick={() => window.location.pathname === '/' ? Nav(Landing_ref) : navigate('/')} className="nav-link active" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style={style} aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item d-md-none d-lg-none d-sm-block" >
+                            <Link to='/add-homestay' className="dropdown-item"  style={style} >Add Your HomeStay</Link>
+
                                 <Link className="nav-link active" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" aria-current="page" style={style} >Profile</Link>
                             </li>
 

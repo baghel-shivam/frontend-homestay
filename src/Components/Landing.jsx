@@ -7,7 +7,7 @@ import WhyBook from './WhyBook';
 import WasThisPageHelpfull from './WasThisPageHelpfull';
 import AboutUs from './AboutUs';
 import ContectUs from './ContectUs';
-import { StoreAbout_us_Ref, StoreContactRef , StoreLanding_Ref} from '../Redux/RefShare/Reference_Slice';
+import { StoreAbout_us_Ref, StoreContactRef, StoreLanding_Ref } from '../Redux/RefShare/Reference_Slice';
 import { useDispatch } from 'react-redux';
 import ChatBoat from './ChatBoat/ChatBoat';
 
@@ -46,7 +46,8 @@ export default function Landing() {
 
     return (
         <div className='only_for_bg' >
-            <ChatBoat/>
+            <ChatBoat />
+                    
             <div style={bgStyle} ref={ref_landing}></div>
             <div id='Landing_form_container' style={contentContainerStyle}>
                 <div className="container text-center p-4" id='Child_form'>
@@ -60,8 +61,9 @@ export default function Landing() {
             <div className="custom-hr">
                 <hr />
             </div>
-            <TopDestination  />
-            <AboutUs Ref={ref_about}/>
+            
+            <TopDestination />
+            <AboutUs Ref={ref_about} />
             <ContectUs Ref={ref_contact} />
             <WasThisPageHelpfull />
         </div>

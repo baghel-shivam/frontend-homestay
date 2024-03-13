@@ -5,6 +5,9 @@
   /* Change this to your secondary color */
 }
 
+body {
+  scroll-behavior: smooth;
+}
 
 .App {
   text-align: center;
