@@ -5,7 +5,7 @@ import BookingSlice from './Booking/BookingSlice';
 import BookingDetailsSlice from './BookingDetails/BookingDetailsSlice';
 import Reference_Slice from './RefShare/Reference_Slice';
 
-const store = configureStore({
+const Store = configureStore({
   reducer: {
     SearchRoom: SearchRoomReducer,
     Booking: BookingSlice,
@@ -14,4 +14,4 @@ const store = configureStore({
   },
 });
 
-export default store;
+export default Store;
