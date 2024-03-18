@@ -19,7 +19,7 @@ export default function AboutUs(props) {
             <hr />
           </span>
           <p>
-            Lorem ipsum dolor sit amet consectetur
+            Lore ipsum dolor sit amet consectetur
             adipisicing elit. Ex mollitia eligendi, non
             facilis, maiores suscipit tempore quibusdam odio fugiat
             dignissimos voluptas quae laudantium nisi itaque sint quod n

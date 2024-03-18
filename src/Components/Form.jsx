@@ -74,25 +74,30 @@ export default function Form() {
 
 
 
-    const handleSubmit = (e) => {
-        const compareDate = compareDates(data.checkin_date, data.checkout_date)
-        console.log(compareDate)
-        e.preventDefault()
-        if (compareDate === true) {
+  
+const handleSubmit = async (e) => {
+    e.preventDefault();
 
-            if (data) {
-                dispatch(SearchRoomDeskTop(data));
-                setTimeout(() => {
-                    navigate('/search-rooms');
-                }, 1000);
+    const compareDate = compareDates(data.checkin_date, data.checkout_date);
+    console.log(compareDate);
+
+    if (compareDate === true) {
+        if (data) {
+            try {
+                await dispatch(SearchRoomDeskTop(data)); // Dispatch your Redux action
+                // Navigate only if the API call is successful
+                navigate('/search-rooms', { state: { searchData: data } });
+            } catch (error) {
+                console.error('API call failed:', error);
+                // Handle the error state or set form error accordingly
+                setFormError({ error: 'API call failed' });
             }
-
-        } else {
-            setFormError({ 'error': compareDate })
         }
-
+    } else {
+        setFormError({ error: compareDate });
     }
-    console.log(state1)
+}
+    console.log(state1, 'this is response')
     return (
         <div className='sub_child  px-lg-5 '>
 

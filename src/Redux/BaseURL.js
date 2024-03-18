@@ -1,1 +1,1 @@
-export const url = 'https://project-homestay-backend.azurewebsites.net/api'
+export const url = 'https://webapp-backend.azurewebsites.net/api'

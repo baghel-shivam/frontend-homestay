@@ -10,11 +10,12 @@ import Rating from './Rating'
 import tag from '../Images/tag.png'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import NavForm from './NavForm'
-
+import { useLocation } from 'react-router-dom'
 
 export default function Rooms() {
     const navigate = useNavigate()
+    const { state } = useLocation()
+    console.log(state, 'this is location data ')
     const data = useSelector((state) => state.SearchRoom)
     const rooms = [
         {
@@ -174,10 +175,10 @@ export default function Rooms() {
                     </div>
                 </div>
                 <div className="col-9 scroll-to-show-all-rooms text-start pt-3 ">
-                    <span className='fs-4 fw-bold  mt-5 result-text'>312 HomeStay in Noida, Uttar Pradesh, India</span>
+                    <span className='fs-4 fw-bold  mt-5 result-text'>{data.data?.length}  "{state?.searchData?.location.charAt(0).toUpperCase() + state?.searchData?.location.slice(1)}" Room's in Search Results</span>
                     <hr />
                     <div className='room-collections mt-5  px-lg-1 px-sm-0'>
-                        {rooms?.map((item, roomIndex) => (
+                        {data?.data?.map((item, roomIndex) => (
                             <>
                                 <div class="card border-none mb-3" key={roomIndex} >
                                     {item.suggested &&
@@ -191,11 +192,13 @@ export default function Rooms() {
                                             <div>
                                                 <div id={`carouselExampleCaptions_${roomIndex}`} class="carousel slide">
                                                     <div class="carousel-inner">
-                                                        {item.image.map((itemImg, index) => (
-                                                            <div class={"carousel-item" + (index === 0 ? " active" : "")}>
-                                                                <img src={itemImg} class="d-block w-100" alt="..." />
-                                                            </div>
-                                                        ))}
+                                                        {
+                                                            item?.img_array?.map((itemImg, index) => (
+                                                                // console.log(itemImg)
+                                                                <div class={"carousel-item" + (index === 0 ? " active" : "")}>
+                                                                    <img src={itemImg?.image_field} class="d-block w-100" alt="..." />
+                                                                </div>
+                                                            ))}
                                                     </div>
                                                     <button class="carousel-control-prev" type="button" data-bs-target={`#carouselExampleCaptions_${roomIndex}`} data-bs-slide="prev">
                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -210,8 +213,9 @@ export default function Rooms() {
                                         </div>
                                         <div class="col-md-8 ">
                                             <div className="card-body border-none" onClick={() => navigate('/view-details')}>
-                                                <h6 className="card-title">{item.full_addres} Super OYO Collection O Hotel Noida Stays </h6>
-                                                <p>Opposite Fire Station, Noida</p>
+                                                <h4 className="card-title">{item.site_name} </h4>
+                                                <p >{item.full_addres} </p>
+                                                {/* <p>Opposite Fire Station, Noida</p> */}
                                                 <div className="">
                                                     <span className='btn btn-success btn-sm'>{item.rate} &#9733;</span>
                                                     <span className='mx-3'>(5 Ratings)</span>
@@ -228,8 +232,8 @@ export default function Rooms() {
                                                 <div className="row mt-1">
                                                     <div className="col pt-2">
                                                         <span className='fs-5 fw-bold'>
-                                                            &#8377; 1200
-                                                            {/* {parseInt(item.base_price).toLocaleString('en-IN')} */}
+                                                            &#8377;
+                                                            {parseInt(item.base_price).toLocaleString('en-IN')}
                                                         </span>
                                                     </div>
                                                     <div className="col">
