@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../Components/Styles/rooms.css'
 import Form from './Form'
 import img from '../Images/pic1.jpg'
@@ -10,102 +10,22 @@ import Rating from './Rating'
 import tag from '../Images/tag.png'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+// import <BaseURL></BaseURL>
 import { useLocation } from 'react-router-dom'
 
 export default function Rooms() {
     const navigate = useNavigate()
+    const [filter_data, setFilter_data] = useState()
+
     const { state } = useLocation()
-    console.log(state, 'this is location data ')
+
     const data = useSelector((state) => state.SearchRoom)
-    const rooms = [
-        {
-            address: 'Delhi, Delhi, New Ashok Nagar , 909090',
-            rate: 4,
-            total_review_count: '1k',
-            suggested: true,
-            this_property_offers: [
-                {
-                    wifi: true,
-                    tv: true,
-                    ac: false,
-                    parking: true,
-                    daily_housekeeping: false,
-                }
-            ],
 
-            price: '999',
-            location: 'Helle , Its just for fun!',
-            image: [img, img2, img3, img4]
-        },
-
-
-        {
-            title: 'Tow room set',
-            rate: 4,
-            suggested: false,
-            address: 'Delhi, Delhi, New Ashok Nagar , 909090',
-            total_review_count: '1k',
-            left_room: "4 Room left",
-            this_property_offers: [
-                {
-                    wifi: false,
-                    tv: true,
-                    ac: false,
-                    parking: true,
-                    daily_housekeeping: false,
-                }
-            ],
-            price: '9999',
-            available: 'false',
-            location: 'Helle , Its just for fun!',
-            image: [img, img2, img3, img4]
-        },
-        {
-            title: 'Tow room set',
-            rate: 3,
-            suggested: false,
-            address: 'Delhi, Delhi, New Ashok Nagar , 909090',
-            total_review_count: '1k',
-            left_room: "4 Room left",
-            this_property_offers: [
-                {
-                    wifi: true,
-                    tv: true,
-                    ac: true,
-                    parking: true,
-                    daily_housekeeping: false,
-                }
-            ],
-            price: '9999',
-            available: 'false',
-            location: 'Helle , Its just for fun!',
-            image: [img, img2, img3, img4]
-
-        },
-        {
-            title: 'Tow room set',
-            suggested: false,
-            rate: 4,
-            address: 'Delhi, Delhi, New Ashok Nagar , 909090',
-            total_review_count: '1k',
-            left_room: "4 Room left",
-            this_property_offers: [
-                {
-                    wifi: false,
-                    tv: false,
-                    ac: false,
-                    parking: false,
-                    daily_housekeeping: false,
-                }
-            ],
-            price: '9999',
-            available: 'false',
-            location: 'Helle , Its just for fun!',
-            image: [img, img2, img3, img4]
-
-        },
-    ]
-
+    const handleFilter = (e) => {
+        const data = e.target
+        setFilter_data({ ...filter_data, [data.name]: data.checked })
+    }
+    console.log(filter_data, 'this is filter data')
     return (
 
         <div className='container Room_div '>
@@ -117,19 +37,25 @@ export default function Rooms() {
                         <div className="container my-4">
                             <h6>Hotel Facility</h6>
                             <div className="form-check my-3">
-                                <input className="form-check-input" type="checkbox" value="" id="acCheckbox" disabled />
+                                <input className="form-check-input" name='ac' type="checkbox" onChange={handleFilter} value="" id="acCheckbox" />
                                 <label className="form-check-label" htmlFor="acCheckbox">
                                     AC
                                 </label>
                             </div>
                             <div className="form-check my-3">
-                                <input className="form-check-input" type="checkbox" value="" id="wifiCheckbox" disabled />
+                                <input className="form-check-input" name='tv' type="checkbox" onChange={handleFilter} value="" id="tvCheckbox" />
+                                <label className="form-check-label" htmlFor="tvCheckbox">
+                                    TV
+                                </label>
+                            </div>
+                            <div className="form-check my-3">
+                                <input className="form-check-input" name='wifi' type="checkbox" onChange={handleFilter} value="" id="wifiCheckbox" />
                                 <label className="form-check-label" htmlFor="wifiCheckbox">
                                     Wifi
                                 </label>
                             </div>
                             <div className="form-check my-3">
-                                <input className="form-check-input" type="checkbox" value="" id="parkingCheckbox" disabled />
+                                <input className="form-check-input" name='parking' type="checkbox" onChange={handleFilter} value="" id="parkingCheckbox" />
                                 <label className="form-check-label" htmlFor="parkingCheckbox">
                                     Parking
                                 </label>
@@ -194,9 +120,9 @@ export default function Rooms() {
                                                     <div class="carousel-inner">
                                                         {
                                                             item?.img_array?.map((itemImg, index) => (
-                                                                // console.log(itemImg)
-                                                                <div class={"carousel-item" + (index === 0 ? " active" : "")}>
-                                                                    <img src={itemImg?.image_field} class="d-block w-100" alt="..." />
+                                                                // console.log(`https://webapp-backend.azurewebsites.net/media/${itemImg?.image_field}`)
+                                                                <div key={index} class={"carousel-item" + (index === 0 ? " active" : "")}>
+                                                                    <img src={`https://webapp-backend.azurewebsites.net/media/${itemImg?.image_field}`} class="d-block w-100" alt="..." />
                                                                 </div>
                                                             ))}
                                                     </div>
