@@ -8,26 +8,23 @@ import { Link } from 'react-router-dom'
 import Checkout from './Checkout'
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Success from './Success'
 export default function View_in_details() {
-    const { state } = useLocation()
     const data = useSelector((state) => state.SearchRoom)
+    const booking = useSelector((state) => state.Booking.status)
     const [view_data, setView_data] = useState()
+    const { state } = useLocation()
 
-       const saveToLocalStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value));
-    const getFromLocalStorage = (key) => JSON.parse(localStorage.getItem(key));
-    
+
     useEffect(() => {
-      const storedData = getFromLocalStorage('searchRoomData');
-      if (storedData) return setView_data(storedData);
-    
-      const matched = data.data.find((item) => item.id === state);
-      if (matched) {
+        const matched = data?.data?.find((item) => item.id === state);
         setView_data(matched);
-        saveToLocalStorage('searchRoomData', matched);
-      }
-    }, [state, data]);
+    }, [state, data, view_data]);
+
+
     return (
         <div className='my-5 pt-5 container'>
+            {booking==='succeeded'&& <Success/>}
             <span className='mt-3 fs-2' style={{ color: '#00000', fontWeight: '700' }}>Room Detail</span>
             <hr />
             <div className="row my-5">
@@ -64,7 +61,10 @@ export default function View_in_details() {
                         </div>
                         <div className="col text-start">
                             <span className='text-start pb-2' style={{ color: 'green' }}>Price start at</span>
-                            <h3> &#8377; {view_data?.base_price} </h3>
+                            <h3> &#8377;
+                                {parseInt(view_data?.base_price).toLocaleString('en-IN')}
+
+                            </h3>
                         </div>
                         <div className="col">
                             <div className="row text-start mt-2">
@@ -140,7 +140,7 @@ export default function View_in_details() {
                         </div>
                         <div className="col  my-2">
                             <Link to={'/booking'} className="btn btn-success m-auto py-3 px-5" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Book</Link>
-                            <Checkout />
+                            <Checkout view_data={view_data} />
                         </div>
                     </div>
                 </div>

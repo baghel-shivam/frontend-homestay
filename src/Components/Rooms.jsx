@@ -16,21 +16,9 @@ export default function Rooms() {
     const [filteredItems, setFilteredItems] = useState([]);
     const [filter_data, setFilter_data] = useState([])
     const { state } = useLocation()
-    const [Data, setData] = useState()
     const data = useSelector((state) => state.SearchRoom)
-    useEffect(() => {
-        const storedData = localStorage.getItem('Room-data');
-        if (storedData) {
-            const parsedData = JSON.parse(storedData);
-            setData(parsedData);
-        } else {
-            setData(data?.data)
-        }
-    }, []);
-
-    useEffect(() => {
-        if (data.data.length > 0) localStorage.setItem('Room-data', JSON.stringify(data.data));
-    }, [data]);
+    
+    
     const handleFilter = (e) => {
         const { name, checked } = e.target;
         const updatedFilterData = [...filter_data];
@@ -146,7 +134,7 @@ export default function Rooms() {
                     <span className='fs-4 fw-bold  mt-5 result-text'>{data.data?.length}  "{state?.searchData?.location.charAt(0).toUpperCase() + state?.searchData?.location.slice(1)}" Room's in Search Results</span>
                     <hr />
                     <div className='room-collections mt-5  px-lg-1 px-sm-0'>
-                        {Data?.map((item, roomIndex) => (
+                        {data?.data?.map((item, roomIndex) => (
                             <>
                                 <div class="card border-none mb-3" key={roomIndex} >
                                     {item.suggested &&

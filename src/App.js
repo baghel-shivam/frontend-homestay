@@ -14,6 +14,7 @@ import Checkout from './Components/Checkout';
 import Loading from './Components/Loading';
 import MyApp from './Components/DateRange';
 import AddYourHomeStay from './Components/AddYourHomeStay';
+import Success from './Components/Success';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path='/otp' element={<Otp />} />
           <Route path='/sing-up' element={<Sign_up />} />
           <Route path='/add-homestay' element={<AddYourHomeStay />} />
+          <Route path='/success' element={<Success />} />
         </Routes>
         {/* <MyApp/> */}
         <Footer />
