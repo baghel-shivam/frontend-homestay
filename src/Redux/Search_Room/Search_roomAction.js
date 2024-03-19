@@ -13,7 +13,6 @@ export const SearchRoomDeskTop = createAsyncThunk('main_api/SearchRoomDeskTop', 
             }
         }
         const response = await axios(config)
-        console.log(response, 'this is response')
         return response.data
     } catch (error) {
         console.error('Error fetching room search:', error);

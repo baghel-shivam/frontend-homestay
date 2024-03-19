@@ -8,13 +8,14 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { SearchRoomDeskTop } from '../Redux/Search_Room/Search_roomAction';
 import Loading from './Loading';
-
+import { updateFormData } from '../Redux/Search_Room/Search_roomSlice'
 
 export default function Form() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [data, setData] = useState({ "checkin_date": null, "checkout_date": null, "location": '' })
     const state1 = useSelector((state) => state?.SearchRoom)
+    const formData = useSelector((state) => state?.SearchRoom)
     const [formError, setFormError] = useState()
     const [value, onChange] = useState([new Date(), new Date()]);
 
@@ -22,6 +23,8 @@ export default function Form() {
         const { value, name } = e.target
         setData({ ...data, [name]: value })
     }
+
+    console.log(formData, 'this is datas')
 
     useEffect(() => {
         if (Array.isArray(value) && value.length === 2 && value[0] && value[1]) {
@@ -74,30 +77,25 @@ export default function Form() {
 
 
 
-  
-const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    const compareDate = compareDates(data.checkin_date, data.checkout_date);
-    console.log(compareDate);
-
-    if (compareDate === true) {
-        if (data) {
-            try {
-                await dispatch(SearchRoomDeskTop(data)); // Dispatch your Redux action
-                // Navigate only if the API call is successful
-                navigate('/search-rooms', { state: { searchData: data } });
-            } catch (error) {
-                console.error('API call failed:', error);
-                // Handle the error state or set form error accordingly
-                setFormError({ error: 'API call failed' });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const compareDate = compareDates(data.checkin_date, data.checkout_date);
+        if (compareDate === true) {
+            if (data) {
+                try {
+                    await dispatch(SearchRoomDeskTop(data));
+                    await dispatch(updateFormData(data));
+                    navigate('/search-rooms', { state: { searchData: data } });
+                } catch (error) {
+                    console.error('API call failed:', error);
+                    setFormError({ error: 'API call failed' });
+                }
             }
+        } else {
+            setFormError({ error: compareDate });
         }
-    } else {
-        setFormError({ error: compareDate });
     }
-}
-    console.log(state1, 'this is response')
     return (
         <div className='sub_child  px-lg-5 '>
 

@@ -4,11 +4,20 @@ import { createSlice } from '@reduxjs/toolkit';
 const Search_Room = createSlice({
     name: 'main_api',
     initialState: {
+        formData: null,
         data: [],
         status: 'idle',
-        error: null // Change error to null initially
+        error: null
     },
-    reducers: {},
+
+    reducers: {
+        updateFormData(state, action) {
+            state.formData = action.payload;
+        },
+        restoreState(state, action){
+            state.data = action.payload;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(SearchRoomDeskTop.pending, (state) => {
@@ -26,4 +35,5 @@ const Search_Room = createSlice({
     }
 });
 
+export const { updateFormData, restoreState } = Search_Room.actions;
 export default Search_Room.reducer;

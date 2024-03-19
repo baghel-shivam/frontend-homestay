@@ -137,6 +137,22 @@ body {
   color: #000000;
 }
 
+.img-checkout-div {
+  /* overflow: hidden; */
+  /* height: 100vh; Set the height of the div to the viewport height */
+  /* width: 100%; Set the width to 100% to fill the parent container */
+  background-image: url('./Images//city-img\ \(2\).jpg'); /* Specify the image URL */
+  background-size: cover; /* Cover the entire background */
+  background-position: center; /* Center the background image */
+}
+
+.checkout-img{
+  background-position: center;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
   display: inline-block;
@@ -147,9 +163,17 @@ body {
   background-size: 100% 100%;
 }
 
+.modal-dialog{
+  /* border: 1px solid red; */
+  overflow: hidden;
+  height: auto;
+  width: auto;
+}
+
 .checkout-container {
-  /* height: 100vh; */
-  /* margin-top: 5rem; */
+  /* height: 100vh;
+  width: 100vh;
+  border: 2px solid red; */
 }
 
 ::-webkit-scrollbar {
