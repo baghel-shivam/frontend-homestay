@@ -89,8 +89,7 @@ export default function Form() {
                     setFormError({ error: 'API call failed' });
                 }
             }
-        } else {
-           
+        } else {           
             return alert(compareDate);
         }
     }

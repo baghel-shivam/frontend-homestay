@@ -66,7 +66,7 @@ export default function AddYourHomeStay() {
         <div className='container add-your-home-stay pt-3'>
             {AddProp.status === 'loading' && <Loading />}
             {AddProp.status === 'succeeded' && <Toast msg={AddProp?.data} />}
-            <h2 className='title'>Add your Home stay</h2>
+            <h2 className='title'>Add your property</h2>
             <form onSubmit={handleSubmit}>
                 <div className="row mt-4 container my-5 p-4 child-add-your-home-stay">
                     {/* <div className="col-md-4">
@@ -83,7 +83,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-12">
                                     <div className="mb-3">
-                                        <input required type="text" className="form-control" name="full_address_one_line" value={formData.address} onChange={handleChange} placeholder="full_address_one_line" />
+                                        <input required type="text" className="form-control" name="full_address_one_line" value={formData.address} onChange={handleChange} placeholder="Full address " />
                                     </div>
                                 </div>
                                 <div className="col-12">
@@ -168,7 +168,7 @@ export default function AddYourHomeStay() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="mb-3">
-                                        <input required type="text" className="form-control" name="how_to_reach" value={formData.how_to_reach} onChange={handleChange} placeholder="how_to_reach" />
+                                        <input required type="text" className="form-control" name="how_to_reach" value={formData.how_to_reach} onChange={handleChange} placeholder="How to reach" />
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +233,7 @@ export default function AddYourHomeStay() {
                                             checked={formData.is_tv_available}
                                             onChange={() => setFormData({ ...formData, is_tv_available: !formData.is_tv_available })}
                                         />
-                                        <label className="form-check-label">is_tv_available</label>
+                                        <label className="form-check-label">Is tv available</label>
                                     </div>
                                     <div className="mb-3 form-check">
                                         <input
@@ -277,7 +277,7 @@ export default function AddYourHomeStay() {
                                             checked={formData.is_parking_available}
                                             onChange={() => setFormData({ ...formData, is_parking_available: !formData.is_parking_available })}
                                         />
-                                        <label className="form-check-label">is_parking_available</label>
+                                        <label className="form-check-label">Is parking available</label>
                                     </div>
                                     <div className="mb-3 form-check">
                                         <input
@@ -287,7 +287,7 @@ export default function AddYourHomeStay() {
                                             checked={formData.is_ac_available}
                                             onChange={() => setFormData({ ...formData, is_ac_available: !formData.is_ac_available })}
                                         />
-                                        <label className="form-check-label">is_ac_available</label>
+                                        <label className="form-check-label">Is ac available</label>
                                     </div>
                                     <div className="mb-3 form-check">
                                         <input
@@ -297,7 +297,7 @@ export default function AddYourHomeStay() {
                                             checked={formData.is_housekeeping_available}
                                             onChange={() => setFormData({ ...formData, is_housekeeping_available: !formData.is_housekeeping_available })}
                                         />
-                                        <label className="form-check-label">is_housekeeping_available</label>
+                                        <label className="form-check-label">Is housekeeping available</label>
                                     </div>
                                 </div>
                             </div>

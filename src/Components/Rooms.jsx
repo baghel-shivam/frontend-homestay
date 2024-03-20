@@ -149,8 +149,8 @@ export default function Rooms() {
                                                 <div id={`carouselExampleCaptions_${roomIndex}`} class="carousel slide">
                                                     <div class="carousel-inner">
                                                         {item?.img_array?.map((itemImg, index) => (
-                                                            <div key={index} class={"carousel-item" + (index === 0 ? " active" : "")}>
-                                                                <img src={`https://webapp-backend.azurewebsites.net/media/${itemImg?.image_field}`} class="d-block w-100" alt="..." />
+                                                            <div key={index} className={"carousel-item  overflow-hidden" + (index === 0 ? " active" : "")}>
+                                                                <img src={`https://webapp-backend.azurewebsites.net/media/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
                                                             </div>
                                                         ))}
                                                     </div>

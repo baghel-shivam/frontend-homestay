@@ -59,7 +59,7 @@ export default function Header() {
                         </ul>
                         <form className="d-flex mx-4 d-none d-md-block d-lg-block">
                             <li className=" navbar-nav nav-item dropdown">
-                                <Link to='/add-homestay' className="nav-link active"  style={style} >Add Your HomeStay</Link>
+                                <Link to='/add-homestay' className="nav-link active"  style={style} >Add your property</Link>
                             </li>
                         </form>
                     </div>
