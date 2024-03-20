@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SearchRoomDeskTop } from '../Redux/Search_Room/Search_roomAction';
 import Loading from './Loading';
 import { updateFormData } from '../Redux/Search_Room/Search_roomSlice'
+import Toast from './Toast';
 
 export default function Form() {
     const dispatch = useDispatch()
@@ -51,7 +52,6 @@ export default function Form() {
         );
     }
     function compareDates(checkIn, checkOut) {
-        console.log(checkIn, checkOut);
         if (checkIn !== null && checkOut !== null) {
             const [inY, inM, inD] = checkIn.split('-').map(Number);
             const [outY, outM, outD] = checkOut.split('-').map(Number);
@@ -75,9 +75,6 @@ export default function Form() {
         }
     }
 
-
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const compareDate = compareDates(data.checkin_date, data.checkout_date);
@@ -93,14 +90,14 @@ export default function Form() {
                 }
             }
         } else {
-            setFormError({ error: compareDate });
+           
+            return alert(compareDate);
         }
     }
+    
     return (
         <div className='sub_child  px-lg-5 '>
-
             {state1?.status === 'loading' && <><Loading /></>}
-
             <form onSubmit={handleSubmit}>
                 <div className="container px-0 check-form d-flex flex-wrap align-items-center justify-content-center h-auto w-auto m-auto" style={{ width: '100%' }}>
                     <div className="my-1 mx-1" style={{ flex: '1' }}>

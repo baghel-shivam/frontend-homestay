@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { BookingRequest } from '../Redux/Booking/BookignAction'
 import Loading from './Loading'
+import Success from './Success'
 
 
 export default function Checkout({ view_data }) {
@@ -16,24 +17,27 @@ export default function Checkout({ view_data }) {
         const event = e.target
         setData({ ...data, [event.name]: event.value })
     }
-
-    console.log(booking)
+    const [smShow, setSmShow] = useState(false);
     useEffect(() => {
         if (booking?.status === "succeeded") {
             const closeButton = document.querySelector(".btn-close-checkout");
             if (closeButton) {
-              closeButton.click();
+                closeButton.click();
             }
-        //    navigate('/success')
+            setSmShow(true)
         }
         console.log(booking)
-      }, [booking]);
+    }, [booking]);
     const options = {
         weekday: 'short', // Short weekday name (e.g., "Sat")
         day: 'numeric', // Numeric day of the month (e.g., "9")
         month: 'short', // Short month name (e.g., "Mar")
     };
 
+    const HandleCloseModel = () => {
+        setSmShow(false)
+        window.location.reload(true)
+    }
 
 
     useEffect(() => {
@@ -55,7 +59,8 @@ export default function Checkout({ view_data }) {
 
     return (
         <div className='checkout-container'>
-            {booking.status==='loading'&& <Loading/>}
+            {booking.status === 'loading' && <Loading />}
+            <Success smShow={smShow} onHide={HandleCloseModel} />
             <div className="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                 <div className="modal-dialog modal-dialog-centered modal-lg">
                     <div className="modal-content overflow-hidden">

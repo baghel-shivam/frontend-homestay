@@ -5,11 +5,38 @@ import parkedCar from '../Images/parked-car.png'
 import AC from '../Images/air-conditioner.png'
 import TV from '../Images/television.png'
 import { Link } from 'react-router-dom'
+import Gallery from './Gallery'
 import Checkout from './Checkout'
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Success from './Success'
 export default function View_in_details() {
+    const feedbackData = [
+        {
+            id: 1,
+            username: 'JohnDoe123',
+            feedback: 'Great product! Very user-friendly interface.',
+            rating: 5,
+            date: '2024-03-20',
+        },
+        {
+            id: 2,
+            username: 'JaneSmith456',
+            feedback: 'The service was excellent. I would highly recommend it.',
+            rating: 4,
+            date: '2024-03-18',
+        },
+        {
+            id: 3,
+            username: 'SamWilson789',
+            feedback: 'Could use some improvements in the mobile app version.',
+            rating: 3,
+            date: '2024-03-15',
+        },
+        // Add more feedback objects as needed
+    ];
+
+
     const data = useSelector((state) => state.SearchRoom)
     const booking = useSelector((state) => state.Booking.status)
     const [view_data, setView_data] = useState()
@@ -24,7 +51,7 @@ export default function View_in_details() {
 
     return (
         <div className='my-5 pt-5 container'>
-            {booking==='succeeded'&& <Success/>}
+            {booking === 'succeeded' && <Success />}
             <span className='mt-3 fs-2' style={{ color: '#00000', fontWeight: '700' }}>Room Detail</span>
             <hr />
             <div className="row my-5">
@@ -147,13 +174,13 @@ export default function View_in_details() {
             </div>
             <h4 id='text_color' className='my-4'>Guest Reviews & Rating for Green Palms Hotel, Pacific Mall</h4>
 
-            <div className="container">
-                <div className='row border border-1 mt-4  mx-lg-1 mx-0 p-3'>
-                    <div className="col-7 text-start">
+            <div className="">
+                <div className='row border border-1 m-0 p-0' style={{margin:'0px', padding:'0px'}}>
+                    <div className="col-7 text-start px-3">
                         <span className='mt-3 fs-1 text-start' style={{ color: '#00000', fontWeight: '700', fontFamily: 'Trebuchet MS, sans-seri' }}>About</span>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore dolore ad maxime velit qui beatae in sapiente repudiandae ullam, cumque laudantium rerum molestiae nostrum ipsum nisi, eius ratione? Cumque, minus!</p>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-3 px-lg-5 p-3">
+                    <div className="col-12 col-md-6 col-lg-3 p-3">
                         <div className="container">
                             <span>5 &#9733;</span>
                             <div className="w-100 rate-bar">
@@ -186,8 +213,8 @@ export default function View_in_details() {
                         </div>
                     </div>
                     <div className="col-12  col-md-6 col-lg-2 p-3 mt-2">
-                        <div className="bg-success p-2 m-2 w-100 rounded-3 text-light">
-                            <span className='mt-3 fs-3' style={{ color: '#00000', fontWeight: '200' }}>Ratings</span>
+                        <div className="bg-success p-2  w-100 rounded-3 text-light">
+                            <span className='mt-3  fs-3' style={{ color: '#00000', fontWeight: '200' }}>Ratings</span>
                             {/* <h2>Ratings</h2> */}
                             <h1>4/3.5</h1>
                             <span>786 Ratings</span><br />
@@ -195,24 +222,43 @@ export default function View_in_details() {
                         </div>
 
                     </div>
-                    <div className="row">
-                        <div className="col">
-                            <div className="feedback text-start">
-                                Rooms Gallery
+                    <hr/>
+                    <div className="row m-auto">
+                        <div className="col-12 col-lg-6 col-sm-12 col-md-6 pt-4">
+                            <div className="feedback text-start py-2">
+                                <h5> Gallery</h5>
+                                <Gallery view_data={view_data} />
                             </div>
                         </div>
-                        <div className="col">
-                            <div className="feedback text-end">
+                        <div className="col-12 col-lg-6 col-sm-12 col-md-6 pt-4">
+                            <div className="feedback text-start py-2" >
+                                <h5 className='mx-3'> Feedbacks</h5>
+                                <div className="container mt-5">
+                                    {feedbackData.map((item) => <>
+                                        <div class="card mb-3 " style={{zIndex:"-9999"}}>
+                                            <div class="card-body">
+                                                <div className="d-flex m-0 p-0">
+
+                                                <h5 class="card-title m-0">{item.username} &#x2022; </h5> <span className='mx-2'>&#9733; {item.rating}</span> 
+                                                </div>
+                                                <p class="card-text">{item?.feedback}</p>
+                                            </div>
+                                        </div>
+                                    </>)}
+
+                                </div>
 
                             </div>
+
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
+
+
         </div>
+
+
         // </iv >
     )
 }

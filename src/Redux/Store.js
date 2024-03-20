@@ -4,6 +4,7 @@ import SearchRoomReducer from './Search_Room/Search_roomSlice'
 import BookingSlice from './Booking/BookingSlice';
 import BookingDetailsSlice from './BookingDetails/BookingDetailsSlice';
 import Reference_Slice from './RefShare/Reference_Slice';
+import AddPropSlice from './AddNewPro/AddPropSlice';
 
 const Store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const Store = configureStore({
     Booking: BookingSlice,
     Ref: Reference_Slice,
     Booking_Details: BookingDetailsSlice,
+    AddProp:AddPropSlice,
   },
 });
 

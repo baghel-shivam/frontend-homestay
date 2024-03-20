@@ -1,9 +1,7 @@
 import './App.css';
 import Footer from './Components/Footer';
 import Header from './Components/Header';
-// import {BroserRoute}
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
-// import 
 import Landing from './Components/Landing';
 import Rooms from './Components/Rooms';
 import View_in_details from './Components/View_in_details';
@@ -11,10 +9,7 @@ import Login from './Components/Login';
 import Otp from './Components/Otp';
 import Sign_up from './Components/Sign_up';
 import Checkout from './Components/Checkout';
-import Loading from './Components/Loading';
-import MyApp from './Components/DateRange';
 import AddYourHomeStay from './Components/AddYourHomeStay';
-import Success from './Components/Success';
 
 
 function App() {
@@ -32,10 +27,9 @@ function App() {
           <Route path='/otp' element={<Otp />} />
           <Route path='/sing-up' element={<Sign_up />} />
           <Route path='/add-homestay' element={<AddYourHomeStay />} />
-          <Route path='/success' element={<Success />} />
+          
         </Routes>
-        {/* <MyApp/> */}
-        <Footer />
+              <Footer />
       </BrowserRouter>
     </div>
   );
