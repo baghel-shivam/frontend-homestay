@@ -131,7 +131,7 @@ export default function Rooms() {
                     </div>
                 </div>
                 <div className="col-9 scroll-to-show-all-rooms text-start pt-3 ">
-                    <span className='fs-4 fw-bold  mt-5 result-text'>{data.data?.length}  "{state?.searchData?.location.charAt(0).toUpperCase() + state?.searchData?.location.slice(1)}" Room's in Search Results</span>
+                    <span className='fs-4 fw-bold  mt-5 result-text'>{data.data?.length} HomeStay in "{state?.searchData?.location.charAt(0).toUpperCase() + state?.searchData?.location.slice(1)}" </span>
                     <hr />
                     <div className='room-collections mt-5  px-lg-1 px-sm-0'>
                         {data?.data?.map((item, roomIndex) => (

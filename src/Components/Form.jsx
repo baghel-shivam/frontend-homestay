@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import '@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css';
 import 'react-calendar/dist/Calendar.css';
@@ -9,8 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SearchRoomDeskTop } from '../Redux/Search_Room/Search_roomAction';
 import Loading from './Loading';
 import { updateFormData } from '../Redux/Search_Room/Search_roomSlice'
-import Toast from './Toast';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Form() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -19,13 +20,28 @@ export default function Form() {
     const formData = useSelector((state) => state?.SearchRoom)
     const [formError, setFormError] = useState()
     const [value, onChange] = useState([new Date(), new Date()]);
-
+    const ref = useRef()
     const handleChange = (e) => {
         const { value, name } = e.target
         setData({ ...data, [name]: value })
     }
+    const [isHighlighted, setIsHighlighted] = useState(false);
 
-    console.log(formData, 'this is datas')
+    const handleHighlight = () => {
+        setIsHighlighted(!isHighlighted);
+    };
+    const notify = (msg) => toast.error(msg,
+        {
+            position: 'top-right',
+            toastContainerClassName: 'custom-toast-container',
+            autoClose: 3000, 
+            hideProgressBar: false,
+            closeOnClick: true, 
+            pauseOnHover: true, 
+            draggable: true, 
+          }
+        );
+
 
     useEffect(() => {
         if (Array.isArray(value) && value.length === 2 && value[0] && value[1]) {
@@ -85,35 +101,44 @@ export default function Form() {
                     await dispatch(updateFormData(data));
                     navigate('/search-rooms', { state: { searchData: data } });
                 } catch (error) {
-                    console.error('API call failed:', error);
                     setFormError({ error: 'API call failed' });
                 }
             }
-        } else {           
-            return alert(compareDate);
+        } else {
+            return notify(compareDate);
         }
     }
-    
+
+
     return (
-        <div className='sub_child  px-lg-5 '>
+        <div className='sub_child'>
+          
             {state1?.status === 'loading' && <><Loading /></>}
+            {/* <div style={{zIndex:"99999", position:'fixed', top:'20%'}}> */}
+
+            {/* </div> */}
             <form onSubmit={handleSubmit}>
-                <div className="container px-0 check-form d-flex flex-wrap align-items-center justify-content-center h-auto w-auto m-auto" style={{ width: '100%' }}>
-                    <div className="my-1 mx-1" style={{ flex: '1' }}>
-                        <input type="location" required onChange={handleChange} value={data?.location} name='location' className="form-control" id="exampleFormControlInput1" placeholder="Enter Location or pin" style={{ width: '100%' }} />
+                <div className="container px-0 check-form">
+                    <div className="flex-item " style={{ position: 'relative', zIndex: '9999' }}>
+                        <label className='location-label'>Where to ?</label>
+                        <input type="location" required onChange={handleChange} value={data?.location} name='location' className="form-control" id="exampleFormControlInput1" placeholder="Enter Location, pin or property" style={{ width: '100%' }} />
                     </div>
-                    <div className="my-1 mx-1" style={{ flex: '1' }}>
+                    <div className={'mx-1 highlighted flex-item '} ref={ref} onClick={handleHighlight} style={{ position: 'relative' }}>
                         {DateRange()}
+                        <label className='date-label'>When to ?</label>
                     </div>
-                    <div className="mx-1 d-flex flex-wrap align-items-center justify-content-center h-auto w-auto m-auto" style={{ flex: '.0.1' }}>
-                        <button className='m-auto' type='submit' id='Main-button' style={{ background: "white", color: 'white', borderRadius: '.5rem', padding: '.89rem' }}>
-                            <i className="bi bi-search" type='submit' ></i>
+                    <div className='flex-item'>
+                        <button className='m-auto btn text-dark add-new-property' type='submit' id='Main-button' style={{ background: "white", color: 'white', borderRadius: '100px', padding: '25px' }}>
+                        <span className="text px-2">Search</span><span className='mt-2'>Search</span>
+                            
+                            
                         </button>
                     </div>
                 </div>
             </form>
 
 
+            <ToastContainer />
         </div >
     )
 }

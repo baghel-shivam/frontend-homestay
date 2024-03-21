@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import img from '../Images/pic3.jpg'
 import { useSelector } from 'react-redux'
 export default function Header() {
     const { Contact_ref, About_US_ref, Landing_ref } = useSelector((state) => state.Ref)
@@ -21,18 +20,14 @@ export default function Header() {
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg #2F3C7E py-2 position-fixed fixed-top px-lg-4" style={{ background: '#ffff', color: '#000000' }}>
+            <nav className="navbar navbar-expand-lg #2F3C7E py-2 position-fixed fixed-top px-lg-4" style={{ background: '#ffff', color: '#000000', zIndex:'999' }}>
                 <div className="container-fluid">
                     <a className="navbar-brand fs-3" style={{ color: '#000000', fontFamily: 'Trebuchet MS, sans-seri', wordSpacing: '2px', letterSpacing: '3px', fontWeight: '700' }}>HomeStay</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <div id='profile_image' className='rounded-circle bg-danger nav-link' role="button" aria-expanded="false">
-                            <img src={img} style={{ height: '100%', width: '100%', borderRadius: '50%', }} role="button" aria-expanded="false" />
+                            {/* <img src={img} style={{ height: '100%', width: '100%', borderRadius: '50%', }} role="button" aria-expanded="false" /> */}
 
                             <ul className="dropdown-menu">
-                                <li>
-                            {/* <Link to='/add-homestay' className="dropdown-item"  style={style} >Add Your HomeStay</Link> */}
-
-                                </li>
                                 <li><a className="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style={style} >My profile</a></li>
                                 <li><a className="dropdown-item" style={style} >Sign out</a></li>
                             </ul>
@@ -44,7 +39,7 @@ export default function Header() {
                                 <Link onClick={() => window.location.pathname === '/' ? Nav(Landing_ref) : navigate('/')} className="nav-link active" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style={style} aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item d-md-none d-lg-none d-sm-block" >
-                            <Link to='/add-homestay' className="dropdown-item"  style={style} >Add Your HomeStay</Link>
+                                <Link to='/add-homestay' role='button' className="dropdown-item " style={style} >Add Your HomeStay</Link>
 
                                 <Link className="nav-link active" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" aria-current="page" style={style} >Profile</Link>
                             </li>
@@ -59,7 +54,10 @@ export default function Header() {
                         </ul>
                         <form className="d-flex mx-4 d-none d-md-block d-lg-block">
                             <li className=" navbar-nav nav-item dropdown">
-                                <Link to='/add-homestay' className="nav-link active"  style={style} >Add your property</Link>
+                                <Link to='/add-homestay' className="nav-link active add-new-property" style={{...style,borderBottom:"1.5px solid" }} >
+
+                                    <span className="text px-2">Add your property</span><span>With HomeStay</span>
+                                </Link>
                             </li>
                         </form>
                     </div>
