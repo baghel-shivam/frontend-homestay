@@ -1,71 +1,60 @@
-import React from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { useSelector } from 'react-redux';
+
 export default function Header() {
-    const { Contact_ref, About_US_ref, Landing_ref } = useSelector((state) => state.Ref)
-
-    const navigate = useNavigate()
-
-    const Nav = (ref_to) => {
-        if (window.location.pathname === '/') {
-            ref_to.focus();
-            ref_to.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-        }
-
-    }
-
+    const { Contact_ref, About_US_ref, Landing_ref } = useSelector((state) => state.Ref);
     const style = {
         color: "#00000"
-    }
+    };
+
+    const handleNav = (ref_to) => {
+        if (window.location.pathname === '/') {
+            if (ref_to instanceof HTMLElement) {
+                ref_to.focus();
+                ref_to.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+            }
+        }
+    };
+
+    const navigate = useNavigate();
 
     return (
-        <>
-            <nav className="navbar navbar-expand-lg #2F3C7E py-2 position-fixed fixed-top px-lg-4" style={{ background: '#ffff', color: '#000000', zIndex:'999' }}>
-                <div className="container-fluid">
-                    <a className="navbar-brand fs-3" style={{ color: '#000000', fontFamily: 'Trebuchet MS, sans-seri', wordSpacing: '2px', letterSpacing: '3px', fontWeight: '700' }}>HomeStay</a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <div id='profile_image' className='rounded-circle bg-danger nav-link' role="button" aria-expanded="false">
-                            {/* <img src={img} style={{ height: '100%', width: '100%', borderRadius: '50%', }} role="button" aria-expanded="false" /> */}
-
-                            <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style={style} >My profile</a></li>
-                                <li><a className="dropdown-item" style={style} >Sign out</a></li>
-                            </ul>
-                        </div>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <Link onClick={() => window.location.pathname === '/' ? Nav(Landing_ref) : navigate('/')} className="nav-link active" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style={style} aria-current="page" to="/">Home</Link>
-                            </li>
-                            <li className="nav-item d-md-none d-lg-none d-sm-block" >
-                                <Link to='/add-homestay' role='button' className="dropdown-item " style={style} >Add Your HomeStay</Link>
-
-                                <Link className="nav-link active" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" aria-current="page" style={style} >Profile</Link>
-                            </li>
-
-                            <li className="nav-item" onClick={() => window.location.pathname === '/' ? Nav(Contact_ref) : navigate('/')}>
-                                <Link className="nav-link active" aria-current="page" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style={style} >Contact us</Link>
-                            </li>
-                            <li className="nav-item" onClick={() => window.location.pathname === '/' ? Nav(About_US_ref) : navigate('/')}>
-                                <Link className="nav-link active" aria-current="page" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style={style} >About us</Link>
-                            </li>
-
-                        </ul>
-                        <form className="d-flex mx-4 d-none d-md-block d-lg-block">
-                            <li className=" navbar-nav nav-item dropdown">
-                                <Link to='/add-homestay' className="nav-link active add-new-property" style={{...style,borderBottom:"1.5px solid" }} >
-
-                                    <span className="text px-2">Add your property</span><span>With HomeStay</span>
-                                </Link>
-                            </li>
-                        </form>
-                    </div>
-                </div>
-            </nav>
-        </>
-    )
+        <Navbar fixed="top" collapseOnSelect expand="lg" className="bg-body-tertiary p-0">
+            <Container className='p-0'>
+                <Navbar.Brand>
+                    <span className='home-stay-name px-2'>HomeStay</span>
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto px-lg-4 mt-lg-2">
+                        <Nav.Link>
+                            <Link onClick={() => window.location.pathname === '/' ? handleNav(Landing_ref) : navigate('/')} className="nav-link active add-new-property mx-lg-2" style={{ ...style, borderBottom: ".5px solid" }} aria-current="page" to="/"><span className='text px-2'>Home</span><span className='mt-2'><i class="bi bi-house"></i></span></Link>
+                        </Nav.Link>
+                        <Nav.Link >
+                            <Link onClick={() => window.location.pathname === '/' ? handleNav(Contact_ref) : navigate('/')} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, borderBottom: ".5px solid" }} ><span className='text px-3'>Contact us</span> <span className='mt-2 w-100'><i class="bi bi-telephone"></i></span></Link>
+                        </Nav.Link>
+                        <Nav.Link >
+                            <Link onClick={() => window.location.pathname === '/' ? handleNav(About_US_ref) : navigate('/')} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, borderBottom: ".5px solid" }} ><span className='text px-2'>About us</span> <span className='mt-2 w-100'><i class="bi bi-exclamation-circle"></i></span></Link>
+                        </Nav.Link>
+                    </Nav>
+                    <Nav>
+                        <Nav.Link>
+                            <Link to='/add-homestay' className="nav-link active add-new-property" style={{ ...style, borderBottom: "1.5px solid" }} >
+                                <span className="text px-2">Add your property</span><span className='w-100 mt-2'>With HomeStay</span>
+                            </Link>
+                        </Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+    );
 }
+
+
 {/* <div id='profile_image' className='rounded-circle bg-danger nav-link d-none d-lg-block d-md-block' role="button" data-bs-toggle="dropdown" aria-expanded="false">
 <a className="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 <img src={img} style={{ height: '100%', width: '100%', borderRadius: '50%', }} role="button" data-bs-toggle="dropdown" aria-expanded="false" />

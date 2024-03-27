@@ -34,13 +34,13 @@ export default function Form() {
         {
             position: 'top-right',
             toastContainerClassName: 'custom-toast-container',
-            autoClose: 3000, 
+            autoClose: 3000,
             hideProgressBar: false,
-            closeOnClick: true, 
-            pauseOnHover: true, 
-            draggable: true, 
-          }
-        );
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        }
+    );
 
 
     useEffect(() => {
@@ -112,32 +112,24 @@ export default function Form() {
 
     return (
         <div className='sub_child'>
-          
             {state1?.status === 'loading' && <><Loading /></>}
-            {/* <div style={{zIndex:"99999", position:'fixed', top:'20%'}}> */}
-
-            {/* </div> */}
             <form onSubmit={handleSubmit}>
                 <div className="container px-0 check-form">
-                    <div className="flex-item " style={{ position: 'relative', zIndex: '9999' }}>
+                    <div className="flex-item my-1 " style={{ position: 'relative', zIndex: '9999' }}>
                         <label className='location-label'>Where to ?</label>
                         <input type="location" required onChange={handleChange} value={data?.location} name='location' className="form-control" id="exampleFormControlInput1" placeholder="Enter Location, pin or property" style={{ width: '100%' }} />
                     </div>
-                    <div className={'mx-1 highlighted flex-item '} ref={ref} onClick={handleHighlight} style={{ position: 'relative' }}>
+                    <div className={'my-1 highlighted flex-item '} ref={ref} onClick={handleHighlight} style={{ position: 'relative' }}>
                         {DateRange()}
                         <label className='date-label'>When to ?</label>
                     </div>
                     <div className='flex-item'>
-                        <button className='m-auto btn text-dark add-new-property' type='submit' id='Main-button' style={{ background: "white", color: 'white', borderRadius: '100px', padding: '25px' }}>
-                        <span className="text px-2">Search</span><span className='mt-2'>Search</span>
-                            
-                            
+                        <button className='m-auto btn text-dark add-new-property' type='submit' id='Main-button' style={{ background: "white", color: 'white', borderRadius: '100px', padding: '29px' }}>
+                            <span className="text px-2">Search</span><span className='mt-2'>Search</span>
                         </button>
                     </div>
                 </div>
             </form>
-
-
             <ToastContainer />
         </div >
     )
