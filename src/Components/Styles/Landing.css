@@ -5,6 +5,19 @@
     /* Change this to your secondary color */
 }
 
+.navbar-toggler {
+    margin-right: 10px;
+}
+
+.home-stay-title{
+    font-size: 1.5rem;
+    /* margin-top: 10px; */
+    font-weight: 600;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+    font-family: Trebuchet MS, sans-seri;
+   
+}
+
 .home-stay-name {
     font-size: 2rem;
     font-weight: 600;

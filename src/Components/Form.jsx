@@ -125,7 +125,7 @@ export default function Form() {
                     </div>
                     <div className='flex-item'>
                         <button className='m-auto btn text-dark add-new-property' type='submit' id='Main-button' style={{ background: "white", color: 'white', borderRadius: '100px', padding: '29px' }}>
-                            <span className="text px-2">Search</span><span className='mt-2'>Search</span>
+                            <span className="text px-2">Search</span><span className='mt-2'><i class="bi bi-search fs-5"></i></span>
                         </button>
                     </div>
                 </div>

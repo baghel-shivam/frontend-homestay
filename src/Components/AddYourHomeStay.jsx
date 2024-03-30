@@ -11,6 +11,7 @@ import Loading from './Loading.jsx';
 export default function AddYourHomeStay() {
     const AddProp = useSelector((state) => state?.AddProp)
     const dispatch = useDispatch()
+    const [room, setRooms] = useState([])
     const [formData, setFormData] = useState({
         site_name: '',
         full_address_one_line: '',
@@ -40,6 +41,45 @@ export default function AddYourHomeStay() {
         is_parking_available: false,
         is_housekeeping_available: false,
     });
+
+    const handleAddRoom = (e) => {
+        e.preventDefault()
+        const collections = {
+            "category": formData.category,
+            "base_price": formData.base_price,
+            "is_couple_allowed": formData.is_ac_available,
+            "can_locals_stay": formData.can_locals_stay,
+            "is_wifi_available": formData.is_wifi_available,
+            "is_tv_available": formData.is_tv_available,
+            "is_ac_available": formData.is_ac_available,
+            "is_parking_available": formData.is_parking_available,
+            "is_housekeeping_available": formData.is_housekeeping_available
+        }
+        if (formData.category && formData.base_price) {
+            setRooms([...room, collections])
+            setFormData({
+                category: '',
+                base_price: 0,
+                is_couple_allowed: false,
+                can_locals_stay: false,
+                should_coupon_applied: false,
+                is_wifi_available: false,
+                is_tv_available: false,
+                is_ac_available: false,
+                is_parking_available: false,
+                is_housekeeping_available: false,
+            });
+        } else {
+            alert('Select valid price & category')
+        }
+    }
+    const handleDelete = (num) => {
+        const filterData = room.filter((item, index) => index !== num);
+        setRooms(filterData);
+       
+    };
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -48,6 +88,7 @@ export default function AddYourHomeStay() {
         });
     };
 
+
     useEffect(() => {
         setFormData({ /* initial form data */ });
     }, [AddProp?.data])
@@ -55,7 +96,7 @@ export default function AddYourHomeStay() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await dispatch(AddNewProperty(formData));
+            await dispatch(AddNewProperty(formData));
             setFormData({ /* initial form data */ });
         } catch (error) {
             console.error('Error:', error);
@@ -69,9 +110,6 @@ export default function AddYourHomeStay() {
             <h2 className='title'>Add your property</h2>
             <form onSubmit={handleSubmit}>
                 <div className="row mt-4 container my-5 p-4 child-add-your-home-stay">
-                    {/* <div className="col-md-4">
-                    <img src={img} className="img-fluid add-home-stay-form-img" alt="form-img" />
-                </div> */}
                     <div className="col-md-6 ">
                         <h5 className='text-start mx-3 mb-4'>About room</h5>
                         <div className="container mt-2">
@@ -159,7 +197,7 @@ export default function AddYourHomeStay() {
                                 <div className="col-md-6">
                                     <div className="mb-3">
                                         <div className="mb-3 input-group">
-                                            <span class="input-group-text">+91</span>
+                                            <span className="input-group-text">+91</span>
                                             <input required type="tel" pattern="[0-9]{10}" minlength="10" maxlength="10" className="form-control" name="contact_phn" value={formData.contact_phn} onChange={handleChange} placeholder="Phone number" />
                                         </div>
                                     </div>
@@ -195,111 +233,159 @@ export default function AddYourHomeStay() {
                                 </div>
 
                             </div>
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <div className="mb-3 input-group">
-                                        <span class="input-group-text">&#8377;</span>
-                                        <input required type="number" className="form-control" aria-label="Amount (to the nearest rupees)" name="base_price" value={formData.base_price} onChange={handleChange} placeholder="Price per room" />
-                                        <span class="input-group-text">.00</span>
+                            <div className="container px-3 py-2 bg-secondary rounded-3">
+                                <form onSubmit={handleAddRoom} >
+                                    <div className='my-2 border-bottom'>
+                                        <span className='fs-6 fw-bold py-2 w-100'>Add Room</span>
                                     </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="mb-3">
-                                        <select className="form-select" name="category" value={formData.roomType} onChange={handleChange} title="category">
-                                            <option selected>Select Room Type</option>
-                                            <option value="Single bed">Premium</option>
-                                            <option value="Double bed">Economy</option>
-                                        </select>
+                                    <div className="row py-2">
+                                        <div className="col-md-6">
+                                            <div className="mb-3 input-group">
+                                                <span className="input-group-text">&#8377;</span>
+                                                <input required type="number" className="form-control" aria-label="Amount (to the nearest rupees)" name="base_price" value={formData.base_price} onChange={handleChange} placeholder="Price per room" />
+                                                <span className="input-group-text">.00</span>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <div className="mb-3">
+                                                <select className="form-select" name="category" value={formData.roomType} onChange={handleChange} title="category">
+                                                    <option selected>Select Room Type</option>
+                                                    <option value="Premium">Premium</option>
+                                                    <option value="Economy">Economy</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="row text-start">
-                                <div className="col">
-                                    <div className="mb-3 form-check">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            name="is_couple_allowed"
-                                            checked={formData.is_couple_allowed}
-                                            onChange={() => setFormData({ ...formData, is_couple_allowed: !formData.is_couple_allowed })}
-                                        />
-                                        <label className="form-check-label">Couple Allowed</label>
-                                    </div>
-                                    <div className="mb-3 form-check">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            name="is_tv_available"
-                                            checked={formData.is_tv_available}
-                                            onChange={() => setFormData({ ...formData, is_tv_available: !formData.is_tv_available })}
-                                        />
-                                        <label className="form-check-label">Is tv available</label>
-                                    </div>
-                                    <div className="mb-3 form-check">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            name="can_locals_stay"
-                                            checked={formData.can_locals_stay}
-                                            onChange={() => setFormData({ ...formData, can_locals_stay: !formData.can_locals_stay })}
-                                        />
-                                        <label className="form-check-label">Locals Can Stay</label>
-                                    </div>
-                                    <div className="mb-3 form-check">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            name="should_coupon_applied"
-                                            checked={formData.should_coupon_applied}
-                                            onChange={() => setFormData({ ...formData, should_coupon_applied: !formData.should_coupon_applied })}
-                                        />
-                                        <label className="form-check-label">Apply Coupon</label>
-                                    </div>
-                                </div>
-                                {/* <div className="col"></div> */}
 
-                                <div className="col-6 gap-2">
-                                    <div className="mb-3 form-check">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            name="is_wifi_available"
-                                            checked={formData.is_wifi_available}
-                                            onChange={() => setFormData({ ...formData, is_wifi_available: !formData.is_wifi_available })}
-                                        />
-                                        <label className="form-check-label">Wi-Fi Available</label>
+                                    <div className="row text-start">
+                                        <div className="col">
+                                            <div className="mb-3 form-check">
+                                                <input
+                                                    type="checkbox"
+                                                    className="form-check-input"
+                                                    name="is_couple_allowed"
+                                                    checked={formData.is_couple_allowed}
+                                                    onChange={() => setFormData({ ...formData, is_couple_allowed: !formData.is_couple_allowed })}
+                                                />
+                                                <label className="form-check-label">Couple Allowed</label>
+                                            </div>
+                                            <div className="mb-3 form-check">
+                                                <input
+                                                    type="checkbox"
+                                                    className="form-check-input"
+                                                    name="is_tv_available"
+                                                    checked={formData.is_tv_available}
+                                                    onChange={() => setFormData({ ...formData, is_tv_available: !formData.is_tv_available })}
+                                                />
+                                                <label className="form-check-label">Is tv available</label>
+                                            </div>
+                                            <div className="mb-3 form-check">
+                                                <input
+                                                    type="checkbox"
+                                                    className="form-check-input"
+                                                    name="can_locals_stay"
+                                                    checked={formData.can_locals_stay}
+                                                    onChange={() => setFormData({ ...formData, can_locals_stay: !formData.can_locals_stay })}
+                                                />
+                                                <label className="form-check-label">Locals Can Stay</label>
+                                            </div>
+                                            <div className="mb-3 form-check">
+                                                <input
+                                                    type="checkbox"
+                                                    className="form-check-input"
+                                                    name="should_coupon_applied"
+                                                    checked={formData.should_coupon_applied}
+                                                    onChange={() => setFormData({ ...formData, should_coupon_applied: !formData.should_coupon_applied })}
+                                                />
+                                                <label className="form-check-label">Apply Coupon</label>
+                                            </div>
+                                        </div>
+                                        {/* <div className="col"></div> */}
+
+                                        <div className="col-6 gap-2">
+                                            <div className="mb-3 form-check">
+                                                <input
+                                                    type="checkbox"
+                                                    className="form-check-input"
+                                                    name="is_wifi_available"
+                                                    checked={formData.is_wifi_available}
+                                                    onChange={() => setFormData({ ...formData, is_wifi_available: !formData.is_wifi_available })}
+                                                />
+                                                <label className="form-check-label">Wi-Fi Available</label>
+                                            </div>
+                                            <div className="mb-3 form-check">
+                                                <input
+                                                    type="checkbox"
+                                                    className="form-check-input"
+                                                    name="is_wifi_available"
+                                                    checked={formData.is_parking_available}
+                                                    onChange={() => setFormData({ ...formData, is_parking_available: !formData.is_parking_available })}
+                                                />
+                                                <label className="form-check-label">Is parking available</label>
+                                            </div>
+                                            <div className="mb-3 form-check">
+                                                <input
+                                                    type="checkbox"
+                                                    className="form-check-input"
+                                                    name="is_wifi_available"
+                                                    checked={formData.is_ac_available}
+                                                    onChange={() => setFormData({ ...formData, is_ac_available: !formData.is_ac_available })}
+                                                />
+                                                <label className="form-check-label">Is ac available</label>
+                                            </div>
+                                            <div className="mb-3 form-check">
+                                                <input
+                                                    type="checkbox"
+                                                    className="form-check-input"
+                                                    name="is_wifi_available"
+                                                    checked={formData.is_housekeeping_available}
+                                                    onChange={() => setFormData({ ...formData, is_housekeeping_available: !formData.is_housekeeping_available })}
+                                                />
+                                                <label className="form-check-label">Is housekeeping available</label>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="mb-3 form-check">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            name="is_wifi_available"
-                                            checked={formData.is_parking_available}
-                                            onChange={() => setFormData({ ...formData, is_parking_available: !formData.is_parking_available })}
-                                        />
-                                        <label className="form-check-label">Is parking available</label>
+                                    <div className="row mb-3">
+                                        <div className="col text-end">
+                                            <button className='btn btn-success' onClick={handleAddRoom} type='submit' >Add room</button>
+                                        </div>
                                     </div>
-                                    <div className="mb-3 form-check">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            name="is_wifi_available"
-                                            checked={formData.is_ac_available}
-                                            onChange={() => setFormData({ ...formData, is_ac_available: !formData.is_ac_available })}
-                                        />
-                                        <label className="form-check-label">Is ac available</label>
-                                    </div>
-                                    <div className="mb-3 form-check">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            name="is_wifi_available"
-                                            checked={formData.is_housekeeping_available}
-                                            onChange={() => setFormData({ ...formData, is_housekeeping_available: !formData.is_housekeeping_available })}
-                                        />
-                                        <label className="form-check-label">Is housekeeping available</label>
-                                    </div>
-                                </div>
+                                </form>
+                                {room.length > 0 &&
+                                    <div className="container">
+                                        <div className="row text-dark">
+                                            <div className="col">
+                                                <strong> Category</strong>
+                                            </div>
+                                            <div className="col">
+                                                <strong> Price</strong>
+                                            </div>
+                                            <div className="col">
+                                                <strong> Features</strong>
+                                            </div>
+                                        </div>
+                                        {room.map((item, index) => (
+                                            <div key={index} className="row  p-2 my-1 rounded-2 bg-light shadow-lg">
+                                                <div className="col">
+                                                    <span>{item.category}</span>
+                                                </div>
+                                                <div className="col">
+                                                    <span>{item.base_price}</span>
+                                                </div>
+                                                <div className="col d-flex justify-content-evenly">
+                                                    <span>
+                                                        {item.is_ac_available || item.is_couple_allowed || item.is_wifi_available || item.is_housekeeping_available
+                                                            ? '1 more +'
+                                                            : null
+                                                        }
+                                                    </span>
+
+                                                    <span className='mx-2' onClick={() => handleDelete(index)}><i class="bi bi-x-square text-danger"></i></span>
+                                                </div>
+                                            </div>
+                                        ))}
+
+                                    </div>}
                             </div>
                             <div className="row mt-4 px-4">
                                 <div className="mb-3 text-start form-check x-5">

@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useSelector } from 'react-redux';
+import img from '../Images/Main_icon.png'
 
 export default function Header() {
     const { Contact_ref, About_US_ref, Landing_ref } = useSelector((state) => state.Ref);
@@ -26,9 +27,11 @@ export default function Header() {
         <Navbar fixed="top" collapseOnSelect expand="lg" className="bg-body-tertiary p-0">
             <Container className='p-0'>
                 <Navbar.Brand>
-                    <span className='home-stay-name px-2'>HomeStay</span>
+                    <div className='d-flex justify-content-center align-content-between align-items-center'>
+                        <img src={img} height={60} width={60} /> <span className='fs-3 px-2 home-stay-title'>HomeStay</span>
+                    </div>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Toggle aria-controls="responsive-navbar-nav px-3" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto px-lg-4 mt-lg-2">
                         <Nav.Link>

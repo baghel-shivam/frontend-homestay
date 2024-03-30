@@ -7,7 +7,7 @@ import TV from '../Images/television.png'
 import { Link } from 'react-router-dom'
 import Gallery from './Gallery'
 import Checkout from './Checkout'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Success from './Success'
 export default function View_in_details() {
@@ -35,20 +35,35 @@ export default function View_in_details() {
         },
         // Add more feedback objects as needed
     ];
-
-
     const data = useSelector((state) => state.SearchRoom)
     const booking = useSelector((state) => state.Booking.status)
+    const navigate = useNavigate()
+    const [guest_room, setGuest_Room] = useState()
+    const [error, setError] = useState({ guest: '', room: '' })
     const [view_data, setView_data] = useState()
     const { state } = useLocation()
-
-
     useEffect(() => {
         const matched = data?.data?.find((item) => item.id === state);
         setView_data(matched);
     }, [state, data, view_data]);
 
+    const handleChange = (e) => {
+        const { value, name } = e.target
+        setGuest_Room({ ...guest_room, [name]: value })
+    }
+    const handleNav = () => {
+        if (!guest_room?.guest) {
+            setError({ Guest: 'Please select a guest' })
 
+        } else if (!guest_room?.room) {
+            setError({ Room: 'Please select a room' })
+        } else {
+            document.getElementById('toggle').click()
+        }
+
+    }
+
+    console.log(error, guest_room, 'this is error')
     return (
         <div className='my-5 pt-5 container'>
             {booking === 'succeeded' && <Success />}
@@ -80,9 +95,13 @@ export default function View_in_details() {
                             <div className=" text-start">
                                 <h4>{view_data?.site_name}</h4>
                                 <p className='text-secondary'>{view_data?.full_addres}</p>
-                                {view_data?.nearest_airport && <p className='text-secondary'>Nearest Airport :{view_data?.nearest_airport}</p>}
-                                {view_data?.nearest_metro_station && <p className='text-secondary'>Nearest Airport :{view_data?.nearest_metro_station}</p>}
-                                {view_data?.nearest_railway_station && <p className='text-secondary'>Nearest Airport :{view_data?.nearest_railway_station}</p>}
+                                {view_data?.nearest_airport &&
+                                    <p className='text-secondary'>Nearest Airport :{view_data?.nearest_airport}</p>
+                                }
+                                {view_data?.nearest_metro_station &&
+                                    <p className='text-secondary'>Nearest Metro :{view_data?.nearest_metro_station}</p>}
+                                {view_data?.nearest_railway_station &&
+                                    <p className='text-secondary'>Nearest Railway station :{view_data?.nearest_railway_station}</p>}
                             </div>
                             <hr />
                         </div>
@@ -93,14 +112,57 @@ export default function View_in_details() {
 
                             </h3>
                         </div>
-                        <div className="col">
-                            <div className="row text-start mt-2">
-                                <div className="col-2"><i className="bi bi-person-fill"></i></div>
-                                <div className="col-8">2 Guest</div>
+                        <div className="col pb-3">
+                            <div className="row text-start ">
+                                <div className="col-2 d-flex justify-content-between align-items-center"><i className="bi bi-person-fill fs-4"></i></div>
+                                <div className="col-8 mb-1">
+                                    <div className={`form-group ${error?.Guest ? 'has-error' : ''}`}>
+                                        <select
+                                            name='guest'
+                                            onChange={handleChange}
+                                            id="validationCustom03"
+                                            className={`form-control border-1 ${error?.Guest ? 'border-danger' : ''}`}
+                                            required
+                                        >
+                                            <option value="" disabled selected>Select Guests</option>
+                                            <option value="1">1 Guest</option>
+                                            <option value="2">2 Guest</option>
+                                            <option value="3">3 Guest</option>
+                                            <option value="4">4 Guest</option>
+                                        </select>
+                                        {error?.Guest && (
+                                            <small className='text-danger'>
+                                                Please choose a guest.
+                                            </small>
+
+                                        )}
+                                    </div>
+
+                                </div>
                             </div>
                             <div className="row text-start">
-                                <div className="col-2"><i className="bi bi-usb-mini-fill"></i></div>
-                                <div className="col-8">1 Room</div>
+                                <div className="col-2 d-flex justify-content-between align-items-center"><i className="bi bi-usb-mini-fill fs-4"></i></div>
+                                <div className="col-8">
+                                    <div className="form-group">
+                                        <select
+                                            className={`form-control border-1 ${error?.Room ? 'border-danger' : ''}`}
+                                        >
+                                            <option value=""
+                                                disabled
+                                                selected
+                                            >Select Room</option>
+                                            <option value="1">1 Room</option>
+                                            <option value="2">2 Room</option>
+                                            <option value="3">3 Room</option>
+                                            <option value="4">4 Room</option>
+                                        </select>
+                                        {error?.Room &&
+                                            <small class="text-danger">
+                                                Please choose room.
+                                            </small>
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <hr />
@@ -166,7 +228,8 @@ export default function View_in_details() {
                             </div>
                         </div>
                         <div className="col  my-2">
-                            <Link to={'/booking'} className="btn btn-success m-auto py-3 px-5" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Book</Link>
+                            <button id='toggle' data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className='d-none'>hhh</button>
+                            <Link onClick={handleNav} className="btn btn-success m-auto py-3 px-5">Book</Link>
                             <Checkout view_data={view_data} />
                         </div>
                     </div>
@@ -175,7 +238,7 @@ export default function View_in_details() {
             <h4 id='text_color' className='my-4'>Guest Reviews & Rating for Green Palms Hotel, Pacific Mall</h4>
 
             <div className="">
-                <div className='row border border-1 m-0 p-0' style={{margin:'0px', padding:'0px'}}>
+                <div className='row border border-1 m-0 p-0' style={{ margin: '0px', padding: '0px' }}>
                     <div className="col-7 text-start px-3">
                         <span className='mt-3 fs-1 text-start' style={{ color: '#00000', fontWeight: '700', fontFamily: 'Trebuchet MS, sans-seri' }}>About</span>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore dolore ad maxime velit qui beatae in sapiente repudiandae ullam, cumque laudantium rerum molestiae nostrum ipsum nisi, eius ratione? Cumque, minus!</p>
@@ -222,7 +285,7 @@ export default function View_in_details() {
                         </div>
 
                     </div>
-                    <hr/>
+                    <hr />
                     <div className="row m-auto">
                         <div className="col-12 col-lg-6 col-sm-12 col-md-6 pt-4">
                             <div className="feedback text-start py-2">
@@ -235,11 +298,11 @@ export default function View_in_details() {
                                 <h5 className='mx-3'> Feedbacks</h5>
                                 <div className="container mt-5">
                                     {feedbackData.map((item) => <>
-                                        <div class="card mb-3 " style={{zIndex:"-9999"}}>
+                                        <div class="card mb-3 " style={{ zIndex: "-9999" }}>
                                             <div class="card-body">
                                                 <div className="d-flex m-0 p-0">
 
-                                                <h5 class="card-title m-0">{item.username} &#x2022; </h5> <span className='mx-2'>&#9733; {item.rating}</span> 
+                                                    <h5 class="card-title m-0">{item.username} &#x2022; </h5> <span className='mx-2'>&#9733; {item.rating}</span>
                                                 </div>
                                                 <p class="card-text">{item?.feedback}</p>
                                             </div>
