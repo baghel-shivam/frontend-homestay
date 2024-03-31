@@ -7,11 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AddNewProperty } from '../Redux/AddNewPro/AddPropAction.js';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from './Loading.jsx';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function AddYourHomeStay() {
     const AddProp = useSelector((state) => state?.AddProp)
     const dispatch = useDispatch()
     const [room, setRooms] = useState([])
+    const [roomForm, setRoomForm] = useState([{
+      
+    }])
     const [formData, setFormData] = useState({
         site_name: '',
         full_address_one_line: '',
@@ -28,57 +32,28 @@ export default function AddYourHomeStay() {
         how_to_reach: '',
         nearest_attraction_1: '',
         nearest_attraction_2: '',
-        category: '',
-        base_price: 0,
         totalRooms: '',
         checked: false,
-        is_couple_allowed: false,
-        can_locals_stay: false,
-        should_coupon_applied: false,
-        is_wifi_available: false,
-        is_tv_available: false,
-        is_ac_available: false,
-        is_parking_available: false,
-        is_housekeeping_available: false,
     });
 
+  
     const handleAddRoom = (e) => {
-        e.preventDefault()
-        const collections = {
-            "category": formData.category,
-            "base_price": formData.base_price,
-            "is_couple_allowed": formData.is_ac_available,
-            "can_locals_stay": formData.can_locals_stay,
-            "is_wifi_available": formData.is_wifi_available,
-            "is_tv_available": formData.is_tv_available,
-            "is_ac_available": formData.is_ac_available,
-            "is_parking_available": formData.is_parking_available,
-            "is_housekeeping_available": formData.is_housekeeping_available
-        }
-        if (formData.category && formData.base_price) {
-            setRooms([...room, collections])
-            setFormData({
-                category: '',
-                base_price: 0,
-                is_couple_allowed: false,
-                can_locals_stay: false,
-                should_coupon_applied: false,
-                is_wifi_available: false,
-                is_tv_available: false,
-                is_ac_available: false,
-                is_parking_available: false,
-                is_housekeeping_available: false,
-            });
+        e.preventDefault();
+        if (roomForm.category && roomForm.base_price) {
+          setRooms([...room, roomForm]);
+          setFormData({ ...formData, "rooms": [...room, roomForm] });
+          // Reset roomForm after adding the room
+          setRoomForm({});
         } else {
-            alert('Select valid price & category')
+          notify('Select valid price & category');
         }
-    }
+      }
+
+      console.log(formData, 'this if form data')
     const handleDelete = (num) => {
         const filterData = room.filter((item, index) => index !== num);
         setRooms(filterData);
-       
     };
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -87,8 +62,21 @@ export default function AddYourHomeStay() {
             [name]: value
         });
     };
-
-
+    const HandleChangeAddRoom = (e) => {
+        const { value, name } = e.target;
+        setRoomForm({ ...roomForm, [name]: value })
+    }
+    const notify = (msg) => toast.error(msg,
+        {
+            position: 'top-right',
+            toastContainerClassName: 'custom-toast-container',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        }
+    );
     useEffect(() => {
         setFormData({ /* initial form data */ });
     }, [AddProp?.data])
@@ -96,8 +84,14 @@ export default function AddYourHomeStay() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await dispatch(AddNewProperty(formData));
-            setFormData({ /* initial form data */ });
+            if (room.length > 0) {
+                await dispatch(AddNewProperty(formData));
+                await AddProp
+                setFormData({});
+            }
+            else {
+                notify('Add room first.')
+            }
         } catch (error) {
             console.error('Error:', error);
         }
@@ -211,9 +205,6 @@ export default function AddYourHomeStay() {
                                 </div>
                             </div>
 
-
-
-
                         </div>
                     </div>
                     <div className="col-md-6">
@@ -233,7 +224,7 @@ export default function AddYourHomeStay() {
                                 </div>
 
                             </div>
-                            <div className="container px-3 py-2 bg-secondary rounded-3">
+                            <div className="container px-3 py-2 rounded-3" style={{ background: '#ECECEC' }}>
                                 <form onSubmit={handleAddRoom} >
                                     <div className='my-2 border-bottom'>
                                         <span className='fs-6 fw-bold py-2 w-100'>Add Room</span>
@@ -242,13 +233,13 @@ export default function AddYourHomeStay() {
                                         <div className="col-md-6">
                                             <div className="mb-3 input-group">
                                                 <span className="input-group-text">&#8377;</span>
-                                                <input required type="number" className="form-control" aria-label="Amount (to the nearest rupees)" name="base_price" value={formData.base_price} onChange={handleChange} placeholder="Price per room" />
+                                                <input required type="number" className="form-control" aria-label="Amount (to the nearest rupees)" name="base_price" value={formData.base_price} onChange={HandleChangeAddRoom} placeholder="Price per room" />
                                                 <span className="input-group-text">.00</span>
                                             </div>
                                         </div>
                                         <div className="col-md-6">
                                             <div className="mb-3">
-                                                <select className="form-select" name="category" value={formData.roomType} onChange={handleChange} title="category">
+                                                <select className="form-select" name="category" value={formData.roomType} onChange={HandleChangeAddRoom} title="category">
                                                     <option selected>Select Room Type</option>
                                                     <option value="Premium">Premium</option>
                                                     <option value="Economy">Economy</option>
@@ -264,8 +255,8 @@ export default function AddYourHomeStay() {
                                                     type="checkbox"
                                                     className="form-check-input"
                                                     name="is_couple_allowed"
-                                                    checked={formData.is_couple_allowed}
-                                                    onChange={() => setFormData({ ...formData, is_couple_allowed: !formData.is_couple_allowed })}
+                                                    checked={roomForm.is_couple_allowed}
+                                                    onChange={() => setRoomForm({ ...roomForm, is_couple_allowed: !roomForm.is_couple_allowed })}
                                                 />
                                                 <label className="form-check-label">Couple Allowed</label>
                                             </div>
@@ -274,8 +265,8 @@ export default function AddYourHomeStay() {
                                                     type="checkbox"
                                                     className="form-check-input"
                                                     name="is_tv_available"
-                                                    checked={formData.is_tv_available}
-                                                    onChange={() => setFormData({ ...formData, is_tv_available: !formData.is_tv_available })}
+                                                    checked={roomForm.is_tv_available}
+                                                    onChange={() => setRoomForm({ ...roomForm, is_tv_available: !roomForm.is_tv_available })}
                                                 />
                                                 <label className="form-check-label">Is tv available</label>
                                             </div>
@@ -284,8 +275,8 @@ export default function AddYourHomeStay() {
                                                     type="checkbox"
                                                     className="form-check-input"
                                                     name="can_locals_stay"
-                                                    checked={formData.can_locals_stay}
-                                                    onChange={() => setFormData({ ...formData, can_locals_stay: !formData.can_locals_stay })}
+                                                    checked={roomForm.can_locals_stay}
+                                                    onChange={() => setRoomForm({ ...roomForm, can_locals_stay: !roomForm.can_locals_stay })}
                                                 />
                                                 <label className="form-check-label">Locals Can Stay</label>
                                             </div>
@@ -294,8 +285,8 @@ export default function AddYourHomeStay() {
                                                     type="checkbox"
                                                     className="form-check-input"
                                                     name="should_coupon_applied"
-                                                    checked={formData.should_coupon_applied}
-                                                    onChange={() => setFormData({ ...formData, should_coupon_applied: !formData.should_coupon_applied })}
+                                                    checked={roomForm.should_coupon_applied}
+                                                    onChange={() => setRoomForm({ ...roomForm, should_coupon_applied: !roomForm.should_coupon_applied })}
                                                 />
                                                 <label className="form-check-label">Apply Coupon</label>
                                             </div>
@@ -308,8 +299,8 @@ export default function AddYourHomeStay() {
                                                     type="checkbox"
                                                     className="form-check-input"
                                                     name="is_wifi_available"
-                                                    checked={formData.is_wifi_available}
-                                                    onChange={() => setFormData({ ...formData, is_wifi_available: !formData.is_wifi_available })}
+                                                    checked={roomForm.is_wifi_available}
+                                                    onChange={() => setRoomForm({ ...roomForm, is_wifi_available: !roomForm.is_wifi_available })}
                                                 />
                                                 <label className="form-check-label">Wi-Fi Available</label>
                                             </div>
@@ -318,8 +309,8 @@ export default function AddYourHomeStay() {
                                                     type="checkbox"
                                                     className="form-check-input"
                                                     name="is_wifi_available"
-                                                    checked={formData.is_parking_available}
-                                                    onChange={() => setFormData({ ...formData, is_parking_available: !formData.is_parking_available })}
+                                                    checked={roomForm.is_parking_available}
+                                                    onChange={() => setRoomForm({ ...roomForm, is_parking_available: !roomForm.is_parking_available })}
                                                 />
                                                 <label className="form-check-label">Is parking available</label>
                                             </div>
@@ -328,8 +319,8 @@ export default function AddYourHomeStay() {
                                                     type="checkbox"
                                                     className="form-check-input"
                                                     name="is_wifi_available"
-                                                    checked={formData.is_ac_available}
-                                                    onChange={() => setFormData({ ...formData, is_ac_available: !formData.is_ac_available })}
+                                                    checked={roomForm.is_ac_available}
+                                                    onChange={() => setRoomForm({ ...roomForm, is_ac_available: !roomForm.is_ac_available })}
                                                 />
                                                 <label className="form-check-label">Is ac available</label>
                                             </div>
@@ -338,8 +329,8 @@ export default function AddYourHomeStay() {
                                                     type="checkbox"
                                                     className="form-check-input"
                                                     name="is_wifi_available"
-                                                    checked={formData.is_housekeeping_available}
-                                                    onChange={() => setFormData({ ...formData, is_housekeeping_available: !formData.is_housekeeping_available })}
+                                                    checked={roomForm.is_housekeeping_available}
+                                                    onChange={() => setRoomForm({ ...roomForm, is_housekeeping_available: !roomForm.is_housekeeping_available })}
                                                 />
                                                 <label className="form-check-label">Is housekeeping available</label>
                                             </div>
@@ -389,7 +380,7 @@ export default function AddYourHomeStay() {
                             </div>
                             <div className="row mt-4 px-4">
                                 <div className="mb-3 text-start form-check x-5">
-                                    <input required type="checkbox" className="form-check-input " name="checked" checked={formData.checked} onChange={() => setFormData({ ...formData, checked: !formData.checked })} id="exampleCheck1" />
+                                    <input required type="checkbox" className="form-check-input " name="accepted_t_c" checked={formData.checked} onChange={() => setFormData({ ...formData, checked: !formData.checked })} id="exampleCheck1" />
                                     <label className="form-check-label" htmlFor="exampleCheck1">Accept terms & conditions</label>
                                 </div>
                             </div>
@@ -400,6 +391,7 @@ export default function AddYourHomeStay() {
 
                 </div>
             </form>
+            <ToastContainer />
         </div>
     )
 }
