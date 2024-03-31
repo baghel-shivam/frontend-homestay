@@ -101,7 +101,7 @@ export default function AddYourHomeStay() {
             {AddProp.status === 'succeeded' && <Toast msg={AddProp?.data} />}
             <h2 className='title'>Add your property</h2>
             <form onSubmit={handleSubmit}>
-                <div className="row mt-4 container-fluid my-5 py-3  child-add-your-home-stay">
+                <div className="row px-0 mt-4 container-fluid my-5 py-3  child-add-your-home-stay">
                     <div className="col-md-6 ">
                         <h5 className='text-start mx-3 mb-4'>About room</h5>
                         <div className="container mt-2">
@@ -222,7 +222,7 @@ export default function AddYourHomeStay() {
                                 </div>
 
                             </div>
-                            <div className="container px-3 py-2 rounded-3" style={{ background: '#ECECEC' }}>
+                            <div className="container px-2 py-2 rounded-3" style={{ background: '#ECECEC' }}>
                                 <form onSubmit={handleAddRoom} >
                                     <div className='my-2 border-bottom'>
                                         <span className='fs-6 fw-bold py-2 w-100'>Add Room</span>
@@ -364,7 +364,7 @@ export default function AddYourHomeStay() {
                                                 <div className="col d-flex justify-content-evenly">
                                                     <span>
                                                         {item.is_ac_available || item.is_couple_allowed || item.is_wifi_available || item.is_housekeeping_available
-                                                            ? '1 more +'
+                                                            ? '1+'
                                                             : null
                                                         }
                                                     </span>
