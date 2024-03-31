@@ -8,8 +8,7 @@ export default function Gallery({ view_data }) {
         'https://picsum.photos/500/1000',
         'https://picsum.photos/700/700',
         'https://picsum.photos/800/900',
-        'https://picsum.photos/900/1000',
-        'https://picsum.photos/800/800',
+       
     ];
     const [data, setData] = useState({ img: '', i: 0 })
 

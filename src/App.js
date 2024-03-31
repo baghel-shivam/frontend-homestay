@@ -1,7 +1,8 @@
+import React from 'react';
 import './App.css';
 import Footer from './Components/Footer';
 import Header from './Components/Header';
-import { Routes, BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { Routes, BrowserRouter, Route } from 'react-router-dom';
 import Landing from './Components/Landing';
 import Rooms from './Components/Rooms';
 import View_in_details from './Components/View_in_details';
@@ -10,7 +11,6 @@ import Otp from './Components/Otp';
 import Sign_up from './Components/Sign_up';
 import Checkout from './Components/Checkout';
 import AddYourHomeStay from './Components/AddYourHomeStay';
-// import NotFound from './Components/NotFound';
 import { useEffect } from 'react';
 import NotFound from './Components/NotFound';
 

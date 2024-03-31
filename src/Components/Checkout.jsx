@@ -1,23 +1,24 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { BookingRequest } from '../Redux/Booking/BookignAction'
 import Loading from './Loading'
 import Success from './Success'
 
-
-export default function Checkout({ view_data }) {
+export default function Checkout({ view_data, guest_room }) {
     const [data, setData] = useState()
     const formData = useSelector((state) => state.SearchRoom?.formData)
     const booking = useSelector((state) => state.Booking)
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
+    console.log(guest_room, 'this ')
     const handleChange = (e) => {
         const event = e.target
         setData({ ...data, [event.name]: event.value })
     }
+
     const [smShow, setSmShow] = useState(false);
+
     useEffect(() => {
         if (booking?.status === "succeeded") {
             const closeButton = document.querySelector(".btn-close-checkout");
@@ -28,6 +29,7 @@ export default function Checkout({ view_data }) {
         }
         console.log(booking)
     }, [booking]);
+
     const options = {
         weekday: 'short', // Short weekday name (e.g., "Sat")
         day: 'numeric', // Numeric day of the month (e.g., "9")
@@ -42,7 +44,7 @@ export default function Checkout({ view_data }) {
 
     useEffect(() => {
         setData({
-            ...data,
+            ...data, ...guest_room,
             "user_id": 1,
             "check_in_date": formData?.checkin_date,
             "check_out_date": formData?.checkout_date,
@@ -51,6 +53,8 @@ export default function Checkout({ view_data }) {
             "parent_room": view_data?.parent_address
         })
     }, [view_data])
+
+    console.log(data, 'this is data')
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -115,7 +119,7 @@ export default function Checkout({ view_data }) {
                                             </small>
                                         </div>
                                         <div className="col-5 d-flex text-center">
-                                            <small><b>1</b> Room <b>, 1</b> Guest </small>
+                                            <small><b>{guest_room?.room}</b> Room <b>, {guest_room?.guest}</b> Guest </small>
                                         </div>
                                     </div>
                                 </div>

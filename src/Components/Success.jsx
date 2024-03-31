@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import img from '../Images/success.gif'
 const Success = ({ smShow, onHide }) => {

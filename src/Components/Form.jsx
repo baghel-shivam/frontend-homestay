@@ -17,8 +17,6 @@ export default function Form() {
     const navigate = useNavigate()
     const [data, setData] = useState({ "checkin_date": null, "checkout_date": null, "location": '' })
     const state1 = useSelector((state) => state?.SearchRoom)
-    const formData = useSelector((state) => state?.SearchRoom)
-    const [formError, setFormError] = useState()
     const [value, onChange] = useState([new Date(), new Date()]);
     const ref = useRef()
     const handleChange = (e) => {
@@ -101,7 +99,7 @@ export default function Form() {
                     await dispatch(updateFormData(data));
                     navigate('/search-rooms', { state: { searchData: data } });
                 } catch (error) {
-                    setFormError({ error: 'API call failed' });
+                    notify('API call failed');
                 }
             }
         } else {

@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Otp() {
     const handleSubmit = () => {
-        console.log('data submitted')
+        // console.log('data submitted')
     }
     return (
         <div>

@@ -28,7 +28,7 @@ export default function Header() {
             <Container className='p-0'>
                 <Navbar.Brand>
                     <div className='d-flex justify-content-center align-content-between align-items-center'>
-                        <img src={img} height={60} width={60} /> <span className='fs-3 px-2 home-stay-title'>HomeStay</span>
+                        <img src={img} height={60} width={60} alt='home img' /> <span className='fs-3 px-2 home-stay-title'>HomeStay</span>
                     </div>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav px-3" />
@@ -57,14 +57,3 @@ export default function Header() {
     );
 }
 
-
-{/* <div id='profile_image' className='rounded-circle bg-danger nav-link d-none d-lg-block d-md-block' role="button" data-bs-toggle="dropdown" aria-expanded="false">
-<a className="nav-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-<img src={img} style={{ height: '100%', width: '100%', borderRadius: '50%', }} role="button" data-bs-toggle="dropdown" aria-expanded="false" />
-</a>
-<ul className="dropdown-menu">
-    <li><a className="dropdown-item" >My Profile</a></li>
-    <li><a className="dropdown-item" >Logout</a></li>
-
-</ul>
-</div> */}

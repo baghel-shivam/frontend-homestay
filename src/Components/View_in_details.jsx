@@ -7,7 +7,7 @@ import TV from '../Images/television.png'
 import { Link } from 'react-router-dom'
 import Gallery from './Gallery'
 import Checkout from './Checkout'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Success from './Success'
 export default function View_in_details() {
@@ -37,25 +37,30 @@ export default function View_in_details() {
     ];
     const data = useSelector((state) => state.SearchRoom)
     const booking = useSelector((state) => state.Booking.status)
-    const navigate = useNavigate()
     const [guest_room, setGuest_Room] = useState()
     const [error, setError] = useState({ guest: '', room: '' })
     const [view_data, setView_data] = useState()
     const { state } = useLocation()
+
+    // Filtering the match room details
     useEffect(() => {
         const matched = data?.data?.find((item) => item.id === state);
         setView_data(matched);
     }, [state, data, view_data]);
 
+    // collecting the room and guest room
+
     const handleChange = (e) => {
         const { value, name } = e.target
         setGuest_Room({ ...guest_room, [name]: value })
     }
+
     const handleNav = () => {
         if (!guest_room?.guest) {
             setError({ Guest: 'Please select a guest' })
 
         } else if (!guest_room?.room) {
+            console.log(guest_room)
             setError({ Room: 'Please select a room' })
         } else {
             document.getElementById('toggle').click()
@@ -63,7 +68,6 @@ export default function View_in_details() {
 
     }
 
-    console.log(error, guest_room, 'this is error')
     return (
         <div className='my-5 pt-5 container'>
             {booking === 'succeeded' && <Success />}
@@ -96,12 +100,12 @@ export default function View_in_details() {
                                 <h4>{view_data?.site_name}</h4>
                                 <p className='text-secondary'>{view_data?.full_addres}</p>
                                 {view_data?.nearest_airport &&
-                                    <p className='text-secondary'>Nearest Airport :{view_data?.nearest_airport}</p>
+                                    <small className='text-secondary'>Nearest Airport :<b>{view_data?.nearest_airport}</b></small>
                                 }
                                 {view_data?.nearest_metro_station &&
-                                    <p className='text-secondary'>Nearest Metro :{view_data?.nearest_metro_station}</p>}
+                                    <small className='text-secondary'>Nearest Metro :<b>{view_data?.nearest_metro_station}</b></small>}
                                 {view_data?.nearest_railway_station &&
-                                    <p className='text-secondary'>Nearest Railway station :{view_data?.nearest_railway_station}</p>}
+                                    <small className='text-secondary'>Nearest Railway station :<b> {view_data?.nearest_railway_station}</b></small>}
                             </div>
                             <hr />
                         </div>
@@ -145,6 +149,8 @@ export default function View_in_details() {
                                 <div className="col-8">
                                     <div className="form-group">
                                         <select
+                                          onChange={handleChange}
+                                          name='room'
                                             className={`form-control border-1 ${error?.Room ? 'border-danger' : ''}`}
                                         >
                                             <option value=""
@@ -230,7 +236,7 @@ export default function View_in_details() {
                         <div className="col  my-2">
                             <button id='toggle' data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className='d-none'>hhh</button>
                             <Link onClick={handleNav} className="btn btn-success m-auto py-3 px-5">Book</Link>
-                            <Checkout view_data={view_data} />
+                            <Checkout view_data={view_data} guest_room={guest_room}/>
                         </div>
                     </div>
                 </div>

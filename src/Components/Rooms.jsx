@@ -8,17 +8,16 @@ import AC from '../Images/air-conditioner.png'
 import TV from '../Images/television.png'
 import tag from '../Images/tag.png'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 
 export default function Rooms() {
     const navigate = useNavigate()
-    const [filteredItems, setFilteredItems] = useState([]);
     const [filter_data, setFilter_data] = useState([])
     const { state } = useLocation()
     const data = useSelector((state) => state.SearchRoom)
-    
-    
+
+
     const handleFilter = (e) => {
         const { name, checked } = e.target;
         const updatedFilterData = [...filter_data];
@@ -34,7 +33,7 @@ export default function Rooms() {
 
     useEffect(() => {
         if (filter_data && data.data) {
-            const filteredItemsArray = data.data.filter(item => {
+            data.data.filter(item => {
                 return filter_data.every(element => {
                     if (element.name === 'is_wifi_available' && item.is_wifi_available === element.checked) {
                         return true;
@@ -48,16 +47,9 @@ export default function Rooms() {
                     return false;
                 });
             });
-
-            setFilteredItems(filteredItemsArray);
         }
     }, [filter_data, data]);
-
-
-    // console.log(filteredItems, 'this is data')
-
     return (
-
         <div className='container Room_div '>
             <div className='row nav-form-parent'>
                 <div className="col-lg-3 nav--bar col-sm-12 col-md-3 py-4 ">

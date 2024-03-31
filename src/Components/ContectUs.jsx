@@ -27,7 +27,7 @@ export default function ContectUs(props) {
         </div>
         <div className="col-12 col-lg-6">
           <div className='bg-about-image pt-5'>
-            <img src={img} className="bg-image" />
+            <img src={img} className="bg-image" alt="contact-img"/>
           </div>
         </div>
 

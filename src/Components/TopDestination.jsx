@@ -46,7 +46,7 @@ export default function TopDestination(props) {
                 {Data.city.map((item, index) => (
                     <div className="city-img my-2"  key={index}>
                         <b className='image-content'>  {item.name}</b>
-                        <img src={item.img} className='city-img-background' />
+                        <img src={item.img} alt='dest' className='city-img-background' />
                     </div>
                 ))}
             </div>
