@@ -14,8 +14,7 @@ export default function AddYourHomeStay() {
     const dispatch = useDispatch()
     const [room, setRooms] = useState([])
     const [roomForm, setRoomForm] = useState([{
-      
-    }])
+      }])
     const [formData, setFormData] = useState({
         site_name: '',
         full_address_one_line: '',
@@ -49,7 +48,6 @@ export default function AddYourHomeStay() {
         }
       }
 
-      console.log(formData, 'this if form data')
     const handleDelete = (num) => {
         const filterData = room.filter((item, index) => index !== num);
         setRooms(filterData);
@@ -103,7 +101,7 @@ export default function AddYourHomeStay() {
             {AddProp.status === 'succeeded' && <Toast msg={AddProp?.data} />}
             <h2 className='title'>Add your property</h2>
             <form onSubmit={handleSubmit}>
-                <div className="row mt-4 container my-5 p-4 child-add-your-home-stay">
+                <div className="row mt-4 container-fluid my-5 py-3  child-add-your-home-stay">
                     <div className="col-md-6 ">
                         <h5 className='text-start mx-3 mb-4'>About room</h5>
                         <div className="container mt-2">
