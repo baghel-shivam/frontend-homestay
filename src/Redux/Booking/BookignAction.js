@@ -13,10 +13,8 @@ export const BookingRequest = createAsyncThunk('booking/BookingRequest', async (
             }
         }
         const response = await axios(config)
-        console.log(response, 'this is response')
         return response.data
     } catch (error) {
-        console.error('Error fetching room search:', error);
         throw error;
     }
 })
