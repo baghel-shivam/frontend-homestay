@@ -10,6 +10,7 @@ import Checkout from './Checkout'
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Success from './Success'
+import { blobUrl } from '../Redux/BaseURL'
 export default function View_in_details() {
     const feedbackData = [
         {
@@ -60,7 +61,6 @@ export default function View_in_details() {
             setError({ Guest: 'Please select a guest' })
 
         } else if (!guest_room?.room) {
-            console.log(guest_room)
             setError({ Room: 'Please select a room' })
         } else {
             document.getElementById('toggle').click()
@@ -79,7 +79,7 @@ export default function View_in_details() {
                         <div className="carousel-inner">
                             {view_data?.img_array?.map((itemImg, index) => (
                                 <div key={index} className={"carousel-item" + (index === 0 ? " active" : "")}>
-                                    <img src={`https://webapp-backend.azurewebsites.net/media/${itemImg?.image_field}`} className="d-block w-100" alt="..." />
+                                    <img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100" alt="..." />
                                 </div>
                             ))}
                         </div>
