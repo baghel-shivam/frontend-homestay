@@ -10,6 +10,7 @@ import tag from '../Images/tag.png'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+import { blobUrl } from '../Redux/BaseURL'
 
 export default function Rooms() {
     const navigate = useNavigate()
@@ -141,7 +142,7 @@ export default function Rooms() {
                                                     <div class="carousel-inner">
                                                         {item?.img_array?.map((itemImg, index) => (
                                                             <div key={index} className={"carousel-item  overflow-hidden" + (index === 0 ? " active" : "")}>
-                                                                <img src={`https://webapp-backend.azurewebsites.net/media/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
+                                                                <img src={`${blobUrl}/${ itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
                                                             </div>
                                                         ))}
                                                     </div>

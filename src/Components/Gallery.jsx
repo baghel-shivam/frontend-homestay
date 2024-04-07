@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+import { blobUrl } from '../Redux/BaseURL';
 
 export default function Gallery({ view_data }) {
-    const img = [
-        'https://picsum.photos/400/300',
-        'https://picsum.photos/300/200',
-        'https://picsum.photos/500/1000',
-        'https://picsum.photos/700/700',
-        'https://picsum.photos/800/900',
-       
-    ];
+    const [img, setImg] = useState()
     const [data, setData] = useState({ img: '', i: 0 })
+
+
+    useEffect(() => {
+        const img = view_data?.img_array?.map((item) => item.image_field)
+        setImg(img)
+    }, [view_data])
+
 
     const viewImg = (img, i) => {
         setData({ img, i })
@@ -45,7 +46,7 @@ export default function Gallery({ view_data }) {
                     <button className='btn btn-danger' onClick={() => imgAction()} style={{ position: 'absolute', top: '10px', right: '10px' }}>X</button>
                     <i class="bi bi-arrow-left-circle-fill text-light fs-2" onClick={() => imgAction('pre-img')}></i>
                     <div className='image-view-div'>
-                    <img src={data?.img} style={{ width: 'auto', maxWidth: '90%', maxHeight: "90%", margin:"auto" }} alt='dddddd' />
+                        <img src={`${blobUrl}/${data?.img}`} style={{ width: 'auto', maxWidth: '90%', maxHeight: "90%", margin: "auto" }} alt='dddddd' />
                     </div>
                     <i class="bi bi-arrow-right-circle-fill text-light fs-2" onClick={() => imgAction('next-img')}></i>
 
@@ -53,7 +54,8 @@ export default function Gallery({ view_data }) {
             <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
                 <Masonry gutter='10px'>
                     {img?.map((item, key) => (
-                        <img key={key} onClick={() => viewImg(item, key)} src={item} style={{ gap: '4', width: '100%', display: 'block' }} alt='ttt' />
+                        <img key={key} onClick={() => viewImg(item, key)} src={`${blobUrl}/${item}`
+                        } style={{ gap: '4', width: '100%', display: 'block' }} alt='ttt' />
                     ))}
                 </Masonry>
             </ResponsiveMasonry>

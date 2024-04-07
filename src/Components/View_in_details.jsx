@@ -8,8 +8,11 @@ import { Link } from 'react-router-dom'
 import Gallery from './Gallery'
 import Checkout from './Checkout'
 import { useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Success from './Success'
+import { ViewDetails } from '../Redux/ViewDetails/Action'
+import { blobUrl } from '../Redux/BaseURL'
+import Loading from './Loading'
 export default function View_in_details() {
     const feedbackData = [
         {
@@ -35,47 +38,90 @@ export default function View_in_details() {
         },
         // Add more feedback objects as needed
     ];
-    const data = useSelector((state) => state.SearchRoom)
+    const formData = useSelector((state) => state.SearchRoom?.formData)
     const booking = useSelector((state) => state.Booking.status)
-    const [guest_room, setGuest_Room] = useState()
-    const [error, setError] = useState({ guest: '', room: '' })
+    const room_details = useSelector((state) => state.RoomDetails)
+    const [totalPrice, setTotalPrice] = useState()
+    const [toggle, setToggle] = useState(false)
+    const [error, setError] = useState({ available_rooms: '', })
     const [view_data, setView_data] = useState()
+    const [guest_room, setGuest_Room] = useState({ RoomIds: null, available_rooms: '' });
     const { state } = useLocation()
+    const dispatch = useDispatch()
 
-    console.log(state, 'this is state')
-
-    // Filtering the match room details
     useEffect(() => {
-        const matched = data?.data?.find((item) => item.id === state);
-        setView_data(matched);
-    }, [state, data, view_data]);
+        setView_data(room_details.data);
+    }, [state, room_details]);
+
+    const All_price = [];
+    const calculate_price = (updatedRoom) => {
+
+    };
 
 
-   
-    // collecting the room and guest room
+    console.log(guest_room, 'this is ')
 
     const handleChange = (e) => {
-        const { value, name } = e.target
+        const { value, name } = e.target;
         setGuest_Room({ ...guest_room, [name]: value })
+    };
+    
+    useEffect(() => {
+        const roomCount = parseInt(guest_room?.available_rooms);
+        if (!isNaN(roomCount) && roomCount >= 0) {
+            const selectedRooms = view_data?.availabel_rooms?.slice(0, roomCount);
+            const All_price = selectedRooms?.map(item => item.base_price);
+            const roomIds = selectedRooms?.map(item => item.id);
+            const totalPrice = All_price.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+            setGuest_Room(prevState => ({
+                ...prevState,
+                RoomIds: roomIds
+            }));
+
+            setTotalPrice(totalPrice);
+        } else {
+            console.log('Invalid room count');
+        }
+    }, [guest_room?.available_rooms, view_data?.availabel_rooms]);
+
+
+
+    useEffect(() => {
+        const data = {
+            "id": state,
+            "checkin_date": formData.checkin_date,
+            "checkout_date": formData.checkout_date
+        }
+        dispatch(ViewDetails(data))
+
+    }, [])
+
+    const validation = () => {
+        if (!guest_room?.available_rooms) {
+            setError({ available_rooms: 'Please select a available_rooms' })
+            return false
+        }
+        else {
+            return true
+        }
     }
+
+
+
 
     const handleNav = () => {
-        if (!guest_room?.guest) {
-            setError({ Guest: 'Please select a guest' })
-
-        } else if (!guest_room?.room) {
-            console.log(guest_room)
-            setError({ Room: 'Please select a room' })
-        } else {
-            document.getElementById('toggle').click()
+        if (validation()) {
+            document.getElementById("toggle").click();
         }
-
     }
+    // console.log(guest_room, 'this is gues room')
 
     return (
         <div className='my-5 pt-5 container'>
+            {room_details.status === 'loading' && <Loading />}
             {booking === 'succeeded' && <Success />}
-            <span className='mt-3 fs-2' style={{ color: '#00000', fontWeight: '700' }}>Room Detail</span>
+            <span className='mt-3 fs-2' style={{ color: '#00000', fontWeight: '700' }}>Homestay Detail</span>
             <hr />
             <div className="row my-5">
                 <div className="col-12 col-lg-6 col-md-6">
@@ -83,7 +129,7 @@ export default function View_in_details() {
                         <div className="carousel-inner">
                             {view_data?.img_array?.map((itemImg, index) => (
                                 <div key={index} className={"carousel-item" + (index === 0 ? " active" : "")}>
-                                    <img src={`https://webapp-backend.azurewebsites.net/media/${itemImg?.image_field}`} className="d-block w-100" alt="..." />
+                                    <img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100" alt="..." />
                                 </div>
                             ))}
                         </div>
@@ -122,56 +168,30 @@ export default function View_in_details() {
                         </div>
                         <div className="col pb-3">
                             <div className="row text-start ">
-                                <div className="col-2 d-flex justify-content-between align-items-center"><i className="bi bi-person-fill fs-4"></i></div>
+                                <div className="col-2 d-flex justify-content-between align-items-center mt-4"> <i className="bi bi-usb-mini-fill fs-4"></i></div>
                                 <div className="col-8 mb-1">
-                                    <div className={`form-group ${error?.Guest ? 'has-error' : ''}`}>
+                                    <div className={`form-group ${error?.available_rooms ? 'has-error' : ''}`}>
+                                        <span className='fs-6 m-1 py-2'>Available Rooms</span>
                                         <select
-                                            name='guest'
+                                            name='available_rooms'
                                             onChange={handleChange}
                                             id="validationCustom03"
-                                            className={`form-control border-1 ${error?.Guest ? 'border-danger' : ''}`}
+                                            className={`form-control border-1 ${error?.available_rooms ? 'border-danger' : ''}`}
                                             required
                                         >
-                                            <option value="" disabled selected>Select Guests</option>
-                                            <option value="1">1 Guest</option>
-                                            <option value="2">2 Guest</option>
-                                            <option value="3">3 Guest</option>
-                                            <option value="4">4 Guest</option>
+                                            <option value="" disabled selected>Select Room</option>
+                                            {view_data?.availabel_rooms?.map((item, index) => (
+                                                <option value={index + 1} key={index}>{index + 1} Room </option>
+                                            ))}
                                         </select>
-                                        {error?.Guest && (
+                                        {error?.available_rooms && (
                                             <small className='text-danger'>
-                                                Please choose a guest.
+                                                Please choose a available rooms.
                                             </small>
 
                                         )}
                                     </div>
 
-                                </div>
-                            </div>
-                            <div className="row text-start">
-                                <div className="col-2 d-flex justify-content-between align-items-center"><i className="bi bi-usb-mini-fill fs-4"></i></div>
-                                <div className="col-8">
-                                    <div className="form-group">
-                                        <select
-                                          onChange={handleChange}
-                                          name='room'
-                                            className={`form-control border-1 ${error?.Room ? 'border-danger' : ''}`}
-                                        >
-                                            <option value=""
-                                                disabled
-                                                selected
-                                            >Select Room</option>
-                                            <option value="1">1 Room</option>
-                                            <option value="2">2 Room</option>
-                                            <option value="3">3 Room</option>
-                                            <option value="4">4 Room</option>
-                                        </select>
-                                        {error?.Room &&
-                                            <small class="text-danger">
-                                                Please choose room.
-                                            </small>
-                                        }
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -238,9 +258,9 @@ export default function View_in_details() {
                             </div>
                         </div>
                         <div className="col  my-2">
-                            <button id='toggle' data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className='d-none'>hhh</button>
-                            <Link onClick={handleNav} className="btn btn-success m-auto py-3 px-5">Book</Link>
-                            <Checkout view_data={view_data} guest_room={guest_room}/>
+                            <button id='toggle' data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className='d-none'></button>
+                            <button onClick={handleNav} className="btn btn-success m-auto py-3 px-5">Book</button>
+                            <Checkout view_data={view_data} guest_room={guest_room} toggle={toggle} totalPrice={totalPrice} />
                         </div>
                     </div>
                 </div>

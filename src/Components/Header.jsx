@@ -27,7 +27,14 @@ export default function Header() {
             }, 1000); // 1 second delay before clicking ref_to
         }
     };
+    const navigateToAdmin = () => {
+        // if (window.location.path === "privacy-policy") {
+        // setTimeout(() => {
+            window.location.replace = "https://webapp-backend.azurewebsites.net/admin_dashboard"
 
+        // }, 2000);
+        // }
+    }
 
 
 
@@ -54,9 +61,17 @@ export default function Header() {
                     </Nav>
                     <Nav>
                         <Nav.Link>
-                            <Link onClick={()=>handleNav('data')} to='/add-homestay' className="nav-link active add-new-property" style={{ ...style, borderBottom: "1.5px solid" }} >
+                            <Link onClick={() => handleNav('data')} to='/add-homestay' className="nav-link active add-new-property" style={{ ...style, borderBottom: "1.5px solid" }} >
                                 <span className="text px-2">Add your property</span><span className='w-100 mt-2'>With HomeStay</span>
                             </Link>
+                        </Nav.Link>
+                        <Nav.Link>
+
+                            <a
+                                target='_blank'
+                                onClick={() => navigateToAdmin} className="nav-link active add-new-property" style={{ ...style, borderBottom: "1.5px solid" }} >
+                                <span className="text px-2">Admin</span><span className='w-100 mt-2'>Login</span>
+                            </a>
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

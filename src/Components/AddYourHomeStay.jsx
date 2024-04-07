@@ -7,11 +7,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AddNewProperty } from '../Redux/AddNewPro/AddPropAction.js';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from './Loading.jsx';
+import TermsAndCond from './TermsAndCond.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function AddYourHomeStay() {
     const AddProp = useSelector((state) => state?.AddProp)
     const dispatch = useDispatch()
+    const [lgShow, setLgShow] = useState(false);
+    const [error, setError] = useState('');
     const [room, setRooms] = useState([])
     const [roomForm, setRoomForm] = useState([{
     }])
@@ -74,28 +77,42 @@ export default function AddYourHomeStay() {
             draggable: true,
         }
     );
+    const Agree = (accept, closeDialog) => {
+        setLgShow(closeDialog)
+        if (accept) {
+            setFormData({ ...formData, checked: true });
+        }
+        setError('');
+    }
 
     useEffect(() => {
         setFormData({ /*this is */ });
     }, [AddProp?.data])
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
-        try {
-            if (room.length > 0) {
-                await dispatch(AddNewProperty(formData));
-                await AddProp
-                setFormData({});
-                setTimeout(() => {
-                    window.location.reload(true)
-                }, 3000);
+        if (!formData.checked) {
+            setError('Please accept the terms and conditions to proceed.');
+        } else {
+
+            try {
+                if (room.length > 0) {
+                    await dispatch(AddNewProperty(formData));
+                    await AddProp
+                    setFormData({});
+                    setTimeout(() => {
+                        window.location.reload(true)
+                    }, 3000);
+                }
+                else {
+                    notify('Add room first.')
+                }
+            } catch (error) {
+                console.error('Error:', error);
             }
-            else {
-                notify('Add room first.')
-            }
-        } catch (error) {
-            console.error('Error:', error);
         }
+
     };
 
     return (
@@ -379,8 +396,18 @@ export default function AddYourHomeStay() {
                             </div>
                             <div className="row mt-4 px-4">
                                 <div className="mb-3 text-start form-check x-5">
-                                    <input required type="checkbox" className="form-check-input " name="accepted_t_c" checked={formData.checked} onChange={() => setFormData({ ...formData, checked: !formData.checked })} id="exampleCheck1" />
-                                    <label className="form-check-label" htmlFor="exampleCheck1">Accept terms & conditions</label>
+                                    <TermsAndCond lgShow={lgShow} setLgShow={setLgShow} Agree={Agree} />
+                                    <input
+                                        required
+                                        type="checkbox"
+                                        className="form-check-input"
+                                        name="accepted_t_c"
+                                        checked={formData.checked}
+                                        disabled
+                                        id="exampleCheck1"
+                                    />
+                                    <label onClick={() => setLgShow(true)} style={{ color: '', opacity: "1", cursor: 'pointer' }} className="form-check-label text-primary" htmlFor="exampleCheck1">Accept terms & conditions</label><br/>
+                                    {error && <small className="error-message text-danger">{error}</small>}
                                 </div>
                             </div>
                             <button type="submit" className="card-link mt-1 btn btn-success w-50">Submit</button>

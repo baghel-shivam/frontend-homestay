@@ -30,7 +30,7 @@ export default function Landing() {
         top: '0',
         left: '0',
         width: '100%',
-        height: '70%',
+        height: '75%',
         backgroundImage: `url(${bg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',

@@ -5,19 +5,17 @@ import { BookingRequest } from '../Redux/Booking/BookignAction'
 import Loading from './Loading'
 import Success from './Success'
 
-export default function Checkout({ view_data, guest_room }) {
+export default function Checkout({ view_data, guest_room, totalPrice }) {
     const [data, setData] = useState()
     const formData = useSelector((state) => state.SearchRoom?.formData)
     const booking = useSelector((state) => state.Booking)
+    const [smShow, setSmShow] = useState(false);
     const dispatch = useDispatch()
-    // const navigate = useNavigate()
-    console.log(guest_room, 'this ')
+
     const handleChange = (e) => {
         const event = e.target
         setData({ ...data, [event.name]: event.value })
     }
-
-    const [smShow, setSmShow] = useState(false);
 
     useEffect(() => {
         if (booking?.status === "succeeded") {
@@ -27,7 +25,6 @@ export default function Checkout({ view_data, guest_room }) {
             }
             setSmShow(true)
         }
-        console.log(booking)
     }, [booking]);
 
     const options = {
@@ -41,29 +38,28 @@ export default function Checkout({ view_data, guest_room }) {
         window.location.reload(true)
     }
 
+    console.log(guest_room, 'this is guest room')
 
     useEffect(() => {
-        setData({
-            ...data, ...guest_room,
-            "user_id": 1,
-            "check_in_date": formData?.checkin_date,
-            "check_out_date": formData?.checkout_date,
-            "request_location": formData?.location,
-            "booking_price": view_data?.base_price,
-            "parent_room": view_data?.parent_address
-        })
-    }, [view_data])
 
-    console.log(data, 'this is data')
+        setData({
+            ...data,
+            "check_in_date": `${formData?.checkin_date}`,
+            "check_out_date": `${formData?.checkout_date}`,
+            "request_location": formData?.location,
+            "booking_price": parseInt(view_data?.base_price),
+            "parent_room": view_data?.id,
+            "selectedRooms": guest_room.RoomIds && guest_room?.RoomIds
+        })
+    }, [view_data, guest_room])
 
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(BookingRequest(data))
     }
-
     return (
         <div className='checkout-container'>
-            {booking.status === 'loading' && <Loading />}
+            {booking?.status === 'loading' && <Loading />}
             <Success smShow={smShow} onHide={HandleCloseModel} />
             <div className="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                 <div className="modal-dialog modal-dialog-centered modal-lg">
@@ -84,7 +80,7 @@ export default function Checkout({ view_data, guest_room }) {
                                         <div className="col d-flex">
                                             <div className='d-flex'>
                                                 <h5><b> &#8377;
-                                                    {parseInt(view_data?.base_price).toLocaleString('en-IN')}
+                                                    {totalPrice?.toLocaleString('en-IN')}
                                                 </b></h5><small className='text-secondary mx-2 mt-1 '> + Tax & Fee</small></div>
                                         </div>
                                         <div className="col">
@@ -119,7 +115,7 @@ export default function Checkout({ view_data, guest_room }) {
                                             </small>
                                         </div>
                                         <div className="col-5 d-flex text-center">
-                                            <small><b>{guest_room?.room}</b> Room <b>, {guest_room?.guest}</b> Guest </small>
+                                            <small><b>{guest_room?.RoomIds && guest_room?.RoomIds?.length}</b> Room </small>
                                         </div>
                                     </div>
                                 </div>
