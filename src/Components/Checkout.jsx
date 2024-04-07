@@ -42,6 +42,7 @@ export default function Checkout({ view_data, guest_room, totalPrice }) {
 
     useEffect(() => {
 
+<<<<<<< HEAD
         setData({
             ...data,
             "check_in_date": `${formData?.checkin_date}`,
@@ -53,6 +54,8 @@ export default function Checkout({ view_data, guest_room, totalPrice }) {
         })
     }, [view_data, guest_room])
 
+=======
+>>>>>>> 47cc370ab4d9fadf173f9ec55b485deacbdf2981
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(BookingRequest(data))
@@ -122,7 +125,7 @@ export default function Checkout({ view_data, guest_room, totalPrice }) {
 
                                 <div className="modal-body p-0">
                                     <div className=' rounded-3'>
-                                        <form onSubmit={handleSubmit}>
+                                        <form onSubmit={handleSubmit} method='POST'>
                                             <div className="mb-2  mx-3">
                                                 <input type="text" id='text_color' onChange={handleChange} name='customer_name' className=" form-control mt-3" placeholder="Enter name" required />
                                                 <input type="number" id='text_color' onChange={handleChange} name='customer_phn' className=" form-control mt-3" placeholder="Enter number" required />

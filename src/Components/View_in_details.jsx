@@ -10,9 +10,13 @@ import Checkout from './Checkout'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Success from './Success'
+<<<<<<< HEAD
 import { ViewDetails } from '../Redux/ViewDetails/Action'
 import { blobUrl } from '../Redux/BaseURL'
 import Loading from './Loading'
+=======
+import { blobUrl } from '../Redux/BaseURL'
+>>>>>>> 47cc370ab4d9fadf173f9ec55b485deacbdf2981
 export default function View_in_details() {
     const feedbackData = [
         {
@@ -111,8 +115,18 @@ export default function View_in_details() {
 
 
     const handleNav = () => {
+<<<<<<< HEAD
         if (validation()) {
             document.getElementById("toggle").click();
+=======
+        if (!guest_room?.guest) {
+            setError({ Guest: 'Please select a guest' })
+
+        } else if (!guest_room?.room) {
+            setError({ Room: 'Please select a room' })
+        } else {
+            document.getElementById('toggle').click()
+>>>>>>> 47cc370ab4d9fadf173f9ec55b485deacbdf2981
         }
     }
     // console.log(guest_room, 'this is gues room')
