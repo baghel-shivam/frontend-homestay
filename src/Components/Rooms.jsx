@@ -126,14 +126,13 @@ export default function Rooms() {
                     <span className='fs-4 fw-bold  mt-5 result-text'>{data.data?.length} HomeStay in "{state?.searchData?.location.charAt(0).toUpperCase() + state?.searchData?.location.slice(1)}" </span>
                     <hr />
                     <div className='room-collections mt-5  px-lg-1 px-sm-0'>
-                        {data?.data?.map((item, roomIndex) => (
+                        {data?.data.length > 0 ? data?.data?.map((item, roomIndex) => (
                             <>
                                 <div class="card border-none mb-3" key={roomIndex} >
-                                    {item.suggested &&
+                                    {item.is_recommended &&
                                         <div className='tag'>
                                             <img src={tag} className='img-class' alt='recommended tag' />
                                         </div>
-
                                     }
                                     <div class="row g-0 card-hover-effect">
                                         <div class="col-md-4 h100">
@@ -201,7 +200,10 @@ export default function Rooms() {
                                 </div>
                                 <hr className='my-4' />
                             </>
-                        ))}
+                        )) : <div className='container d-grid justify-content-center'>
+                            <span className='fs-4 text-danger mt-5'>Sorry, There is no room in this area.</span>
+                        </div>
+                        }
                     </div>
                 </div>
             </div>

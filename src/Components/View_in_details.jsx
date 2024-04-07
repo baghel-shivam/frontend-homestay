@@ -42,12 +42,16 @@ export default function View_in_details() {
     const [view_data, setView_data] = useState()
     const { state } = useLocation()
 
+    console.log(state, 'this is state')
+
     // Filtering the match room details
     useEffect(() => {
         const matched = data?.data?.find((item) => item.id === state);
         setView_data(matched);
     }, [state, data, view_data]);
 
+
+   
     // collecting the room and guest room
 
     const handleChange = (e) => {

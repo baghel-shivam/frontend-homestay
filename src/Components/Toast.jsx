@@ -4,14 +4,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Toast({ msg }) {
   const notify = () => toast(msg);
-
+  
   useEffect(() => {
-    notify(); 
-  }, []); 
+    notify();
+  }, []);
 
   return (
     <div>
-         <ToastContainer />
+      <ToastContainer />
     </div>
   );
 }

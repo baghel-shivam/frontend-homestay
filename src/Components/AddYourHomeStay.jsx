@@ -14,7 +14,7 @@ export default function AddYourHomeStay() {
     const dispatch = useDispatch()
     const [room, setRooms] = useState([])
     const [roomForm, setRoomForm] = useState([{
-      }])
+    }])
     const [formData, setFormData] = useState({
         site_name: '',
         full_address_one_line: '',
@@ -35,18 +35,16 @@ export default function AddYourHomeStay() {
         checked: false,
     });
 
-  
     const handleAddRoom = (e) => {
         e.preventDefault();
         if (roomForm.category && roomForm.base_price) {
-          setRooms([...room, roomForm]);
-          setFormData({ ...formData, "rooms": [...room, roomForm] });
-          // Reset roomForm after adding the room
-          setRoomForm({});
+            setRooms([...room, roomForm]);
+            setFormData({ ...formData, "rooms": [...room, roomForm] });
+            setRoomForm({});
         } else {
-          notify('Select valid price & category');
+            notify('Select valid price & category');
         }
-      }
+    }
 
     const handleDelete = (num) => {
         const filterData = room.filter((item, index) => index !== num);
@@ -60,6 +58,7 @@ export default function AddYourHomeStay() {
             [name]: value
         });
     };
+
     const HandleChangeAddRoom = (e) => {
         const { value, name } = e.target;
         setRoomForm({ ...roomForm, [name]: value })
@@ -75,8 +74,9 @@ export default function AddYourHomeStay() {
             draggable: true,
         }
     );
+
     useEffect(() => {
-        setFormData({ /* initial form data */ });
+        setFormData({ /*this is */ });
     }, [AddProp?.data])
 
     const handleSubmit = async (e) => {
@@ -86,6 +86,9 @@ export default function AddYourHomeStay() {
                 await dispatch(AddNewProperty(formData));
                 await AddProp
                 setFormData({});
+                setTimeout(() => {
+                    window.location.reload(true)
+                }, 3000);
             }
             else {
                 notify('Add room first.')
@@ -178,8 +181,6 @@ export default function AddYourHomeStay() {
 
                                 </div>
                             </div>
-
-
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
