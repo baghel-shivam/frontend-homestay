@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { blobUrl } from '../Redux/BaseURL'
+// import { blobUrl } from '../Redux/BaseURL'
 import '../Components/Styles/rooms.css'
 import { Link } from 'react-router-dom'
 import housekeeping from '../Images/housekeeper.png'
