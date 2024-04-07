@@ -67,11 +67,12 @@ export default function Header() {
                         </Nav.Link>
                         <Nav.Link>
 
-                            <a
+                            <span
+                            
                                 target='_blank'
                                 onClick={() => navigateToAdmin} className="nav-link active add-new-property" style={{ ...style, borderBottom: "1.5px solid" }} >
                                 <span className="text px-2">Admin</span><span className='w-100 mt-2'>Login</span>
-                            </a>
+                            </span>
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

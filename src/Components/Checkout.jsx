@@ -37,12 +37,8 @@ export default function Checkout({ view_data, guest_room, totalPrice }) {
         setSmShow(false)
         window.location.reload(true)
     }
-
-    console.log(guest_room, 'this is guest room')
-
     useEffect(() => {
 
-<<<<<<< HEAD
         setData({
             ...data,
             "check_in_date": `${formData?.checkin_date}`,
@@ -54,8 +50,6 @@ export default function Checkout({ view_data, guest_room, totalPrice }) {
         })
     }, [view_data, guest_room])
 
-=======
->>>>>>> 47cc370ab4d9fadf173f9ec55b485deacbdf2981
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(BookingRequest(data))

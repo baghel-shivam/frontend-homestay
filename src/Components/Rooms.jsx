@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-// import { blobUrl } from '../Redux/BaseURL'
+import { blobUrl } from '../Redux/BaseURL'
 import '../Components/Styles/rooms.css'
 import { Link } from 'react-router-dom'
 import housekeeping from '../Images/housekeeper.png'
@@ -11,7 +11,7 @@ import tag from '../Images/tag.png'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { blobUrl } from '../Redux/BaseURL'
+// import { blobUrl } from '../Redux/BaseURL'
 
 export default function Rooms() {
     const navigate = useNavigate()
@@ -143,11 +143,7 @@ export default function Rooms() {
                                                     <div class="carousel-inner">
                                                         {item?.img_array?.map((itemImg, index) => (
                                                             <div key={index} className={"carousel-item  overflow-hidden" + (index === 0 ? " active" : "")}>
-<<<<<<< HEAD
                                                                 <img src={`${blobUrl}/${ itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
-=======
-                                                                <img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
->>>>>>> 47cc370ab4d9fadf173f9ec55b485deacbdf2981
                                                             </div>
                                                         ))}
                                                     </div>

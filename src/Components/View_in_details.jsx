@@ -4,19 +4,14 @@ import wifi from '../Images/wifi.png'
 import parkedCar from '../Images/parked-car.png'
 import AC from '../Images/air-conditioner.png'
 import TV from '../Images/television.png'
-import { Link } from 'react-router-dom'
 import Gallery from './Gallery'
 import Checkout from './Checkout'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Success from './Success'
-<<<<<<< HEAD
 import { ViewDetails } from '../Redux/ViewDetails/Action'
 import { blobUrl } from '../Redux/BaseURL'
 import Loading from './Loading'
-=======
-import { blobUrl } from '../Redux/BaseURL'
->>>>>>> 47cc370ab4d9fadf173f9ec55b485deacbdf2981
 export default function View_in_details() {
     const feedbackData = [
         {
@@ -45,8 +40,7 @@ export default function View_in_details() {
     const formData = useSelector((state) => state.SearchRoom?.formData)
     const booking = useSelector((state) => state.Booking.status)
     const room_details = useSelector((state) => state.RoomDetails)
-    const [totalPrice, setTotalPrice] = useState()
-    const [toggle, setToggle] = useState(false)
+    const [totalPrice, setTotalPrice] = useState()   
     const [error, setError] = useState({ available_rooms: '', })
     const [view_data, setView_data] = useState()
     const [guest_room, setGuest_Room] = useState({ RoomIds: null, available_rooms: '' });
@@ -56,14 +50,6 @@ export default function View_in_details() {
     useEffect(() => {
         setView_data(room_details.data);
     }, [state, room_details]);
-
-    const All_price = [];
-    const calculate_price = (updatedRoom) => {
-
-    };
-
-
-    console.log(guest_room, 'this is ')
 
     const handleChange = (e) => {
         const { value, name } = e.target;
@@ -115,22 +101,11 @@ export default function View_in_details() {
 
 
     const handleNav = () => {
-<<<<<<< HEAD
         if (validation()) {
             document.getElementById("toggle").click();
-=======
-        if (!guest_room?.guest) {
-            setError({ Guest: 'Please select a guest' })
-
-        } else if (!guest_room?.room) {
-            setError({ Room: 'Please select a room' })
-        } else {
-            document.getElementById('toggle').click()
->>>>>>> 47cc370ab4d9fadf173f9ec55b485deacbdf2981
         }
     }
-    // console.log(guest_room, 'this is gues room')
-
+ 
     return (
         <div className='my-5 pt-5 container'>
             {room_details.status === 'loading' && <Loading />}
@@ -274,7 +249,7 @@ export default function View_in_details() {
                         <div className="col  my-2">
                             <button id='toggle' data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className='d-none'></button>
                             <button onClick={handleNav} className="btn btn-success m-auto py-3 px-5">Book</button>
-                            <Checkout view_data={view_data} guest_room={guest_room} toggle={toggle} totalPrice={totalPrice} />
+                            <Checkout view_data={view_data} guest_room={guest_room}  totalPrice={totalPrice} />
                         </div>
                     </div>
                 </div>
