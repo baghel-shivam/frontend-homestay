@@ -62,6 +62,10 @@
 
 /* Media query for all small screens */
 @media only screen and (max-width: 767px) {
+   .bi-people-fill{
+    padding-right: 10px;
+    color: rgb(0, 0, 0);
+   }
     .check-form {
         display: flex;
         justify-content: center;
@@ -113,28 +117,60 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         /* min-height: 110px; */
-        max-width: 900px;
+        max-width: 1200px;
         min-width: 900px;
     }
 
     .flex-item {
-        flex-basis: 100%;
+        flex-basis: 90%;
+        /* border: 2px solid red; */
     }
 
     .flex-item:nth-child(1) {
-        flex-basis: 50%;
+        flex-basis: 45%;
+        /* border: 1px solid red; */
+        /* margin: 0px 10px 10px -36px; */
     }
 
     .flex-item:nth-child(2) {
-        flex-basis: 30%;
-        margin: 10px;
+        flex-basis: 25%;
+        /* margin: 10px; */
 
     }
 
     .flex-item:nth-child(3) {
+        flex-basis: 12%;
+        margin: 10px;
+
+    }
+
+    .flex-item:nth-child(4) {
         margin-left: 25px;
         flex-basis: 10%;
     }
+
+
+    #Main-button {
+        border: 1px solid;
+        font-size: 18px;
+    }
+    
 }
+
+.dropdown{
+    outline: none;
+    border-radius: 100px;
+    padding-right: 20px;
+    background-color: white;
+}
+.dropdown:focus{
+    border: none;
+}
+
+/* .bi-people-fill{
+    position: absolute;
+    top: 25%;
+    left: 16%;
+} */

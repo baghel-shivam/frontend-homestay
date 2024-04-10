@@ -97,7 +97,7 @@ export default function Form() {
                 try {
                     await dispatch(SearchRoomDeskTop(data));
                     await dispatch(updateFormData(data));
-                    navigate('/search-rooms', { state: { searchData: data } });
+                    await navigate('/search-rooms', { state: { searchData: data } });
                 } catch (error) {
                     notify('API call failed');
                 }
@@ -106,7 +106,6 @@ export default function Form() {
             return notify(compareDate);
         }
     }
-
 
     return (
         <div className='sub_child'>
@@ -121,9 +120,20 @@ export default function Form() {
                         {DateRange()}
                         <label className='date-label'>When to ?</label>
                     </div>
+                    <div className={'my-1 highlighted flex-item dropdown'} ref={ref} onClick={handleHighlight} style={{ position: 'relative' }}>
+                        <i class="bi bi-people-fill fs-5 mx-1"></i>
+                        <select className='py-4 dropdown  px-1 border-none w-75' style={{ fontSize: '18px', fontWeight: '00' }}>
+                            <option selected disabled required>Guest</option>
+                            <option className='p-2 m-2'>1 Guest</option>
+                            <option>2 Guest</option>
+                            <option>3 Guest</option>
+                            <option>4 Guest</option>
+                        </select>
+                        {/* <label className='date-label'>Guest ?</label> */}
+                    </div>
                     <div className='flex-item'>
-                        <button className='m-auto btn text-dark add-new-property' type='submit' id='Main-button' style={{ background: "white", color: 'white', borderRadius: '100px', padding: '29px' }}>
-                            <span className="text px-2">Search</span><span className='mt-2'><i class="bi bi-search fs-5"></i></span>
+                        <button className='m-auto btn text-dark add-new-property bg-success border-none' type='submit' id='Main-button' style={{ color: 'white', borderRadius: '100px', padding: '29px' }}>
+                            <span className="text px-2 text-light">Search</span><span className='mt-2'><i class="bi bi-search fs-5"></i></span>
                         </button>
                     </div>
                 </div>

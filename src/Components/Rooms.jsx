@@ -11,13 +11,25 @@ import tag from '../Images/tag.png'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-// import { blobUrl } from '../Redux/BaseURL'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Rooms() {
     const navigate = useNavigate()
     const [filter_data, setFilter_data] = useState([])
     const { state } = useLocation()
     const data = useSelector((state) => state.SearchRoom)
+
+    const notify = (msg) => toast.error(msg,
+        {
+            position: 'top-right',
+            toastContainerClassName: 'custom-toast-container',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        }
+    );
 
 
     const handleFilter = (e) => {
@@ -31,6 +43,20 @@ export default function Rooms() {
         }
         setFilter_data(updatedFilterData);
     };
+
+    console.log(data, 'this is data')
+    useEffect(() => {
+        if (data.data.length > 0) {
+            console.log('good')
+        } else {
+
+            notify('Room not found!')
+            setTimeout(() => {
+                navigate('/')
+
+            }, 2000);
+        }
+    }, [data])
 
 
     useEffect(() => {
@@ -52,7 +78,8 @@ export default function Rooms() {
         }
     }, [filter_data, data]);
     return (
-        <div className='container Room_div '>
+        <div className='container Room_div' style={{ minHeight: '100vh' }}>
+            <ToastContainer />
             <div className='row nav-form-parent'>
                 <div className="col-lg-3 nav--bar col-sm-12 col-md-3 py-4 ">
                     <div className="container text-start d-none d-lg-block d-md-block">
@@ -143,7 +170,7 @@ export default function Rooms() {
                                                     <div class="carousel-inner">
                                                         {item?.img_array?.map((itemImg, index) => (
                                                             <div key={index} className={"carousel-item  overflow-hidden" + (index === 0 ? " active" : "")}>
-                                                                <img src={`${blobUrl}/${ itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
+                                                                <img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
                                                             </div>
                                                         ))}
                                                     </div>
@@ -161,7 +188,12 @@ export default function Rooms() {
                                         <div class="col-md-8 ">
                                             <div className="card-body border-none" onClick={() => navigate('/view-details', { state: item.id })}>
                                                 <h4 className="card-title">{item.site_name} </h4>
-                                                <p >{item.full_addres} </p>
+                                                <span >{item.full_addres} </span><br />
+                                                <div className='mb-2'>
+
+                                                    <small >{item.about_this_homestay && item.about_this_homestay.split(' ').slice(0, 15).join(' ')}...</small>
+                                                </div>
+
 
                                                 <div className="">
                                                     <span className='btn btn-success btn-sm'>{item.rate} &#9733;</span>

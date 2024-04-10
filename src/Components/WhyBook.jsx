@@ -2,9 +2,15 @@ import React from 'react'
 
 export default function WhyBook() {
     return (
-        <div className='top-destination pt-4'>
-            <span className='pb-4 headings'>Why Stay With Us?</span>
-            <div className="container-city py-4">
+        <div className='top-destination py-4 m-auto' style={{maxWidth:'1200px'}}>
+            <div style={{marginTop:"40px"}}>
+                
+            <span className='py-5 headings mt-4 '>Why Stay With Us?</span>
+            </div>
+            <div className="custom-hr">
+                <hr />
+            </div>
+            <div className="container-w-w-u py-4 rounded-3" style={{border:''}}>
                 <div className="advantages">
                     <div className="advantages-div">
                         <i className="bi bi-currency-dollar fs-2"></i><br/>

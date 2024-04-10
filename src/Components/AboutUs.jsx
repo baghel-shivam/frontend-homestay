@@ -3,14 +3,16 @@ import img from '../Images/about_us.jpg'
 
 export default function AboutUs(props) {
   return (
-    <div className='container-about' id='about' ref={props.Ref}>
+    <div className='container-about my-5' id='about' ref={props.Ref}>
       <div className='mb-5'>
         <span className='headings mb-5'>About us</span>
-        <hr style={{ width: '90%', margin: 'auto' }} />
+        <div className="custom-hr">
+          <hr />
+        </div>
       </div>
-      <div className="row">
+      <div className="row rounded-3" style={{ border: '1px solid #f2f2f2', background: '#f2f2f2' }}>
         <div className="col-12 col-lg-6">
-          <div className='bg-about-image pt-5'>
+          <div className='bg-about-image pt-1 h-100 d-flex align-item-center'>
             <img src={img} className="bg-image" alt="bg img" />
           </div>
         </div>
@@ -21,11 +23,7 @@ export default function AboutUs(props) {
           <p>
             Your ultimate destination for finding the perfect accommodation for your stay! Whether you're a traveler in search of a cozy retreat or a property owner looking to showcase your space, HOMESTAY is here to connect you with comfort and convenience.
           </p>
-          <span className='sub-heading'>For Travelers:
-            <hr /></span>
-          <p>
-            Discover a diverse range of properties, from charming cottages to luxurious apartments, and everything in between. With our user-friendly search filters, finding your ideal stay is just a few clicks away. Explore unique features, amenities, and locations to make your trip unforgettable.
-          </p>
+
           <span className='sub-heading'>For Property Owners:
             <hr /></span>
           <p>

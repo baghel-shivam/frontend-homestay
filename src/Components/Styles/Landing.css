@@ -9,13 +9,13 @@
     margin-right: 10px;
 }
 
-.home-stay-title{
+.home-stay-title {
     font-size: 1.5rem;
     /* margin-top: 10px; */
     font-weight: 600;
-    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
     font-family: Trebuchet MS, sans-seri;
-   
+
 }
 
 .home-stay-name {
@@ -114,20 +114,22 @@
 }
 
 .bg-image {
-    border-radius: 40px;
-    width: 80%;
+    border-radius: 10px;
+    width: 90%;
+    max-height:90%;
+    /* margin-top: 2px;; */
     margin: auto;
     display: block;
     object-fit: cover;
-    filter: blur(1px);
+    filter: blur(.5px);
 }
 
 .container-about {
-    margin: 5rem 20px;
+/* background-color: #aaa; */
 }
 
 .container-contact {
-    margin: 0rem 20px;
+    /* margin: 0rem 20px; */
 }
 
 .container-w-t-p-h {
@@ -174,9 +176,20 @@
 
 .container-city {
     margin-top: 30px;
+    padding: 10px;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.container-w-w-u {
+    margin-top: 30px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .city-img {
@@ -280,7 +293,13 @@
     }
 }
 
+/* For desktop only */
 @media only screen and (min-width: 765px) {
+    .Landing-width-adjustment {
+        max-width: 1200px;
+        margin: auto;
+    }
+
     .Room_div {
         margin-top: 80px;
     }
@@ -362,7 +381,7 @@
 }
 
 .img-chat {
-    background-color: transparent;
+    background-color: none;
     transform: scaleX(-1);
     height: 200%;
     width: 200%;

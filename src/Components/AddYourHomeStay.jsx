@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import '../Components/Styles/homeStayform.css'
 import { useState } from 'react';
 import states from '../Demo.json'
@@ -12,10 +12,18 @@ import { ToastContainer, toast } from 'react-toastify';
 
 export default function AddYourHomeStay() {
     const AddProp = useSelector((state) => state?.AddProp)
+    const ref = useRef(null)
     const dispatch = useDispatch()
     const [lgShow, setLgShow] = useState(false);
     const [error, setError] = useState('');
     const [room, setRooms] = useState([])
+
+    useEffect(() => {
+        if (ref.current instanceof HTMLElement) {
+            ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, [ref]);
+
     const [roomForm, setRoomForm] = useState([{
     }])
     const [formData, setFormData] = useState({
@@ -116,14 +124,14 @@ export default function AddYourHomeStay() {
     };
 
     return (
-        <div className='container add-your-home-stay pt-3'>
+        <div className='container add-your-home-stay pt-3' >
             {AddProp.status === 'loading' && <Loading />}
             {AddProp.status === 'succeeded' && <Toast msg={AddProp?.data} />}
-            <h2 className='title'>Add your property</h2>
+            <h2 className='title' ref={ref}>Add your property</h2>
             <form onSubmit={handleSubmit}>
                 <div className="row px-0 mt-4 container-fluid my-5 py-3  child-add-your-home-stay">
                     <div className="col-md-6 ">
-                        <h5 className='text-start mx-3 mb-4'>About room</h5>
+                        <h5 className='text-start mx-3 mb-4'>About home stay</h5>
                         <div className="container mt-2">
                             <div className="row">
                                 <div className="col-12">
@@ -138,7 +146,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-12">
                                     <div className="mb-3">
-                                        <textarea required type="text" className="form-control" name="about_this_room" value={formData.about_this_room} onChange={handleChange} placeholder="About this room" />
+                                        <textarea required type="text" className="form-control" name="about_this_room" value={formData.about_this_room} onChange={handleChange} placeholder="About this home stay" />
                                     </div>
                                 </div>
                             </div>
@@ -406,7 +414,7 @@ export default function AddYourHomeStay() {
                                         disabled
                                         id="exampleCheck1"
                                     />
-                                    <label onClick={() => setLgShow(true)} style={{ color: '', opacity: "1", cursor: 'pointer' }} className="form-check-label text-primary" htmlFor="exampleCheck1">Accept terms & conditions</label><br/>
+                                    <label onClick={() => setLgShow(true)} style={{ color: '', opacity: "1", cursor: 'pointer' }} className="form-check-label text-primary" htmlFor="exampleCheck1">Accept terms & conditions</label><br />
                                     {error && <small className="error-message text-danger">{error}</small>}
                                 </div>
                             </div>

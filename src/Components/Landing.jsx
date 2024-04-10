@@ -46,26 +46,25 @@ export default function Landing() {
 
     return (
         <div className='only_for_bg' >
-            <ChatBoat />
-                    
-            <div style={bgStyle} ref={ref_landing}></div>
-            <div id='Landing_form_container' style={contentContainerStyle}>
-                <div className="container text-center p-4" id='Child_form'>
-                    <div className='Main_title'>
-                        <h1>Discover Unique <span id='homestay'>HomeStays</span> in Your Area.</h1>
+                <ChatBoat />
+
+                <div style={bgStyle} ref={ref_landing}></div>
+                <div id='Landing_form_container' style={contentContainerStyle}>
+                    <div className="container text-center p-4" id='Child_form'>
+                        <div className='Main_title'>
+                            <h1>Discover Unique <span id='homestay'>HomeStays</span> in Your Area</h1>
+                        </div>
+                        <Form />
                     </div>
-                    <Form />
                 </div>
+                <WhyBook />
+            <div className='Landing-width-adjustment'>             
+
+                <TopDestination />
+                <AboutUs Ref={ref_about} />
+                <ContectUs Ref={ref_contact} />
+                <WasThisPageHelpfull />
             </div>
-            <WhyBook />
-            <div className="custom-hr">
-                <hr />
-            </div>
-            
-            <TopDestination />
-            <AboutUs Ref={ref_about} />
-            <ContectUs Ref={ref_contact} />
-            <WasThisPageHelpfull />
         </div>
 
     )

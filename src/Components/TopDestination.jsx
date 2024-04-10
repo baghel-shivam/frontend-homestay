@@ -39,12 +39,14 @@ export default function TopDestination(props) {
         ]
     }
     return (
-        <div className='top-destination py-5' >
-
+        <div className='top-destination py-5 m-auto' style={{ maxWidth: '1200px' }} >
             <span className='pb-4 headings'>Top Destinations</span>
+            <div className="custom-hr">
+                <hr />
+            </div>
             <div className="container-city">
                 {Data.city.map((item, index) => (
-                    <div className="city-img my-2"  key={index}>
+                    <div className="city-img my-3" key={index}>
                         <b className='image-content'>  {item.name}</b>
                         <img src={item.img} alt='dest' className='city-img-background' />
                     </div>
