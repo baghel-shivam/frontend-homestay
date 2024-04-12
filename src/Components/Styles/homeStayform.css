@@ -163,6 +163,7 @@
     outline: none;
     border-radius: 100px;
     padding-right: 20px;
+    min-height: 75px;
     background-color: white;
 }
 .dropdown:focus{

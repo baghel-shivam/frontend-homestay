@@ -17,8 +17,7 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 export default function SwiperComponent({ view_data }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  console.log(view_data)
-  return (
+   return (
     <>
       <Swiper
         style={{

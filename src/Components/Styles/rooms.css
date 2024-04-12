@@ -115,6 +115,9 @@
     .react-daterange-picker {
         display: flex !important;
     }
+    .room-image-search {
+        height: 34vh;
+    }
     #exampleFormControlInput1 {
         padding: 20px;
         /* position: relative; */
@@ -192,7 +195,9 @@
 }
 
 @media only screen and (min-width: 600px) {
-
+    .room-image-search {
+        height: 25vh;
+    }
 
     #exampleFormControlInput1 {
         padding: 20px;
@@ -297,3 +302,4 @@
     height: 10px;
     /* overflow: hidden; */
 }
+

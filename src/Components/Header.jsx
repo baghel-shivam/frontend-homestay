@@ -9,27 +9,30 @@ import img from '../Images/Main_icon.png'
 export default function Header() {
     const navigate = useNavigate();
     const { Contact_ref, About_US_ref, Landing_ref } = useSelector((state) => state.Ref);
+
     const style = {
-        color: "#00000"
+        color: "#00000",
+        fontFamily: "Trebuchet MS, sans-seri"
     };
+
+    const OnlyForDitoggleActiv = () => {
+        document.getElementById('toggle-btn').click();
+    };
+
     const handleNav = async (ref_to) => {
-        document.getElementById('toggle-btn').click()
+        if (window.innerWidth <= 768) { // Adjust the breakpoint as needed
+            OnlyForDitoggleActiv();
+        }
         if (window.location.pathname === '/') {
             if (ref_to instanceof HTMLElement) {
                 ref_to.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         } else if (window.location.pathname === '/add-homestay') {
-            setTimeout(async () => {
-                await navigate('/');
-                if (ref_to instanceof HTMLElement) {
-                    await ref_to.click();
-                }
-            }, 1000);
+            await navigate('/');
+        } else {
+            navigate('/');
         }
     };
-    const navigateToAdmin = () => {
-                  window.location.replace = "https://webapp-backend.azurewebsites.net/admin_dashboard"
-    }
 
 
 
@@ -45,33 +48,30 @@ export default function Header() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto px-lg-4 mt-lg-2">
                         <Nav.Link>
-                            <Link onClick={() => handleNav(Landing_ref)} className="nav-link active add-new-property mx-lg-2" style={{ ...style, borderBottom: ".5px solid" }} aria-current="page" to="/"><span className='text px-2'>Home</span><span className='mt-2'><i class="bi bi-house"></i></span></Link>
+                            <button onClick={() => handleNav(Landing_ref)} className="nav-link active add-new-property mx-lg-2" style={{ ...style, }} aria-current="page" to="/"><span className='text px-2'>Home</span><span className='mt-2'><i class="bi bi-house"></i></span></button>
                         </Nav.Link>
-                     
+
                         <Nav.Link>
-                            <Link onClick={() => handleNav(About_US_ref)} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, borderBottom: ".5px solid" }} ><span className='text px-2'>About us</span> <span className='mt-2 w-100'><i class="bi bi-exclamation-circle"></i></span></Link>
+                            <button onClick={() => handleNav(About_US_ref)} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, }} ><span className='text px-2'>About us</span> <span className='mt-2 w-100'><i class="bi bi-exclamation-circle"></i></span></button>
                         </Nav.Link>
                         <Nav.Link>
-                            <Link onClick={() => handleNav(Contact_ref)} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, borderBottom: ".5px solid" }} ><span className='text px-3'>Contact us</span> <span className='mt-2 w-100'><i class="bi bi-telephone"></i></span></Link>
+                            <button onClick={() => handleNav(Contact_ref)} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, }} ><span className='text px-3'>Contact us</span> <span className='mt-2 w-100'><i class="bi bi-telephone"></i></span></button>
+                        </Nav.Link>
+                        <Nav.Link>
+                            <Link to={'/help'} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, }} ><span className='text px-3'>Help</span> <span className='mt-2 w-100'><i class="bi bi-telephone"></i></span></Link>
                         </Nav.Link>
                     </Nav>
                     <Nav>
                         <Nav.Link>
-                            <Link onClick={() => handleNav('data')} to='/add-homestay' className="nav-link active add-new-property" style={{ ...style, borderBottom: "1.5px solid" }} >
-                                <span className="text px-2">Add Your HomeStay</span><span className='w-100 mt-2'>With us</span>
+                            <Link onClick={() => handleNav('data')} to='/add-homestay' className="nav-link active " style={{ ...style, }} >
+                                <button className='btn btn-dark rounded-0'>
+                                    <span className="text px-2">Add Your HomeStay</span>
+                                </button>
                             </Link>
-                        </Nav.Link>
-                        <Nav.Link>
-
-                            <span
-                            
-                                target='_blank'
-                                onClick={() => navigateToAdmin} className="nav-link active add-new-property" style={{ ...style, borderBottom: "1.5px solid" }} >
-                                <span className="text px-2">Admin</span><span className='w-100 mt-2'>Login</span>
-                            </span>
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
+
             </Container>
         </Navbar>
     );

@@ -19,7 +19,7 @@ export default function Landing() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(StoreContactRef(ref_contact.current))
+        dispatch(StoreContactRef((ref_contact.current)))
         dispatch(StoreAbout_us_Ref(ref_about.current))
         dispatch(StoreLanding_Ref(ref_landing.current))
     }, [dispatch])

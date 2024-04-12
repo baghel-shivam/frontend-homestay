@@ -5,25 +5,22 @@ const Success = ({ smShow, onHide }) => {
     return (
         <div >
             <Modal
-                size="sm"
+                size="md"
                 show={smShow}
                 onHide={onHide}
                 aria-labelledby="example-modal-sizes-title-sm"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title id="example-modal-sizes-title-sm">
 
-                    </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <div className="container w-100">
-                        <div className='m-auto w-50'>
-
+                <Modal.Body >
+                    <div className="container w-100 d-flex justify-content-center">
+                        <div className='m-auto'>
                             <img src={img} className='centered-gif' height={150} alt='img' />
-
                         </div>
-                        <p className='text-success text-center'>Requested SuccessFull!</p>
                     </div>
+                    <small className='opacity-50    d-flex justify-content-center text-center px-5 py-1'>We will contact you shortly.</small>
+                    <p className='text-success text-center fs-4 mt-1'>Request successful!</p>
                 </Modal.Body>
             </Modal>
 

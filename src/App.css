@@ -5,14 +5,16 @@
   /* Change this to your secondary color */
 }
 
-html{
-  scroll-padding-top:200px;
+html {
+  scroll-padding-top: 200px;
   scroll-behavior: smooth;
 }
 
 body {
   scroll-behavior: smooth;
   overflow-y: auto;
+  margin: 0;
+  padding: 0;
 }
 
 .Toastify__toast-theme--light {
@@ -28,7 +30,7 @@ body {
   overflow: hidden;
   font-weight: bold;
   /*  */
-color: #18181a;
+  color: #18181a;
   display: inline-block;
   font-size: 15px;
   line-height: 15px;
@@ -243,7 +245,7 @@ body {
 }
 
 .img-checkout-div {
-   background-image: url('./Images/checkout.jpg');
+  background-image: url('./Images/checkout.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -327,4 +329,54 @@ body {
   /* filter: blur(4px); */
   z-index: 999999;
 
+}
+
+
+/* Desktop */
+@media only screen and (min-width: 765px) {
+  .view-in-detail-item {
+    height: 55vh;
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 765px) {
+
+  .view-in-detail-item {
+    height: 38vh;
+  }
+
+}
+
+/* Table Header */
+table th {
+  padding: 8px; /* Adjust padding as needed */
+  text-align: center;
+  background-color: #343434; /* Black background */
+  color: #fff; /* White text color */
+}
+
+/* Alternate Row Colors */
+table tr:nth-child(even) {
+  background-color: #fff; /* White background for even rows */
+}
+
+table tr:nth-child(odd) {
+  background-color: #f2f2f2; /* Light gray background for odd rows */
+}
+
+/* Hover Effect */
+table tr:hover {
+  background-color: #ddd; /* Light gray background on hover */
+}
+
+/* Table Cell Padding */
+table td,
+table th {
+  padding: 8px; /* Adjust padding as needed */
+}
+
+
+.details-box{
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

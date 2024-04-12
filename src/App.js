@@ -13,6 +13,7 @@ import Checkout from './Components/Checkout';
 import AddYourHomeStay from './Components/AddYourHomeStay';
 import { useEffect } from 'react';
 import NotFound from './Components/NotFound';
+import Help from './Components/Help';
 
 function App() {
   useEffect(() => {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/search-rooms" element={<Rooms />} />
           <Route path="/view-details" element={<View_in_details />} />
           <Route path="/booking" element={<Checkout />} />
+          <Route path="/help" element={<Help />} />
           <Route path="/login" element={<Login />} />
           <Route path="/otp" element={<Otp />} />
           <Route path="/sign-up" element={<Sign_up />} />

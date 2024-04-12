@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
+import img from '../Images/no-image found.jpg'
 import 'react-toastify/dist/ReactToastify.css';
 export default function Rooms() {
     const navigate = useNavigate()
@@ -57,6 +58,8 @@ export default function Rooms() {
             }, 2000);
         }
     }, [data])
+
+    console.log(data?.data, 'this is image')
 
 
     useEffect(() => {
@@ -168,11 +171,15 @@ export default function Rooms() {
                                             <div>
                                                 <div id={`carouselExampleCaptions_${roomIndex}`} class="carousel slide">
                                                     <div class="carousel-inner">
-                                                        {item?.img_array?.map((itemImg, index) => (
-                                                            <div key={index} className={"carousel-item  overflow-hidden" + (index === 0 ? " active" : "")}>
+                                                        {item?.img_array.length > 0 ? item?.img_array?.map((itemImg, index) => (
+                                                            <div key={index} className={"carousel-item room-image-search overflow-hidden" + (index === 0 ? " active" : "")}>
                                                                 <img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
                                                             </div>
-                                                        ))}
+                                                        )) :
+                                                            <div className={"room-image-search"}>
+                                                                <img src={img} style={{ background: 'red', opacity: '.5' }} className="d-block w-100 h-100" alt="..." />
+                                                            </div>
+                                                        }
                                                     </div>
                                                     <button class="carousel-control-prev" type="button" data-bs-target={`#carouselExampleCaptions_${roomIndex}`} data-bs-slide="prev">
                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -187,17 +194,17 @@ export default function Rooms() {
                                         </div>
                                         <div class="col-md-8 ">
                                             <div className="card-body border-none" onClick={() => navigate('/view-details', { state: item.id })}>
-                                                <h4 className="card-title">{item.site_name} </h4>
-                                                <span >{item.full_addres} </span><br />
-                                                <div className='mb-2'>
-
+                                                <div className='d-flex align-content-between'>
+                                                    <h5 className="">{item.site_name} </h5> <h6 className='mt-1 mx-2'><i class="bi bi-dot"></i>{item.full_addres} </h6>
+                                                </div>
+                                                <div className='mb-2 mt-0 p-0'>
                                                     <small >{item.about_this_homestay && item.about_this_homestay.split(' ').slice(0, 15).join(' ')}...</small>
                                                 </div>
 
 
                                                 <div className="">
-                                                    <span className='btn btn-success btn-sm'>{item.rate} &#9733;</span>
-                                                    <span className='mx-3'>(5 Ratings)</span>
+                                                    <span className='fs-5 text-warning'>&#9733; {item.rate}</span>
+                                                    <small className='mx-2 fs-6'> (5 Ratings)</small>
                                                     <div className='d-flex justify-content-start w-100 mt-2  '>
                                                         <div className=" w-75 d-flex">
                                                             {item.is_wifi_available && <img src={wifi} className='mx-3' height={25} alt='Wi-Fi' />}

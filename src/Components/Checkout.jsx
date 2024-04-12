@@ -5,17 +5,26 @@ import { BookingRequest } from '../Redux/Booking/BookignAction'
 import Loading from './Loading'
 import Success from './Success'
 
-export default function Checkout({ view_data, guest_room, totalPrice }) {
+export default function Checkout({ view_data, guest_room, collectRoom }) {
     const [data, setData] = useState()
     const formData = useSelector((state) => state.SearchRoom?.formData)
     const booking = useSelector((state) => state.Booking)
     const [smShow, setSmShow] = useState(false);
+    const [selecteDRooms, setSelectedRooms] = useState()
+    const [roomType, setRoomType] = useState()
     const dispatch = useDispatch()
 
     const handleChange = (e) => {
         const event = e.target
         setData({ ...data, [event.name]: event.value })
     }
+
+    useEffect(() => {
+        const filteredData = collectRoom.filter((item) => item.bookCount > 0)
+        setSelectedRooms(filteredData)
+    }, [collectRoom])
+
+    console.log(selecteDRooms)
 
     useEffect(() => {
         if (booking?.status === "succeeded") {
@@ -46,9 +55,28 @@ export default function Checkout({ view_data, guest_room, totalPrice }) {
             "request_location": formData?.location,
             "booking_price": parseInt(view_data?.base_price),
             "parent_room": view_data?.id,
-            "selectedRooms": guest_room.RoomIds && guest_room?.RoomIds
+            "selectedRooms": selecteDRooms && selecteDRooms?.map((item)=>item.id)
         })
-    }, [view_data, guest_room])
+    }, [view_data, guest_room, collectRoom])
+
+
+
+    
+    useEffect(() => {
+        if (!selecteDRooms || !Array.isArray(selecteDRooms)) return;
+
+        const categoryCounts = selecteDRooms.reduce((acc, item) => {
+            acc[item.category] = (acc[item.category] || 0) + item.bookCount;
+            return acc;
+        }, {});
+        const formattedData = Object.entries(categoryCounts).map(([category, bookCount]) => `${bookCount} ${category}`);
+        setRoomType(formattedData);
+
+     
+    }, [selecteDRooms]);
+
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -77,12 +105,12 @@ export default function Checkout({ view_data, guest_room, totalPrice }) {
                                         <div className="col d-flex">
                                             <div className='d-flex'>
                                                 <h5><b> &#8377;
-                                                    {totalPrice?.toLocaleString('en-IN')}
+                                                     {selecteDRooms?.reduce((acc, cur) => acc + (cur?.base_price*cur?.bookCount), 0)?.toLocaleString('en-IN')} 
                                                 </b></h5><small className='text-secondary mx-2 mt-1 '> + Tax & Fee</small></div>
                                         </div>
                                         <div className="col">
                                             <div className="fs-6">
-                                                <small className='fw-bolder'>Room Type :</small> <small> {view_data?.category ? view_data?.category : "Classic"}</small>
+                                                <small>{roomType && roomType?.map((_, ind) => <small className='text-warning' key={ind}> {_} </small>)}</small>
                                             </div>
                                         </div>
                                     </div>
@@ -90,7 +118,6 @@ export default function Checkout({ view_data, guest_room, totalPrice }) {
                                     <div className="row py-2 check-in-check-out-date">
                                         <div className="col">
                                             <small className='fw-bolder'>
-
                                                 {formData?.checkin_date ? (
                                                     <span>
                                                         {new Date(formData?.checkin_date).toLocaleDateString('en-US', options)}
@@ -111,8 +138,8 @@ export default function Checkout({ view_data, guest_room, totalPrice }) {
                                                 )}
                                             </small>
                                         </div>
-                                        <div className="col-5 d-flex text-center">
-                                            <small><b>{guest_room?.RoomIds && guest_room?.RoomIds?.length}</b> Room </small>
+                                        <div className="col d-flex text-center">
+                                            <small><b>{selecteDRooms && selecteDRooms?.reduce((acc, item) => acc + item?.bookCount, 0)}</b> Room </small>
                                         </div>
                                     </div>
                                 </div>

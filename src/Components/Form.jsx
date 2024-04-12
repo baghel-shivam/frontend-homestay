@@ -15,7 +15,10 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Form() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [data, setData] = useState({ "checkin_date": null, "checkout_date": null, "location": '' })
+    const [isHighlighted, setIsHighlighted] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('');
+    const [customInput, setCustomInput] = useState('');
+    const [data, setData] = useState({ "checkin_date": null, "checkout_date": null, "location": ''})
     const state1 = useSelector((state) => state?.SearchRoom)
     const [value, onChange] = useState([new Date(), new Date()]);
     const ref = useRef()
@@ -23,8 +26,17 @@ export default function Form() {
         const { value, name } = e.target
         setData({ ...data, [name]: value })
     }
-    const [isHighlighted, setIsHighlighted] = useState(false);
 
+    const handleSelectChange = (event) => {
+        const selectedValue = event.target.value;
+        setSelectedOption(selectedValue);
+        if (selectedValue === 'custom') {
+            const customValue = prompt('Enter the number of guests:');
+            setCustomInput(customValue);
+            setSelectedOption(customValue);
+        }
+    };
+    
     const handleHighlight = () => {
         setIsHighlighted(!isHighlighted);
     };
@@ -39,7 +51,6 @@ export default function Form() {
             draggable: true,
         }
     );
-
 
     useEffect(() => {
         if (Array.isArray(value) && value.length === 2 && value[0] && value[1]) {
@@ -65,6 +76,7 @@ export default function Form() {
             )
         );
     }
+
     function compareDates(checkIn, checkOut) {
         if (checkIn !== null && checkOut !== null) {
             const [inY, inM, inD] = checkIn.split('-').map(Number);
@@ -88,7 +100,6 @@ export default function Form() {
             return "Check-in or Check-out date is null";
         }
     }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const compareDate = compareDates(data.checkin_date, data.checkout_date);
@@ -96,7 +107,7 @@ export default function Form() {
             if (data) {
                 try {
                     await dispatch(SearchRoomDeskTop(data));
-                    await dispatch(updateFormData(data));
+                    await dispatch(updateFormData({...data,"guest": selectedOption}));
                     await navigate('/search-rooms', { state: { searchData: data } });
                 } catch (error) {
                     notify('API call failed');
@@ -122,14 +133,22 @@ export default function Form() {
                     </div>
                     <div className={'my-1 highlighted flex-item dropdown'} ref={ref} onClick={handleHighlight} style={{ position: 'relative' }}>
                         <i class="bi bi-people-fill fs-5 mx-1"></i>
-                        <select className='py-4 dropdown  px-1 border-none w-75' style={{ fontSize: '18px', fontWeight: '00' }}>
-                            <option selected disabled required>Guest</option>
-                            <option className='p-2 m-2'>1 Guest</option>
-                            <option>2 Guest</option>
-                            <option>3 Guest</option>
-                            <option>4 Guest</option>
+                        <select
+                            name='guest'
+                            className='py-4 dropdown px-1 border-none w-75'
+                            style={{ fontSize: '18px', fontWeight: '00' }}
+                            value={selectedOption}
+                            onChange={handleSelectChange}
+                        >
+                            <option value='' selected disabled required>
+                                Guest
+                            </option>
+                            <option value='1'>1 Guest</option>
+                            <option value='2'>2 Guest</option>
+                            <option value='3'>3 Guest</option>
+                            <option value='4'>4 Guest</option>
+                            <option value='custom'>{customInput ? `${customInput} Guest` : 'Custom'}</option>
                         </select>
-                        {/* <label className='date-label'>Guest ?</label> */}
                     </div>
                     <div className='flex-item'>
                         <button className='m-auto btn text-dark add-new-property bg-success border-none' type='submit' id='Main-button' style={{ color: 'white', borderRadius: '100px', padding: '29px' }}>
