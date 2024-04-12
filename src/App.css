@@ -338,6 +338,9 @@ body {
     height: 445px;
    max-height: 445px;
   }
+  .why-stay-with-uus{
+    margin-top: 40px;
+  }
 }
 
 /* Mobile */
@@ -345,6 +348,9 @@ body {
 
   .view-in-detail-item {
     height: 34vh;
+  }
+  .why-stay-with-uus{
+    margin-top: 3px;
   }
 
 }

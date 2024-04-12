@@ -121,6 +121,7 @@ export default function View_in_details() {
         }
     }
 
+
     return (
         <div className='my-5 pt-5 container' style={{ maxWidth: '1200px' }}>
             {room_details.status === 'loading' && <Loading />}
@@ -136,9 +137,16 @@ export default function View_in_details() {
                                     <img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
                                 </div>
                             )) :
-                                <div className={"room-image-search-details"}>
-                                    <img src={img} style={{ background: 'red', opacity: '.5' }} className="d-block w-100 h-100" alt="..." />
-                                </div>
+                                view_data?.front_img !== null
+                                    ?
+                                    <div className={"room-image-search-details"}>
+                                        <img src={`${blobUrl}/${view_data?.front_img}`} style={{ background: 'red', opacity: '.5' }} className="d-block w-100 h-100" alt="..." />
+                                    </div>
+                                    :
+                                    <div className={"room-image-search-details position-relative"}>
+                                        <span className='fs-4' style={{ position: "absolute", top: '45%', bottom: '0%', left: '0', right: '0' }}>No images uploaded!</span>
+                                        <img src={img} style={{ background: 'red', opacity: '.5' }} className="d-block w-100 h-100" alt="..." />
+                                    </div>
                             }
                         </div>
                         <button className="carousel-control-prev" type="button" data-bs-target={`#carouselExampleCaptions`} data-bs-slide="prev">
@@ -255,14 +263,14 @@ export default function View_in_details() {
                     </div>
                     {view_data?.availabel_rooms?.length > 0 &&
                         <div className="w-100">
-                             <div className=" w-100 my-1  px-3 d-none d-lg-block">
-                                    <button onClick={handleNav} className="btn btn-success px-5 w-100 py-3">Book</button>
-                                </div>
+                            <div className=" w-100 my-1  px-3 d-none d-lg-block">
+                                <button onClick={handleNav} className="btn btn-success px-5 w-100 py-3">Book</button>
+                            </div>
                             <div className="my-2">
                                 <div className="fixed-bottom w-100 py-3 bg-light px-3 d-block d-lg-none">
                                     <button onClick={handleNav} className="btn btn-success px-5 w-100 py-2">Book</button>
                                 </div>
-                               
+
 
                                 <button id='toggle' data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className='d-none'></button>
                                 <Checkout view_data={view_data} guest_room={guest_room} totalPrice={totalPrice} collectRoom={collectRoom} />

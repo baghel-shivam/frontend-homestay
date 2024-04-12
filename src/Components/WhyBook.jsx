@@ -3,9 +3,9 @@ import React from 'react'
 export default function WhyBook() {
     return (
         <div className='top-destination py-4 m-auto' style={{maxWidth:'1200px'}}>
-            <div style={{marginTop:"40px"}}>
+            <div className='why-stay-with-uus'>
                 
-            <span className='py-5 headings mt-4 '>Why Stay With Us?</span>
+            <span className='py-5 headings mt-lg-3 mt-0 '>Why Stay With Us?</span>
             </div>
             <div className="custom-hr">
                 <hr />
