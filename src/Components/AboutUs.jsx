@@ -3,7 +3,7 @@ import img from '../Images/about_us.jpg'
 
 export default function AboutUs(props) {
   return (
-    <div className='container-about my-5' id='about' ref={props.Ref}>
+    <div className='container my-5' id='about' ref={props.Ref}>
       <div className='mb-5'>
         <span className='headings mb-5'>About us</span>
         <div className="custom-hr">

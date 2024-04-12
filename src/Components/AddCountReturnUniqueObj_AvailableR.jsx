@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 export default function AddCountReturnUniqueObj_AvailableR({ data, collectRoom, setCollectRooms }) {
     const [filter_d, setFilter_D] = useState([]);
+    const [dependency, setDependency] = useState(true);
 
     function addCountAndRemoveDuplicates(arr) {
         const priceCounts = arr?.reduce((acc, item) => {
@@ -18,6 +19,7 @@ export default function AddCountReturnUniqueObj_AvailableR({ data, collectRoom, 
             ...item,
             count: priceCounts[item.base_price],
             bookCount: 0,
+            disable: false,
             btnShow: true, // Set initial button visibility state for each item
         })));
     }
@@ -25,6 +27,14 @@ export default function AddCountReturnUniqueObj_AvailableR({ data, collectRoom, 
     useEffect(() => {
         addCountAndRemoveDuplicates(data);
     }, [data]);
+
+    useEffect(() => {
+        setFilter_D((prevData) =>
+            prevData.map((item) =>
+                item.bookCount <= 0 ? { ...item, btnShow: true } : item
+            )
+        );
+    }, [dependency]);
 
     const addCount = (id) => {
         setFilter_D(prevData => {
@@ -35,7 +45,8 @@ export default function AddCountReturnUniqueObj_AvailableR({ data, collectRoom, 
                         setCollectRooms(prevRooms => prevRooms.map(room => room.id === updatedItem.id ? updatedItem : room));
                         return updatedItem;
                     } else {
-                        alert('No more available items.');
+                        const updatedItem = { ...item, btnShow: false, disable: true };
+                        return updatedItem
                     }
                 }
                 return item;
@@ -47,15 +58,17 @@ export default function AddCountReturnUniqueObj_AvailableR({ data, collectRoom, 
         setFilter_D(prevData => {
             return prevData?.map((item) => {
                 if (id === item.id) {
+                    if (item.bookCount <= 0) return { ...item, btnShow: true }
                     if (item.bookCount > 0) {
                         const updatedItem = { ...item, bookCount: item.bookCount - 1 }
                         setCollectRooms(prevRooms => prevRooms.map(room => room.id === updatedItem.id ? updatedItem : room));
+                        setDependency(dependency + 1)
                         return updatedItem;
-                    } else if (item?.count === 0) {
-                        return { ...item, btnShow: true };
                     }
                     else {
-                        alert('No more available items to remove.');
+                        alert('No more available Rooms to remove.');
+                        setDependency(dependency + 1)
+                        return { ...item, btnShow: item.bookCount === 0 }
                     }
                 }
                 return item;
@@ -65,9 +78,9 @@ export default function AddCountReturnUniqueObj_AvailableR({ data, collectRoom, 
 
     useEffect(() => {
         setCollectRooms((prevRooms) => {
-          const filterData = Array.isArray(filter_d) ? filter_d : [];
-           const updatedRooms = [...prevRooms, ...filterData];
-           const uniqueRooms = Array.from(new Set(updatedRooms.map((room) => room.id)))?.map((id) => {
+            const filterData = Array.isArray(filter_d) ? filter_d : [];
+            const updatedRooms = [...prevRooms, ...filterData];
+            const uniqueRooms = Array.from(new Set(updatedRooms.map((room) => room.id)))?.map((id) => {
                 return updatedRooms.find((room) => room.id === id);
             });
             return uniqueRooms;
@@ -75,6 +88,7 @@ export default function AddCountReturnUniqueObj_AvailableR({ data, collectRoom, 
 
     }, [filter_d, setCollectRooms]);
 
+    console.log(filter_d, 'this is filter d')
 
     return (
         <>
@@ -89,13 +103,13 @@ export default function AddCountReturnUniqueObj_AvailableR({ data, collectRoom, 
                                 Add
                             </button>
                         ) : (
-                            <div style={{ maxWidth: '10vh' }} className='btn  m-auto btn-success btn-sm  p-0 text-light d-flex justify-content-evenly align-items-center'>
+                            <div style={{ maxWidth: '10vh', }} className='btn  m-auto btn-success btn-sm  p-0 text-light d-flex justify-content-evenly align-items-center'>
                                 <div onClick={() => DelCount(item?.id)}>
                                     <i className="bi bi-dash fs-5"></i>
                                 </div>
                                 <div>{item?.bookCount}</div>
-                                <div onClick={() => addCount(item?.id)}>
-                                    <i className="bi bi-plus fs-5"></i>
+                                <div onClick={() => addCount(item?.id)} className={item.disable ? `opacity-25` : 'text-light'}>
+                                    <i className="bi bi-plus fs-5 fw-bolder" disabled></i>
                                 </div>
                             </div>
                         )}

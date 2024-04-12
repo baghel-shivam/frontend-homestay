@@ -1,13 +1,9 @@
-import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function TermsAndCond({ lgShow, setLgShow, Agree }) {
-
-
     return (
         <>
-
             <Modal
                 size="lg"
                 show={lgShow}

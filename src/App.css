@@ -335,7 +335,8 @@ body {
 /* Desktop */
 @media only screen and (min-width: 765px) {
   .view-in-detail-item {
-    height: 55vh;
+    height: 445px;
+   max-height: 445px;
   }
 }
 
@@ -343,7 +344,7 @@ body {
 @media only screen and (max-width: 765px) {
 
   .view-in-detail-item {
-    height: 38vh;
+    height: 34vh;
   }
 
 }
@@ -352,16 +353,19 @@ body {
 table th {
   padding: 8px; /* Adjust padding as needed */
   text-align: center;
+  font-size: 13px;
   background-color: #343434; /* Black background */
   color: #fff; /* White text color */
 }
 
 /* Alternate Row Colors */
 table tr:nth-child(even) {
+  color: black;
   background-color: #fff; /* White background for even rows */
 }
 
 table tr:nth-child(odd) {
+  color: black;
   background-color: #f2f2f2; /* Light gray background for odd rows */
 }
 

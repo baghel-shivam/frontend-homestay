@@ -34,8 +34,6 @@ export default function Header() {
         }
     };
 
-
-
     return (
         <Navbar fixed="top" collapseOnSelect expand="lg" className="bg-body-tertiary p-0">
             <Container className='p-0'>
@@ -58,7 +56,7 @@ export default function Header() {
                             <button onClick={() => handleNav(Contact_ref)} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, }} ><span className='text px-3'>Contact us</span> <span className='mt-2 w-100'><i class="bi bi-telephone"></i></span></button>
                         </Nav.Link>
                         <Nav.Link>
-                            <Link to={'/help'} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, }} ><span className='text px-3'>Help</span> <span className='mt-2 w-100'><i class="bi bi-telephone"></i></span></Link>
+                            <Link to={'/help'} onClick={() => handleNav('data')} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, }} ><span className='text px-3'>Help</span> <span className='mt-2 w-100'><i class="bi bi-telephone"></i></span></Link>
                         </Nav.Link>
                     </Nav>
                     <Nav>

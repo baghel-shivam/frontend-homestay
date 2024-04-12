@@ -1,0 +1,33 @@
+.icon-div {
+    flex: .7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Changed flex-item to flex and set it to 1 for equal distribution */
+}
+
+.content {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex: 2.3;
+    /* Example: if you want .content to take double the space of .icon-div */
+}
+
+.help-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.help-item {
+    display: flex;
+    width: 350px;
+    min-width: 350px;
+    height: 95px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    flex-basis: calc(33.33% - 20px);
+    /* Adjust the width as needed */
+    margin: 10px;
+    /* Adjust margin for space between items */
+}

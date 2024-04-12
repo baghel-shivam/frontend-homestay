@@ -4,15 +4,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { BookingRequest } from '../Redux/Booking/BookignAction'
 import Loading from './Loading'
 import Success from './Success'
+import TermsAndCond from './TermsAndCond'
 
 export default function Checkout({ view_data, guest_room, collectRoom }) {
     const [data, setData] = useState()
+    const [lgShow, setLgShow] = useState(false);
+    const [error, setError] = useState('');
     const formData = useSelector((state) => state.SearchRoom?.formData)
     const booking = useSelector((state) => state.Booking)
     const [smShow, setSmShow] = useState(false);
     const [selecteDRooms, setSelectedRooms] = useState()
     const [roomType, setRoomType] = useState()
     const dispatch = useDispatch()
+    const [formDataTC, setFormDataTC] = useState({ checked: false });
 
     const handleChange = (e) => {
         const event = e.target
@@ -55,13 +59,13 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
             "request_location": formData?.location,
             "booking_price": parseInt(view_data?.base_price),
             "parent_room": view_data?.id,
-            "selectedRooms": selecteDRooms && selecteDRooms?.map((item)=>item.id)
+            "selectedRooms": selecteDRooms && selecteDRooms?.map((item) => item.id)
         })
     }, [view_data, guest_room, collectRoom])
 
 
 
-    
+
     useEffect(() => {
         if (!selecteDRooms || !Array.isArray(selecteDRooms)) return;
 
@@ -72,7 +76,7 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
         const formattedData = Object.entries(categoryCounts).map(([category, bookCount]) => `${bookCount} ${category}`);
         setRoomType(formattedData);
 
-     
+
     }, [selecteDRooms]);
 
 
@@ -80,7 +84,21 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(BookingRequest(data))
+        if(formDataTC.checked){
+
+            dispatch(BookingRequest(data))
+        }
+        else{
+            setError('Accept Terms and Conditions first!');
+        }
+    }
+
+    const Agree = (accept, closeDialog) => {
+        setLgShow(closeDialog)
+        if (accept) {
+            setFormDataTC({ ...formDataTC, checked: true });
+        }
+        setError('');
     }
     return (
         <div className='checkout-container'>
@@ -105,7 +123,7 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
                                         <div className="col d-flex">
                                             <div className='d-flex'>
                                                 <h5><b> &#8377;
-                                                     {selecteDRooms?.reduce((acc, cur) => acc + (cur?.base_price*cur?.bookCount), 0)?.toLocaleString('en-IN')} 
+                                                    {selecteDRooms?.reduce((acc, cur) => acc + (cur?.base_price * cur?.bookCount), 0)?.toLocaleString('en-IN')}
                                                 </b></h5><small className='text-secondary mx-2 mt-1 '> + Tax & Fee</small></div>
                                         </div>
                                         <div className="col">
@@ -149,9 +167,23 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
                                         <form onSubmit={handleSubmit} method='POST'>
                                             <div className="mb-2  mx-3">
                                                 <input type="text" id='text_color' onChange={handleChange} name='customer_name' className=" form-control mt-3" placeholder="Enter name" required />
-                                                <input type="number" id='text_color' onChange={handleChange} name='customer_phn' className=" form-control mt-3" placeholder="Enter number" required />
+                                                <input type="tel"  pattern="[0-9]{10}" minlength="10" maxlength="10" id='text_color' onChange={handleChange} name='customer_phn' className=" form-control mt-3" placeholder="Enter number" required />
                                                 <input type="email" id='text_color' onChange={handleChange} name='customer_email' className=" form-control mt-3" placeholder="Enter Email" />
-                                                <button type='submit' id='button' className='btn btn-success mt-5 px-5'>Request</button>
+                                                <div className=" text-start form-check my-2">
+                                                    <TermsAndCond lgShow={lgShow} setLgShow={setLgShow} Agree={Agree} />
+                                                    <input
+                                                        required
+                                                        type="checkbox"
+                                                        className="form-check-input"
+                                                        name="accepted_t_c"
+                                                        checked={formDataTC.checked}
+                                                        disabled
+                                                        id="exampleCheck1"
+                                                    />
+                                                    <label onClick={() => setLgShow(true)} style={{ color: '', opacity: "1", cursor: 'pointer' }} className="form-check-label text-primary" htmlFor="exampleCheck1"><small>Accept terms & conditions</small></label><br />
+                                                    {error && <small className="error-message text-danger">{error}</small>}
+                                                </div>
+                                                <button type='submit' id='button' className='btn btn-success mt-2 px-5'>Request</button>
                                             </div>
                                         </form>
                                     </div>

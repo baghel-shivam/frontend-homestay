@@ -108,7 +108,7 @@
 }
 
 .bg-about-image {
-    width: 100%;
+    /* width: 100%; */
     border-radius: 15px;
     /* height: 60vh; */
 }
@@ -124,13 +124,7 @@
     filter: blur(.5px);
 }
 
-.container-about {
-    /* background-color: #aaa; */
-}
 
-.container-contact {
-    /* margin: 0rem 20px; */
-}
 
 .container-Feed {
     background-color: aquamarine;

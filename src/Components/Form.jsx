@@ -3,13 +3,11 @@ import { useState, useRef } from 'react'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import '@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css';
 import 'react-calendar/dist/Calendar.css';
-
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { SearchRoomDeskTop } from '../Redux/Search_Room/Search_roomAction';
 import Loading from './Loading';
 import { updateFormData } from '../Redux/Search_Room/Search_roomSlice'
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export default function Form() {
@@ -17,8 +15,7 @@ export default function Form() {
     const navigate = useNavigate()
     const [isHighlighted, setIsHighlighted] = useState(false);
     const [selectedOption, setSelectedOption] = useState('');
-    const [customInput, setCustomInput] = useState('');
-    const [data, setData] = useState({ "checkin_date": null, "checkout_date": null, "location": ''})
+    const [data, setData] = useState({ "checkin_date": null, "checkout_date": null, "location": '' })
     const state1 = useSelector((state) => state?.SearchRoom)
     const [value, onChange] = useState([new Date(), new Date()]);
     const ref = useRef()
@@ -32,11 +29,10 @@ export default function Form() {
         setSelectedOption(selectedValue);
         if (selectedValue === 'custom') {
             const customValue = prompt('Enter the number of guests:');
-            setCustomInput(customValue);
             setSelectedOption(customValue);
         }
     };
-    
+
     const handleHighlight = () => {
         setIsHighlighted(!isHighlighted);
     };
@@ -107,7 +103,7 @@ export default function Form() {
             if (data) {
                 try {
                     await dispatch(SearchRoomDeskTop(data));
-                    await dispatch(updateFormData({...data,"guest": selectedOption}));
+                    await dispatch(updateFormData({ ...data, "guest": selectedOption }));
                     await navigate('/search-rooms', { state: { searchData: data } });
                 } catch (error) {
                     notify('API call failed');
@@ -131,7 +127,7 @@ export default function Form() {
                         {DateRange()}
                         <label className='date-label'>When to ?</label>
                     </div>
-                    <div className={'my-1 highlighted flex-item dropdown'} ref={ref} onClick={handleHighlight} style={{ position: 'relative' }}>
+                    <div className={'my-1 highlighted align-content-center flex-item dropdown'} ref={ref} onClick={handleHighlight} style={{ position: 'relative' }}>
                         <i class="bi bi-people-fill fs-5 mx-1"></i>
                         <select
                             name='guest'
@@ -147,7 +143,18 @@ export default function Form() {
                             <option value='2'>2 Guest</option>
                             <option value='3'>3 Guest</option>
                             <option value='4'>4 Guest</option>
-                            <option value='custom'>{customInput ? `${customInput} Guest` : 'Custom'}</option>
+                            <option value='5'>5 Guest</option>
+                            <option value='6'>6 Guest</option>
+                            <option value='7'>7 Guest</option>
+                            <option value='8'>8 Guest</option>
+                            <option value='9'>9 Guest</option>
+                            <option value='10'>10 Guest</option>
+                            <option value='11'>12 Guest</option>
+                            <option value='12'>12 Guest</option>
+                            <option value='13'>13 Guest</option>
+                            <option value='14'>14 Guest</option>
+                            <option value='15'>15 Guest</option>
+
                         </select>
                     </div>
                     <div className='flex-item'>

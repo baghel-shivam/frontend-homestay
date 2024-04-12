@@ -222,6 +222,20 @@ export default function AddYourHomeStay() {
                                 </div>
                             </div>
                             <div className="row">
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" name="upi_id" value={formData?.upi_id} onChange={handleChange} placeholder="Enter UPI ID" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <div className="mb-3">
+                                          <input required type="tel" className="form-control" pattern="[0-9]{10}" minlength="10" maxlength="10" name="upi_phn_no" value={formData?.upi_phn_no} onChange={handleChange} placeholder="G-pay, PhonePay, Number etc" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
                                 <div className="col-md-12">
                                     <div className="mb-3">
                                         <input required type="text" className="form-control" name="how_to_reach" value={formData.how_to_reach} onChange={handleChange} placeholder="How to reach" />

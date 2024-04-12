@@ -2,7 +2,7 @@ import React from 'react'
 import img from '../Images/contact_us.jpg'
 export default function ContectUs(props) {
   return (
-    <div className='container-contact my-5' id="contact" ref={props.Ref}>
+    <div className='container my-5' id="contact" ref={props.Ref}>
       <div className='mb-5'>
         <span className='headings mb-5' >Contact us</span>
         <div className="custom-hr">

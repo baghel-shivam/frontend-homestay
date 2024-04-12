@@ -10,8 +10,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import Success from './Success'
 import { ViewDetails } from '../Redux/ViewDetails/Action'
 import { blobUrl } from '../Redux/BaseURL'
+import Dropdown from 'react-bootstrap/Dropdown';
 import Loading from './Loading'
 import SwiperComponent from './Swiper'
+import img from '../Images/no-image found.jpg'
 import AddCountReturnUniqueObj_AvailableR from './AddCountReturnUniqueObj_AvailableR'
 export default function View_in_details() {
     const feedbackData = [
@@ -86,12 +88,14 @@ export default function View_in_details() {
         dispatch(ViewDetails(data))
 
     }, [])
+
     const validation = () => {
         if (!collectRoom || !Array.isArray(collectRoom)) {
             return false;
         }
         return collectRoom.some(item => item.bookCount > 0);
     };
+
     useEffect(() => {
         const Economy = []
         const Premium = []
@@ -127,11 +131,15 @@ export default function View_in_details() {
                 <div className="col-12 col-lg-6 col-md-6">
                     <div id={`carouselExampleCaptions`} className=" details-box carousel slide rounded-3 overflow-hidden">
                         <div className="carousel-inner">
-                            {view_data?.img_array?.map((itemImg, index) => (
+                            {view_data?.img_array?.length > 0 ? view_data?.img_array?.map((itemImg, index) => (
                                 <div key={index} className={"carousel-item view-in-detail-item" + (index === 0 ? " active" : "")}>
                                     <img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
                                 </div>
-                            ))}
+                            )) :
+                                <div className={"room-image-search-details"}>
+                                    <img src={img} style={{ background: 'red', opacity: '.5' }} className="d-block w-100 h-100" alt="..." />
+                                </div>
+                            }
                         </div>
                         <button className="carousel-control-prev" type="button" data-bs-target={`#carouselExampleCaptions`} data-bs-slide="prev">
                             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -148,7 +156,7 @@ export default function View_in_details() {
                         <div className="container">
                             <div className=" text-start">
                                 <h4>{view_data?.site_name}</h4>
-                                <p className='text-secondary'><i class="bi bi-geo-fill mx-1"></i> {view_data?.full_addres}</p>
+                                <p className='text-secondary'><i className="bi bi-geo-fill mx-1"></i> {view_data?.full_addres}</p>
 
                             </div>
                         </div>
@@ -162,25 +170,42 @@ export default function View_in_details() {
                             </div>
 
                         </div>
-                        <div className="col p-0 d-flex justify-content-center align-items-center">
-                            <strong>{view_data?.availabel_rooms && view_data?.availabel_rooms.length > 0 ? <span className='text-success'>{view_data?.availabel_rooms.length} Room <br />Available</span> : <span className='text-danger'>Not available</span>} </strong><br />
+                        <div className="col ">
+                            <Dropdown className='' >
+                                <Dropdown.Toggle variant="success" id="dropdown-basic" className='w-100 text-light py-3'>
+                                    {view_data?.availabel_rooms && view_data?.availabel_rooms.length > 0 ? <span className='text-light py-2'>{view_data?.availabel_rooms.length} Room's Available</span> : <span className='text-danger'>Not available</span>}
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <table>
+                                        <tr>
+                                            <th>Category</th>
+                                            <th>Base price</th>
+                                            <th>Quantity</th>
+                                            <th>Book </th>
+                                        </tr>
+                                        <AddCountReturnUniqueObj_AvailableR data={manipulateRoom?.economy} collectRoom={collectRoom} setCollectRooms={setCollectRooms} />
+                                        <AddCountReturnUniqueObj_AvailableR data={manipulateRoom?.premium} collectRoom={collectRoom} setCollectRooms={setCollectRooms} />
+                                    </table>
+                                </Dropdown.Menu>
+                            </Dropdown>
+
                         </div>
                         <hr />
 
                         <div className='d-flex text-center justify-content-evenly py-3'>
                             <div >
                                 {view_data?.nearest_airport &&
-                                    <small className='text-secondary ' ><i class="bi bi-geo-fill mx-1"></i> Nearest Airport :<b className='text-warning'> <br />{view_data?.nearest_airport}  - {view_data?.distance_from_ap} KM</b></small>
+                                    <small className='text-secondary ' ><i className="bi bi-geo-fill mx-1"></i> Nearest Airport :<b className='text-warning'> <br />{view_data?.nearest_airport}  - {view_data?.distance_from_ap} KM</b></small>
                                 }
                             </div>
                             <div >
                                 {view_data?.nearest_metro_station &&
-                                    <small className='text-secondary ' ><i class="bi bi-geo-fill mx-1"></i> Nearest Metro station:<b className='text-warning'> <br />{view_data?.nearest_metro_station}   - {view_data?.distance_from_ms} KM</b></small>}
+                                    <small className='text-secondary ' ><i className="bi bi-geo-fill mx-1"></i> Nearest Metro station:<b className='text-warning'> <br />{view_data?.nearest_metro_station}   - {view_data?.distance_from_ms} KM</b></small>}
                             </div>
 
                             <div >
                                 {view_data?.nearest_railway_station &&
-                                    <small className='text-secondary'><i class="bi bi-geo-fill mx-1"></i>  Nearest Railway station :<b className='text-warning'> <br /> {view_data?.nearest_railway_station} - {view_data?.distance_from_rs} KM</b></small>}
+                                    <small className='text-secondary'><i className="bi bi-geo-fill mx-1"></i>  Nearest Railway station :<b className='text-warning'> <br /> {view_data?.nearest_railway_station} - {view_data?.distance_from_rs} KM</b></small>}
                             </div>
                         </div>
                         <hr />
@@ -228,53 +253,31 @@ export default function View_in_details() {
                         </div>
 
                     </div>
+                    {view_data?.availabel_rooms?.length > 0 &&
+                        <div className="w-100">
+                             <div className=" w-100 my-1  px-3 d-none d-lg-block">
+                                    <button onClick={handleNav} className="btn btn-success px-5 w-100 py-3">Book</button>
+                                </div>
+                            <div className="my-2">
+                                <div className="fixed-bottom w-100 py-3 bg-light px-3 d-block d-lg-none">
+                                    <button onClick={handleNav} className="btn btn-success px-5 w-100 py-2">Book</button>
+                                </div>
+                               
 
-                    <div className="row py-3  rounded-3">
-                        <div className="col">
-                            <strong>Nearest Attraction 1</strong> <br />
-                            ({view_data?.nearest_attraction_1})
+                                <button id='toggle' data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className='d-none'></button>
+                                <Checkout view_data={view_data} guest_room={guest_room} totalPrice={totalPrice} collectRoom={collectRoom} />
+                            </div>
+
                         </div>
-                        <div className="col">
-                            <strong>Nearest Attraction 2</strong><br />
-                            ( {view_data?.nearest_attraction_2})
-                        </div>
-                    </div>
+
+
+
+                    }
+
                 </div>
             </div>
-            <div className="row mb-4 m-auto">
-                <strong className='my-lg-4 my-1 fs-4'>Book here!</strong>
-                <table>
-                    <tr>
-                        <th>Category</th>
-                        <th>Base price</th>
-                        <th>Quantity</th>
-                        <th>Book </th>
-                    </tr>
-                    <AddCountReturnUniqueObj_AvailableR data={manipulateRoom?.economy} collectRoom={collectRoom} setCollectRooms={setCollectRooms} />
-                    <AddCountReturnUniqueObj_AvailableR data={manipulateRoom?.premium} collectRoom={collectRoom} setCollectRooms={setCollectRooms} />
-                </table>
-                <div className="container w-100">
-                    <div className=" w-sm-100 m-auto d-flex justify-content-evenly my-4 flex-wrap" style={{ maxWidth: '700px' }}>
-                        <div className="my-2">
-                            <div className='bg-opacity-25 px-5 bg-success rounded-2'>
-                                <span className='text-success'>Check-in </span><br />
-                                <span className=' text-secondary'>12:00</span>
-                            </div>
-                        </div>
-                        <div className=" my-2">
-                            <div className='px-5 bg-opacity-25 bg-success rounded-2 py-0 '>
-                                <span className='text-success'>Check-out </span><br />
-                                <span className=' text-secondary'>11:00</span>
-                            </div>
-                        </div>
-                        <div className=" my-2">
-                            <button id='toggle' data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className='d-none'></button>
-                            <button onClick={handleNav} className="btn btn-success m-auto h-100 px-5">Book</button>
-                            <Checkout view_data={view_data} guest_room={guest_room} totalPrice={totalPrice} collectRoom={collectRoom} />
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
             <h4 id='text_color' className='my-4'>Guest Reviews & Rating for {view_data?.site_name}</h4>
             <div className="">
                 <div className='row rounded-3 border border-1 m-0 p-0' style={{ margin: '0px', padding: '0px' }}>
@@ -287,57 +290,65 @@ export default function View_in_details() {
                         <p className='p-2'>
                             {view_data?.how_to_reach}</p>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-6 p-3 d-flex flex-wrap">
-                        <div className="container w-50 mb-3">
-                            <span>5 &#9733;</span>
-                            <div className="w-100 rate-bar">
-                                <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
+                    <div className="col-12 col-md-6 col-lg-6  d-flex flex-wrap align-content-center">
+                        <div className='w-50 text-center'>
+                            <strong className='my-2'>Reviews</strong>
+                            <div className="container  mb-3">
+                                <span>5 &#9733;</span>
+                                <div className="w-100 rate-bar">
+                                    <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
+                                    </div>
                                 </div>
-                            </div>
-                            <span>4 &#9733;</span>
-                            <div className="w-100 rate-bar">
-                                <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
-                               
-                                </div>
-                            </div>
-                            <span>3 &#9733;</span>
-                            <div className="w-100 rate-bar">
-                                <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
+                                <span>4 &#9733;</span>
+                                <div className="w-100 rate-bar">
+                                    <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
 
+                                    </div>
                                 </div>
-                            </div>
-                            <span>2 &#9733;</span>
-                            <div className="w-100 rate-bar">
-                                <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
+                                <span>3 &#9733;</span>
+                                <div className="w-100 rate-bar">
+                                    <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
 
+                                    </div>
                                 </div>
-                            </div>
-                            <span>1 &#9733;</span>
-                            <div className="w-100 rate-bar">
-                                <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
+                                <span>2 &#9733;</span>
+                                <div className="w-100 rate-bar">
+                                    <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
 
+                                    </div>
+                                </div>
+                                <span>1 &#9733;</span>
+                                <div className="w-100 rate-bar">
+                                    <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-success rounded-3 text-light m-auto" style={{ minWidth: '19vh', width: "20vh", maxHeight: '20vh' }}>
-                            <span className='mt-3  fs-3' style={{ color: '#00000', fontWeight: '200' }}>Ratings</span>
-                            {/* <h2>Ratings</h2> */}
-                            <h1>4/3.5</h1>
-                            <span>786 Ratings</span><br />
-                            <span>786 Reviews</span>
+
+                        <div className=''>
+                            <strong className=''>Ratings</strong>
+                            <div className="my-3 bg-success rounded-3 text-light m-auto" style={{ minWidth: '19vh', width: "20vh", minHeight: '20vh' }}>
+                                <span className='mt-3  fs-3' style={{ color: '#00000', fontWeight: '200' }}>Ratings</span>
+                                <h1>4/3.5</h1>
+                                <span>786 Ratings</span><br />
+                                <span>786 Reviews</span>
+                            </div>
                         </div>
+
+
                     </div>
 
 
                 </div>
+
                 <div className="row m-auto">
                     <div className="col-12 col-lg-7 col-sm-12 col-md-6 pt-4">
                         <div className="feedback text-start py-2">
-                            <h5 className='pb-4'> Gallery</h5>
+                            <h5 className='pb-4'>Traveler photos</h5>
                             <div className='mt-4'>
                                 <SwiperComponent view_data={view_data?.img_array} />
                             </div>
-                            {/* <Gallery view_data={view_data} /> */}
                         </div>
                     </div>
                     <div className="col-12 col-lg-5 col-sm-12 col-md-6 pt-4">
@@ -345,13 +356,13 @@ export default function View_in_details() {
                             <h5 className='mx-3'> Feedback's</h5>
                             <div className="container mt-5">
                                 {feedbackData?.map((item) => <>
-                                    <div class="card mb-3 " style={{ zIndex: "-9999" }}>
-                                        <div class="card-body">
+                                    <div className="card mb-3 " style={{ zIndex: "-9999" }}>
+                                        <div className="card-body">
                                             <div className="d-flex m-0 p-0">
 
-                                                <h5 class="card-title m-0">{item.username} &#x2022; </h5> <span className='mx-2'>&#9733; {item.rating}</span>
+                                                <h5 className="card-title m-0">{item.username} &#x2022; </h5> <span className='mx-2'>&#9733; {item.rating}</span>
                                             </div>
-                                            <p class="card-text">{item?.feedback}</p>
+                                            <p className="card-text">{item?.feedback}</p>
                                         </div>
                                     </div>
                                 </>)}
@@ -366,3 +377,18 @@ export default function View_in_details() {
         </div>
     )
 }
+
+
+
+{/* <div className="my-2">
+                                <div className='bg-opacity-25 px-5 bg-success rounded-2'>
+                                    <span className='text-success'>Check-in </span><br />
+                                    <span className=' text-secondary'>12:00</span>
+                                </div>
+                            </div>
+                            <div className=" my-2">
+                                <div className='px-5 bg-opacity-25 bg-success rounded-2 py-0 '>
+                                    <span className='text-success'>Check-out </span><br />
+                                    <span className=' text-secondary'>11:00</span>
+                                </div>
+                            </div> */}
