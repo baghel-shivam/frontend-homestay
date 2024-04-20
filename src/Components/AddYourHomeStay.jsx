@@ -32,7 +32,13 @@ export default function AddYourHomeStay() {
         about_this_room: '',
         area: '',
         pincode: '',
-        front_img: '',
+        front_img1: '',
+        front_img2: '',
+        front_img3: '',
+        front_img4: '',
+        front_img5: '',
+        front_img6: '',
+        front_img7: '',
         state: '',
         city: '',
         contact_person: "",
@@ -45,6 +51,8 @@ export default function AddYourHomeStay() {
         totalRooms: '',
         checked: false,
     });
+
+    // console.log(formData, 'this is data')
 
     const handleAddRoom = (e) => {
         e.preventDefault();
@@ -183,22 +191,8 @@ export default function AddYourHomeStay() {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-md-6">
-                                    <div className="mb-3">
-                                        <input
-                                            required
-                                            type="file"
-                                            className="form-control"
-                                            name="front_img"
-                                            value={formData.front_img}
-                                            onChange={handleChange}
-                                            placeholder="front_img"
-                                            accept=".jpg, .jpeg"
-                                        />
 
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
+                                <div className="col-md-12">
                                     <div className="mb-3">
                                         <input required type="text" className="form-control" name="contact_person" value={formData.contact_person} onChange={handleChange} placeholder="Contact person name" />
                                     </div>
@@ -206,6 +200,7 @@ export default function AddYourHomeStay() {
 
                                 </div>
                             </div>
+
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
@@ -230,7 +225,7 @@ export default function AddYourHomeStay() {
                                 <div className="col-md-6">
                                     <div className="mb-3">
                                         <div className="mb-3">
-                                          <input required type="tel" className="form-control" pattern="[0-9]{10}" minlength="10" maxlength="10" name="upi_phn_no" value={formData?.upi_phn_no} onChange={handleChange} placeholder="G-pay, PhonePay, Number etc" />
+                                            <input required type="tel" className="form-control" pattern="[0-9]{10}" minlength="10" maxlength="10" name="upi_phn_no" value={formData?.upi_phn_no} onChange={handleChange} placeholder="G-pay, PhonePay, Number etc" />
                                         </div>
                                     </div>
                                 </div>
@@ -242,12 +237,46 @@ export default function AddYourHomeStay() {
                                     </div>
                                 </div>
                             </div>
+                            {/* Nearest */}
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" name="nearest_railway_station" value={formData.nearest_railway_station} onChange={handleChange} placeholder="Nearest Railway Station" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" name="distance_from_rs" value={formData.distance_from_rs} onChange={handleChange} placeholder="Distance from railway station" />
+                                    </div>
+                                </div>
 
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <h5 className=' mx-3 mb-4 text-start'>About features</h5>
-                        <div className="container mt-2">
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" name="nearest_airport" value={formData.nearest_airport} onChange={handleChange} placeholder="Nearest Airport" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from Airport" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" name="nearest_metro_station" value={formData.nearest_metro_station} onChange={handleChange} placeholder="Nearest metro station" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" name="distance_from_ms" value={formData.distance_from_ms} onChange={handleChange} placeholder="Distance from metro station" />
+                                    </div>
+                                </div>
+
+                            </div>
                             <div className="row">
 
                                 <div className="col-md-6">
@@ -262,6 +291,155 @@ export default function AddYourHomeStay() {
                                 </div>
 
                             </div>
+                            <div className="row">
+
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" name="nearest_attraction_3" value={formData.nearest_attraction_3} onChange={handleChange} placeholder="Nearest attraction point-3" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" name="nearest_attraction_4" value={formData?.nearest_attraction_4} onChange={handleChange} placeholder="Nearest attraction point-4" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="row">
+
+
+                                <div className="col-12">
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" name="nearest_attraction_5" value={formData?.nearest_attraction_5} onChange={handleChange} placeholder="Nearest attraction point-5" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6">
+                        <h5 className=' mx-3 mb-4 text-start'>About features</h5>
+                        <div className="container mt-2">
+                            <div className="container px-2 py-2 rounded-3 mb-2" style={{ background: '#ECECEC' }}>
+                                <div className='my-2 border-bottom'>
+                                    <span className='fs-6 fw-bold py-2 w-100'>Add Images</span>
+                                </div>
+                                {/* <hr/> */}
+                                <div className="row">
+                                    <div className="col-6 mb-3">
+                                        <label htmlFor="frontImage1">Room Image 1</label>
+                                        <input
+                                            required
+                                            type="file"
+                                            className="form-control"
+                                            name="front_img1"
+                                            value={formData.front_img1}
+                                            onChange={handleChange}
+                                            placeholder="Room Image 1"
+                                            accept=".jpg, .jpeg"
+                                            multiple
+                                        />
+
+                                    </div>
+                                    <div className="col-6 mb-3">
+                                        <label htmlFor="frontImage1">Room Image 2</label>
+                                        <input
+                                            required
+                                            type="file"
+                                            className="form-control"
+                                            name="front_img2"
+                                            value={formData.front_img2}
+                                            onChange={handleChange}
+                                            placeholder="Room Image 2"
+                                            accept=".jpg, .jpeg"
+                                            multiple
+                                        />
+
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-6 mb-3">
+                                        <label htmlFor="frontImage1">Room Image 3</label>
+                                        <input
+                                            required
+                                            type="file"
+                                            className="form-control"
+                                            name="front_img3"
+                                            value={formData.front_img3}
+                                            onChange={handleChange}
+                                            placeholder="Room Image 3"
+                                            accept=".jpg, .jpeg"
+                                            multiple
+                                        />
+
+                                    </div>
+                                    <div className="col-6 mb-3">
+                                        <label htmlFor="frontImage1">Room Image 4</label>
+                                        <input
+                                            required
+                                            type="file"
+                                            className="form-control"
+                                            name="front_img4"
+                                            value={formData.front_img4}
+                                            onChange={handleChange}
+                                            placeholder="Room Image 4"
+                                            accept=".jpg, .jpeg"
+                                            multiple
+                                        />
+
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-6 mb-3">
+                                        <label htmlFor="frontImage1">Room Image 5</label>
+                                        <input
+                                            required
+                                            type="file"
+                                            className="form-control"
+                                            name="front_img5"
+                                            value={formData.front_img5}
+                                            onChange={handleChange}
+                                            placeholder="Room Image 5"
+                                            accept=".jpg, .jpeg"
+                                            multiple
+                                        />
+
+                                    </div>
+                                    <div className="col-6 mb-3">
+                                        <label htmlFor="frontImage1">Room Image 6</label>
+                                        <input
+                                            required
+                                            type="file"
+                                            className="form-control"
+                                            name="front_img6"
+                                            value={formData.front_img6}
+                                            onChange={handleChange}
+                                            placeholder="Room Image 6"
+                                            accept=".jpg, .jpeg"
+                                            multiple
+                                        />
+
+                                    </div>
+                                </div>
+                                <div className="col-12 mb-3">
+                                    <label htmlFor="frontImage1">Room Image 7</label>
+                                    <input
+                                        required
+                                        type="file"
+                                        className="form-control"
+                                        name="front_img7"
+                                        value={formData.front_img7}
+                                        onChange={handleChange}
+                                        placeholder="Room Image 7"
+                                        accept=".jpg, .jpeg"
+                                        multiple
+                                    />
+
+                                </div>
+
+                            </div>
+
+
                             <div className="container px-2 py-2 rounded-3" style={{ background: '#ECECEC' }}>
                                 <form onSubmit={handleAddRoom} >
                                     <div className='my-2 border-bottom'>
@@ -276,6 +454,13 @@ export default function AddYourHomeStay() {
                                             </div>
                                         </div>
                                         <div className="col-md-6">
+                                            <div className="mb-3">
+                                                <input type='number' name='room_quantity' placeholder='Room Quantity' className='form-control' value={formData.room_quantity} onChange={HandleChangeAddRoom} />
+                                            </div>
+
+
+                                        </div>
+                                        <div className="col-md-12">
                                             <div className="mb-3">
                                                 <select className="form-select" name="category" value={formData.roomType} onChange={HandleChangeAddRoom} title="category">
                                                     <option selected>Select Room Type</option>
@@ -373,6 +558,37 @@ export default function AddYourHomeStay() {
                                                 <label className="form-check-label">Is housekeeping available</label>
                                             </div>
                                         </div>
+                                    </div>
+                                    <hr />
+                                    <div className="row text-start">
+                                        <div className="col">
+                                            <div className="mb-3 form-check">
+                                                <input
+                                                    type="checkbox"
+                                                    className="form-check-input"
+                                                    name="is_pets_allowed"
+                                                    checked={roomForm.is_pets_allowed}
+                                                    onChange={() => setRoomForm({ ...roomForm, is_pets_allowed: !roomForm.is_pets_allowed })}
+                                                />
+                                                <label className="form-check-label">Is pets allowed</label>
+                                            </div>
+
+                                        </div>
+
+                                        <div className="col">
+                                            <div className="mb-3 form-check">
+                                                <input
+                                                    type="checkbox"
+                                                    className="form-check-input"
+                                                    name="is_smoking_allowed"
+                                                    checked={roomForm.is_smoking_allowed}
+                                                    onChange={() => setRoomForm({ ...roomForm, is_smoking_allowed: !roomForm.is_smoking_allowed })}
+                                                />
+                                                <label className="form-check-label">Is smoking allowed</label>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                     <div className="row mb-3">
                                         <div className="col text-end">

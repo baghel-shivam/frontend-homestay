@@ -10,6 +10,7 @@ import ContectUs from './ContectUs';
 import { StoreAbout_us_Ref, StoreContactRef, StoreLanding_Ref } from '../Redux/RefShare/Reference_Slice';
 import { useDispatch } from 'react-redux';
 import ChatBoat from './ChatBoat/ChatBoat';
+import DateRangePickerValue from './DateRange';
 
 
 export default function Landing() {
@@ -47,6 +48,7 @@ export default function Landing() {
     return (
         <div className='only_for_bg' >
                 <ChatBoat />
+                {/* <DateRangePickerValue/> */}
 
                 <div style={bgStyle} ref={ref_landing}></div>
                 <div id='Landing_form_container' style={contentContainerStyle}>

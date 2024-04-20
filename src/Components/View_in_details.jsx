@@ -44,14 +44,14 @@ export default function View_in_details() {
     const booking = useSelector((state) => state.Booking.status)
     const room_details = useSelector((state) => state.RoomDetails)
     const [totalPrice, setTotalPrice] = useState()
-    const [error, setError] = useState({ available_rooms: '', })
+    const [error, setError] = useState({ "error": false, "guest": "" })
     const [view_data, setView_data] = useState()
     const [guest_room, setGuest_Room] = useState({ RoomIds: null, available_rooms: '' });
     const [manipulateRoom, setManipulateRoom] = useState()
     const [collectRoom, setCollectRooms] = useState([])
     const { state } = useLocation()
     const dispatch = useDispatch()
-
+    const [selectedOption, setSelectedOption] = useState(0);
     useEffect(() => {
         setView_data(room_details.data);
     }, [state, room_details]);
@@ -110,17 +110,35 @@ export default function View_in_details() {
             }
         })
         setManipulateRoom({ "economy": Economy, "premium": Premium, "others": others })
+
+        console.log(Economy, Premium, 'filteration')
     }, [room_details.data, state, view_data])
 
 
     const handleNav = () => {
         if (validation()) {
-            document.getElementById("toggle").click();
+            if (selectedOption > 0) {
+                setError({ "error": true })
+
+                document.getElementById("toggle").click();
+            } else {
+                setError({ "error": true, "guest": "Please select guest!" })
+            }
+            console.log(selectedOption)
         } else {
-            alert('add room first!')
+            alert('Add room first!')
         }
     }
 
+    console.log(error)
+    const handleSelectChange = (event) => {
+        const selectedValue = event.target.value;
+        setSelectedOption(selectedValue);
+        if (selectedValue === 'custom') {
+            const customValue = prompt('Enter the number of guests:');
+            setSelectedOption(customValue);
+        }
+    };
 
     return (
         <div className='my-5 pt-5 container' style={{ maxWidth: '1200px' }}>
@@ -159,16 +177,15 @@ export default function View_in_details() {
                         </button>
                     </div>
                 </div>
-                <div className="col-12 col-lg-6 col-md-6 text-center details-box rounded-3 ">
-                    <div className=" row bg-opacity-25 mt-4 mt-lg-0 p-3 rounded-3 price-container">
-                        <div className="container">
-                            <div className=" text-start">
-                                <h4>{view_data?.site_name}</h4>
-                                <p className='text-secondary'><i className="bi bi-geo-fill mx-1"></i> {view_data?.full_addres}</p>
-
-                            </div>
+                <div className="col-12 col-lg-6 col-md-6 text-center details-box rounded-3  pt-3 ">
+                    <div className="container">
+                        <div className=" text-start">
+                            <h4>{view_data?.site_name}</h4>
+                            <p className='text-secondary'><i className="bi bi-geo-fill mx-1"></i> {view_data?.full_addres}</p>
                         </div>
-                        <hr />
+                    </div>
+                    {/* <hr /> */}
+                    <div className="row bg-opacity-25 mt-4 mt-lg-0 p-3 rounded-3 price-container">
                         <div className="col text-start d-flex justify-content-between">
                             <div>
                                 <small className='text-start pb-2' style={{ color: 'green' }}>Price starting at</small>
@@ -178,10 +195,44 @@ export default function View_in_details() {
                             </div>
 
                         </div>
-                        <div className="col ">
+                        <div className={'col  d-flex align-content-center justify-content-center'} style={{ position: 'relative' }}>
+                            <i class="bi bi-people-fill fs-5 mx-1 my-auto "></i>
+                            <small className='position-absolute text-danger top-0' style={{marginTop:'-15px'}}>{error?.error ? error?.guest : ''}</small>
+                            <select
+                                name='guest'
+                                className={`bg-none px-1 my-1  ${error?.error ? "border-danger border-2 rounded-3" : 'border-none'}`}
+                                style={{ fontSize: '17px', fontWeight: '700px' }}
+                                value={selectedOption}
+                                defaultValue={selectedOption}
+                                onChange={handleSelectChange}
+                                required
+                            >
+                                <option value='' selected >
+                                    Guest
+                                </option>
+                                <option value='1'>1 Guest</option>
+                                <option value='2'>2 Guest</option>
+                                <option value='3'>3 Guest</option>
+                                <option value='4'>4 Guest</option>
+                                <option value='5'>5 Guest</option>
+                                <option value='6'>6 Guest</option>
+                                <option value='7'>7 Guest</option>
+                                <option value='8'>8 Guest</option>
+                                <option value='9'>9 Guest</option>
+                                <option value='10'>10 Guest</option>
+                                <option value='11'>12 Guest</option>
+                                <option value='12'>12 Guest</option>
+                                <option value='13'>13 Guest</option>
+                                <option value='14'>14 Guest</option>
+                                <option value='15'>15 Guest</option>
+
+                            </select>
+                        </div>
+
+                        <div className="col d-flex justify-content-center align-items-center">
                             <Dropdown className='' >
-                                <Dropdown.Toggle variant="success" id="dropdown-basic" className='w-100 text-light py-3'>
-                                    {view_data?.availabel_rooms && view_data?.availabel_rooms.length > 0 ? <span className='text-light py-2'>{view_data?.availabel_rooms.length} Room's Available</span> : <span className='text-danger'>Not available</span>}
+                                <Dropdown.Toggle variant="success" id="dropdown-basic" className='w-100 text-light py-3 '>
+                                    {view_data?.availabel_rooms && view_data?.availabel_rooms.length > 0 ? <span className='text-light '>{view_data?.availabel_rooms.length} Room's Available</span> : <span className='text-danger'>Not available</span>}
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
                                     <table>
@@ -198,8 +249,10 @@ export default function View_in_details() {
                             </Dropdown>
 
                         </div>
-                        <hr />
 
+                    </div>
+                    {/* <hr /> */}
+                    <div className="container">
                         <div className='d-flex text-center justify-content-evenly py-3'>
                             <div >
                                 {view_data?.nearest_airport &&
@@ -220,8 +273,6 @@ export default function View_in_details() {
                         <div className="text-start">
                             <strong className=''>Amenities</strong>
                             <div className='mt-3'>
-
-
                                 {view_data && (
                                     <div className="container d-flex justify-content-evenly">
                                         {view_data.is_wifi_available && (

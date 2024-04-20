@@ -103,6 +103,7 @@
 
 .border-none {
     border: none !important;
+    background:none;
 }
 
 .carousel-control-next {
@@ -117,6 +118,9 @@
     }
     .room-image-search-details {
         height: 25vh;
+    }
+    .room-image-search {
+        height: 250px;
     }
     #exampleFormControlInput1 {
         padding: 20px;

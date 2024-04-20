@@ -14,24 +14,18 @@ export default function Form() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [isHighlighted, setIsHighlighted] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('');
     const [data, setData] = useState({ "checkin_date": null, "checkout_date": null, "location": '' })
+    const [showCheckIn, setShowCheckOut] = useState(true)
     const state1 = useSelector((state) => state?.SearchRoom)
+
     const [value, onChange] = useState([new Date(), new Date()]);
     const ref = useRef()
+
     const handleChange = (e) => {
         const { value, name } = e.target
         setData({ ...data, [name]: value })
-    }
 
-    const handleSelectChange = (event) => {
-        const selectedValue = event.target.value;
-        setSelectedOption(selectedValue);
-        if (selectedValue === 'custom') {
-            const customValue = prompt('Enter the number of guests:');
-            setSelectedOption(customValue);
-        }
-    };
+    }
 
     const handleHighlight = () => {
         setIsHighlighted(!isHighlighted);
@@ -62,6 +56,10 @@ export default function Form() {
             const formattedDate_check_out = `${year_check_out}-${month_check_out}-${day_check_out}`;
             setData({ ...data, "checkin_date": formattedDate_check_in, "checkout_date": formattedDate_check_out });
         }
+
+        if (value === null) { setShowCheckOut(true) } else { setShowCheckOut(false) }
+
+
     }, [onChange, value]);
 
 
@@ -103,7 +101,7 @@ export default function Form() {
             if (data) {
                 try {
                     await dispatch(SearchRoomDeskTop(data));
-                    await dispatch(updateFormData({ ...data, "guest": selectedOption }));
+                    await dispatch(updateFormData(data));
                     await navigate('/search-rooms', { state: { searchData: data } });
                 } catch (error) {
                     notify('API call failed');
@@ -113,6 +111,8 @@ export default function Form() {
             return notify(compareDate);
         }
     }
+
+    console.log(showCheckIn, 'checkouut destini')
 
     return (
         <div className='sub_child'>
@@ -125,9 +125,29 @@ export default function Form() {
                     </div>
                     <div className={'my-1 highlighted flex-item '} ref={ref} onClick={handleHighlight} style={{ position: 'relative' }}>
                         {DateRange()}
+                        {showCheckIn ? <div className='d-flex justify-content-evenly w-75 position-absolute text-secondary' style={{ top: "39%", background: "white", fontSize: "17px" }}>
+                            <label>Check in</label>
+                            <label>-</label>
+                            <label>Check out</label>
+                        </div> : ""}
+
                         <label className='date-label'>When to ?</label>
                     </div>
-                    <div className={'my-1 highlighted align-content-center flex-item dropdown'} ref={ref} onClick={handleHighlight} style={{ position: 'relative' }}>
+
+                    <div className='flex-item'>
+                        <button className='m-auto btn text-dark add-new-property bg-success border-none' type='submit' id='Main-button' style={{ color: 'white', borderRadius: '100px', padding: '29px' }}>
+                            <span className="text px-2 text-light">Search</span><span className='mt-2'><i class="bi bi-search fs-5"></i></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <ToastContainer />
+        </div >
+    )
+}
+
+
+{/* <div className={'my-1 highlighted align-content-center flex-item dropdown'} ref={ref} onClick={handleHighlight} style={{ position: 'relative' }}>
                         <i class="bi bi-people-fill fs-5 mx-1"></i>
                         <select
                             name='guest'
@@ -156,15 +176,4 @@ export default function Form() {
                             <option value='15'>15 Guest</option>
 
                         </select>
-                    </div>
-                    <div className='flex-item'>
-                        <button className='m-auto btn text-dark add-new-property bg-success border-none' type='submit' id='Main-button' style={{ color: 'white', borderRadius: '100px', padding: '29px' }}>
-                            <span className="text px-2 text-light">Search</span><span className='mt-2'><i class="bi bi-search fs-5"></i></span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <ToastContainer />
-        </div >
-    )
-}
+                    </div> */}

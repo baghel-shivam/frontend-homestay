@@ -32,7 +32,6 @@ export default function Rooms() {
         }
     );
 
-
     const handleFilter = (e) => {
         const { name, checked } = e.target;
         const updatedFilterData = [...filter_data];
@@ -58,9 +57,6 @@ export default function Rooms() {
             }, 2000);
         }
     }, [data])
-
-    console.log(data?.data, 'this is image')
-
 
     useEffect(() => {
         if (filter_data && data.data) {
@@ -91,25 +87,25 @@ export default function Rooms() {
                         <div className="container my-4">
                             <h6>Hotel Facility</h6>
                             <div className="form-check my-3">
-                                <input className="form-check-input" name='is_ac_available' type="checkbox" onChange={handleFilter} value="" id="acCheckbox" />
+                                <input className="form-check-input" name='is_ac_available' type="checkbox"  disabled onChange={handleFilter} value="" id="acCheckbox" />
                                 <label className="form-check-label" htmlFor="acCheckbox">
                                     AC
                                 </label>
                             </div>
                             <div className="form-check my-3">
-                                <input className="form-check-input" name='is_tv_available' type="checkbox" onChange={handleFilter} value="" id="tvCheckbox" />
+                                <input className="form-check-input" name='is_tv_available' type="checkbox" disabled onChange={handleFilter} value="" id="tvCheckbox" />
                                 <label className="form-check-label" htmlFor="tvCheckbox">
                                     TV
                                 </label>
                             </div>
                             <div className="form-check my-3">
-                                <input className="form-check-input" name='is_wifi_available' type="checkbox" onChange={handleFilter} value="" id="wifiCheckbox" />
+                                <input className="form-check-input" name='is_wifi_available' type="checkbox" disabled onChange={handleFilter} value="" id="wifiCheckbox" />
                                 <label className="form-check-label" htmlFor="wifiCheckbox">
                                     Wifi
                                 </label>
                             </div>
                             <div className="form-check my-3">
-                                <input className="form-check-input" name='is_parking_available' type="checkbox" onChange={handleFilter} value="" id="parkingCheckbox" />
+                                <input className="form-check-input" name='is_parking_available' type="checkbox" disabled onChange={handleFilter} value="" id="parkingCheckbox" />
                                 <label className="form-check-label" htmlFor="parkingCheckbox">
                                     Parking
                                 </label>

@@ -62,10 +62,11 @@
 
 /* Media query for all small screens */
 @media only screen and (max-width: 767px) {
-   .bi-people-fill{
-    padding-right: 10px;
-    color: rgb(0, 0, 0);
-   }
+    .bi-people-fill {
+        padding-right: 10px;
+        color: rgb(0, 0, 0);
+    }
+
     .check-form {
         display: flex;
         justify-content: center;
@@ -119,34 +120,28 @@
         align-items: center;
         justify-content: space-evenly;
         /* min-height: 110px; */
-        max-width: 1200px;
-        min-width: 900px;
+        max-width: 1000px;
+        min-width: 800px;
     }
 
     .flex-item {
-        flex-basis: 90%;
+        flex-basis: 100%;
         /* border: 2px solid red; */
     }
 
     .flex-item:nth-child(1) {
-        flex-basis: 45%;
+        flex-basis: 50%;
         /* border: 1px solid red; */
         /* margin: 0px 10px 10px -36px; */
     }
 
     .flex-item:nth-child(2) {
-        flex-basis: 25%;
+        flex-basis: 30%;
         /* margin: 10px; */
 
     }
 
     .flex-item:nth-child(3) {
-        flex-basis: 12%;
-        margin: 10px;
-
-    }
-
-    .flex-item:nth-child(4) {
         margin-left: 25px;
         flex-basis: 10%;
     }
@@ -156,18 +151,25 @@
         border: 1px solid;
         font-size: 18px;
     }
-    
+
 }
 
+/* 
 .dropdown{
     outline: none;
     border-radius: 100px;
     padding-right: 20px;
     min-height: 75px;
     background-color: white;
-}
-.dropdown:focus{
+} */
+.dropdown:focus {
     border: none;
+}
+
+.react-calendar__tile--active {
+    background: #000000 !important;
+    border-radius: 20px;
+    color: white;
 }
 
 /* .bi-people-fill{
@@ -175,3 +177,20 @@
     top: 25%;
     left: 16%;
 } */
+
+.container-chat-form {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* border: 2px solid; */
+    max-width: 300px;
+    min-width: 300px;
+    min-height: 350px;
+    padding: 10px 25px;
+    position: fixed;
+    z-index: 999;
+    top: 20%;
+
+    background-color: rgb(215, 215, 215);
+    /* left: 0; */
+    right: 2%;
+    border-radius: 10px;
+}
