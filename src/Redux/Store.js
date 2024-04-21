@@ -6,7 +6,8 @@ import BookingDetailsSlice from './BookingDetails/BookingDetailsSlice';
 import Reference_Slice from './RefShare/Reference_Slice';
 import AddPropSlice from './AddNewPro/AddPropSlice';
 import ViewDetails_slice from './ViewDetails/Slice'
-// import viewDeta
+import ChatSlice from './ChatForm/ChatSlice';
+
 
 const Store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const Store = configureStore({
     Booking_Details: BookingDetailsSlice,
     AddProp: AddPropSlice,
     RoomDetails: ViewDetails_slice,
+    ChatMessages_success: ChatSlice,
   },
 });
 

@@ -17,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Rooms() {
     const navigate = useNavigate()
     const [filter_data, setFilter_data] = useState([])
+    const [paginationData, setPaginationData] = useState([])
     const { state } = useLocation()
     const data = useSelector((state) => state.SearchRoom)
 
@@ -43,8 +44,6 @@ export default function Rooms() {
         }
         setFilter_data(updatedFilterData);
     };
-
-    console.log(data, 'this is data')
     useEffect(() => {
         if (data.data.length > 0) {
             console.log('good')
@@ -76,6 +75,26 @@ export default function Rooms() {
             });
         }
     }, [filter_data, data]);
+
+    useEffect(() => {
+        let number = []
+        let result = Math.ceil(data?.data?.length / 10);
+
+        for (let index = 1; index <= result; index++) {
+            number.push(index)
+        }
+        setPaginationData({ "numberOfPage": number })
+    }, [data?.data])
+
+    const HandlePageChange = (pageNumber) => {
+        const startIndex = (pageNumber - 1) * 10;
+        const endIndex = startIndex + 10;
+        const currentPageItems = data?.data?.slice(startIndex, endIndex);
+      setPaginationData({ ...paginationData, "PageItem": currentPageItems })
+    };
+
+
+
     return (
         <div className='container Room_div' style={{ minHeight: '100vh' }}>
             <ToastContainer />
@@ -87,7 +106,7 @@ export default function Rooms() {
                         <div className="container my-4">
                             <h6>Hotel Facility</h6>
                             <div className="form-check my-3">
-                                <input className="form-check-input" name='is_ac_available' type="checkbox"  disabled onChange={handleFilter} value="" id="acCheckbox" />
+                                <input className="form-check-input" name='is_ac_available' type="checkbox" disabled onChange={handleFilter} value="" id="acCheckbox" />
                                 <label className="form-check-label" htmlFor="acCheckbox">
                                     AC
                                 </label>
@@ -141,9 +160,9 @@ export default function Rooms() {
                         </div>
                         <div className="container my-4">
                             <h6>Check in feature</h6>
-                            <div class="form-check my-3">
-                                <input class="form-check-input" type="checkbox" value="" id="p-i-o_flexCheckDefault" disabled />
-                                <label class="form-check-label" for="p-i-o_flexCheckDefault">
+                            <div className="form-check my-3">
+                                <input className="form-check-input" type="checkbox" value="" id="p-i-o_flexCheckDefault" disabled />
+                                <label className="form-check-label" for="p-i-o_flexCheckDefault">
                                     Pay-in-hotel
                                 </label>
                             </div>
@@ -156,17 +175,17 @@ export default function Rooms() {
                     <div className='room-collections mt-5  px-lg-1 px-sm-0'>
                         {data?.data.length > 0 ? data?.data?.map((item, roomIndex) => (
                             <>
-                                <div class="card border-none mb-3" key={roomIndex} >
+                                <div className="card border-none mb-3" key={roomIndex} >
                                     {item.is_recommended &&
                                         <div className='tag'>
                                             <img src={tag} className='img-class' alt='recommended tag' />
                                         </div>
                                     }
-                                    <div class="row g-0 card-hover-effect">
-                                        <div class="col-md-4 h100">
+                                    <div className="row g-0 card-hover-effect">
+                                        <div className="col-md-4 h100">
                                             <div>
-                                                <div id={`carouselExampleCaptions_${roomIndex}`} class="carousel slide">
-                                                    <div class="carousel-inner">
+                                                <div id={`carouselExampleCaptions_${roomIndex}`} className="carousel slide">
+                                                    <div className="carousel-inner">
                                                         {item?.img_array.length > 0 ? item?.img_array?.map((itemImg, index) => (
                                                             <div key={index} className={"carousel-item room-image-search overflow-hidden" + (index === 0 ? " active" : "")}>
                                                                 <img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
@@ -177,21 +196,21 @@ export default function Rooms() {
                                                             </div>
                                                         }
                                                     </div>
-                                                    <button class="carousel-control-prev" type="button" data-bs-target={`#carouselExampleCaptions_${roomIndex}`} data-bs-slide="prev">
-                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                        <span class="visually-hidden">Previous</span>
+                                                    <button className="carousel-control-prev" type="button" data-bs-target={`#carouselExampleCaptions_${roomIndex}`} data-bs-slide="prev">
+                                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span className="visually-hidden">Previous</span>
                                                     </button>
-                                                    <button class="carousel-control-next" type="button" data-bs-target={`#carouselExampleCaptions_${roomIndex}`} data-bs-slide="next">
-                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                        <span class="visually-hidden">Next</span>
+                                                    <button className="carousel-control-next" type="button" data-bs-target={`#carouselExampleCaptions_${roomIndex}`} data-bs-slide="next">
+                                                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span className="visually-hidden">Next</span>
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-8 ">
+                                        <div className="col-md-8 ">
                                             <div className="card-body border-none" onClick={() => navigate('/view-details', { state: item.id })}>
                                                 <div className='d-flex align-content-between'>
-                                                    <h5 className="">{item.site_name} </h5> <h6 className='mt-1 mx-2'><i class="bi bi-dot"></i>{item.full_addres} </h6>
+                                                    <h5 className="">{item.site_name} </h5> <h6 className='mt-1 mx-2'><i className="bi bi-dot"></i>{item.full_addres} </h6>
                                                 </div>
                                                 <div className='mb-2 mt-0 p-0'>
                                                     <small >{item.about_this_homestay && item.about_this_homestay.split(' ').slice(0, 15).join(' ')}...</small>
@@ -236,6 +255,29 @@ export default function Rooms() {
                                     </div>
                                 </div>
                                 <hr className='my-4' />
+                                {data?.data?.length > 10&&<>
+                                    <div className='w-100 d-flex justify-content-center'>
+                                    <nav aria-label="Page navigation example">
+                                        <ul className="pagination justify-content-end">
+                                            <li className="page-item disabled">
+                                                <a className="page-link">Previous</a>
+                                            </li>
+                                            {paginationData?.numberOfPage && paginationData?.numberOfPage?.map((item, index) => {
+                                                return (
+                                                    <li className="page-item" onClick={() => HandlePageChange(item)} key={index}><a className="page-link" href="#">{item}</a></li>
+                                                )
+                                            })}
+
+                                            <li className="page-item">
+                                                <a className="page-link" href="#">Next</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                </>
+                                }
+                             
+
                             </>
                         )) : <div className='container d-grid justify-content-center'>
                             <span className='fs-4 text-danger mt-5'>Sorry, There is no room in this area.</span>

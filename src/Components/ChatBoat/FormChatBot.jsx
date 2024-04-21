@@ -1,17 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { ChatMessages } from '../../Redux/ChatForm/ChatAction'
 
 export default function FormChatBot({ setShowForm }) {
     const [data, setData] = useState()
+    const result = useSelector((state) => state.ChatMessages_success)
+    const dispatch = useDispatch()
     const handleChange = (e) => {
         const { value, name } = e.target
         setData({ ...data, [name]: value })
     }
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setShowForm(false)
-        alert('Record submitted!')
+  
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setShowForm(false);
+        try {
+            const response = await dispatch(ChatMessages(data));
+            if (response?.payload) {
+                alert(response?.payload);
+            } else{
+                alert('Something went wrong, Please try again!');
+            }
+        } catch (error) {
+            alert('Something went wrong, Please try again!');
+        }
+    };
     
-    }
+
     return (
         <div className="container-chat-form">
 
@@ -29,7 +44,7 @@ export default function FormChatBot({ setShowForm }) {
                     {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
                 </div>
                 <div class="mb-3 text-start">
-                    <textarea type="text" name='message' onChange={handleChange} class="form-control" style={{ minHeight: '100px' }} placeholder='Message*' id="exampleInputPassword1" />
+                    <textarea type="text" name='mssg' onChange={handleChange} class="form-control" style={{ minHeight: '100px' }} placeholder='Message*' id="exampleInputPassword1" />
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>

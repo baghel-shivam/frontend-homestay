@@ -130,7 +130,7 @@
     }
 
     .flex-item:nth-child(1) {
-        flex-basis: 50%;
+        flex-basis: 51%;
         /* border: 1px solid red; */
         /* margin: 0px 10px 10px -36px; */
     }
