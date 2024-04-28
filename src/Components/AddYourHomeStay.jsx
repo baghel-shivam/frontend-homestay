@@ -52,7 +52,7 @@ export default function AddYourHomeStay() {
         checked: false,
     });
 
-    // console.log(formData, 'this is data')
+    console.log(formData, 'this is data')
 
     const handleAddRoom = (e) => {
         e.preventDefault();
