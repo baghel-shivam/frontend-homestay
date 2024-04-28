@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import '../Components/Styles/homeStayform.css'
 import { useState } from 'react';
 import states from '../Demo.json'
+// import
+import Terms from '../TermAndCond.json'
 import Toast from './Toast.jsx'
 import { useDispatch, useSelector } from 'react-redux';
 import { AddNewProperty } from '../Redux/AddNewPro/AddPropAction.js';
@@ -24,8 +26,7 @@ export default function AddYourHomeStay() {
         }
     }, [ref]);
 
-    const [roomForm, setRoomForm] = useState([{
-    }])
+    const [roomForm, setRoomForm] = useState([])
     const [formData, setFormData] = useState({
         site_name: '',
         full_address_one_line: '',
@@ -56,9 +57,10 @@ export default function AddYourHomeStay() {
 
     const handleAddRoom = (e) => {
         e.preventDefault();
-        if (roomForm.category && roomForm.base_price) {
-            setRooms([...room, roomForm]);
-            setFormData({ ...formData, "rooms": [...room, roomForm] });
+        if (roomForm?.category && roomForm?.base_price) {
+            const updatedRooms = [...room, roomForm];
+            setRooms(updatedRooms);
+            setFormData({ ...formData, "rooms": updatedRooms });
             setRoomForm({});
         } else {
             notify('Select valid price & category');
@@ -81,7 +83,9 @@ export default function AddYourHomeStay() {
     const HandleChangeAddRoom = (e) => {
         const { value, name } = e.target;
         setRoomForm({ ...roomForm, [name]: value })
+
     }
+
     const notify = (msg) => toast.error(msg,
         {
             position: 'top-right',
@@ -131,6 +135,8 @@ export default function AddYourHomeStay() {
 
     };
 
+    console.log(formData, 'this is data')
+
     return (
         <div className='container add-your-home-stay pt-3' >
             {AddProp.status === 'loading' && <Loading />}
@@ -163,7 +169,7 @@ export default function AddYourHomeStay() {
                                     <div className="mb-3">
                                         <select className="form-select" name="state" value={formData.state} onChange={handleChange} title="Total Room">
                                             <option value="">State</option>
-                                            {states?.states.map((item, index) => (
+                                            {states?.states?.map((item, index) => (
                                                 <option key={index} value={item}>{item}</option>
                                             ))}
                                         </select>
@@ -246,7 +252,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="text" className="form-control" name="distance_from_rs" value={formData.distance_from_rs} onChange={handleChange} placeholder="Distance from railway station" />
+                                        <input required type="number" className="form-control" name="distance_from_rs" value={formData.distance_from_rs} onChange={handleChange} placeholder="Distance from railway station, KM" />
                                     </div>
                                 </div>
 
@@ -259,7 +265,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="text" className="form-control" name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from Airport" />
+                                        <input required type="number" className="form-control" name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from Airport, KM" />
                                     </div>
                                 </div>
 
@@ -272,7 +278,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="text" className="form-control" name="distance_from_ms" value={formData.distance_from_ms} onChange={handleChange} placeholder="Distance from metro station" />
+                                        <input required type="number" className="form-control" name="distance_from_ms" value={formData.distance_from_ms} onChange={handleChange} placeholder="Distance from metro station, KM" />
                                     </div>
                                 </div>
 
@@ -634,7 +640,7 @@ export default function AddYourHomeStay() {
                             </div>
                             <div className="row mt-4 px-4">
                                 <div className="mb-3 text-start form-check x-5">
-                                    <TermsAndCond lgShow={lgShow} setLgShow={setLgShow} Agree={Agree} />
+                                    <TermsAndCond lgShow={lgShow} setLgShow={setLgShow} Agree={Agree} data={Terms?.Terms_and_Conditions_homestay} />
                                     <input
                                         required
                                         type="checkbox"

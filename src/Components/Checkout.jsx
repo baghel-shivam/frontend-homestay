@@ -5,6 +5,7 @@ import { BookingRequest } from '../Redux/Booking/BookignAction'
 import Loading from './Loading'
 import Success from './Success'
 import TermsAndCond from './TermsAndCond'
+import Term from '../TermAndCond.json'
 
 export default function Checkout({ view_data, guest_room, collectRoom }) {
     const [data, setData] = useState()
@@ -170,7 +171,7 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
                                                 <input type="tel"  pattern="[0-9]{10}" minlength="10" maxlength="10" id='text_color' onChange={handleChange} name='customer_phn' className=" form-control mt-3" placeholder="Enter number" required />
                                                 <input type="email" id='text_color' onChange={handleChange} name='customer_email' className=" form-control mt-3" placeholder="Enter Email" />
                                                 <div className=" text-start form-check my-2">
-                                                    <TermsAndCond lgShow={lgShow} setLgShow={setLgShow} Agree={Agree} />
+                                                    <TermsAndCond lgShow={lgShow} setLgShow={setLgShow} Agree={Agree} data={Term?.Terms_and_condition_Guest}  />
                                                     <input
                                                         required
                                                         type="checkbox"
