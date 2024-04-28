@@ -36,7 +36,7 @@ export default function Landing() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         // filter: 'blur(2px)',
-        WebkitFilter: 'blur(2px)',
+        // WebkitFilter: 'blur(2px)',
         zIndex: '-99999',
     };
 
