@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import './Styles/Landing.css'
 import Form from './Form'
-import bg from '../Images/bg.jpg'
+import bg from '../Images/bg-new.jpg'
 import TopDestination from './TopDestination';
 import WhyBook from './WhyBook';
 import WasThisPageHelpfull from './WasThisPageHelpfull';
@@ -35,7 +35,7 @@ export default function Landing() {
         backgroundImage: `url(${bg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        filter: 'blur(2px)',
+        // filter: 'blur(2px)',
         WebkitFilter: 'blur(2px)',
         zIndex: '-99999',
     };
