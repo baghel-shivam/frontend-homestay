@@ -68,7 +68,7 @@ export default function AddYourHomeStay() {
                 info(`Added. You Can Add Premium Rooms Also !`);
             }
         } 
-        else if(!roomForm.roomForm){
+        else if(!roomForm.room_quantity){
             notify("Please Enter Number of Rooms.")
         }
         else {
@@ -81,13 +81,38 @@ export default function AddYourHomeStay() {
         setRooms(filterData);
     };
 
+    const [file, setFile] = useState(null);
+  
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: value
+    //     });
+        
+    // };
+    // const handleFileChange = (e) => {
+    //     setFile(e.target.files[0]);
+    //     setFormData({...formData, 'file': file});
+    // }
+
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+        const { name, value, type} = e.target;
+        if (type === 'file') {
+            setFile(e.target.files[0]);
+            setFormData({
+                ...formData,
+                [name]: file,
+            });
+            console.log(formData, 'hello this is  form data')
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value
+            });
+        }
     };
+
 
     const HandleChangeAddRoom = (e) => {
         const { value, name } = e.target;
@@ -135,6 +160,7 @@ export default function AddYourHomeStay() {
         if (!formData.checked) {
             setError('Please accept the terms and conditions to proceed.');
         } else {
+            // alert(JSON.stringify(formData))
             try {
                 if (room.length > 0) {
                     await dispatch(AddNewProperty(formData));
@@ -565,7 +591,7 @@ export default function AddYourHomeStay() {
                                                     type="file"
                                                     className="form-control"
                                                     name="front_img1"
-                                                    value={formData.front_img1}
+                                                    // value={formData.front_img1.name}
                                                     onChange={handleChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
@@ -583,7 +609,7 @@ export default function AddYourHomeStay() {
                                                         type="file"
                                                         className="form-control"
                                                         name="front_img2"
-                                                        value={formData.front_img2}
+                                                        // value={formData.front_img2}
                                                         onChange={handleChange}
                                                         placeholder="Add Images"
                                                         accept=".jpg, .jpeg"
@@ -598,7 +624,7 @@ export default function AddYourHomeStay() {
                                                     type="file"
                                                     className="form-control"
                                                     name="front_img3"
-                                                    value={formData.front_img3}
+                                                    // value={formData.front_img3}
                                                     onChange={handleChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
@@ -616,7 +642,7 @@ export default function AddYourHomeStay() {
                                                     type="file"
                                                     className="form-control"
                                                     name="front_img4"
-                                                    value={formData.front_img4}
+                                                    // value={formData.front_img4}
                                                     onChange={handleChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
@@ -631,7 +657,7 @@ export default function AddYourHomeStay() {
                                                     type="file"
                                                     className="form-control"
                                                     name="front_img5"
-                                                    value={formData.front_img5}
+                                                    // value={formData.front_img5}
                                                     onChange={handleChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
@@ -646,7 +672,7 @@ export default function AddYourHomeStay() {
                                                     type="file"
                                                     className="form-control"
                                                     name="front_img6"
-                                                    value={formData.front_img6}
+                                                    // value={formData.front_img6}
                                                     onChange={handleChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
@@ -661,7 +687,7 @@ export default function AddYourHomeStay() {
                                                 type="file"
                                                 className="form-control"
                                                 name="front_img7"
-                                                value={formData.front_img7}
+                                                // value={formData.front_img7}
                                                 onChange={handleChange}
                                                 placeholder="Add Images"
                                                 accept=".jpg, .jpeg"
