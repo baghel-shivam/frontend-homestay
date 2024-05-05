@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useSelector } from 'react-redux';
 import img from '../Images/Main_icon.png'
 import free from "../Images/free.png"
-
+import { url } from '../Redux/BaseURL';
 export default function Header() {
     const navigate = useNavigate();
     const { Contact_ref, About_US_ref, Landing_ref } = useSelector((state) => state.Ref);
@@ -40,7 +40,7 @@ export default function Header() {
             <Container className='p-0'>
                 <Navbar.Brand>
                     <div className='d-flex justify-content-center align-content-between align-items-center'>
-                        <img src={img} height={60} width={60} alt='home img' /> <span className='fs-3 px-2 home-stay-title'>HomeStay</span>
+                         <Link to={'/'} style={{textDecoration: 'none', color:'black'}}> <img src={img} height={60} width={60} alt='home img' /> <span className='fs-3 px-2 home-stay-title'>HomeStay</span></Link>
                     </div>
                 </Navbar.Brand>
                 <Navbar.Toggle id='toggle-btn' aria-controls="responsive-navbar-nav px-3" />
