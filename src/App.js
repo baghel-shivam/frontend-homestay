@@ -14,6 +14,7 @@ import AddYourHomeStay from './Components/AddYourHomeStay';
 import { useEffect } from 'react';
 import NotFound from './Components/NotFound';
 import Help from './Components/Help';
+import Support from './Components/Support';
 
 function App() {
   useEffect(() => {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/otp" element={<Otp />} />
           <Route path="/sign-up" element={<Sign_up />} />
+          <Route path="/support" element={<Support />} />
           <Route path="/add-homestay" element={<AddYourHomeStay />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

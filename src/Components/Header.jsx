@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useSelector } from 'react-redux';
 import img from '../Images/Main_icon.png'
+import free from "../Images/free.png"
 
 export default function Header() {
     const navigate = useNavigate();
@@ -62,9 +63,11 @@ export default function Header() {
                     <Nav>
                         <Nav.Link>
                             <Link onClick={() => handleNav('data')} to='/add-homestay' className="nav-link active " style={{ ...style, }} >
-                                <button className='btn btn-dark rounded-0'>
+                                <button className='btn border-dark rounded-0 position-relative'>
                                     <span className="text px-2">Add Your HomeStay</span>
+                                   <img src={free} height={40} className='' style={{position:'absolute', right:'-10%', top:'-10%', transform:"rotate(65deg)"}}/>
                                 </button>
+                             
                             </Link>
                         </Nav.Link>
                     </Nav>

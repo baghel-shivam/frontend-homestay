@@ -167,7 +167,10 @@
     margin-top: 30px;
     padding: 10px;
     display: flex;
+    /* align-content: star; */
     justify-content: space-evenly;
+    gap: 0px;
+    /* Adjust this value as needed for the desired gap */
     flex-wrap: wrap;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -245,7 +248,7 @@
         background-color: #ffffff;
         padding: 15px 0px;
     }
-    
+
     .container-city {
         margin-top: 30px;
         padding: 10px;
@@ -320,11 +323,12 @@
         max-width: 1200px;
         margin: auto;
     }
+
     .top-destination {
         background-color: #ffffff;
         padding: 40px 0px;
     }
-    
+
     .Room_div {
         margin-top: 80px;
     }
@@ -427,3 +431,35 @@
 .chat-main-outline:hover {
     margin-right: 0rem;
 }
+.flag-button {
+    position: relative;
+    padding: 10px 40px 10px 20px; /* Increased padding for text and flag */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .flag-text {
+    position: absolute;
+    top: -10px;
+    right: -30px; /* Adjust this value based on the size of your flag */
+    padding: 5px;
+    background-color: #ff6347; /* Choose a color for your flag */
+    color: white;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  
+  .flag-button::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid #007bff;
+  }

@@ -11,6 +11,7 @@ html {
 }
 
 body {
+  font-family: Trebuchet MS, sans-seri !important;
   scroll-behavior: smooth;
   overflow-y: auto;
   margin: 0;
@@ -19,6 +20,27 @@ body {
 
 .Toastify__toast-theme--light {
   margin-top: 61px !important;
+}
+
+.min-height {
+  min-height: 100vh;
+}
+
+.Support {
+
+  /* border: 2px solid red; */
+  height: 100%;
+  margin-top: 100px;
+  max-width: 900px;
+}
+
+.support-child {
+  margin-top: 30px;
+  padding: 10px;
+  /* border: 1px solid gray; */
+  text-align: justify;
+  text-justify: inter-word;
+
 }
 
 /* <!-- HTML !-->
@@ -135,10 +157,11 @@ body {
 
 body {
   background-color: rgb(255, 255, 255);
-  font-family: sans-serif;
   height: 100vh;
 
 }
+
+
 
 .App-logo {
   height: 40vmin;
@@ -336,9 +359,10 @@ body {
 @media only screen and (min-width: 765px) {
   .view-in-detail-item {
     height: 445px;
-   max-height: 445px;
+    max-height: 445px;
   }
-  .why-stay-with-uus{
+
+  .why-stay-with-uus {
     margin-top: 40px;
   }
 }
@@ -349,7 +373,8 @@ body {
   .view-in-detail-item {
     height: 34vh;
   }
-  .why-stay-with-uus{
+
+  .why-stay-with-uus {
     margin-top: 3px;
   }
 
@@ -357,36 +382,43 @@ body {
 
 /* Table Header */
 table th {
-  padding: 8px; /* Adjust padding as needed */
+  padding: 8px;
+  /* Adjust padding as needed */
   text-align: center;
   font-size: 13px;
-  background-color: #343434; /* Black background */
-  color: #fff; /* White text color */
+  background-color: #343434;
+  /* Black background */
+  color: #fff;
+  /* White text color */
 }
 
 /* Alternate Row Colors */
 table tr:nth-child(even) {
   color: black;
-  background-color: #fff; /* White background for even rows */
+  background-color: #fff;
+  /* White background for even rows */
 }
 
 table tr:nth-child(odd) {
   color: black;
-  background-color: #f2f2f2; /* Light gray background for odd rows */
+  background-color: #f2f2f2;
+  /* Light gray background for odd rows */
 }
 
 /* Hover Effect */
 table tr:hover {
-  background-color: #ddd; /* Light gray background on hover */
+  background-color: #ddd;
+  /* Light gray background on hover */
 }
 
 /* Table Cell Padding */
 table td,
 table th {
-  padding: 8px; /* Adjust padding as needed */
+  padding: 8px;
+  /* Adjust padding as needed */
 }
 
 
-.details-box{
+.details-box {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
