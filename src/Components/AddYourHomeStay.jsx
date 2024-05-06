@@ -25,7 +25,6 @@ export default function AddYourHomeStay() {
             ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }, [ref]);
-
     const [roomForm, setRoomForm] = useState([])
     const [formData, setFormData] = useState({
         site_name: '',
@@ -59,7 +58,6 @@ export default function AddYourHomeStay() {
     const handleFileChange = (e) => {
         const { name } = e.target;
         const file = e.target.files[0];
-        console.log(file)
         if (name === 'front_img1') {
             setFormData({ ...formData, front_img1: file });
         } else if (name === 'front_img2') {
@@ -82,7 +80,8 @@ export default function AddYourHomeStay() {
         if (roomForm?.category && roomForm?.base_price && roomForm?.room_quantity) {
             const updatedRooms = [...room, roomForm];
             setRooms(updatedRooms);
-            setFormData({ ...formData, "rooms": updatedRooms, });
+            const roomObjCounts = Object.keys(updatedRooms).length;
+            setFormData({ ...formData, "rooms": updatedRooms,"roomObjCounts": roomObjCounts });
             setRoomForm({ category: '', base_price: "", room_quantity: "" });
             if (roomForm.category === 'Premium') {
                 info(`Added. You Can Add Economy Rooms Also !`);
@@ -167,6 +166,7 @@ export default function AddYourHomeStay() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+      
         if (!formData.checked) {
             setError('Please accept the terms and conditions to proceed.');
         } else {
