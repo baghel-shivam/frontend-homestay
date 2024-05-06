@@ -101,20 +101,22 @@ export default function View_in_details() {
         const Premium = []
         const others = []
         view_data?.availabel_rooms?.map((item) => {
-            if (item.category === 'Economy') {
-                Economy.push(item)
-            } else if (item.category === 'Premium') {
-                Premium.push(item)
-            } else {
-                others.push(item)
+            if (item.category === !null) {
+                if (item.category === 'Economy') {
+                    Economy.push(item)
+                } else if (item.category === 'Premium') {
+                    Premium.push(item)
+                } else {
+                    others.push(item)
+                }
             }
         })
         setManipulateRoom({ "economy": Economy, "premium": Premium, "others": others })
 
-        console.log(Economy, Premium, 'filteration')
     }, [room_details.data, state, view_data])
 
-
+   
+    // console.log()
     const handleNav = () => {
         if (validation()) {
             if (selectedOption > 0) {
@@ -139,7 +141,7 @@ export default function View_in_details() {
             setSelectedOption(customValue);
         }
     };
-
+    console.log(view_data, 'this is data')
     return (
         <div className='my-5 pt-5 container' style={{ maxWidth: '1200px' }}>
             {room_details.status === 'loading' && <Loading />}
@@ -197,7 +199,7 @@ export default function View_in_details() {
                         </div>
                         <div className={'col  d-flex align-content-center justify-content-center'} style={{ position: 'relative' }}>
                             <i class="bi bi-people-fill fs-5 mx-1 my-auto "></i>
-                            <small className='position-absolute text-danger top-0' style={{marginTop:'-15px'}}>{error?.error ? error?.guest : ''}</small>
+                            <small className='position-absolute text-danger top-0' style={{ marginTop: '-15px' }}>{error?.error ? error?.guest : ''}</small>
                             <select
                                 name='guest'
                                 className={`bg-none px-1 my-1  ${error?.error ? "border-danger border-2 rounded-3" : 'border-none'}`}

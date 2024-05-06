@@ -8,39 +8,47 @@ import ta from '../Images/PremiumIcons/travel.png'
 import bp from '../Images/PremiumIcons/bill.png'
 import hs from '../Images/PremiumIcons/shield.png'
 import ss from '../Images/PremiumIcons/support.png'
+import { Link } from 'react-router-dom'
 
 export default function Help() {
   const Data = [
     {
       "name": "Booking Assistance",
-      "icon": ba
+      "icon": ba,
+      "link": "/booking-assistance"
     },
     {
       "name": "Stay Support",
-      "icon": ss
+      "icon": ss,
+      "link": "/stay-support"
     },
     {
       "name": "Billing Payment",
-      "icon": bp
+      "icon": bp,
+      "link": '/billing'
     },
     {
       "name": "Customer Service",
-      "icon": cs
+      "icon": cs,
+      "link": '/customer'
     },
     {
       "name": "Travel Assistance",
-      "icon": ta
+      "icon": ta,
+      "link": '/travel-assistance'
     },
     {
       "name": "Technical Support",
-      "icon": ts
+      "icon": ts,
+      "link": '/technical-support'
     },
     {
       "name": "Health Safety",
-      "icon": hs
+      "icon": hs,
+      "link": "/health-safety"
     }
   ]
-  
+
 
 
   return (
@@ -53,25 +61,27 @@ export default function Help() {
           </h1>
         </div>
 
-       
+
 
       </div>
       <div className="container d-flex justify-content-center my-5" style={{ maxWidth: '1200px' }}>
-          <div className='help-items'>
-            {Data?.map((item) => (
-              <div className='help-item'>
+        <div className='help-items'>
+          {Data?.map((item) => (
+              <Link to={item.link} style={{textTransform:'none', textDecoration:'none', color:'black'}}>
+            <div className='help-item'>
                 <div className='icon-div'>
-                  <img src={item?.icon} height={70}/>
+                  <img src={item?.icon} height={70} />
                 </div>
                 <div className='content'>
                   <h4>{item?.name}</h4>
                 </div>
-              </div>
-            ))}
+            </div>
+              </Link>
+          ))}
 
 
-          </div>
         </div>
+      </div>
     </div>
   )
 }

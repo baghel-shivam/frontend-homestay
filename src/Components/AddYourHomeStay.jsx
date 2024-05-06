@@ -54,6 +54,29 @@ export default function AddYourHomeStay() {
         checked: false,
     });
 
+
+
+    const handleFileChange = (e) => {
+        const { name } = e.target;
+        const file = e.target.files[0];
+        console.log(file)
+        if (name === 'front_img1') {
+            setFormData({ ...formData, front_img1: file });
+        } else if (name === 'front_img2') {
+            setFormData({ ...formData, front_img2: file });
+        } else if (name === 'front_img3') {
+            setFormData({ ...formData, front_img3: file });
+        } else if (name === 'front_img4') {
+            setFormData({ ...formData, front_img4: file });
+        } else if (name === 'front_img5') {
+            setFormData({ ...formData, front_img5: file });
+        } else if (name === 'front_img6') {
+            setFormData({ ...formData, front_img6: file });
+        } else if (name === 'front_img7') {
+            setFormData({ ...formData, front_img7: file });
+        }
+    };
+
     const handleAddRoom = (e) => {
         e.preventDefault();
         if (roomForm?.category && roomForm?.base_price && roomForm?.room_quantity) {
@@ -61,50 +84,28 @@ export default function AddYourHomeStay() {
             setRooms(updatedRooms);
             setFormData({ ...formData, "rooms": updatedRooms, });
             setRoomForm({ category: '', base_price: "", room_quantity: "" });
-            if (roomForm.category === 'Premium'){
+            if (roomForm.category === 'Premium') {
                 info(`Added. You Can Add Economy Rooms Also !`);
             }
             else {
                 info(`Added. You Can Add Premium Rooms Also !`);
             }
-        } 
-        else if(!roomForm.room_quantity){
+        }
+        else if (!roomForm.room_quantity) {
             notify("Please Enter Number of Rooms.")
         }
         else {
             notify('Select Valid price & Category');
         }
     }
-
     const handleDelete = (num) => {
         const filterData = room.filter((item, index) => index !== num);
         setRooms(filterData);
     };
 
-    const [file, setFile] = useState(null);
-  
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setFormData({
-    //         ...formData,
-    //         [name]: value
-    //     });
-        
-    // };
-    // const handleFileChange = (e) => {
-    //     setFile(e.target.files[0]);
-    //     setFormData({...formData, 'file': file});
-    // }
-
     const handleChange = (e) => {
-        const { name, value, type} = e.target;
+        const { name, value, type } = e.target;
         if (type === 'file') {
-            setFile(e.target.files[0]);
-            setFormData({
-                ...formData,
-                [name]: file,
-            });
-            console.log(formData, 'hello this is  form data')
         } else {
             setFormData({
                 ...formData,
@@ -112,7 +113,6 @@ export default function AddYourHomeStay() {
             });
         }
     };
-
 
     const HandleChangeAddRoom = (e) => {
         const { value, name } = e.target;
@@ -142,6 +142,17 @@ export default function AddYourHomeStay() {
             draggable: true,
         }
     );
+    const success = (msg) => toast.success(msg,
+        {
+            position: 'top-right',
+            toastContainerClassName: 'custom-toast-container',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        }
+    );
     const Agree = (accept, closeDialog) => {
         setLgShow(closeDialog)
         if (accept) {
@@ -155,7 +166,6 @@ export default function AddYourHomeStay() {
     }, [AddProp?.data])
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
         if (!formData.checked) {
             setError('Please accept the terms and conditions to proceed.');
@@ -165,7 +175,7 @@ export default function AddYourHomeStay() {
                 if (room.length > 0) {
                     await dispatch(AddNewProperty(formData));
                     await AddProp
-                    await notify(`Thanks for showing your interest to add your Home Stay - ${formData?.homeStayName} with us. Your request has been sent to Lazymonal.com team. We will review the request and get back to you soon. Thanks ! LazyMonal Team homestay@lazymonal.com!`)
+                    await success(`Thanks for showing your interest to add your Home Stay - ${formData?.homeStayName} with us. Your request has been sent to Lazymonal.com team. We will review the request and get back to you soon. Thanks ! LazyMonal Team homestay@lazymonal.com!`)
                     setFormData({});
                     setTimeout(() => {
                         window.location.reload(true)
@@ -183,7 +193,7 @@ export default function AddYourHomeStay() {
     return (
         <div className='container add-your-home-stay pt-3' >
             {AddProp.status === 'loading' && <Loading />}
-            {AddProp.status === 'succeeded' && <Toast msg={AddProp?.data} />}
+            {/* {AddProp.status === 'succeeded' && <Toast msg={AddProp?.data} />} */}
             <h2 className='title' ref={ref}>Add Your HomeStay</h2>
             <form onSubmit={handleSubmit}>
                 <div className="row px-0 mt-4 container-fluid my-5 py-3  child-add-your-home-stay">
@@ -303,12 +313,12 @@ export default function AddYourHomeStay() {
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input  type="text" className="form-control" name="nearest_airport" value={formData.nearest_airport} onChange={handleChange} placeholder="Nearest airport" />
+                                        <input type="text" className="form-control" name="nearest_airport" value={formData.nearest_airport} onChange={handleChange} placeholder="Nearest airport" />
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input  type="number" className="form-control" name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from sirport, KM" />
+                                        <input type="number" className="form-control" name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from sirport, KM" />
                                     </div>
                                 </div>
 
@@ -316,12 +326,12 @@ export default function AddYourHomeStay() {
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input  type="text" className="form-control" name="nearest_metro_station" value={formData.nearest_metro_station} onChange={handleChange} placeholder="Nearest metro station" />
+                                        <input type="text" className="form-control" name="nearest_metro_station" value={formData.nearest_metro_station} onChange={handleChange} placeholder="Nearest metro station" />
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input  type="number" className="form-control" name="distance_from_ms" value={formData.distance_from_ms} onChange={handleChange} placeholder="Distance from metro station, KM" />
+                                        <input type="number" className="form-control" name="distance_from_ms" value={formData.distance_from_ms} onChange={handleChange} placeholder="Distance from metro station, KM" />
                                     </div>
                                 </div>
 
@@ -349,7 +359,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input  type="text" className="form-control" name="nearest_attraction_4" value={formData?.nearest_attraction_4} onChange={handleChange} placeholder="Nearest attraction point-4" />
+                                        <input type="text" className="form-control" name="nearest_attraction_4" value={formData?.nearest_attraction_4} onChange={handleChange} placeholder="Nearest attraction point-4" />
                                     </div>
                                 </div>
 
@@ -398,10 +408,10 @@ export default function AddYourHomeStay() {
                                                 <input type='number' name='room_quantity' placeholder='Number of rooms' className='form-control' value={roomForm?.room_quantity} onChange={HandleChangeAddRoom} />
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                     {/* <hr /> */}
-                                    
+
                                     <hr />
 
                                     <div className="row text-start">
@@ -493,7 +503,7 @@ export default function AddYourHomeStay() {
                                         </div>
                                     </div>
                                     <hr />
-                                    
+
                                     <div className="row text-start">
                                         <div className="col">
                                             <div className="mb-3 form-check">
@@ -525,59 +535,59 @@ export default function AddYourHomeStay() {
 
                                     </div>
                                     {room.length > 0 &&
-                                    <div className="container">
-                                        <div className="row text-dark">
-                                            <div className="col">
-                                                <strong> Category</strong>
-                                            </div>
-                                            <div className="col">
-                                                <strong>Rooms</strong>
-                                            </div>
-                                            <div className="col">
-                                                <strong> Price</strong>
-                                            </div>
-                                            <div className="col">
-                                                <strong> Features</strong>
-                                            </div>
-                                            <div className="col">
-                                                <strong> Remove</strong>
-                                            </div>
-                                            
-                                        </div>
-                                        {room.map((item, index) => (
-                                            <div key={index} className="row  p-2 my-1 rounded-2 bg-light shadow-lg">
+                                        <div className="container">
+                                            <div className="row text-dark">
                                                 <div className="col">
-                                                    <span>{item.category}</span>
+                                                    <strong> Category</strong>
                                                 </div>
                                                 <div className="col">
-                                                    <span>{item.room_quantity}</span>
+                                                    <strong>Rooms</strong>
                                                 </div>
                                                 <div className="col">
-                                                    <span>{item.base_price}</span>
+                                                    <strong> Price</strong>
                                                 </div>
-                                                <div className="col d-flex justify-content-evenly">
-                                                    <span>
-                                                        {item.is_ac_available || item.is_couple_allowed || item.is_wifi_available || item.is_housekeeping_available
-                                                            ? '1+'
-                                                            : null
-                                                        }
-                                                    </span>
+                                                <div className="col">
+                                                    <strong> Features</strong>
+                                                </div>
+                                                <div className="col">
+                                                    <strong> Remove</strong>
+                                                </div>
 
-                                                    
-                                                </div>
-                                                <div className="col">
-                                                <span className='mx-2 btn btn-sm' onClick={() => handleDelete(index)} title="Remove"><i class="bi bi-trash text-danger"></i></span>
-                                                </div>
                                             </div>
-                                        ))}
+                                            {room.map((item, index) => (
+                                                <div key={index} className="row  p-2 my-1 rounded-2 bg-light shadow-lg">
+                                                    <div className="col">
+                                                        <span>{item.category}</span>
+                                                    </div>
+                                                    <div className="col">
+                                                        <span>{item.room_quantity}</span>
+                                                    </div>
+                                                    <div className="col">
+                                                        <span>{item.base_price}</span>
+                                                    </div>
+                                                    <div className="col d-flex justify-content-evenly">
+                                                        <span>
+                                                            {item.is_ac_available || item.is_couple_allowed || item.is_wifi_available || item.is_housekeeping_available
+                                                                ? '1+'
+                                                                : null
+                                                            }
+                                                        </span>
 
-                                    </div>}
+
+                                                    </div>
+                                                    <div className="col">
+                                                        <span className='mx-2 btn btn-sm' onClick={() => handleDelete(index)} title="Remove"><i class="bi bi-trash text-danger"></i></span>
+                                                    </div>
+                                                </div>
+                                            ))}
+
+                                        </div>}
                                     <div className="row mb-3">
                                         <div className="col text-end">
                                             <button className='btn btn-success' onClick={handleAddRoom} type='submit' >Add <span style={{ textTransform: 'pascel' }}>{roomForm?.category}</span> Rooms</button>
                                         </div>
                                     </div>
-                                    
+
                                     <div className="container px-2 py-2 rounded-3 mb-2" style={{ background: '#ECECEC' }}>
                                         <div className='mb-3 border-bottom'>
                                             <span className='fs-6 fw-bold py-2 w-100'>Add Some Pictures of Homestay/Rooms</span>
@@ -592,29 +602,29 @@ export default function AddYourHomeStay() {
                                                     className="form-control"
                                                     name="front_img1"
                                                     // value={formData.front_img1.name}
-                                                    onChange={handleChange}
+                                                    onChange={handleFileChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
-                                                    multiple
+
                                                 />
 
                                             </div>
-                                            
+
                                         </div>
                                         <div className="row">
                                             <div className="col-6 mb-3">
-                                                    <label htmlFor="frontImage1">Add Homestay Pic 2</label>
-                                                    <input
-                                                        required
-                                                        type="file"
-                                                        className="form-control"
-                                                        name="front_img2"
-                                                        // value={formData.front_img2}
-                                                        onChange={handleChange}
-                                                        placeholder="Add Images"
-                                                        accept=".jpg, .jpeg"
-                                                        multiple
-                                                    />
+                                                <label htmlFor="frontImage1">Add Homestay Pic 2</label>
+                                                <input
+                                                    required
+                                                    type="file"
+                                                    className="form-control"
+                                                    name="front_img2"
+                                                    // value={formData.front_img2}
+                                                    onChange={handleFileChange}
+                                                    placeholder="Add Images"
+                                                    accept=".jpg, .jpeg"
+
+                                                />
 
                                             </div>
                                             <div className="col-6 mb-3">
@@ -625,14 +635,14 @@ export default function AddYourHomeStay() {
                                                     className="form-control"
                                                     name="front_img3"
                                                     // value={formData.front_img3}
-                                                    onChange={handleChange}
+                                                    onChange={handleFileChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
-                                                    multiple
+
                                                 />
 
                                             </div>
-                                            
+
                                         </div>
                                         <div className="row">
                                             <div className="col-6 mb-3">
@@ -643,10 +653,10 @@ export default function AddYourHomeStay() {
                                                     className="form-control"
                                                     name="front_img4"
                                                     // value={formData.front_img4}
-                                                    onChange={handleChange}
+                                                    onChange={handleFileChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
-                                                    multiple
+
                                                 />
 
                                             </div>
@@ -658,10 +668,10 @@ export default function AddYourHomeStay() {
                                                     className="form-control"
                                                     name="front_img5"
                                                     // value={formData.front_img5}
-                                                    onChange={handleChange}
+                                                    onChange={handleFileChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
-                                                    multiple
+
                                                 />
 
                                             </div>
@@ -673,34 +683,34 @@ export default function AddYourHomeStay() {
                                                     className="form-control"
                                                     name="front_img6"
                                                     // value={formData.front_img6}
-                                                    onChange={handleChange}
+                                                    onChange={handleFileChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
-                                                    multiple
+
                                                 />
 
                                             </div>
                                             <div className="col-6 mb-3">
-                                            <label htmlFor="frontImage1">Add Homestay 7</label>
-                                            <input
+                                                <label htmlFor="frontImage1">Add Homestay 7</label>
+                                                <input
 
-                                                type="file"
-                                                className="form-control"
-                                                name="front_img7"
-                                                // value={formData.front_img7}
-                                                onChange={handleChange}
-                                                placeholder="Add Images"
-                                                accept=".jpg, .jpeg"
-                                                multiple
-                                            />
+                                                    type="file"
+                                                    className="form-control"
+                                                    name="front_img7"
+                                                    // value={formData.front_img7}
+                                                    onChange={handleFileChange}
+                                                    placeholder="Add Images"
+                                                    accept=".jpg, .jpeg"
 
+                                                />
+                                                {/* <button onClick={submitFun}>hello click me</button> */}
+                                            </div>
                                         </div>
-                                        </div>
-                                        
+
 
                                     </div>
                                 </form>
-                                
+
                             </div>
                             <div className="row mt-4 px-4">
                                 <div className="mb-3 text-start form-check x-5">

@@ -169,9 +169,11 @@
     display: flex;
     /* align-content: star; */
     justify-content: space-evenly;
-    gap: 0px;
+    gap: 25px;
+    overflow-x: scroll;
+
     /* Adjust this value as needed for the desired gap */
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -241,7 +243,6 @@
     #Child_form {
         margin-top: 10%;
         width: 100%;
-
     }
 
     .top-destination {
@@ -392,6 +393,7 @@
         0 10px 10px rgba(0, 0, 0, .2),
         0 20px 20px rgba(0, 0, 0, .15); */
 }
+
 .Notify-div {
     margin-top: 5rem;
     width: 100%;
@@ -430,28 +432,32 @@
 .chat-main-outline:hover {
     margin-right: 0rem;
 }
+
 .flag-button {
     position: relative;
-    padding: 10px 40px 10px 20px; /* Increased padding for text and flag */
+    padding: 10px 40px 10px 20px;
+    /* Increased padding for text and flag */
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 16px;
-  }
-  
-  .flag-text {
+}
+
+.flag-text {
     position: absolute;
     top: -10px;
-    right: -30px; /* Adjust this value based on the size of your flag */
+    right: -30px;
+    /* Adjust this value based on the size of your flag */
     padding: 5px;
-    background-color: #ff6347; /* Choose a color for your flag */
+    background-color: #ff6347;
+    /* Choose a color for your flag */
     color: white;
     border-radius: 3px;
     font-size: 12px;
-  }
-  
-  .flag-button::after {
+}
+
+.flag-button::after {
     content: '';
     position: absolute;
     top: -10px;
@@ -461,4 +467,4 @@
     border-top: 20px solid transparent;
     border-bottom: 20px solid transparent;
     border-left: 20px solid #007bff;
-  }
+}

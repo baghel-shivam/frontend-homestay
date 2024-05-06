@@ -44,15 +44,12 @@ export default function Rooms() {
         }
         setFilter_data(updatedFilterData);
     };
-    useEffect(() => {
-        if (data.data.length > 0) {
-            console.log('good')
-        } else {
 
+    useEffect(() => {
+        if (!data.data.length > 0) {
             notify('Room not found!')
             setTimeout(() => {
                 navigate('/')
-
             }, 2000);
         }
     }, [data])
@@ -79,7 +76,6 @@ export default function Rooms() {
     useEffect(() => {
         let number = []
         let result = Math.ceil(data?.data?.length / 10);
-
         for (let index = 1; index <= result; index++) {
             number.push(index)
         }
@@ -90,7 +86,7 @@ export default function Rooms() {
         const startIndex = (pageNumber - 1) * 10;
         const endIndex = startIndex + 10;
         const currentPageItems = data?.data?.slice(startIndex, endIndex);
-      setPaginationData({ ...paginationData, "PageItem": currentPageItems })
+        setPaginationData({ ...paginationData, "PageItem": currentPageItems })
     };
 
 
@@ -240,43 +236,39 @@ export default function Rooms() {
                                                         </span>
                                                     </div>
                                                     <div className="col">
-
                                                         <Link to="/view-details" style={{ color: '#000000' }} className="card-link btn btn-link mt-1">View Details</Link>
-
-
                                                     </div>
                                                     <div className="col">
                                                         <button className="card-link mt-1 btn btn-success w-100">Book Now</button>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <hr className='my-4' />
-                                {data?.data?.length > 10&&<>
+                                {data?.data?.length > 10 && <>
                                     <div className='w-100 d-flex justify-content-center'>
-                                    <nav aria-label="Page navigation example">
-                                        <ul className="pagination justify-content-end">
-                                            <li className="page-item disabled">
-                                                <a className="page-link">Previous</a>
-                                            </li>
-                                            {paginationData?.numberOfPage && paginationData?.numberOfPage?.map((item, index) => {
-                                                return (
-                                                    <li className="page-item" onClick={() => HandlePageChange(item)} key={index}><a className="page-link" href="#">{item}</a></li>
-                                                )
-                                            })}
+                                        <nav aria-label="Page navigation example">
+                                            <ul className="pagination justify-content-end">
+                                                <li className="page-item disabled">
+                                                    <a className="page-link">Previous</a>
+                                                </li>
+                                                {paginationData?.numberOfPage && paginationData?.numberOfPage?.map((item, index) => {
+                                                    return (
+                                                        <li className="page-item" onClick={() => HandlePageChange(item)} key={index}><a className="page-link" href="#">{item}</a></li>
+                                                    )
+                                                })}
 
-                                            <li className="page-item">
-                                                <a className="page-link" href="#">Next</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
+                                                <li className="page-item">
+                                                    <a className="page-link" href="#">Next</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </>
                                 }
-                             
+
 
                             </>
                         )) : <div className='container d-grid justify-content-center'>

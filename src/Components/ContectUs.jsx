@@ -11,21 +11,19 @@ export default function ContectUs(props) {
       </div>
       <div className="row rounded-3" style={{ border: '1px solid #f2f2f2', background: '#f2f2f2' }}>
         <div className="col-12 p-3 px-4 text-start col-lg-6 mt-3">
-          <span className='sub-heading text-start'>Social links
+          <span className='sub-heading text-start'>Rich out to us
             <hr />
           </span>
           <div className="container-social px-5 mx-5">
-   
-            <div ><a 
-             className='text-none' href="https://wa.me/your-whatsapp-number"><i className="bi bi-whatsapp fs-2"></i></a></div>
-         
+            <div ><a
+              className='text-none' href="tel:+19739063275"><i class="bi bi-telephone fs-2"></i></a></div>
             {/* <div><a href="https://www.instagram.com/your-instagram"><i className="bi bi-instagram fs-2"></i></a></div> */}
             <div>
-              <a href="mailto:Support@lazymonal.com">
+              <a href="mailto:lazymonal@gmail.com">
                 <i className="bi bi-envelope fs-2"></i>
               </a>
             </div>
-            <div><a href="https://twitter.com/your-twitter"><i className="bi bi-twitter-x fs-2"></i></a></div>
+            {/* <div><a href="https://twitter.com/your-twitter"><i className="bi bi-twitter-x fs-2"></i></a></div> */}
           </div>
 
           <span className='sub-heading'>Have a question, feedback, or just want to say hello? We'd love to hear from you!

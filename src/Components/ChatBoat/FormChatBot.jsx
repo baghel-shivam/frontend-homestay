@@ -13,16 +13,21 @@ export default function FormChatBot({ setShowForm }) {
   
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setShowForm(false);
-        try {
-            const response = await dispatch(ChatMessages(data));
-            if (response?.payload) {
-                alert(response?.payload);
-            } else{
+        if(data){
+
+            setShowForm(false);
+            try {
+                const response = await dispatch(ChatMessages(data));
+                if (response?.payload) {
+                    alert(response?.payload);
+                } else{
+                    alert('Something went wrong, Please try again!');
+                }
+            } catch (error) {
                 alert('Something went wrong, Please try again!');
             }
-        } catch (error) {
-            alert('Something went wrong, Please try again!');
+        }else{
+            alert("Missing required fields.")
         }
     };
     
@@ -43,10 +48,14 @@ export default function FormChatBot({ setShowForm }) {
                     <input type="email" name='email' onChange={handleChange} placeholder='Email' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                     {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
                 </div>
+                <div class="mb-3">
+                    {/* <label for="exampleInputEmail1" class="form-label">Email</label> */}
+                    <input type="number" name='phn_no' onChange={handleChange} placeholder='Phone no.' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
+                </div>
                 <div class="mb-3 text-start">
                     <textarea type="text" name='mssg' onChange={handleChange} class="form-control" style={{ minHeight: '100px' }} placeholder='Message*' id="exampleInputPassword1" />
                 </div>
-
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

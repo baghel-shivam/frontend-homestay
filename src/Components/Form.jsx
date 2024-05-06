@@ -129,11 +129,9 @@ export default function Form() {
                             <label>Check in</label>
                             <label>-</label>
                             <label>Check out</label>
-                        </div> : ""}
-
+                        </div> : " "}
                         <label className='date-label'>When to ?</label>
                     </div>
-
                     <div className='flex-item'>
                         <button className='m-auto btn text-dark add-new-property bg-success border-none' type='submit' id='Main-button' style={{ color: 'white', borderRadius: '100px', padding: '29px' }}>
                             <span className="text px-2 text-light">Search</span><span className='mt-2'><i class="bi bi-search fs-5"></i></span>

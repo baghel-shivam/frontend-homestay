@@ -40,7 +40,7 @@ export default function Header() {
             <Container className='p-0'>
                 <Navbar.Brand>
                     <div className='d-flex justify-content-center align-content-between align-items-center'>
-                         <Link to={'/'} style={{textDecoration: 'none', color:'black'}}> <img src={img} height={60} width={60} alt='home img' /> <span className='fs-3 px-2 home-stay-title'>HomeStay</span></Link>
+                        <Link to={'/'} style={{ textDecoration: 'none', color: 'black' }}> <img src={img} height={60} width={60} alt='home img' /> <span className='fs-3 px-2 home-stay-title'>HomeStay</span></Link>
                     </div>
                 </Navbar.Brand>
                 <Navbar.Toggle id='toggle-btn' aria-controls="responsive-navbar-nav px-3" />
@@ -65,9 +65,12 @@ export default function Header() {
                             <Link onClick={() => handleNav('data')} to='/add-homestay' className="nav-link active " style={{ ...style, }} >
                                 <button className='btn border-dark rounded-0 position-relative'>
                                     <span className="text px-2">Add Your HomeStay</span>
-                                   <img src={free} height={40} className='' style={{position:'absolute', right:'-10%', top:'-10%', transform:"rotate(65deg)"}}/>
+
+                                   {/* //<img src={free} height={40} className='' style={{ position: 'absolute', right: '-10%', top: '-10%', transform: "rotate(65deg)" }} /> */}
+
+
                                 </button>
-                             
+
                             </Link>
                         </Nav.Link>
                     </Nav>
