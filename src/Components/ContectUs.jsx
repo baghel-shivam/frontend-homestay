@@ -11,7 +11,7 @@ export default function ContectUs(props) {
       </div>
       <div className="row rounded-3" style={{ border: '1px solid #f2f2f2', background: '#f2f2f2' }}>
         <div className="col-12 p-3 px-4 text-start col-lg-6 mt-3">
-          <span className='sub-heading text-start'>Rich out to us
+          <span className='sub-heading text-start'>Reach out to us
             <hr />
           </span>
           <div className="container-social px-5 mx-5">

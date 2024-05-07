@@ -100,6 +100,7 @@ export default function View_in_details() {
         const Economy = []
         const Premium = []
         const others = []
+        
         view_data?.availabel_rooms?.map((item) => {
             if (item?.category !== undefined && item?.category !== null && item?.category !== '') {
                 if (item.category === 'Economy') {

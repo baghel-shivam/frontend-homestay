@@ -11,6 +11,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from './Loading.jsx';
 import TermsAndCond from './TermsAndCond.jsx';
 import { ToastContainer, toast } from 'react-toastify';
+// import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 
 export default function AddYourHomeStay() {
     const AddProp = useSelector((state) => state?.AddProp)
@@ -19,6 +23,9 @@ export default function AddYourHomeStay() {
     const [lgShow, setLgShow] = useState(false);
     const [error, setError] = useState('');
     const [room, setRooms] = useState([])
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
         if (ref.current instanceof HTMLElement) {
@@ -81,7 +88,7 @@ export default function AddYourHomeStay() {
             const updatedRooms = [...room, roomForm];
             setRooms(updatedRooms);
             const roomObjCounts = Object.keys(updatedRooms).length;
-            setFormData({ ...formData, "rooms": updatedRooms,"roomObjCounts": roomObjCounts });
+            setFormData({ ...formData, "rooms": updatedRooms, "roomObjCounts": roomObjCounts });
             setRoomForm({ category: '', base_price: "", room_quantity: "" });
             if (roomForm.category === 'Premium') {
                 info(`Added. You Can Add Economy Rooms Also !`);
@@ -166,7 +173,7 @@ export default function AddYourHomeStay() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-      
+
         if (!formData.checked) {
             setError('Please accept the terms and conditions to proceed.');
         } else {
@@ -175,7 +182,8 @@ export default function AddYourHomeStay() {
                 if (room.length > 0) {
                     await dispatch(AddNewProperty(formData));
                     await AddProp
-                    await success(`Thanks for showing your interest to add your Home Stay - ${formData?.homeStayName} with us. Your request has been sent to Lazymonal.com team. We will review the request and get back to you soon. Thanks ! LazyMonal Team homestay@lazymonal.com!`)
+                    handleShow()
+                    // await 
                     setFormData({});
                     setTimeout(() => {
                         window.location.reload(true)
@@ -190,9 +198,37 @@ export default function AddYourHomeStay() {
         }
 
     };
+
+
+    function ModalSuccess() {
+        return (
+            <>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title className='text-success'>Your request has been sent!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p>
+
+                            Thanks for showing your interest to add your Home Stay with us. Your request has been sent to Lazymonal.com
+                            team. We will review the request and get back to you soon. Thanks ! LazyMonal Team homestay@lazymonal.com!
+                        </p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={handleClose}>
+                            OK
+                        </Button>
+                    </Modal.Footer>
+                </Modal >
+            </>
+        );
+    }
+
+
     return (
         <div className='container add-your-home-stay pt-3' >
             {AddProp.status === 'loading' && <Loading />}
+            {ModalSuccess()}
             {/* {AddProp.status === 'succeeded' && <Toast msg={AddProp?.data} />} */}
             <h2 className='title' ref={ref}>Add Your HomeStay</h2>
             <form onSubmit={handleSubmit}>

@@ -1,14 +1,18 @@
 import React from 'react'
-import img1 from '../Images/city-img (1).jpg'
-import img2 from '../Images/city-img (2).jpg'
+
 import assam from '../Images/assam.png'
 import goa from '../Images/goa.png'
 import sikkim from "../Images/sikkim.png"
 import laddakh from "../Images/laddakh.png"
 import uttrakhand from "../Images/uttrakhand.jpg"
-// import img3 from '../Images/city-img (3).jpg'
-import img4 from '../Images/city-img (4).jpg'
-// import img5 from '../Images/city-img (5).jpg'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+
 
 export default function TopDestination(props) {
     const Data =
@@ -47,7 +51,7 @@ export default function TopDestination(props) {
             },
             {
                 "name": "Laddakh",
-                "img":laddakh
+                "img": laddakh
 
             }
 
@@ -60,12 +64,45 @@ export default function TopDestination(props) {
                 <hr />
             </div>
             <div className="container-city">
-                {Data.city.map((item, index) => (
-                    <div className="city-img my-3" key={index}>
-                        <b className='image-content'>  {item.name}</b>
-                        <img src={item.img} alt='dest' className='city-img-background' />
-                    </div>
-                ))}
+                <Swiper
+                    slidesPerView={'auto'}
+                    spaceBetween={30}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    breakpoints={{
+                        320: {  // Adjusted breakpoint for small screens
+                            slidesPerView: 1.5,  // Show only 1 slide on small screens
+                            spaceBetween: 10,  // Adjust spacing as needed
+                        },
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 20,
+                        },
+                        768: {
+                            slidesPerView: 4,
+                            spaceBetween: 30,
+                        },
+                        1024: {
+                            slidesPerView: 4.5,
+                            spaceBetween: 30,
+                        },
+                    }}
+                    modules={[Pagination]}
+                    className="myNewSwiper"
+                >
+                    {Data.city.map((item, index) => (
+                        <SwiperSlide>
+                            <div className="city-img " key={index}>
+                                <b className='image-content'>  {item.name}</b>
+                                <img src={item.img} alt='dest' className='city-img-background' />
+                            </div>
+                        </SwiperSlide>
+                    ))}
+
+
+                </Swiper>
+
             </div>
         </div>
     )

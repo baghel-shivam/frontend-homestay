@@ -164,18 +164,14 @@
 }
 
 .container-city {
+    overflow: hidden;
     margin-top: 30px;
     padding: 10px;
-    display: flex;
-    /* align-content: star; */
-    justify-content: space-evenly;
-    gap: 25px;
-    overflow-x: scroll;
-
-    /* Adjust this value as needed for the desired gap */
-    /* flex-wrap: wrap; */
+    max-height: 25vh;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+
+
 
 .container-w-w-u {
     margin-top: 30px;
@@ -186,12 +182,34 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
+
+.swiper-slide {
+    height: 100% !important;
+    text-align: center;
+    font-size: 18px;
+    /* height: 24vh; */
+    background: #fff;
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    z-index: 9999;
+    /* height: 100%; */
+    object-fit: cover;
+}
+
+
 .city-img {
     position: relative;
-    min-width: 30vh;
-    min-height: 18vh;
+    /* width: 40px; */
     height: 18vh;
-    width: 30vh;
+    /* opacity: 1; */
+    width: 100%;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -237,9 +255,33 @@
     border: none !important;
 }
 
-
-
+.myNewSwiper{
+    height: 300px !important;
+    padding: 0;
+    margin: 0;
+}
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 30% !important;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
+    box-sizing: content-box;
+}
 @media only screen and (max-width: 765px) {
+    .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        height: 60% !important;
+        z-index: 1;
+        display: flex;
+        transition-property: transform;
+        transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
+        box-sizing: content-box;
+    }
+
     #Child_form {
         margin-top: 10%;
         width: 100%;
@@ -253,10 +295,10 @@
     .container-city {
         margin-top: 30px;
         padding: 10px;
-        display: flex;
+        /* display: flex;
         overflow: scroll;
         justify-content: space-evenly;
-        flex-wrap: nowrap;
+        flex-wrap: nowrap; */
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
 
@@ -265,11 +307,8 @@
     }
 
     .city-img {
-        position: relative;
-        min-width: 35vh;
-        min-height: 20vh;
-        height: 20vh;
-        width: 37vh;
+        /* position: relative; */
+
         margin-right: 10px;
         border-radius: 10px;
         overflow: hidden;

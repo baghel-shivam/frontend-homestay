@@ -50,17 +50,16 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
         window.location.reload(true)
     }
     useEffect(() => {
-
         setData({
             ...data,
             "check_in_date": `${formData?.checkin_date}`,
             "check_out_date": `${formData?.checkout_date}`,
             "request_location": formData?.location,
-            "booking_price": parseInt(view_data?.base_price),
+            "booking_price": parseInt(selecteDRooms?.reduce((acc, cur) => acc + (cur?.base_price * cur?.bookCount), 0)),
             "parent_room": view_data?.id,
             "selectedRooms": selecteDRooms && selecteDRooms?.map((item) => item.id)
         })
-    }, [view_data, guest_room, collectRoom])
+    }, [view_data, guest_room, collectRoom, selecteDRooms])
 
 
 
@@ -108,7 +107,7 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
                 <div className="modal-dialog modal-dialog-centered modal-lg">
                     <div className="modal-content overflow-hidden">
 
-                        <button type="button" className="btn-close btn-close-checkout" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" style={{zIndex:'9999'}} className="btn-close btn-close-checkout" data-bs-dismiss="modal" aria-label="Close"></button>
                         <div className="row overflow-hidden  ">
                             <div className="col img-checkout-div d-none d-lg-block">
                                 {/* <img src={checkOut} className='checkout-img' height={250} alt='Check-out-img' /> */}

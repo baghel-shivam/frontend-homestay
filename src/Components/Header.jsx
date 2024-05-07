@@ -66,7 +66,7 @@ export default function Header() {
                                 <button className='btn border-dark rounded-0 position-relative'>
                                     <span className="text px-2">Add Your HomeStay</span>
 
-                                   {/* //<img src={free} height={40} className='' style={{ position: 'absolute', right: '-10%', top: '-10%', transform: "rotate(65deg)" }} /> */}
+                        <img src={free} height={40} className='' style={{ position: 'absolute', right: '-10%', top: '-10%', transform: "rotate(65deg)" }} />
 
 
                                 </button>
