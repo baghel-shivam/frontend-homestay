@@ -17,8 +17,13 @@ export default function Form() {
     const [data, setData] = useState({ "checkin_date": null, "checkout_date": null, "location": '' })
     const [showCheckIn, setShowCheckOut] = useState(true)
     const state1 = useSelector((state) => state?.SearchRoom)
-
-    const [value, onChange] = useState([new Date(), new Date()]);
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    const dayAfterTomorrow = new Date();
+    dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
+    
+    const [value, onChange] = useState([tomorrow, dayAfterTomorrow]);
     const ref = useRef()
 
     const handleChange = (e) => {

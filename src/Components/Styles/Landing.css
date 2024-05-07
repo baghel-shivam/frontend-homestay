@@ -382,12 +382,7 @@
     .Room_div {
         height: 100vh;
     }
-
-
-
-
-
-    .nav-form-parent {
+  .nav-form-parent {
         position: -webkit-sticky;
         position: sticky;
         height: 90vh;
