@@ -101,7 +101,7 @@ export default function View_in_details() {
         const Premium = []
         const others = []
         view_data?.availabel_rooms?.map((item) => {
-            if (item.category === !null) {
+            if (item?.category !== undefined && item?.category !== null && item?.category !== '') {
                 if (item.category === 'Economy') {
                     Economy.push(item)
                 } else if (item.category === 'Premium') {
@@ -116,7 +116,6 @@ export default function View_in_details() {
     }, [room_details.data, state, view_data])
 
    
-    // console.log()
     const handleNav = () => {
         if (validation()) {
             if (selectedOption > 0) {
@@ -126,13 +125,11 @@ export default function View_in_details() {
             } else {
                 setError({ "error": true, "guest": "Please select guest!" })
             }
-            console.log(selectedOption)
         } else {
             alert('Add room first!')
         }
     }
 
-    console.log(error)
     const handleSelectChange = (event) => {
         const selectedValue = event.target.value;
         setSelectedOption(selectedValue);
@@ -141,7 +138,6 @@ export default function View_in_details() {
             setSelectedOption(customValue);
         }
     };
-    console.log(view_data, 'this is data')
     return (
         <div className='my-5 pt-5 container' style={{ maxWidth: '1200px' }}>
             {room_details.status === 'loading' && <Loading />}
@@ -154,18 +150,18 @@ export default function View_in_details() {
                         <div className="carousel-inner">
                             {view_data?.img_array?.length > 0 ? view_data?.img_array?.map((itemImg, index) => (
                                 <div key={index} className={"carousel-item view-in-detail-item" + (index === 0 ? " active" : "")}>
-                                    <img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
+                                   <a href={`${blobUrl}/${itemImg?.image_field}`}><img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." /></a> 
                                 </div>
                             )) :
                                 view_data?.front_img !== null
                                     ?
                                     <div className={"room-image-search-details"}>
-                                        <img src={`${blobUrl}/${view_data?.front_img}`} style={{ background: 'red', opacity: '.5' }} className="d-block w-100 h-100" alt="..." />
+                                       <a href={`${blobUrl}/${view_data?.front_img}`}><img src={`${blobUrl}/${view_data?.front_img}`} style={{ background: 'red', opacity: '.5' }} className="d-block w-100 h-100" alt="..." /></a>  
                                     </div>
                                     :
                                     <div className={"room-image-search-details position-relative"}>
                                         <span className='fs-4' style={{ position: "absolute", top: '45%', bottom: '0%', left: '0', right: '0' }}>No images uploaded!</span>
-                                        <img src={img} style={{ background: 'red', opacity: '.5' }} className="d-block w-100 h-100" alt="..." />
+                                        <a href={img}><img src={img} style={{ background: 'red', opacity: '.5' }} className="d-block w-100 h-100" alt="..." /></a>
                                     </div>
                             }
                         </div>

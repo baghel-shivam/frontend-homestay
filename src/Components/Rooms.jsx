@@ -89,7 +89,7 @@ export default function Rooms() {
         setPaginationData({ ...paginationData, "PageItem": currentPageItems })
     };
 
-
+    console.log(data, 'hello items')
 
     return (
         <div className='container Room_div' style={{ minHeight: '100vh' }}>

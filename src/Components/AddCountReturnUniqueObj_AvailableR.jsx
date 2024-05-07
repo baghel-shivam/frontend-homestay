@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 export default function AddCountReturnUniqueObj_AvailableR({ data, collectRoom, setCollectRooms }) {
+    
     const [filter_d, setFilter_D] = useState([]);
     const [dependency, setDependency] = useState(true);
 
@@ -87,8 +88,6 @@ export default function AddCountReturnUniqueObj_AvailableR({ data, collectRoom, 
         });
 
     }, [filter_d, setCollectRooms]);
-
-    console.log(filter_d, 'this is filter d')
 
     return (
         <>
