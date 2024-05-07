@@ -54,7 +54,8 @@ export default function Landing() {
                 <div id='Landing_form_container' style={contentContainerStyle}>
                     <div className="container text-center p-4" id='Child_form'>
                         <div className='Main_title'>
-                            <h1>Discover Unique <span id='homestay'>HomeStays</span> in Your Area</h1>
+                            {/* <h1>Discover Unique  in Your Area</h1> */}
+                            <h1>Explore Exquisite Offbeat <span id='homestay'>HomeStays</span> : Experience Leisure Uniquely ! </h1>
                         </div>
                         <Form />
                     </div>
