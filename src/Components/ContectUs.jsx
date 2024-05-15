@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import img from '../Images/contact_us.jpg'
 export default function ContectUs(props) {
+  const [showContDetails, setShowContDetails] = useState({ data: "", open: false })
   return (
     <div className='container my-5' id="contact" ref={props.Ref}>
       <div className='mb-5'>
@@ -15,16 +16,37 @@ export default function ContectUs(props) {
             <hr />
           </span>
           <div className="container-social px-5 mx-5">
-            <div ><a
-              className='text-none' href="tel:+19739063275"><i class="bi bi-telephone fs-2"></i></a></div>
-            {/* <div><a href="https://www.instagram.com/your-instagram"><i className="bi bi-instagram fs-2"></i></a></div> */}
-            <div>
-              <a href="mailto:lazymonal@gmail.com">
-                <i className="bi bi-envelope fs-2"></i>
-              </a>
+            <div onClick={() => setShowContDetails({ data: "+19739063275", type: "Phone", open: true })} >
+              <i class="bi bi-telephone fs-2"></i>
+            </div>
+            <div onClick={() => setShowContDetails({ data: "lazymonal@gmail.com", type: "Email", open: true })}>
+              <i className="bi bi-envelope fs-2"></i>
             </div>
             {/* <div><a href="https://twitter.com/your-twitter"><i className="bi bi-twitter-x fs-2"></i></a></div> */}
           </div>
+          {showContDetails?.open &&
+            <div className='p-2 mt-3' style={{
+              border: "none", borderRadius: '10px', minHeight: "70px",
+              boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+            }}>
+              <div className='d-flex justify-content-between'>
+                <h5 className='text-bolder'>{showContDetails.type}</h5>
+                <button onClick={() => setShowContDetails({ open: false })} type="button" class="btn-close" aria-label="Close"></button>
+
+              </div>
+              <hr className='m-0 p-0' />
+              <div className='container'>
+                <div className='m-auto'>
+                  <p className='m-2 fs-6'>
+                    {showContDetails.type}: {showContDetails.data}
+                  </p>
+                </div>
+
+
+              </div>
+            </div>
+          }
+
 
           <span className='sub-heading'>Have a question, feedback, or just want to say hello? We'd love to hear from you!
             <hr /></span>
@@ -39,6 +61,6 @@ export default function ContectUs(props) {
         </div>
 
       </div>
-    </div>
+    </div >
   )
 }

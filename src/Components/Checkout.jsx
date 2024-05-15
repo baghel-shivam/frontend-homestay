@@ -7,7 +7,7 @@ import Success from './Success'
 import TermsAndCond from './TermsAndCond'
 import Term from '../TermAndCond.json'
 
-export default function Checkout({ view_data, guest_room, collectRoom }) {
+export default function Checkout({ view_data, guest_room, collectRoom, selectedOption }) {
     const [data, setData] = useState()
     const [lgShow, setLgShow] = useState(false);
     const [error, setError] = useState('');
@@ -82,11 +82,11 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(formDataTC.checked){
+        if (formDataTC.checked) {
 
             dispatch(BookingRequest(data))
         }
-        else{
+        else {
             setError('Accept Terms and Conditions first!');
         }
     }
@@ -98,7 +98,8 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
         }
         setError('');
     }
-    console.log(selecteDRooms, 'hello sir ')
+
+    console.log(guest_room, 'dddddddddd')
     return (
         <div className='checkout-container'>
             {booking?.status === 'loading' && <Loading />}
@@ -107,7 +108,7 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
                 <div className="modal-dialog modal-dialog-centered modal-lg">
                     <div className="modal-content overflow-hidden">
 
-                        <button type="button" style={{zIndex:'9999'}} className="btn-close btn-close-checkout" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" style={{ zIndex: '9999' }} className="btn-close btn-close-checkout" data-bs-dismiss="modal" aria-label="Close"></button>
                         <div className="row overflow-hidden  ">
                             <div className="col img-checkout-div d-none d-lg-block">
                                 {/* <img src={checkOut} className='checkout-img' height={250} alt='Check-out-img' /> */}
@@ -122,7 +123,8 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
                                         <div className="col d-flex">
                                             <div className='d-flex'>
                                                 <h5><b> &#8377;
-                                                    {selecteDRooms?.reduce((acc, cur) => acc + (cur?.base_price * cur?.bookCount), 0)?.toLocaleString('en-IN')}
+                                                    {/* {(selecteDRooms?.reduce((acc, cur) => acc + (cur?.base_price * cur?.bookCount), 0)?.toLocaleString('en-IN'))} */}
+                                                    {(selecteDRooms?.reduce((acc, cur) => acc + (cur?.base_price * cur?.bookCount), 0) * formData.daysDifference)?.toLocaleString("en-IN")}
                                                 </b></h5><small className='text-secondary mx-2 mt-1 '> + Tax & Fee</small></div>
                                         </div>
                                         <div className="col">
@@ -133,7 +135,7 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
                                     </div>
 
                                     <div className="row py-2 check-in-check-out-date">
-                                        <div className="col">
+                                        <div className="col-4">
                                             <small className='fw-bolder'>
                                                 {formData?.checkin_date ? (
                                                     <span>
@@ -144,7 +146,7 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
                                                 )}
                                             </small>
                                         </div>
-                                        <div className="col">
+                                        <div className="col-4">
                                             <small className='fw-bolder'>
                                                 {formData?.checkout_date ? (
                                                     <span>
@@ -155,9 +157,20 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
                                                 )}
                                             </small>
                                         </div>
-                                        <div className="col d-flex text-center">
-                                            <small><b>{selecteDRooms && selecteDRooms?.reduce((acc, item) => acc + item?.bookCount, 0)}</b> Room </small>
+
+                                        <div className="col-4 d-flex text-center">
+                                            <small><b>{selecteDRooms && (selecteDRooms?.reduce((acc, item) => acc + item?.bookCount, 0)>1?`${selecteDRooms?.reduce((acc, item) => acc + item?.bookCount, 0)} Room's`:`${selecteDRooms?.reduce((acc, item) => acc + item?.bookCount, 0)} Room`)}</b>  </small>
                                         </div>
+                                    </div>
+                                    <div className="row py-2 check-in-check-out-date">
+                                        <div className="col-4">
+                                            <small><b>{selectedOption > 1 ? `${selectedOption} Adult's` : `${selectedOption} Adult`} </b> </small>
+                                        </div>
+                                        <div className="col-4">
+                                            <small><b>{formData?.daysDifference > 1 ? `${formData?.daysDifference} Night's` : `${formData?.daysDifference} Night`} </b> </small>
+                                        </div>
+
+
                                     </div>
                                 </div>
 
@@ -166,10 +179,10 @@ export default function Checkout({ view_data, guest_room, collectRoom }) {
                                         <form onSubmit={handleSubmit} method='POST'>
                                             <div className="mb-2  mx-3">
                                                 <input type="text" id='text_color' onChange={handleChange} name='customer_name' className=" form-control mt-3" placeholder="Enter name" required />
-                                                <input type="tel"  pattern="[0-9]{10}" minlength="10" maxlength="10" id='text_color' onChange={handleChange} name='customer_phn' className=" form-control mt-3" placeholder="Enter Phone No." required />
+                                                <input type="tel" pattern="[0-9]{10}" minlength="10" maxlength="10" id='text_color' onChange={handleChange} name='customer_phn' className=" form-control mt-3" placeholder="Enter Phone No." required />
                                                 <input type="email" id='text_color' onChange={handleChange} name='customer_email' className=" form-control mt-3" placeholder="Enter Email" />
                                                 <div className=" text-start form-check my-2">
-                                                    <TermsAndCond lgShow={lgShow} setLgShow={setLgShow} Agree={Agree} data={Term?.Terms_and_condition_Guest}  />
+                                                    <TermsAndCond lgShow={lgShow} setLgShow={setLgShow} Agree={Agree} data={Term?.Terms_and_condition_Guest} />
                                                     <input
                                                         required
                                                         type="checkbox"

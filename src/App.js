@@ -22,6 +22,7 @@ import StaySupport from './Components/Help/StaySupport'
 import HealthSafety from './Components/Help/HealthSafety'
 import TechnicalSupport from './Components/Help/TechnicalSupport'
 import TravelAssi from './Components/Help/TravelAssi'
+import ChatBoat from './Components/ChatBoat/ChatBoat';
 
 function App() {
   useEffect(() => {
@@ -34,6 +35,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
+        <ChatBoat/>
         <Routes>
           <Route exact path="/" element={<Landing />} />
           <Route path="/search-rooms" element={<Rooms />} />

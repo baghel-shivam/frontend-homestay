@@ -100,7 +100,7 @@ export default function View_in_details() {
         const Economy = []
         const Premium = []
         const others = []
-        
+
         view_data?.availabel_rooms?.map((item) => {
             if (item?.category !== undefined && item?.category !== null && item?.category !== '') {
                 if (item.category === 'Economy') {
@@ -116,7 +116,7 @@ export default function View_in_details() {
 
     }, [room_details.data, state, view_data])
 
-   
+
     const handleNav = () => {
         if (validation()) {
             if (selectedOption > 0) {
@@ -139,6 +139,7 @@ export default function View_in_details() {
             setSelectedOption(customValue);
         }
     };
+    console.log(room_details, 'this is room details')
     return (
         <div className='my-5 pt-5 container' style={{ maxWidth: '1200px' }}>
             {room_details.status === 'loading' && <Loading />}
@@ -146,18 +147,18 @@ export default function View_in_details() {
             <span className='mt-3 fs-2' style={{ color: '#00000', fontWeight: '700' }}>Homestay Detail</span>
             <hr />
             <div className="row my-5">
-                <div className="col-12 col-lg-6 col-md-6">
+                <div className="col-12 col-lg-8 col-md-8">
                     <div id={`carouselExampleCaptions`} className=" details-box carousel slide rounded-3 overflow-hidden">
                         <div className="carousel-inner">
                             {view_data?.img_array?.length > 0 ? view_data?.img_array?.map((itemImg, index) => (
                                 <div key={index} className={"carousel-item view-in-detail-item" + (index === 0 ? " active" : "")}>
-                                   <a href={`${blobUrl}/${itemImg?.image_field}`}><img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." /></a> 
+                                    <a href={`${blobUrl}/${itemImg?.image_field}`}><img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." /></a>
                                 </div>
                             )) :
                                 view_data?.front_img !== null
                                     ?
                                     <div className={"room-image-search-details"}>
-                                       <a href={`${blobUrl}/${view_data?.front_img}`}><img src={`${blobUrl}/${view_data?.front_img}`} style={{ background: 'red', opacity: '.5' }} className="d-block w-100 h-100" alt="..." /></a>  
+                                        <a href={`${blobUrl}/${view_data?.front_img}`}><img src={`${blobUrl}/${view_data?.front_img}`} style={{ background: 'red', opacity: '.5' }} className="d-block w-100 h-100" alt="..." /></a>
                                     </div>
                                     :
                                     <div className={"room-image-search-details position-relative"}>
@@ -176,7 +177,7 @@ export default function View_in_details() {
                         </button>
                     </div>
                 </div>
-                <div className="col-12 col-lg-6 col-md-6 text-center details-box rounded-3  pt-3 ">
+                <div className="col-12 col-lg-4 col-md-4 text-center details-box rounded-3  pt-3 ">
                     <div className="container">
                         <div className=" text-start">
                             <h4>{view_data?.site_name}</h4>
@@ -320,16 +321,10 @@ export default function View_in_details() {
                                 <div className="fixed-bottom w-100 py-3 bg-light px-3 d-block d-lg-none">
                                     <button onClick={handleNav} className="btn btn-success px-5 w-100 py-2">Book</button>
                                 </div>
-
-
                                 <button id='toggle' data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className='d-none'></button>
-                                <Checkout view_data={view_data} guest_room={guest_room} totalPrice={totalPrice} collectRoom={collectRoom} />
+                                <Checkout selectedOption={selectedOption} view_data={view_data} guest_room={guest_room} totalPrice={totalPrice} collectRoom={collectRoom} />
                             </div>
-
                         </div>
-
-
-
                     }
 
                 </div>
@@ -339,27 +334,45 @@ export default function View_in_details() {
             <h4 id='text_color' className='my-4'>Guest Reviews & Rating for {view_data?.site_name}</h4>
             <div className="">
                 <div className='row rounded-3 border border-1 m-0 p-0' style={{ margin: '0px', padding: '0px' }}>
-                    <div className="col-12 col-md-6 col-lg-6 text-start px-3">
-                        <span className='mt-3 p-2 fs-1 text-start' style={{ color: '#00000', fontWeight: '700', fontFamily: 'Trebuchet MS, sans-seri' }}>About</span>
-                        <p className='p-2'>
-                            {view_data?.about_this_homestay}</p>
-                        <span className='mt-3 p-2 fs-3 text-start'
-                            style={{ color: '#00000', fontWeight: '700', fontFamily: 'Trebuchet MS, sans-seri' }}>How to reach</span>
-                        <p className='p-2'>
-                            {view_data?.how_to_reach}</p>
+                    <div className="col-12 col-md-6 col-lg-6 text-start px-3 py-2">
+                        <div>
+                            <span className=' p-2 fs-2 text-start' style={{ color: '#00000', fontWeight: '700', fontFamily: 'Trebuchet MS, sans-seri' }}>About</span>
+                            <p className='p-2'>
+                                {view_data?.about_this_homestay ? view_data?.about_this_homestay : 'Please, Add about content.'}</p>
+                        </div>
+                        <hr />
+                        <div>
+                            <span className='mt-3 p-2 fs-5 text-start'
+                                style={{ color: '#00000', fontWeight: '600', fontFamily: 'Trebuchet MS, sans-seri' }}>Attraction points: </span>
+                            <ol>
+                                <li>{view_data?.nearest_attraction_1}</li>
+                                <li>{view_data?.nearest_attraction_2}</li>
+                                <li>{view_data?.nearest_attraction_3}</li>
+                                <li>{view_data?.nearest_attraction_4}</li>
+                                <li>{view_data?.nearest_attraction_5}</li>
+                            </ol>
+                            <p className='p-2'>
+                                {view_data?.nearest_attraction_1}</p>
+                        </div>
+                        <hr />
+                        <div>
+
+                            <span className='mt-3 p-2 fs-5 text-start' style={{ color: '#00000', fontWeight: '600', fontFamily: 'Trebuchet MS, sans-seri' }}>How to reach</span>
+                            <p className='p-2'> {view_data?.how_to_reach} </p>
+                        </div>
                     </div>
                     <div className="col-12 col-md-6 col-lg-6  d-flex flex-wrap align-content-center">
                         <div className='w-50 text-center'>
                             <strong className='my-2'>Reviews</strong>
                             <div className="container  mb-3">
                                 <span>5 &#9733;</span>
-                                <div className="w-100 rate-bar">
-                                    <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
+                                <div className="w-100  rate-bar">
+                                    <div className="w-75 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
                                     </div>
                                 </div>
                                 <span>4 &#9733;</span>
                                 <div className="w-100 rate-bar">
-                                    <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
+                                    <div className="w-50 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
 
                                     </div>
                                 </div>
@@ -384,11 +397,11 @@ export default function View_in_details() {
                             </div>
                         </div>
 
-                        <div className=''>
+                        <div className='p-1'>
                             <strong className=''>Ratings</strong>
-                            <div className="my-3 bg-success rounded-3 text-light m-auto" style={{ minWidth: '19vh', width: "20vh", minHeight: '20vh' }}>
-                                <span className='mt-3  fs-3' style={{ color: '#00000', fontWeight: '200' }}>Ratings</span>
-                                <h1>4/3.5</h1>
+                            <div className="my-3 bg-success rounded-3 text-light m-auto" style={{ minWidth: '120px', width: "150px", minHeight: '120px' }}>
+                                <span className='mt-3  fs-5' style={{ color: '#00000', fontWeight: '200' }}>Ratings</span>
+                                <h5>4/3.5</h5>
                                 <span>786 Ratings</span><br />
                                 <span>786 Reviews</span>
                             </div>

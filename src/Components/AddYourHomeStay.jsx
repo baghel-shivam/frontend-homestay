@@ -180,14 +180,19 @@ export default function AddYourHomeStay() {
             // alert(JSON.stringify(formData))
             try {
                 if (room.length > 0) {
-                    await dispatch(AddNewProperty(formData));
-                    await AddProp
-                    handleShow()
-                    // await 
-                    setFormData({});
-                    setTimeout(() => {
-                        window.location.reload(true)
-                    }, 3000);
+                    if (formData?.front_img1 && formData?.front_img2 && formData?.front_img3){
+
+                        await dispatch(AddNewProperty(formData));
+                        await AddProp
+                        handleShow()
+                        // await 
+                        setFormData({});
+                        setTimeout(() => {
+                            window.location.reload(true)
+                        }, 3000);
+                    }else{
+                        notify("Please add at least 3 Homestay images")
+                    }
                 }
                 else {
                     notify('Add room first.')
@@ -354,7 +359,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input type="number" className="form-control" name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from sirport, KM" />
+                                        <input type="number" className="form-control" name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from airport, KM" />
                                     </div>
                                 </div>
 
@@ -639,9 +644,8 @@ export default function AddYourHomeStay() {
                                                     name="front_img1"
                                                     // value={formData.front_img1.name}
                                                     onChange={handleFileChange}
-                                                    placeholder="Add Images"
+                                                    placeholder="Add Images *"
                                                     accept=".jpg, .jpeg"
-
                                                 />
 
                                             </div>

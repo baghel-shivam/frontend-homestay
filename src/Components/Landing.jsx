@@ -12,7 +12,6 @@ import { useDispatch } from 'react-redux';
 import ChatBoat from './ChatBoat/ChatBoat';
 import DateRangePickerValue from './DateRange';
 
-
 export default function Landing() {
     const ref_about = useRef(null)
     const ref_landing = useRef(null)
@@ -47,22 +46,18 @@ export default function Landing() {
 
     return (
         <div className='only_for_bg' >
-                <ChatBoat />
-                {/* <DateRangePickerValue/> */}
-
-                <div style={bgStyle} ref={ref_landing}></div>
-                <div id='Landing_form_container' style={contentContainerStyle}>
-                    <div className="container text-center p-4" id='Child_form'>
-                        <div className='Main_title'>
-                            {/* <h1>Discover Unique  in Your Area</h1> */}
-                            <h1>Explore Exquisite Offbeat <span id='homestay'>HomeStays</span> : Experience Leisure Uniquely ! </h1>
-                        </div>
-                        <Form />
+           
+            <div style={bgStyle} ref={ref_landing}></div>
+            <div id='Landing_form_container' style={contentContainerStyle}>
+                <div className="container text-center p-4" id='Child_form'>
+                    <div className='Main_title'>
+                        <h1> Experience Leisure Uniquely:  "Explore Exquisite Offbeat  <span id='homestay'>HomeStays"</span> </h1>
                     </div>
+                    <Form />
                 </div>
-                <WhyBook />
-            <div className='Landing-width-adjustment'>             
-
+            </div>
+            <WhyBook />
+            <div className='Landing-width-adjustment'>
                 <TopDestination />
                 <AboutUs Ref={ref_about} />
                 <ContectUs Ref={ref_contact} />

@@ -57,8 +57,9 @@ export default function TopDestination(props) {
 
         ]
     }
+
     return (
-        <div className='top-destination py-5 m-auto overflow-hidden' style={{ maxWidth: '1200px' }} >
+        <div className='top-destination py-4 m-auto overflow-hidden' style={{ maxWidth: '1200px' }} >
             <span className='pb-4 headings'>Top Destinations</span>
             <div className="custom-hr">
                 <hr />

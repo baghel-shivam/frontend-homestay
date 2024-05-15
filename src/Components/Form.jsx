@@ -14,15 +14,14 @@ export default function Form() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [isHighlighted, setIsHighlighted] = useState(false);
-    const [data, setData] = useState({ "checkin_date": null, "checkout_date": null, "location": '' })
+    const [data, setData] = useState({ "checkin_date": null, "checkout_date": null, "location": '', "daysDifference": "" })
     const [showCheckIn, setShowCheckOut] = useState(true)
     const state1 = useSelector((state) => state?.SearchRoom)
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    
     const dayAfterTomorrow = new Date();
     dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
-    
+
     const [value, onChange] = useState([tomorrow, dayAfterTomorrow]);
     const ref = useRef()
 
@@ -59,7 +58,9 @@ export default function Form() {
             const month_check_out = String(date_check_out.getMonth() + 1).padStart(2, '0');
             const day_check_out = String(date_check_out.getDate()).padStart(2, '0');
             const formattedDate_check_out = `${year_check_out}-${month_check_out}-${day_check_out}`;
-            setData({ ...data, "checkin_date": formattedDate_check_in, "checkout_date": formattedDate_check_out });
+            const timeDifference = date_check_out.getTime() - date_check_in.getTime();
+            const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+            setData({ ...data, "checkin_date": formattedDate_check_in, "checkout_date": formattedDate_check_out, "daysDifference": daysDifference > 1 ? daysDifference - 1 : daysDifference });
         }
 
         if (value === null) { setShowCheckOut(true) } else { setShowCheckOut(false) }
@@ -117,7 +118,6 @@ export default function Form() {
         }
     }
 
-    console.log(showCheckIn, 'checkouut destini')
 
     return (
         <div className='sub_child'>

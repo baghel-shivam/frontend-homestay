@@ -158,20 +158,23 @@
     font-family: Trebuchet MS, sans-seri;
 }
 
-
 .top-destination {
     background-color: #ffffff;
+    border-radius: 20px;
+    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
 }
 
 .container-city {
     overflow: hidden;
-    margin-top: 30px;
+    margin-top: 40px;
     padding: 10px;
     max-height: 25vh;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-
+.advantages{
+    margin: 1px;
+}
 
 .container-w-w-u {
     margin-top: 30px;
@@ -255,11 +258,12 @@
     border: none !important;
 }
 
-.myNewSwiper{
+.myNewSwiper {
     height: 300px !important;
     padding: 0;
     margin: 0;
 }
+
 .swiper-wrapper {
     position: relative;
     width: 100%;
@@ -270,6 +274,7 @@
     transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
     box-sizing: content-box;
 }
+
 @media only screen and (max-width: 765px) {
     .swiper-wrapper {
         position: relative;
@@ -357,16 +362,22 @@
     }
 }
 
+
 /* For desktop only */
 @media only screen and (min-width: 765px) {
     .Landing-width-adjustment {
         max-width: 1200px;
         margin: auto;
+        /* border-rad; */
+    }
+
+    #Landing_form_container {
+        margin-top: 3rem;
     }
 
     .top-destination {
         background-color: #ffffff;
-        padding: 40px 0px;
+        padding: 0px 0px;
     }
 
     .Room_div {
@@ -382,7 +393,8 @@
     .Room_div {
         height: 100vh;
     }
-  .nav-form-parent {
+
+    .nav-form-parent {
         position: -webkit-sticky;
         position: sticky;
         height: 90vh;

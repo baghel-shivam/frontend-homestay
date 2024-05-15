@@ -35,28 +35,28 @@ export default function FormChatBot({ setShowForm }) {
     return (
         <div className="container-chat-form">
 
-            <span className='fs-5 fw-bolder'>Form</span>
+            <span className='fs-5 fw-bolder'>Contact</span>
             <hr />
             <form onSubmit={handleSubmit}>
-                <div class="mb-3">
-                    {/* <label for="exampleInputEmail1" class="form-label">Full Name</label> */}
-                    <input type="text" name='full_name' onChange={handleChange} placeholder='Full Name' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                    {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
+                <div className="mb-3">
+                    {/* <label for="exampleInputEmail1" className="form-label">Full Name</label> */}
+                    <input required type="text" name='full_name' onChange={handleChange} placeholder='Full Name' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
                 </div>
-                <div class="mb-3">
-                    {/* <label for="exampleInputEmail1" class="form-label">Email</label> */}
-                    <input type="email" name='email' onChange={handleChange} placeholder='Email' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                    {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
+                <div className="mb-3">
+                    {/* <label for="exampleInputEmail1" className="form-label">Email</label> */}
+                    <input required type="email" name='email' onChange={handleChange} placeholder='Email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
                 </div>
-                <div class="mb-3">
-                    {/* <label for="exampleInputEmail1" class="form-label">Email</label> */}
-                    <input type="number" name='phn_no' onChange={handleChange} placeholder='Phone no.' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                    {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
+                <div className="mb-3">
+                    {/* <label for="exampleInputEmail1" className="form-label">Email</label> */}
+                    <input required type="number" name='phn_no' onChange={handleChange} placeholder='Phone no.' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
                 </div>
-                <div class="mb-3 text-start">
-                    <textarea type="text" name='mssg' onChange={handleChange} class="form-control" style={{ minHeight: '100px' }} placeholder='Message*' id="exampleInputPassword1" />
+                <div className="mb-3 text-start">
+                    <textarea required type="text" name='mssg' onChange={handleChange} className="form-control" style={{ minHeight: '100px' }} placeholder='Message*' id="exampleInputPassword1" />
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </div>
     )

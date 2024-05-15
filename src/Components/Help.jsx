@@ -9,6 +9,7 @@ import bp from '../Images/PremiumIcons/bill.png'
 import hs from '../Images/PremiumIcons/shield.png'
 import ss from '../Images/PremiumIcons/support.png'
 import { Link } from 'react-router-dom'
+import ChatBoat from './ChatBoat/ChatBoat'
 
 export default function Help() {
   const Data = [
@@ -61,22 +62,22 @@ export default function Help() {
           </h1>
         </div>
 
-
+  
 
       </div>
       <div className="container d-flex justify-content-center my-5" style={{ maxWidth: '1200px' }}>
         <div className='help-items'>
           {Data?.map((item) => (
-              <Link to={item.link} style={{textTransform:'none', textDecoration:'none', color:'black'}}>
-            <div className='help-item'>
+            <Link to={item.link} style={{ textTransform: 'none', textDecoration: 'none', color: 'black' }}>
+              <div className='help-item'>
                 <div className='icon-div'>
                   <img src={item?.icon} height={70} />
                 </div>
                 <div className='content'>
                   <h4>{item?.name}</h4>
                 </div>
-            </div>
-              </Link>
+              </div>
+            </Link>
           ))}
 
 
