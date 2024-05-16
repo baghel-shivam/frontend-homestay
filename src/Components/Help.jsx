@@ -9,9 +9,14 @@ import bp from '../Images/PremiumIcons/bill.png'
 import hs from '../Images/PremiumIcons/shield.png'
 import ss from '../Images/PremiumIcons/support.png'
 import { Link } from 'react-router-dom'
-import ChatBoat from './ChatBoat/ChatBoat'
-
+import { useEffect } from 'react'
+import { useRef } from 'react'
 export default function Help() {
+  const ref = useRef(null);
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
+
   const Data = [
     {
       "name": "Booking Assistance",
@@ -49,11 +54,10 @@ export default function Help() {
       "link": "/health-safety"
     }
   ]
-
-
-
   return (
     <div style={{ minHeight: '100vh', }}>
+      <div ref={ref} tabIndex={0}>
+      </div>
       <div style={{ height: "46vh", }}>
         <img src={img} style={{ objectFit: 'cover', height: '100%', width: '100%', filter: "blur(0px)" }} />
         <div className='container position-absolute' style={{ top: '25%', left: '0', right: '0' }}>
@@ -62,7 +66,7 @@ export default function Help() {
           </h1>
         </div>
 
-  
+
 
       </div>
       <div className="container d-flex justify-content-center my-5" style={{ maxWidth: '1200px' }}>

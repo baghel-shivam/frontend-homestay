@@ -57,8 +57,8 @@ export default function Footer() {
             </p>
             <div className="d-flex flex-column text-start " style={{ cursor: 'pointer', padding: 0, color: '#00000', fontSize: '14px' }}>
               <Link to={'/support'} className='nav-link active'> Support</Link>
-              <Link to={'#'} className='nav-link active'> FAQ</Link>
-              <Link to={'#'} className='nav-link active'> Blog</Link>
+              <Link to={'#'} className='nav-link active  mt-1'> FAQ</Link>
+              <Link to={'#'} className='nav-link active  mt-1'> Blog</Link>
               {/* <Link to={'/support'} className='nav-link active'> Contact us </Link> */}
 
             </div>
