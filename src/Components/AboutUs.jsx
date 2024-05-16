@@ -56,6 +56,10 @@ export default function AboutUs(props) {
             Established with the goal of revolutionizing the online tourism sector and popularizing homestays and private room rentals as preferred lodging options.
 
           </p>
+          <span className='sub-heading text-start'> At a glance
+            <hr />
+          </span>
+ 
           <div className="about-items">
             {data?.map((item) =>
               <div className="about-item">
