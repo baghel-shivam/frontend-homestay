@@ -19,6 +19,10 @@ export default function Landing() {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        ref_landing.current.focus();
+    }, [])
+
+    useEffect(() => {
         dispatch(StoreContactRef((ref_contact.current)))
         dispatch(StoreAbout_us_Ref(ref_about.current))
         dispatch(StoreLanding_Ref(ref_landing.current))
@@ -26,17 +30,8 @@ export default function Landing() {
 
 
     const bgStyle = {
-        position: 'absolute',
-        top: '0',
-        left: '0',
-        width: '100%',
-        height: '75%',
-        backgroundImage: `url(${bg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        // filter: 'blur(2px)',
-        // WebkitFilter: 'blur(2px)',
-        zIndex: '-99999',
+               backgroundImage: `url(${bg})`,
+       
     };
 
     const contentContainerStyle = {
@@ -46,7 +41,7 @@ export default function Landing() {
 
     return (
         <div className='only_for_bg' >
-            <div style={bgStyle} ref={ref_landing}></div>
+            <div className='bg_style' style={bgStyle} tabIndex={0} ref={ref_landing}></div>
             <div id='Landing_form_container' style={contentContainerStyle}>
                 <div className="container text-center p-4" id='Child_form'>
                     <div className='Main_title'>

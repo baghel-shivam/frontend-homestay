@@ -17,17 +17,18 @@ export default function AboutUs(props) {
           </div>
         </div>
         <div className="col-12 col-lg-6 p-3 px-4 text-start">
-          <span className='sub-heading text-start'> Welcome to HOMESTAY
+          <span className='sub-heading text-start'> What we're about
             <hr />
           </span>
           <p>
-            Your ultimate destination for finding the perfect accommodation for your stay! Whether you're a traveler in search of a cozy retreat or a property owner looking to showcase your space, HOMESTAY is here to connect you with comfort and convenience.
+          We're big fans of home sharing and dedicated to offering quality rooms at wallet-friendly prices, and to giving hosts an opportunity to rent out their spare rooms on our global marketplace.
           </p>
 
-          <span className='sub-heading'>For Property Owners:
+          <span className='sub-heading'>Our story:
             <hr /></span>
           <p>
-            Join our community and showcase your property to travelers worldwide. With HOMESTAY, you can easily list your space, highlight its best features, and attract guests looking for a home away from home. Our platform provides tools to manage bookings, communicate with guests, and maximize your rental potential.
+          Established with the goal of revolutionizing the online tourism sector and popularizing homestays and private room rentals as preferred lodging options.
+
           </p>
         </div>
       </div>

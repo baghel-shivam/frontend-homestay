@@ -156,7 +156,7 @@ export default function AddYourHomeStay() {
             draggable: true,
         }
     );
-  
+
     const Agree = (accept, closeDialog) => {
         setLgShow(closeDialog)
         if (accept) {
@@ -267,8 +267,6 @@ export default function AddYourHomeStay() {
                                         <input required type="text" className="form-control" name="city" value={formData.city} onChange={handleChange} placeholder="Enter city" />
                                     </div>
                                 </div>
-
-
                             </div>
                             <div className="row">
                                 <div className="col-md-6">
@@ -278,7 +276,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="number"  min='1'  className="form-control" name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Pin-code" />
+                                        <input required type="number" min='1' className="form-control" name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Pin-code" />
                                     </div>
                                 </div>
                             </div>
@@ -308,6 +306,7 @@ export default function AddYourHomeStay() {
                                     </div>
                                 </div>
                             </div>
+                            <hr />
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
@@ -322,7 +321,7 @@ export default function AddYourHomeStay() {
                                     </div>
                                 </div>
                             </div>
-                            <hr />
+
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="mb-3">
@@ -370,7 +369,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="number"  min='.1'  className="form-control" name="distance_from_rs" value={formData.distance_from_rs} onChange={handleChange} placeholder="Distance from railway station, KM" />
+                                        <input required type="number" min='.1' className="form-control" name="distance_from_rs" value={formData.distance_from_rs} onChange={handleChange} placeholder="Distance from railway station, KM" />
                                     </div>
                                 </div>
 
@@ -383,7 +382,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input type="number" className="form-control"  min='.1'  name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from airport, KM" />
+                                        <input type="number" className="form-control" min='.1' name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from airport, KM" />
                                     </div>
                                 </div>
 
@@ -391,7 +390,7 @@ export default function AddYourHomeStay() {
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input type="text" className="form-control"  name="nearest_metro_station" value={formData.nearest_metro_station} onChange={handleChange} placeholder="Nearest metro station" />
+                                        <input type="text" className="form-control" name="nearest_metro_station" value={formData.nearest_metro_station} onChange={handleChange} placeholder="Nearest metro station" />
                                     </div>
                                 </div>
                                 <div className="col-md-6">
@@ -440,10 +439,11 @@ export default function AddYourHomeStay() {
 
                             </div>
                         </div>
+
                     </div>
                     <div className="col-md-6">
                         <h5 className=' mx-3 mb-4 text-start'>More Details About Your Homestay</h5>
-                        <small className='text-danger text-justify'>LazyMonal retains the right to withhold 10% of the total booking charges from customers in advance, while the remaining 90% will be collected by the HomeStay Owner through mutually agreed-upon payment methods between both parties.</small>
+
                         <div className="container mt-2">
 
                             <div className="container px-2 py-2 rounded-3" style={{ background: '#ECECEC' }}>
@@ -775,6 +775,11 @@ export default function AddYourHomeStay() {
                                 </form>
 
                             </div>
+                            <div className='my-2 text-left px-2'>
+                                <hr/>
+                                <small className='text-danger text-justify'>LazyMonal retains the right to withhold 10% of the total booking charges from customers in advance, while the remaining 90% will be collected by the HomeStay Owner through mutually agreed-upon payment methods between both parties.</small>
+
+                            </div>
                             <div className="row mt-4 px-4">
                                 <div className="mb-3 text-start form-check x-5">
                                     <TermsAndCond lgShow={lgShow} setLgShow={setLgShow} Agree={Agree} data={Terms?.Terms_and_Conditions_homestay} />
@@ -791,6 +796,7 @@ export default function AddYourHomeStay() {
                                     {error && <small className="error-message text-danger">{error}</small>}
                                 </div>
                             </div>
+
                             <button type="submit" className="card-link mt-1 btn btn-success w-50">Submit</button>
                         </div>
                     </div>
