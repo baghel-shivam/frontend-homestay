@@ -369,7 +369,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="number" min='.1' className="form-control" name="distance_from_rs" value={formData.distance_from_rs} onChange={handleChange} placeholder="Distance from railway station, KM" />
+                                        <input required type="number" min='.1' className="form-control" name="distance_from_rs" value={formData.distance_from_rs} onChange={handleChange} placeholder="Distance from railway station, (KM)" />
                                     </div>
                                 </div>
 
@@ -382,7 +382,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input type="number" className="form-control" min='.1' name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from airport, KM" />
+                                        <input type="number" className="form-control" min='.1' name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from airport, (KM)" />
                                     </div>
                                 </div>
 
@@ -395,7 +395,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input type="number" className="form-control" min='.1' name="distance_from_ms" value={formData.distance_from_ms} onChange={handleChange} placeholder="Distance from metro station, KM" />
+                                        <input type="number" className="form-control" min='.1' name="distance_from_ms" value={formData.distance_from_ms} onChange={handleChange} placeholder="Distance from metro station, (KM)" />
                                     </div>
                                 </div>
 
@@ -660,7 +660,7 @@ export default function AddYourHomeStay() {
                                         {/* <hr/> */}
                                         <div className="row">
                                             <div className="col-12 mb-3">
-                                                <label htmlFor="frontImage1">Add Image 1 <small className='text-danger'>* mandatory</small></label>
+                                                <label htmlFor="frontImage1">Add Main Image 1 <small className='text-danger'>* mandatory</small></label>
                                                 <input
                                                     required
                                                     type="file"
@@ -676,7 +676,7 @@ export default function AddYourHomeStay() {
                                         </div>
                                         <div className="row">
                                             <div className="col-6 mb-3">
-                                                <label htmlFor="frontImage1">Add Image 2 <small className='text-danger'>* mandatory</small></label>
+                                                <label htmlFor="frontImage1">Add Main Image 2 <small className='text-danger'>* mandatory</small></label>
                                                 <input
                                                     required
                                                     type="file"
@@ -691,7 +691,7 @@ export default function AddYourHomeStay() {
 
                                             </div>
                                             <div className="col-6 mb-3">
-                                                <label htmlFor="frontImage1">Add Image 3 <small className='text-danger'>* mandatory</small></label>
+                                                <label htmlFor="frontImage1">Add Main Image 3 <small className='text-danger'>* mandatory</small></label>
                                                 <input
                                                     required
                                                     type="file"
@@ -709,7 +709,7 @@ export default function AddYourHomeStay() {
                                         </div>
                                         <div className="row">
                                             <div className="col-6 mb-3">
-                                                <label htmlFor="frontImage1">Add Image 4</label>
+                                                <label htmlFor="frontImage1">Add Main Image 4</label>
                                                 <input
 
                                                     type="file"
@@ -724,7 +724,7 @@ export default function AddYourHomeStay() {
 
                                             </div>
                                             <div className="col-6 mb-3">
-                                                <label htmlFor="frontImage1">Add Image 5</label>
+                                                <label htmlFor="frontImage1">Add Main Image 5</label>
                                                 <input
 
                                                     type="file"
@@ -739,7 +739,7 @@ export default function AddYourHomeStay() {
 
                                             </div>
                                             <div className="col-6 mb-3">
-                                                <label htmlFor="frontImage1">Add Image 6</label>
+                                                <label htmlFor="frontImage1">Add Main Image 6</label>
                                                 <input
 
                                                     type="file"
@@ -754,7 +754,7 @@ export default function AddYourHomeStay() {
 
                                             </div>
                                             <div className="col-6 mb-3">
-                                                <label htmlFor="frontImage1">Add Image 7</label>
+                                                <label htmlFor="frontImage1">Add Main Image 7</label>
                                                 <input
 
                                                     type="file"

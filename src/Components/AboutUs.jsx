@@ -1,7 +1,33 @@
 import React from 'react'
 import img from '../Images/about_us.jpg'
+import services from '../Images/about_us/24-hours-service.png'
+import coin from '../Images/about_us/coin.png'
+import guest from '../Images/about_us/guests.png'
+import rating from '../Images/about_us/rating.png'
+import star from '../Images/about_us/star.png'
 
 export default function AboutUs(props) {
+  const data = [
+    {
+      name: "24 X7 SUPPORT",
+      icon: services,
+    }, {
+      name: "15K GUEST REVIEWS",
+      icon: rating,
+    }
+    , {
+      name: "4/5 RATINGS",
+      icon: star,
+    }
+    , {
+      name: "$1800 PER YEAR APPROXIMATELY",
+      icon: coin,
+    }
+    , {
+      name: "100K + GUESTS",
+      icon: guest,
+    }
+  ]
   return (
     <div className='container my-5' id='about' ref={props.Ref}>
       <div className='mb-5'>
@@ -21,15 +47,28 @@ export default function AboutUs(props) {
             <hr />
           </span>
           <p>
-          We're big fans of home sharing and dedicated to offering quality rooms at wallet-friendly prices, and to giving hosts an opportunity to rent out their spare rooms on our global marketplace.
+            We're big fans of home sharing and dedicated to offering quality rooms at wallet-friendly prices, and to giving hosts an opportunity to rent out their spare rooms on our global marketplace.
           </p>
 
           <span className='sub-heading'>Our story:
             <hr /></span>
           <p>
-          Established with the goal of revolutionizing the online tourism sector and popularizing homestays and private room rentals as preferred lodging options.
+            Established with the goal of revolutionizing the online tourism sector and popularizing homestays and private room rentals as preferred lodging options.
 
           </p>
+          <div className="about-items">
+            {data?.map((item) =>
+              <div className="about-item">
+                <div className='about-icon-div'>
+                  <img src={item?.icon} height={30} />
+                </div>
+                <div className='about-content'>
+                  <span>{item.name}</span>
+                </div>
+              </div>
+            )}
+          </div>
+
         </div>
       </div>
     </div>

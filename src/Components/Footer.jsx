@@ -45,7 +45,7 @@ export default function Footer() {
               Host
             </p>
             <div id='' className="d-flex flex-column text-start " style={{ cursor: 'pointer', padding: 0, color: '#00000', fontSize: '14px' }}>
-              <a onClick={() => handleNav(Landing_ref)} className='nav-link active'>Why List With HomeStay With India</a>
+              <a onClick={() => handleNav(Landing_ref)} className='nav-link active'>Why list with LazyMonal</a>
               <a onClick={() => handleNav(About_US_ref)} className='nav-link active mt-1'>Social Intiatives</a>
               <Link to='/add-homestay' className='nav-link active mt-1'>List My HomeStay</Link>
             </div>

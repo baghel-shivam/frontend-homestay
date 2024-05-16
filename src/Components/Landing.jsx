@@ -30,8 +30,7 @@ export default function Landing() {
 
 
     const bgStyle = {
-               backgroundImage: `url(${bg})`,
-       
+        backgroundImage: `url(${bg})`,
     };
 
     const contentContainerStyle = {

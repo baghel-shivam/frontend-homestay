@@ -10,32 +10,36 @@ export default function FormChatBot({ setShowForm }) {
         const { value, name } = e.target
         setData({ ...data, [name]: value })
     }
-  
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(data){
+        if (data) {
 
             setShowForm(false);
             try {
                 const response = await dispatch(ChatMessages(data));
                 if (response?.payload) {
                     alert(response?.payload);
-                } else{
+                } else {
                     alert('Something went wrong, Please try again!');
                 }
             } catch (error) {
                 alert('Something went wrong, Please try again!');
             }
-        }else{
+        } else {
             alert("Missing required fields.")
         }
     };
-    
+
 
     return (
         <div className="container-chat-form">
+            <div className='d-flex justify-content-between'>
+                <span className='fs-5 fw-bolder'>Contact</span>
+                <button onClick={()=>setShowForm(false)}  type="button" className="btn-close" aria-label="Close"></button>
 
-            <span className='fs-5 fw-bolder'>Contact</span>
+            </div>
+
             <hr />
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
