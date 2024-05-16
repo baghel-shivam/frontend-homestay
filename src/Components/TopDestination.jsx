@@ -5,13 +5,6 @@ import goa from '../Images/goa.png'
 import sikkim from "../Images/sikkim.png"
 import laddakh from "../Images/laddakh.png"
 import uttrakhand from "../Images/uttrakhand.jpg"
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
 
 
 export default function TopDestination(props) {
@@ -25,7 +18,7 @@ export default function TopDestination(props) {
 
             },
             {
-                "name": "Uttra Khand",
+                "name": "Uttarakhand",
                 "img": uttrakhand
 
             },
@@ -65,45 +58,12 @@ export default function TopDestination(props) {
                 <hr />
             </div>
             <div className="container-city">
-                <Swiper
-                    slidesPerView={'auto'}
-                    spaceBetween={30}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    breakpoints={{
-                        320: {  // Adjusted breakpoint for small screens
-                            slidesPerView: 1.5,  // Show only 1 slide on small screens
-                            spaceBetween: 10,  // Adjust spacing as needed
-                        },
-                        640: {
-                            slidesPerView: 2,
-                            spaceBetween: 20,
-                        },
-                        768: {
-                            slidesPerView: 4,
-                            spaceBetween: 30,
-                        },
-                        1024: {
-                            slidesPerView: 4.5,
-                            spaceBetween: 30,
-                        },
-                    }}
-                    modules={[Pagination]}
-                    className="myNewSwiper"
-                >
-                    {Data.city.map((item, index) => (
-                        <SwiperSlide>
-                            <div className="city-img " key={index}>
-                                <b className='image-content'>  {item.name}</b>
-                                <img src={item.img} alt='dest' className='city-img-background' />
-                            </div>
-                        </SwiperSlide>
-                    ))}
-
-
-                </Swiper>
-
+                {Data.city.map((item, index) => (
+                    <div className="city-img " key={index}>
+                        <b className='image-content'>  {item.name}</b>
+                        <img src={item.img} alt='dest' className='city-img-background' />
+                    </div>
+                ))}
             </div>
         </div>
     )

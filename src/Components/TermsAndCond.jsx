@@ -1,8 +1,9 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function TermsAndCond({ lgShow, setLgShow, Agree, data }) {
-   return (
+function TermsAndCond({ lgShow, setLgShow, Agree, termsAndConditionsGuest, data }) {
+    console.log(termsAndConditionsGuest, 'this issssssssssss')
+    return (
         <>
             <Modal
                 size="lg"
@@ -16,15 +17,29 @@ function TermsAndCond({ lgShow, setLgShow, Agree, data }) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <ol>
-                   {data?.map((item)=>{
-                       return(
-                           <li>{item}</li>
-                        )
-                    })}
+                    <ol>
+                        {termsAndConditionsGuest?
+                          Object.keys(termsAndConditionsGuest)?.map((section, index) => (
+                            <div className='w-100 m-auto' key={index}>
+                                <strong>{section.replace(/([A-Z])/g, ' $1').trim()} :</strong>
+                                <ul>
+                                    {termsAndConditionsGuest[section]?.map((item, i) => (
+                                        <li key={i}>{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )):
+                         data?.map((item) => {
+                            return (
+                                <li>{item}</li>
+                            )
+                        })
+                        }
+                     
+                       
                     </ol>
-                   
-                   </Modal.Body>
+
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={() => Agree(true, false)}>I Agree</Button>
                 </Modal.Footer>

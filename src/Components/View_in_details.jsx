@@ -147,7 +147,7 @@ export default function View_in_details() {
             <span className='mt-3 fs-2' style={{ color: '#00000', fontWeight: '700' }}>Homestay Detail</span>
             <hr />
             <div className="row my-5">
-                <div className="col-12 col-lg-8 col-md-8">
+                <div className="col-12 col-lg-7 col-md-7">
                     <div id={`carouselExampleCaptions`} className=" details-box carousel slide rounded-3 overflow-hidden">
                         <div className="carousel-inner">
                             {view_data?.img_array?.length > 0 ? view_data?.img_array?.map((itemImg, index) => (
@@ -177,7 +177,7 @@ export default function View_in_details() {
                         </button>
                     </div>
                 </div>
-                <div className="col-12 col-lg-4 col-md-4 text-center details-box rounded-3  pt-3 ">
+                <div className="col-12 col-lg-5 col-md-5 text-center details-box rounded-3  pt-3 ">
                     <div className="container">
                         <div className=" text-start">
                             <h4>{view_data?.site_name}</h4>
@@ -200,8 +200,8 @@ export default function View_in_details() {
                             <small className='position-absolute text-danger top-0' style={{ marginTop: '-15px' }}>{error?.error ? error?.guest : ''}</small>
                             <select
                                 name='guest'
-                                className={`bg-none px-1 my-1  ${error?.error ? "border-danger border-2 rounded-3" : 'border-none'}`}
-                                style={{ fontSize: '17px', fontWeight: '700px' }}
+                                className={`bg-none px-1 my-3  ${error?.error ? "border-danger border-2 rounded-3" : 'border-none'}`}
+                                style={{ fontSize: '17px', fontWeight: '700px', maxHeight:'55px' }}
                                 value={selectedOption}
                                 defaultValue={selectedOption}
                                 onChange={handleSelectChange}
@@ -269,12 +269,12 @@ export default function View_in_details() {
                                     <small className='text-secondary'><i className="bi bi-geo-fill mx-1"></i>  Nearest Railway station :<b className='text-warning'> <br /> {view_data?.nearest_railway_station} - {view_data?.distance_from_rs} KM</b></small>}
                             </div>
                         </div>
-                        <hr />
+                        <hr  className='m-0 p-0'/>
                         <div className="text-start">
-                            <strong className=''>Amenities</strong>
-                            <div className='mt-3'>
+                            <div className='my-4'>
+                            <strong >Amenities</strong>
                                 {view_data && (
-                                    <div className="container d-flex justify-content-evenly">
+                                    <div className="mt-2 container d-flex justify-content-evenly">
                                         {view_data.is_wifi_available && (
                                             <div >
                                                 <img src={wifi} className="" height={25} width={25} alt="Wi-Fi" />
@@ -343,7 +343,7 @@ export default function View_in_details() {
                         <hr />
                         <div>
                             <span className='mt-3 p-2 fs-5 text-start'
-                                style={{ color: '#00000', fontWeight: '600', fontFamily: 'Trebuchet MS, sans-seri' }}>Attraction points: </span>
+                                style={{ color: '#00000', fontWeight: '600', fontFamily: 'Trebuchet MS, sans-seri' }}>Excursions: </span>
                             <ol>
                                 <li>{view_data?.nearest_attraction_1}</li>
                                 <li>{view_data?.nearest_attraction_2}</li>
@@ -351,8 +351,7 @@ export default function View_in_details() {
                                 <li>{view_data?.nearest_attraction_4}</li>
                                 <li>{view_data?.nearest_attraction_5}</li>
                             </ol>
-                            <p className='p-2'>
-                                {view_data?.nearest_attraction_1}</p>
+                          
                         </div>
                         <hr />
                         <div>
@@ -362,8 +361,8 @@ export default function View_in_details() {
                         </div>
                     </div>
                     <div className="col-12 col-md-6 col-lg-6  d-flex flex-wrap align-content-center">
-                        <div className='w-50 text-center'>
-                            <strong className='my-2'>Reviews</strong>
+                        <div className='w-100 text-center'>
+                            <strong className=''>Reviews</strong>
                             <div className="container  mb-3">
                                 <span>5 &#9733;</span>
                                 <div className="w-100  rate-bar">
@@ -394,16 +393,6 @@ export default function View_in_details() {
 
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className='p-1'>
-                            <strong className=''>Ratings</strong>
-                            <div className="my-3 bg-success rounded-3 text-light m-auto" style={{ minWidth: '120px', width: "150px", minHeight: '120px' }}>
-                                <span className='mt-3  fs-5' style={{ color: '#00000', fontWeight: '200' }}>Ratings</span>
-                                <h5>4/3.5</h5>
-                                <span>786 Ratings</span><br />
-                                <span>786 Reviews</span>
                             </div>
                         </div>
 

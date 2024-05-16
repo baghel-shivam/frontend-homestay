@@ -178,11 +178,11 @@ export default function Checkout({ view_data, guest_room, collectRoom, selectedO
                                     <div className=' rounded-3'>
                                         <form onSubmit={handleSubmit} method='POST'>
                                             <div className="mb-2  mx-3">
-                                                <input type="text" id='text_color' onChange={handleChange} name='customer_name' className=" form-control mt-3" placeholder="Enter name" required />
+                                                <input type="text" id='text_color' onChange={handleChange} name='customer_name' className=" form-control mt-3" placeholder="Enter Name" required />
                                                 <input type="tel" pattern="[0-9]{10}" minlength="10" maxlength="10" id='text_color' onChange={handleChange} name='customer_phn' className=" form-control mt-3" placeholder="Enter Phone No." required />
                                                 <input type="email" id='text_color' onChange={handleChange} name='customer_email' className=" form-control mt-3" placeholder="Enter Email" />
                                                 <div className=" text-start form-check my-2">
-                                                    <TermsAndCond lgShow={lgShow} setLgShow={setLgShow} Agree={Agree} data={Term?.Terms_and_condition_Guest} />
+                                                    <TermsAndCond lgShow={lgShow} setLgShow={setLgShow} Agree={Agree} termsAndConditionsGuest={Term?.termsAndConditionsGuest} />
                                                     <input
                                                         required
                                                         type="checkbox"

@@ -16,9 +16,10 @@ export const AddNewProperty = createAsyncThunk('AddProp/AddNewProperty', async (
               },
         }
         const response = await axios(config)
+        console.log(response, 'response from action')
         return response.data
     } catch (error) {
-        alert('Something went wrong!')
+      console.log(error, 'error from action')
         // throw error;
     }
 })

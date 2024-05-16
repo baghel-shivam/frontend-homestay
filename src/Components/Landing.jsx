@@ -46,12 +46,11 @@ export default function Landing() {
 
     return (
         <div className='only_for_bg' >
-           
             <div style={bgStyle} ref={ref_landing}></div>
             <div id='Landing_form_container' style={contentContainerStyle}>
                 <div className="container text-center p-4" id='Child_form'>
                     <div className='Main_title'>
-                        <h1> Experience Leisure Uniquely:  "Explore Exquisite Offbeat  <span id='homestay'>HomeStays"</span> </h1>
+                        <h1>Explore Exquisite Offbeat  <span id='homestay'>HomeStays</span> </h1>
                     </div>
                     <Form />
                 </div>

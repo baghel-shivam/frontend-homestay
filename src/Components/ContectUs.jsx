@@ -16,7 +16,7 @@ export default function ContectUs(props) {
             <hr />
           </span>
           <div className="container-social px-5 mx-5">
-            <div onClick={() => setShowContDetails({ data: "+19739063275", type: "Phone", open: true })} >
+            <div onClick={() => setShowContDetails({ data: "+919359843020", type: "Phone", open: true })} >
               <i class="bi bi-telephone fs-2"></i>
             </div>
             <div onClick={() => setShowContDetails({ data: "lazymonal@gmail.com", type: "Email", open: true })}>

@@ -95,7 +95,7 @@ export default function Rooms() {
         <div className='container Room_div' style={{ minHeight: '100vh' }}>
             <ToastContainer />
             <div className='row nav-form-parent'>
-                <div className="col-lg-3 nav--bar col-sm-12 col-md-3 py-4 ">
+                <div className="col-lg-2 nav--bar col-sm-12 col-md-2 py-4 ">
                     <div className="container text-start d-none d-lg-block d-md-block">
                         <h4>Filters</h4>
                         <hr />
@@ -165,7 +165,7 @@ export default function Rooms() {
                         </div>
                     </div>
                 </div>
-                <div className="col-9 scroll-to-show-all-rooms text-start pt-3 ">
+                <div className="col-10 scroll-to-show-all-rooms text-start pt-3 ">
                     <span className='fs-4 fw-bold  mt-5 result-text'>{data.data?.length} HomeStay in "{state?.searchData?.location.charAt(0).toUpperCase() + state?.searchData?.location.slice(1)}" </span>
                     <hr />
                     <div className='room-collections mt-5  px-lg-1 px-sm-0'>
@@ -203,15 +203,17 @@ export default function Rooms() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-8 ">
-                                            <div className="card-body border-none" onClick={() => navigate('/view-details', { state: item.id })}>
-                                                <div className='d-flex align-content-between'>
-                                                    <h5 className="">{item.site_name} </h5> <h6 className='mt-1 mx-2'><i className="bi bi-dot"></i>{item.full_addres} </h6>
-                                                </div>
-                                                <div className='mb-2 mt-0 p-0'>
-                                                    <small >{item.about_this_homestay && item.about_this_homestay.split(' ').slice(0, 15).join(' ')}...</small>
-                                                </div>
+                                        <div className="col-md-8 card-body  d-flex align-item-center justify-content-center">
+                                            <div className="card-body " style={{ height:'auto' }} onClick={() => navigate('/view-details', { state: item.id })}>
+                                                <div>
 
+                                                    <div className='d-flex align-content-between'>
+                                                        <h4 className="">{item?.site_name} </h4> <h6 className='mt-1 mx-2'><i className="bi bi-dot"></i>{item.full_addres} </h6>
+                                                    </div>
+                                                    <div className='mb-2 mt-0 p-0'>
+                                                        <small >{item?.about_this_homestay && item?.about_this_homestay.split(' ').slice(0, 15).join(' ')}...</small>
+                                                    </div>
+                                                </div>
 
                                                 <div className="">
                                                     <span className='fs-5 text-warning'>&#9733; {item.rate}</span>
@@ -230,8 +232,8 @@ export default function Rooms() {
                                                 </div>
                                                 <div className="row mt-1">
                                                     <div className="col pt-2">
-                                                        <span className='fs-5 fw-bold'>
-                                                            &#8377;
+                                                        <small className='text-success'>Starting at: </small>
+                                                        <span className='fs-5 fw-bold'> &#8377;
                                                             {parseInt(item.base_price).toLocaleString('en-IN')}
                                                         </span>
                                                     </div>

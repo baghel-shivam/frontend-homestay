@@ -50,7 +50,7 @@ export default function FormChatBot({ setShowForm }) {
                 </div>
                 <div className="mb-3">
                     {/* <label for="exampleInputEmail1" className="form-label">Email</label> */}
-                    <input required type="number" name='phn_no' onChange={handleChange} placeholder='Phone no.' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    <input required type="number" name='phn_no' onChange={handleChange} placeholder='Phone No.' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                     {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
                 </div>
                 <div className="mb-3 text-start">

@@ -24,8 +24,13 @@ export default function AddYourHomeStay() {
     const [error, setError] = useState('');
     const [room, setRooms] = useState([])
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
+
     const handleShow = () => setShow(true);
+    const handleClose = () => {
+        setShow(false);
+        window.location.reload(true)
+
+    }
 
     useEffect(() => {
         if (ref.current instanceof HTMLElement) {
@@ -60,26 +65,29 @@ export default function AddYourHomeStay() {
         checked: false,
     });
 
-
-
     const handleFileChange = (e) => {
         const { name } = e.target;
         const file = e.target.files[0];
-        if (name === 'front_img1') {
-            setFormData({ ...formData, front_img1: file });
-        } else if (name === 'front_img2') {
-            setFormData({ ...formData, front_img2: file });
-        } else if (name === 'front_img3') {
-            setFormData({ ...formData, front_img3: file });
-        } else if (name === 'front_img4') {
-            setFormData({ ...formData, front_img4: file });
-        } else if (name === 'front_img5') {
-            setFormData({ ...formData, front_img5: file });
-        } else if (name === 'front_img6') {
-            setFormData({ ...formData, front_img6: file });
-        } else if (name === 'front_img7') {
-            setFormData({ ...formData, front_img7: file });
+        if (file && file.size <= 5242880) { // 5 MB in bytes
+            if (name === 'front_img1') {
+                setFormData({ ...formData, front_img1: file });
+            } else if (name === 'front_img2') {
+                setFormData({ ...formData, front_img2: file });
+            } else if (name === 'front_img3') {
+                setFormData({ ...formData, front_img3: file });
+            } else if (name === 'front_img4') {
+                setFormData({ ...formData, front_img4: file });
+            } else if (name === 'front_img5') {
+                setFormData({ ...formData, front_img5: file });
+            } else if (name === 'front_img6') {
+                setFormData({ ...formData, front_img6: file });
+            } else if (name === 'front_img7') {
+                setFormData({ ...formData, front_img7: file });
+            }
+        } else {
+            alert('Please upload an image smaller than 5 MB.');
         }
+
     };
 
     const handleAddRoom = (e) => {
@@ -148,17 +156,7 @@ export default function AddYourHomeStay() {
             draggable: true,
         }
     );
-    const success = (msg) => toast.success(msg,
-        {
-            position: 'top-right',
-            toastContainerClassName: 'custom-toast-container',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-        }
-    );
+  
     const Agree = (accept, closeDialog) => {
         setLgShow(closeDialog)
         if (accept) {
@@ -168,41 +166,37 @@ export default function AddYourHomeStay() {
     }
 
     useEffect(() => {
-        setFormData({ /*this is */ });
-    }, [AddProp?.data])
+        if (AddProp.status === "succeeded") {
+            handleShow(); // Resolve with true if succeeded
+        }
+    }, [AddProp?.status])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (!formData.checked) {
             setError('Please accept the terms and conditions to proceed.');
-        } else {
-            // alert(JSON.stringify(formData))
-            try {
-                if (room.length > 0) {
-                    if (formData?.front_img1 && formData?.front_img2 && formData?.front_img3){
-
-                        await dispatch(AddNewProperty(formData));
-                        await AddProp
-                        handleShow()
-                        // await 
-                        setFormData({});
-                        setTimeout(() => {
-                            window.location.reload(true)
-                        }, 3000);
-                    }else{
-                        notify("Please add at least 3 Homestay images")
-                    }
-                }
-                else {
-                    notify('Add room first.')
-                }
-            } catch (error) {
-                alert("Something went wrong!")
-            }
+            return;
         }
 
-    };
+        if (room.length === 0) {
+            notify('Add room first.');
+            return;
+        }
+
+        if (!formData?.front_img1 || !formData?.front_img2 || !formData?.front_img3) {
+            notify('Please add at least 3 Homestay images');
+            return;
+        }
+
+        try {
+            await dispatch(AddNewProperty(formData));
+        } catch (error) {
+            notify('Something went wrong!');
+        }
+    }
+
+
 
 
     function ModalSuccess() {
@@ -214,9 +208,7 @@ export default function AddYourHomeStay() {
                     </Modal.Header>
                     <Modal.Body>
                         <p>
-
-                            Thanks for showing your interest to add your Home Stay with us. Your request has been sent to Lazymonal.com
-                            team. We will review the request and get back to you soon. Thanks ! LazyMonal Team homestay@lazymonal.com!
+                            Your request to add homestay is sent.  to a LazyMonal Team will get back to you shortly, Thanks !
                         </p>
                     </Modal.Body>
                     <Modal.Footer>
@@ -286,7 +278,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="number" className="form-control" name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Pin-code" />
+                                        <input required type="number"  min='1'  className="form-control" name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Pin-code" />
                                     </div>
                                 </div>
                             </div>
@@ -330,6 +322,38 @@ export default function AddYourHomeStay() {
                                     </div>
                                 </div>
                             </div>
+                            <hr />
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" name="registration_year" value={formData?.registration_year} onChange={handleChange} placeholder="Registration Year" />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <div className="mb-3">
+                                            <input required type="text" className="form-control" name="expiration_year" value={formData?.expiration_year} onChange={handleChange} placeholder="Expiration Year" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div className="mb-12">
+                                        <div className="mb-12">
+                                            <input required type="text" className="form-control" name="gst_no" value={formData?.gst_no} onChange={handleChange} placeholder="GST No" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="mb-3">
@@ -346,7 +370,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="number" className="form-control" name="distance_from_rs" value={formData.distance_from_rs} onChange={handleChange} placeholder="Distance from railway station, KM" />
+                                        <input required type="number"  min='.1'  className="form-control" name="distance_from_rs" value={formData.distance_from_rs} onChange={handleChange} placeholder="Distance from railway station, KM" />
                                     </div>
                                 </div>
 
@@ -359,7 +383,7 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input type="number" className="form-control" name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from airport, KM" />
+                                        <input type="number" className="form-control"  min='.1'  name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from airport, KM" />
                                     </div>
                                 </div>
 
@@ -367,12 +391,12 @@ export default function AddYourHomeStay() {
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input type="text" className="form-control" name="nearest_metro_station" value={formData.nearest_metro_station} onChange={handleChange} placeholder="Nearest metro station" />
+                                        <input type="text" className="form-control"  name="nearest_metro_station" value={formData.nearest_metro_station} onChange={handleChange} placeholder="Nearest metro station" />
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input type="number" className="form-control" name="distance_from_ms" value={formData.distance_from_ms} onChange={handleChange} placeholder="Distance from metro station, KM" />
+                                        <input type="number" className="form-control" min='.1' name="distance_from_ms" value={formData.distance_from_ms} onChange={handleChange} placeholder="Distance from metro station, KM" />
                                     </div>
                                 </div>
 
@@ -419,8 +443,8 @@ export default function AddYourHomeStay() {
                     </div>
                     <div className="col-md-6">
                         <h5 className=' mx-3 mb-4 text-start'>More Details About Your Homestay</h5>
+                        <small className='text-danger text-justify'>LazyMonal retains the right to withhold 10% of the total booking charges from customers in advance, while the remaining 90% will be collected by the HomeStay Owner through mutually agreed-upon payment methods between both parties.</small>
                         <div className="container mt-2">
-
 
                             <div className="container px-2 py-2 rounded-3" style={{ background: '#ECECEC' }}>
                                 <form onSubmit={handleAddRoom} >
@@ -440,20 +464,20 @@ export default function AddYourHomeStay() {
                                         <div className="col-md-6">
                                             <div className="mb-3 input-group">
                                                 <span className="input-group-text">&#8377;</span>
-                                                <input required type="number" className="form-control" aria-label="Amount (to the nearest rupees)" name="base_price" value={roomForm?.base_price} onChange={HandleChangeAddRoom} placeholder="Price per room" />
+                                                <input required type="number" className="form-control" min="100" aria-label="Amount (to the nearest rupees)" name="base_price" value={roomForm?.base_price} onChange={HandleChangeAddRoom} placeholder="Price per room" />
                                                 <span className="input-group-text">.00</span>
                                             </div>
                                         </div>
                                         <div className="col-md-6">
                                             <div className="mb-3">
-                                                <input type='number' name='room_quantity' placeholder='Number of rooms' className='form-control' value={roomForm?.room_quantity} onChange={HandleChangeAddRoom} />
+                                                <input type='number' name='room_quantity' placeholder='Number of rooms' min="1" className='form-control' value={roomForm?.room_quantity} onChange={HandleChangeAddRoom} />
                                             </div>
                                         </div>
 
                                     </div>
-                                    {/* <hr /> */}
 
-                                    <hr />
+
+                                    {/* <hr /> */}
 
                                     <div className="row text-start">
                                         <div className="col">
@@ -543,7 +567,7 @@ export default function AddYourHomeStay() {
                                             </div>
                                         </div>
                                     </div>
-                                    <hr />
+                                    {/* <hr /> */}
 
                                     <div className="row text-start">
                                         <div className="col">
@@ -628,7 +652,7 @@ export default function AddYourHomeStay() {
                                             <button className='btn btn-success' onClick={handleAddRoom} type='submit' >Add <span style={{ textTransform: 'pascel' }}>{roomForm?.category}</span> Rooms</button>
                                         </div>
                                     </div>
-
+                                    <hr />
                                     <div className="container px-2 py-2 rounded-3 mb-2" style={{ background: '#ECECEC' }}>
                                         <div className='mb-3 border-bottom'>
                                             <span className='fs-6 fw-bold py-2 w-100'>Add Some Pictures of Homestay/Rooms</span>
@@ -636,7 +660,7 @@ export default function AddYourHomeStay() {
                                         {/* <hr/> */}
                                         <div className="row">
                                             <div className="col-12 mb-3">
-                                                <label htmlFor="frontImage1">Add Homestay Main Pic</label>
+                                                <label htmlFor="frontImage1">Add Image 1 <small className='text-danger'>* mandatory</small></label>
                                                 <input
                                                     required
                                                     type="file"
@@ -647,13 +671,12 @@ export default function AddYourHomeStay() {
                                                     placeholder="Add Images *"
                                                     accept=".jpg, .jpeg"
                                                 />
-
                                             </div>
 
                                         </div>
                                         <div className="row">
                                             <div className="col-6 mb-3">
-                                                <label htmlFor="frontImage1">Add Homestay Pic 2</label>
+                                                <label htmlFor="frontImage1">Add Image 2 <small className='text-danger'>* mandatory</small></label>
                                                 <input
                                                     required
                                                     type="file"
@@ -668,7 +691,7 @@ export default function AddYourHomeStay() {
 
                                             </div>
                                             <div className="col-6 mb-3">
-                                                <label htmlFor="frontImage1">Add Homestay Pic 3</label>
+                                                <label htmlFor="frontImage1">Add Image 3 <small className='text-danger'>* mandatory</small></label>
                                                 <input
                                                     required
                                                     type="file"
@@ -686,7 +709,7 @@ export default function AddYourHomeStay() {
                                         </div>
                                         <div className="row">
                                             <div className="col-6 mb-3">
-                                                <label htmlFor="frontImage1">Add Homestay Pic 4</label>
+                                                <label htmlFor="frontImage1">Add Image 4</label>
                                                 <input
 
                                                     type="file"
@@ -701,7 +724,7 @@ export default function AddYourHomeStay() {
 
                                             </div>
                                             <div className="col-6 mb-3">
-                                                <label htmlFor="frontImage1">Add Homestay Pic 5</label>
+                                                <label htmlFor="frontImage1">Add Image 5</label>
                                                 <input
 
                                                     type="file"
@@ -716,7 +739,7 @@ export default function AddYourHomeStay() {
 
                                             </div>
                                             <div className="col-6 mb-3">
-                                                <label htmlFor="frontImage1">Add Homestay Pic 6</label>
+                                                <label htmlFor="frontImage1">Add Image 6</label>
                                                 <input
 
                                                     type="file"
@@ -731,7 +754,7 @@ export default function AddYourHomeStay() {
 
                                             </div>
                                             <div className="col-6 mb-3">
-                                                <label htmlFor="frontImage1">Add Homestay 7</label>
+                                                <label htmlFor="frontImage1">Add Image 7</label>
                                                 <input
 
                                                     type="file"
