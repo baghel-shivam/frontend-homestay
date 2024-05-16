@@ -776,7 +776,7 @@ export default function AddYourHomeStay() {
 
                             </div>
                             <div className='my-2 text-left px-2'>
-                                <hr/>
+                                <hr />
                                 <small className='text-danger text-justify'>LazyMonal retains the right to withhold 10% of the total booking charges from customers in advance, while the remaining 90% will be collected by the HomeStay Owner through mutually agreed-upon payment methods between both parties.</small>
 
                             </div>

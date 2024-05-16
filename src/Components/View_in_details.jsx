@@ -344,13 +344,12 @@ export default function View_in_details() {
                         <div>
                             <span className='mt-3 p-2 fs-5 text-start'
                                 style={{ color: '#00000', fontWeight: '600', fontFamily: 'Trebuchet MS, sans-seri' }}>Excursions: </span>
-                            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexWrap:'wrap' }}>
-                                <li style={{ marginBottom: '0.5em', margin:'10px' }}>&#9733; {view_data?.nearest_attraction_1}</li>
-                                <li style={{ marginBottom: '0.5em' , margin:'10px'}}>&#9733; {view_data?.nearest_attraction_2}</li>
-                                <li style={{ marginBottom: '0.5em', margin:'10px' }}>&#9733; {view_data?.nearest_attraction_3}</li>
-                                <li style={{ marginBottom: '0.5em', margin:'10px' }}>&#9733; {view_data?.nearest_attraction_4}</li>
-                                <li style={{ marginBottom: '0.5em', margin:'10px' }}>&#9733; {view_data?.nearest_attraction_5}</li>
-                                {/* <li>&#9733; {view_data?.nearest_attraction_5}</li> */}
+                            <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexWrap: 'wrap' }}>
+                                <li style={{ marginBottom: '0.5em', margin: '10px' }}>&#9733; {view_data?.nearest_attraction_1}</li>
+                                <li style={{ marginBottom: '0.5em', margin: '10px' }}>&#9733; {view_data?.nearest_attraction_2}</li>
+                                <li style={{ marginBottom: '0.5em', margin: '10px' }}>&#9733; {view_data?.nearest_attraction_3}</li>
+                                <li style={{ marginBottom: '0.5em', margin: '10px' }}>&#9733; {view_data?.nearest_attraction_4}</li>
+                                <li style={{ marginBottom: '0.5em', margin: '10px' }}>&#9733; {view_data?.nearest_attraction_5}</li>
                             </ul>
 
 

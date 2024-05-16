@@ -5,6 +5,7 @@ import instagram from '../Images/IconsForFooter/instagram.png'
 import facebook from '../Images/IconsForFooter/facebook.png'
 import twitter from '../Images/IconsForFooter/twitter.png'
 import youtube from '../Images/youtube.png'
+import scanner from '../Images//scanner/scanner.jpg'
 export default function Footer() {
   const navigate = useNavigate();
   const { Contact_ref, About_US_ref, Landing_ref } = useSelector((state) => state.Ref);
@@ -73,7 +74,8 @@ export default function Footer() {
               <a onClick={() => handleNav(Contact_ref)} className='nav-link active mt-1'>Contact Us</a>
             </div>
           </div>
-          <div className='text-start m-2'>
+
+          <div className='text-start m-2 '>
             <p className="h5 mb-2" style={{ fontWeight: 600, color: '#00000' }}>
               Products
             </p>
@@ -85,6 +87,12 @@ export default function Footer() {
                 <a href="#" className='text-light mx-3'>  <img src={youtube} height={30} /></a>
 
               </div>
+            </div>
+
+          </div>
+          <div className='text-start m-2'>
+            <div className='m-auto' style={{ border: "2px solid white", height: 'auto' }}>
+              <img src={scanner} height={120} />
             </div>
           </div>
         </div>
