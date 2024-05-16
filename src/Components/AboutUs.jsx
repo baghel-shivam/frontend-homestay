@@ -43,7 +43,7 @@ export default function AboutUs(props) {
           </div>
         </div>
         <div className="col-12 col-lg-6 p-3 px-4 text-start">
-          <span className='sub-heading text-start'> What we're about
+          <span className='sub-heading text-start'> What we're about:
             <hr />
           </span>
           <p>
@@ -56,7 +56,7 @@ export default function AboutUs(props) {
             Established with the goal of revolutionizing the online tourism sector and popularizing homestays and private room rentals as preferred lodging options.
 
           </p>
-          <span className='sub-heading text-start'> At a glance
+          <span className='sub-heading text-start'> At a glance:
             <hr />
           </span>
  
