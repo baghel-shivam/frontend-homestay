@@ -3,21 +3,18 @@ import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { blobUrl } from '../Redux/BaseURL';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
+// import './Styles/Swiper.css'
+import './Styles//ViewPageSwiper.css'
 
-import './Styles/Swiper.css'
-// import './styles.css';
-
-// import required modules
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 
 export default function SwiperComponent({ view_data }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-   return (
+  return (
     <>
       <Swiper
         style={{
@@ -33,10 +30,10 @@ export default function SwiperComponent({ view_data }) {
       >
         {view_data?.map((item) => (
           <SwiperSlide>
-            <img src={`${blobUrl}/${item?.image_field}`}/>
+            <img src={`${blobUrl}/${item?.image_field}`} />
           </SwiperSlide>
         ))}
-        
+
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
@@ -48,12 +45,12 @@ export default function SwiperComponent({ view_data }) {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
-         {view_data?.map((item) => (
+        {view_data?.map((item) => (
           <SwiperSlide>
-            <img src={`${blobUrl}/${item?.image_field}`}/>
+            <img src={`${blobUrl}/${item?.image_field}`} />
           </SwiperSlide>
         ))}
-      
+
       </Swiper>
     </>
   );

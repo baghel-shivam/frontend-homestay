@@ -149,7 +149,7 @@ export default function View_in_details() {
             <div className="row my-5">
                 <div className="col-12 col-lg-7 col-md-7">
                     <div id={`carouselExampleCaptions`} className=" details-box carousel slide rounded-3 overflow-hidden">
-                        <div className="carousel-inner">
+                        <div className="">
                             {view_data?.img_array?.length > 0 ? view_data?.img_array?.map((itemImg, index) => (
                                 <div key={index} className={"carousel-item view-in-detail-item" + (index === 0 ? " active" : "")}>
                                     <a href={`${blobUrl}/${itemImg?.image_field}`}><img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." /></a>
@@ -163,7 +163,7 @@ export default function View_in_details() {
                                     :
                                     <div className={"room-image-search-details position-relative"}>
                                         <span className='fs-4' style={{ position: "absolute", top: '45%', bottom: '0%', left: '0', right: '0' }}>No images uploaded!</span>
-                                        <a href={img}><img src={img} style={{ background: 'red', opacity: '.5' }} className="d-block w-100 h-100" alt="..." /></a>
+                                        <a href={img}><img src={img} style={{ background: 'red', opacity: '.5' }} className="d-block  h-100" alt="..." /></a>
                                     </div>
                             }
                         </div>

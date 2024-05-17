@@ -345,6 +345,18 @@
 
 /* For desktop only */
 @media only screen and (min-width: 765px) {
+    
+    .about-items {
+        gap: 10px;
+        width: 100%;
+        /* border: 1px solid green; */
+        display: flex;
+        flex-wrap: wrap;
+        /* overflow-x: scroll; */
+        /* justify-content: center; */
+        align-items: center;
+    }
+    
     .container-city {
         overflow: hidden;
         display: flex;
@@ -511,26 +523,31 @@
     width: 100%;
     /* border: 1px solid green; */
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    overflow-x: scroll;
+    /* justify-content: center; */
     align-items: center;
 }
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
 
 .about-item {
     /* border: 1px solid rgb(26, 26, 26); */
     border-radius: 5px;
-    width: 250px;
+    min-width: 220px;
     height: 50px;
     display: flex;
     /* justify-content: space-around; */
     text-align: center;
-   
+
     align-items: center;
 }
-.about-content{
-font-size: 15px;
+
+.about-content {
+    font-size: 14px;
 }
-.about-icon-div{
+
+.about-icon-div {
     margin: 10px 10px;
     /* border: 1px solid red; */
     height: 50px;
