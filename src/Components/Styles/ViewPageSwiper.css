@@ -63,7 +63,7 @@
 
     .swiper {
         width: 100%;
-        height: 300px !important;
+        /* height: 300px !important; */
         margin-left: auto;
         margin-right: auto;
     }
