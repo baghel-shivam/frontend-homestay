@@ -47,7 +47,7 @@ export default function AboutUs(props) {
             <hr />
           </span>
           <p>
-            We're big fans of home sharing and dedicated to offering quality rooms at wallet-friendly prices, and to giving hosts an opportunity to rent out their spare rooms on our global marketplace.
+            LazyMonal is dedicated to empowering authentic rural families, especially those managing homestays. We're committed to offering a distinctive, culturally immersive experience that allows you to embrace nature and connect with local traditions, all while providing these families with an alternative income source that safeguards their traditions, culture, and heritage. Our overarching goal is to strengthen the rural economy, promote sustainable tourism, and stem the tide of migration from villages.
           </p>
 
           <span className='sub-heading'>Our story:
@@ -59,7 +59,7 @@ export default function AboutUs(props) {
           <span className='sub-heading text-start'> At a glance:
             <hr />
           </span>
- 
+
           <div className="about-items">
             {data?.map((item) =>
               <div className="about-item">

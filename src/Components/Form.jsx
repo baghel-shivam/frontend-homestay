@@ -34,6 +34,7 @@ export default function Form() {
     const handleHighlight = () => {
         setIsHighlighted(!isHighlighted);
     };
+    
     const notify = (msg) => toast.error(msg,
         {
             position: 'top-right',
@@ -67,7 +68,6 @@ export default function Form() {
 
 
     }, [onChange, value]);
-
 
     function DateRange() {
         return (

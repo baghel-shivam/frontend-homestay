@@ -29,7 +29,6 @@ export default function AddYourHomeStay() {
     const handleClose = () => {
         setShow(false);
         window.location.reload(true)
-
     }
 
     useEffect(() => {
@@ -37,6 +36,7 @@ export default function AddYourHomeStay() {
             ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }, [ref]);
+
     const [roomForm, setRoomForm] = useState([])
     const [formData, setFormData] = useState({
         site_name: '',
@@ -61,14 +61,14 @@ export default function AddYourHomeStay() {
         how_to_reach: '',
         nearest_attraction_1: '',
         nearest_attraction_2: '',
-        totalRooms: '',
+        // totalRooms: '',
         checked: false,
     });
 
     const handleFileChange = (e) => {
         const { name } = e.target;
         const file = e.target.files[0];
-        if (file && file.size <= 5242880) { // 5 MB in bytes
+        if (file && file.size <= 5242880) { 
             if (name === 'front_img1') {
                 setFormData({ ...formData, front_img1: file });
             } else if (name === 'front_img2') {
@@ -168,9 +168,13 @@ export default function AddYourHomeStay() {
     useEffect(() => {
         if (AddProp.status === "succeeded") {
             handleShow(); // Resolve with true if succeeded
+        } else if (AddProp.status === "failed") {
+            notify('Something went wrong, Please try again later!');
+            // notify('This HomeStay already exits!');
         }
     }, [AddProp?.status])
 
+    // console.log(AddProp, 'this is From property, fffffffffff')
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -188,7 +192,6 @@ export default function AddYourHomeStay() {
             notify('Please add at least 3 Homestay images');
             return;
         }
-
         try {
             await dispatch(AddNewProperty(formData));
         } catch (error) {
@@ -208,7 +211,10 @@ export default function AddYourHomeStay() {
                     </Modal.Header>
                     <Modal.Body>
                         <p>
-                            Your request to add homestay is sent.  to a LazyMonal Team will get back to you shortly, Thanks !
+                            Thank You, Your request to add homestay is sent.
+                            We will get back to you shortly, Thanks !
+
+                            LazyMonal Team
                         </p>
                     </Modal.Body>
                     <Modal.Footer>
@@ -276,18 +282,15 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="number" min='1' className="form-control" name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Pin-code" />
+                                        <input required type="number" min='0' className="form-control" name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Pin-code" />
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
-
                                 <div className="col-md-12">
                                     <div className="mb-3">
                                         <input required type="text" className="form-control" name="contact_person" value={formData.contact_person} onChange={handleChange} placeholder="Contact person name" />
                                     </div>
-
-
                                 </div>
                             </div>
 
@@ -301,7 +304,7 @@ export default function AddYourHomeStay() {
                                     <div className="mb-3">
                                         <div className="mb-3 input-group">
                                             <span className="input-group-text">+91</span>
-                                            <input required type="tel" pattern="[0-9]{10}" minlength="10" maxlength="10" className="form-control" name="contact_phn" value={formData.contact_phn} onChange={handleChange} placeholder="Phone number" />
+                                            <input required type="tel" pattern="[0-9]{10}" minle0gth="10" maxlength="10" className="form-control" name="contact_phn" value={formData.contact_phn} onChange={handleChange} placeholder="Phone number" />
                                         </div>
                                     </div>
                                 </div>
@@ -316,7 +319,7 @@ export default function AddYourHomeStay() {
                                 <div className="col-md-6">
                                     <div className="mb-3">
                                         <div className="mb-3">
-                                            <input required type="tel" className="form-control" pattern="[0-9]{10}" minlength="10" maxlength="10" name="upi_phn_no" value={formData?.upi_phn_no} onChange={handleChange} placeholder="G-pay, PhonePay, number etc" />
+                                            <input required type="tel" className="form-control" pattern="[0-9]{10}" minle0gth="10" maxlength="10" name="upi_phn_no" value={formData?.upi_phn_no} onChange={handleChange} placeholder="G-pay, PhonePay, number etc" />
                                         </div>
                                     </div>
                                 </div>
@@ -325,20 +328,20 @@ export default function AddYourHomeStay() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="mb-3">
-                                        <input required type="text" className="form-control" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
+                                        <input required type="tel" className="form-control"  minlength="15" maxlength="15" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="text" className="form-control" name="registration_year" value={formData?.registration_year} onChange={handleChange} placeholder="Registration Year" />
+                                        <input required type="tel" className="form-control" minlength="4" name="registration_year" value={formData?.registration_year} onChange={handleChange} placeholder="Registration Year" />
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
                                         <div className="mb-3">
-                                            <input required type="text" className="form-control" name="expiration_year" value={formData?.expiration_year} onChange={handleChange} placeholder="Expiration Year" />
+                                            <input required type="tel" minlength="4" className="form-control" name="expiration_year" value={formData?.expiration_year} onChange={handleChange} placeholder="Expiration Year" />
                                         </div>
                                     </div>
                                 </div>
@@ -347,7 +350,7 @@ export default function AddYourHomeStay() {
                                 <div className="col-md-12">
                                     <div className="mb-12">
                                         <div className="mb-12">
-                                            <input required type="text" className="form-control" name="gst_no" value={formData?.gst_no} onChange={handleChange} placeholder="GST No" />
+                                            <input required type="text" className="form-control" maxlength="16" name="gst_no" value={formData?.gst_no} onChange={handleChange} placeholder="GST No" />
                                         </div>
                                     </div>
                                 </div>
@@ -360,7 +363,6 @@ export default function AddYourHomeStay() {
                                     </div>
                                 </div>
                             </div>
-                            {/* Nearest */}
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
@@ -369,10 +371,9 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="number" min='.1' className="form-control" name="distance_from_rs" value={formData.distance_from_rs} onChange={handleChange} placeholder="Distance from railway station, (KM)" />
+                                        <input required type="number" min='1' className="form-control" name="distance_from_rs" value={formData.distance_from_rs} onChange={handleChange} placeholder="Distance from railway station, (KM)" />
                                     </div>
                                 </div>
-
                             </div>
                             <div className="row">
                                 <div className="col-md-6">
@@ -382,10 +383,9 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input type="number" className="form-control" min='.1' name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from airport, (KM)" />
+                                        <input type="number" className="form-control" min='1' name="distance_from_ap" value={formData.distance_from_ap} onChange={handleChange} placeholder="Distance from airport, (KM)" />
                                     </div>
                                 </div>
-
                             </div>
                             <div className="row">
                                 <div className="col-md-6">
@@ -395,13 +395,11 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input type="number" className="form-control" min='.1' name="distance_from_ms" value={formData.distance_from_ms} onChange={handleChange} placeholder="Distance from metro station, (KM)" />
+                                        <input type="number" className="form-control" min='1' name="distance_from_ms" value={formData.distance_from_ms} onChange={handleChange} placeholder="Distance from metro station, (KM)" />
                                     </div>
                                 </div>
-
                             </div>
                             <div className="row">
-
                                 <div className="col-md-6">
                                     <div className="mb-3">
                                         <input required type="text" className="form-control" name="nearest_attraction_1" value={formData.nearest_attraction_1} onChange={handleChange} placeholder="Nearest attraction point-1" />
@@ -412,10 +410,8 @@ export default function AddYourHomeStay() {
                                         <input required type="text" className="form-control" name="nearest_attraction_2" value={formData.nearest_attraction_2} onChange={handleChange} placeholder="Nearest attraction point-2" />
                                     </div>
                                 </div>
-
                             </div>
                             <div className="row">
-
                                 <div className="col-md-6">
                                     <div className="mb-3">
                                         <input type="text" className="form-control" name="nearest_attraction_3" value={formData.nearest_attraction_3} onChange={handleChange} placeholder="Nearest attraction point-3" />
@@ -429,8 +425,6 @@ export default function AddYourHomeStay() {
 
                             </div>
                             <div className="row">
-
-
                                 <div className="col-12">
                                     <div className="mb-3">
                                         <input type="text" className="form-control" name="nearest_attraction_5" value={formData?.nearest_attraction_5} onChange={handleChange} placeholder="Nearest attraction point-5" />
@@ -443,9 +437,7 @@ export default function AddYourHomeStay() {
                     </div>
                     <div className="col-md-6">
                         <h5 className=' mx-3 mb-4 text-start'>More Details About Your Homestay</h5>
-
                         <div className="container mt-2">
-
                             <div className="container px-2 py-2 rounded-3" style={{ background: '#ECECEC' }}>
                                 <form onSubmit={handleAddRoom} >
                                     <div className='my-2 border-bottom'>
@@ -464,21 +456,17 @@ export default function AddYourHomeStay() {
                                         <div className="col-md-6">
                                             <div className="mb-3 input-group">
                                                 <span className="input-group-text">&#8377;</span>
-                                                <input required type="number" className="form-control" min="100" aria-label="Amount (to the nearest rupees)" name="base_price" value={roomForm?.base_price} onChange={HandleChangeAddRoom} placeholder="Price per room" />
+                                                <input required type="number" className="form-control" min="000" aria-label="Amount (to the nearest rupees)" name="base_price" value={roomForm?.base_price} onChange={HandleChangeAddRoom} placeholder="Price per room" />
                                                 <span className="input-group-text">.00</span>
                                             </div>
                                         </div>
                                         <div className="col-md-6">
                                             <div className="mb-3">
-                                                <input type='number' name='room_quantity' placeholder='Number of rooms' min="1" className='form-control' value={roomForm?.room_quantity} onChange={HandleChangeAddRoom} />
+                                                <input type='number' name='room_quantity' placeholder='Number of rooms' min="0" className='form-control' value={roomForm?.room_quantity} onChange={HandleChangeAddRoom} />
                                             </div>
                                         </div>
-
                                     </div>
-
-
                                     {/* <hr /> */}
-
                                     <div className="row text-start">
                                         <div className="col">
                                             <div className="mb-3 form-check">
@@ -764,13 +752,10 @@ export default function AddYourHomeStay() {
                                                     onChange={handleFileChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
-
                                                 />
-                                                {/* <button onClick={submitFun}>hello click me</button> */}
+
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </form>
 
