@@ -169,12 +169,10 @@ export default function AddYourHomeStay() {
         if (AddProp.status === "succeeded") {
             handleShow(); // Resolve with true if succeeded
         } else if (AddProp.status === "failed") {
-            notify('Something went wrong, Please try again later!');
+            notify('HomeStay already exists!');
             // notify('This HomeStay already exits!');
         }
     }, [AddProp?.status])
-
-    // console.log(AddProp, 'this is From property, fffffffffff')
 
     const handleSubmit = async (e) => {
         e.preventDefault();
