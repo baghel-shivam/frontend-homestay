@@ -95,9 +95,6 @@ export default function Checkout({ state, view_data, guest_room, collectRoom, se
 
     }, [selecteDRooms]);
 
-
-
-
     const handleSubmit = (e) => {
         e.preventDefault()
         if (formDataTC.checked) {

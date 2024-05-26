@@ -249,7 +249,7 @@ export default function Rooms() {
                                     </div>
                                 </div>
                                 <hr className='my-4' />
-                                {data?.data?.length > 10 && <>
+                                {/* {data?.data?.length > 10 && <>
                                     <div className='w-100 d-flex justify-content-center'>
                                         <nav aria-label="Page navigation example">
                                             <ul className="pagination justify-content-end">
@@ -269,7 +269,7 @@ export default function Rooms() {
                                         </nav>
                                     </div>
                                 </>
-                                }
+                                } */}
 
 
                             </>
