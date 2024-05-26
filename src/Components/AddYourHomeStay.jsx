@@ -127,7 +127,7 @@ export default function AddYourHomeStay() {
         }
     };
 
-    console.log(formData, 'this is data')
+    // console.log(formData, 'this is data')
     const HandleChangeAddRoom = (e) => {
         const { value, name } = e.target;
         setRoomForm({ ...roomForm, [name]: value })
@@ -173,13 +173,12 @@ export default function AddYourHomeStay() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');  // Clear previous error messages
-        notify('');    // Clear previous notifications
 
         if (!formData.checked) {
             setError('Please accept the terms and conditions to proceed.');
             return;
         }
-        if (parseInt(formData.expiration_year) > parseInt(formData.registration_year)) {
+        if (parseInt(formData?.expiration_year) < parseInt(formData?.registration_year)) {
             notify('Expiration year should be grater then registration year!');
             return;
         }
@@ -190,21 +189,20 @@ export default function AddYourHomeStay() {
         if (room.length === 0) {
             notify('Add room first.');
             return;
-        }else{
+        } else {
+
             try {
-                // await dispatch(AddNewProperty(formData))
-                console.log(formData, 'this is  form data');
-                alert('form submitted')
-                notify('Property added successfully!');
+                await dispatch(AddNewProperty(formData))
+                ModalSuccess()
             } catch (error) {
                 notify('Something went wrong!');
             } finally {
-    
+
             }
         }
-       
 
-        
+
+
     }
 
 
