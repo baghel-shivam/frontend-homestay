@@ -6,8 +6,9 @@ import Loading from './Loading'
 import Success from './Success'
 import TermsAndCond from './TermsAndCond'
 import Term from '../TermAndCond.json'
+import { ViewDetails } from '../Redux/ViewDetails/Action'
 
-export default function Checkout({ view_data, guest_room, collectRoom, selectedOption }) {
+export default function Checkout({ state, view_data, guest_room, collectRoom, selectedOption }) {
     const [data, setData] = useState()
     const [lgShow, setLgShow] = useState(false);
     const [error, setError] = useState('');
@@ -30,10 +31,18 @@ export default function Checkout({ view_data, guest_room, collectRoom, selectedO
     }, [collectRoom])
 
     useEffect(() => {
+        const data = {
+            "id": state,
+            "checkin_date": formData.checkin_date,
+            "checkout_date": formData.checkout_date,
+            "total_guest": selectedOption
+        }
         if (booking?.status === "succeeded") {
             const closeButton = document.querySelector(".btn-close-checkout");
             if (closeButton) {
                 closeButton.click();
+
+                dispatch(ViewDetails(data))
             }
             setSmShow(true)
         }
@@ -49,13 +58,22 @@ export default function Checkout({ view_data, guest_room, collectRoom, selectedO
         setSmShow(false)
         window.location.reload(true)
     }
+    const bookingPrice = selecteDRooms && Array.isArray(selecteDRooms)
+        ? selecteDRooms.reduce((acc, cur) => {
+            const basePrice = cur?.base_price ?? 0;
+            const bookCount = cur?.bookCount ?? 0;
+            return acc + (basePrice * bookCount);
+        }, 0) * (formData.daysDifference ?? 0)
+        : 0;
+    const formattedBookingPrice = Math.round(bookingPrice);
+
     useEffect(() => {
         setData({
             ...data,
             "check_in_date": `${formData?.checkin_date}`,
             "check_out_date": `${formData?.checkout_date}`,
             "request_location": formData?.location,
-            "booking_price": parseInt(selecteDRooms?.reduce((acc, cur) => acc + (cur?.base_price * cur?.bookCount), 0)),
+            "booking_price": formattedBookingPrice,
             "parent_room": view_data?.id,
             "selectedRooms": selecteDRooms && selecteDRooms?.map((item) => item.id)
         })
@@ -83,7 +101,6 @@ export default function Checkout({ view_data, guest_room, collectRoom, selectedO
     const handleSubmit = (e) => {
         e.preventDefault()
         if (formDataTC.checked) {
-
             dispatch(BookingRequest(data))
         }
         else {
@@ -99,7 +116,6 @@ export default function Checkout({ view_data, guest_room, collectRoom, selectedO
         setError('');
     }
 
-    console.log(guest_room, 'dddddddddd')
     return (
         <div className='checkout-container'>
             {booking?.status === 'loading' && <Loading />}
@@ -124,7 +140,7 @@ export default function Checkout({ view_data, guest_room, collectRoom, selectedO
                                             <div className='d-flex'>
                                                 <h5><b> &#8377;
                                                     {/* {(selecteDRooms?.reduce((acc, cur) => acc + (cur?.base_price * cur?.bookCount), 0)?.toLocaleString('en-IN'))} */}
-                                                    {(selecteDRooms?.reduce((acc, cur) => acc + (cur?.base_price * cur?.bookCount), 0) * formData.daysDifference)?.toLocaleString("en-IN")}
+                                                    {formattedBookingPrice}
                                                 </b></h5><small className='text-secondary mx-2 mt-1 '> + Tax & Fee</small></div>
                                         </div>
                                         <div className="col">

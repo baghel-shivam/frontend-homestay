@@ -84,8 +84,9 @@ export default function View_in_details() {
         const data = {
             "id": state,
             "checkin_date": formData.checkin_date,
-            "checkout_date": formData.checkout_date
-        }
+            "checkout_date": formData.checkout_date,
+            "total_guest":selectedOption
+        }       
         dispatch(ViewDetails(data))
 
     }, [])
@@ -140,6 +141,8 @@ export default function View_in_details() {
             setSelectedOption(customValue);
         }
     };
+
+
     return (
         <div className='my-5 pt-5 container' style={{ maxWidth: '1200px' }}>
             {room_details.status === 'loading' && <Loading />}
@@ -327,7 +330,7 @@ export default function View_in_details() {
                                     <button onClick={handleNav} className="btn btn-success px-5 w-100 py-2">Book</button>
                                 </div>
                                 <button id='toggle' data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className='d-none'></button>
-                                <Checkout selectedOption={selectedOption} view_data={view_data} guest_room={guest_room} totalPrice={totalPrice} collectRoom={collectRoom} />
+                                <Checkout selectedOption={selectedOption} view_data={view_data} guest_room={guest_room} totalPrice={totalPrice} state={state} collectRoom={collectRoom} />
                             </div>
                         </div>
                     }
