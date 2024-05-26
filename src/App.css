@@ -270,7 +270,7 @@ body {
 }
 
 .img-checkout-div {
-  background-image: url('./Images/checkout.jpg');
+  background-image: url('./Images/checkout/checkout.jpg');
   background-size: cover;
   background-position: center;
 }

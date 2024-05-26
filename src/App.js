@@ -23,6 +23,7 @@ import HealthSafety from './Components/Help/HealthSafety'
 import TechnicalSupport from './Components/Help/TechnicalSupport'
 import TravelAssi from './Components/Help/TravelAssi'
 import ChatBoat from './Components/ChatBoat/ChatBoat';
+import WhoIsMonal from './Components/WhoIsMonal';
 
 function App() {
   useEffect(() => {
@@ -42,6 +43,7 @@ function App() {
           <Route path="/view-details" element={<View_in_details />} />
           <Route path="/booking" element={<Checkout />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/who_is_monal" element={<WhoIsMonal />} />
 
           <Route path="/technical-support" element={<TechnicalSupport />} />
           <Route path="/billing" element={<Billing />} />

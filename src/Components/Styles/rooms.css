@@ -117,13 +117,24 @@
         display: flex !important;
     }
 
+    .room-image-search {
+        height: 270px;
+        object-fit: cover;
+    }
+    .room-image-search img{
+        min-height: 270px;
+        object-fit: cover;
+    }
+
+    .carousel-inner {
+        height: 270px;
+    }
+
     .room-image-search-details {
         height: 250px;
     }
 
-    .room-image-search {
-        height: 270px;
-    }
+
 
     #exampleFormControlInput1 {
         padding: 20px;
@@ -202,8 +213,18 @@
 }
 
 @media only screen and (min-width: 600px) {
+  
     .room-image-search {
         height: 250px;
+        object-fit: cover;
+    }
+    .room-image-search img{
+        min-height: 250px;
+        object-fit: cover;
+    }
+
+    .carousel-inner {
+        height: 270px;
     }
 
     .room-image-search-details {

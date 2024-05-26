@@ -1,5 +1,5 @@
 import React from 'react'
-import img from '../Images/about_us.jpg'
+import img from '../Images/about_us/about_us.jpg'
 import services from '../Images/about_us/24-hours-service.png'
 import coin from '../Images/about_us/coin.png'
 import guest from '../Images/about_us/guests.png'

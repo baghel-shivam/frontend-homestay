@@ -136,10 +136,11 @@ export default function Checkout({ view_data, guest_room, collectRoom, selectedO
 
                                     <div className="row py-2 check-in-check-out-date">
                                         <div className="col-4">
-                                            <small className='fw-bolder'>Check-in</small><br/>
+                                            <small >Check-in</small><br />
                                             <small >
                                                 {formData?.checkin_date ? (
-                                                    <span>
+                                                    <span className='fw-bolder'
+                                                    >
                                                         {new Date(formData?.checkin_date).toLocaleDateString('en-US', options)}
                                                     </span>
                                                 ) : (
@@ -148,10 +149,10 @@ export default function Checkout({ view_data, guest_room, collectRoom, selectedO
                                             </small>
                                         </div>
                                         <div className="col-4">
-                                            <small className='fw-bolder'>Check-out</small><br/>
+                                            <small >Check-out</small><br />
                                             <small >
                                                 {formData?.checkout_date ? (
-                                                    <span>
+                                                    <span className='fw-bolder'>
                                                         {new Date(formData?.checkout_date).toLocaleDateString('en-US', options)}
                                                     </span>
                                                 ) : (
@@ -161,7 +162,7 @@ export default function Checkout({ view_data, guest_room, collectRoom, selectedO
                                         </div>
 
                                         <div className="col-4 d-flex text-center">
-                                            <small><b>{selecteDRooms && (selecteDRooms?.reduce((acc, item) => acc + item?.bookCount, 0)>1?`${selecteDRooms?.reduce((acc, item) => acc + item?.bookCount, 0)} Room's`:`${selecteDRooms?.reduce((acc, item) => acc + item?.bookCount, 0)} Room`)}</b>  </small>
+                                            <small><b>{selecteDRooms && (selecteDRooms?.reduce((acc, item) => acc + item?.bookCount, 0) > 1 ? `${selecteDRooms?.reduce((acc, item) => acc + item?.bookCount, 0)} Room's` : `${selecteDRooms?.reduce((acc, item) => acc + item?.bookCount, 0)} Room`)}</b>  </small>
                                         </div>
                                     </div>
                                     <div className="row py-2 check-in-check-out-date">
@@ -171,8 +172,6 @@ export default function Checkout({ view_data, guest_room, collectRoom, selectedO
                                         <div className="col-4">
                                             <small><b>{formData?.daysDifference > 1 ? `${formData?.daysDifference} Night's` : `${formData?.daysDifference} Night`} </b> </small>
                                         </div>
-
-
                                     </div>
                                 </div>
 

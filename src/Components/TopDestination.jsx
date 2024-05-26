@@ -1,10 +1,10 @@
 import React from 'react'
 
-import assam from '../Images/assam.png'
-import goa from '../Images/goa.png'
-import sikkim from "../Images/sikkim.png"
-import laddakh from "../Images/laddakh.png"
-import uttrakhand from "../Images/uttrakhand.jpg"
+import assam from '../Images/destinations/assam.png'
+import goa from '../Images/destinations/goa.png'
+import sikkim from "../Images/destinations/sikkim.png"
+import laddakh from "../Images/destinations/laddakh.png"
+import uttrakhand from "../Images/destinations/uttrakhand.jpg"
 
 
 export default function TopDestination(props) {

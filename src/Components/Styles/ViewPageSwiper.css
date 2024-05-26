@@ -1,35 +1,30 @@
 .swiper {
     width: 100%;
     height: 100%;
+    /* border: 2px solid red; */
+    max-height: 500px;
 }
 
-.swiper-slide {
-    text-align: center;
+.mySwiper .swiper-slide {
     font-size: 18px;
     background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* min-height: 480px; */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
 }
 
-.swiper-slide img {
-    display: block;
+.mySwiper2 .swiper-slide img {
+    /* border: 10px solid green; */
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: cover; /* Ensures the image covers the entire slide while maintaining aspect ratio */
+    max-height: 100%;
 }
 
 
-.swiper {
-    /* width: 100%; */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.swiper-slide {
-    background-size: cover;
-    background-position: center;
-}
+/* For small Swiper -----------> */
 
 .mySwiper2 {
     height: 80%;
@@ -63,15 +58,16 @@
 
     .swiper {
         width: 100%;
-        /* height: 300px !important; */
+        height: 100% !important;
         margin-left: auto;
+         max-height: 350px;
         margin-right: auto;
     }
 
     .swiper-slide img {
         display: block;
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
         object-fit: cover;
     }
 

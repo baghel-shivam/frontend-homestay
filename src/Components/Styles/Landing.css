@@ -9,6 +9,24 @@
     margin-right: 10px;
 }
 
+.img-class-view-details {
+    height: 100px;
+    width: 110px;
+    margin-top: 10px;
+}
+
+.tag_view {
+    /* width: 10%; */
+    cursor: pointer;
+    top: -11%;
+    left: 0%;
+    margin-left: -15px;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+
+}
+
 .home-stay-title {
     font-size: 1.5rem;
     /* margin-top: 10px; */
@@ -250,6 +268,24 @@
 }
 
 @media only screen and (max-width: 765px) {
+    .img-class-view-details {
+        height: 100px;
+        width: 110px;
+        margin-top: 10px;
+    }
+
+    .tag_view {
+        /* width: 10%; */
+        cursor: pointer;
+        top: -11%;
+        left: 0%;
+        margin-left: -15px;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+
+    }
+
     .container-city {
         overflow: hidden;
         display: flex;
@@ -345,7 +381,24 @@
 
 /* For desktop only */
 @media only screen and (min-width: 765px) {
-    
+    .img-class-view-details {
+        height: 100px;
+        width: 110px;
+        margin-top: 26px;
+    }
+
+    .tag_view {
+        /* width: 10%; */
+        cursor: pointer;
+        top: -11%;
+        left: 0%;
+        margin-left: -15px;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+
+    }
+
     .about-items {
         gap: 10px;
         width: 100%;
@@ -356,7 +409,7 @@
         /* justify-content: center; */
         align-items: center;
     }
-    
+
     .container-city {
         overflow: hidden;
         display: flex;
@@ -451,9 +504,10 @@
 /* CHAT  */
 .gif-img-div {
     border-radius: 50%;
+    /* border: 2px solid red; */
     overflow: hidden;
-    height: 100px;
-    width: 100px;
+    height: 70px;
+    width: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -469,7 +523,7 @@
 }
 
 .chat-main-outline {
-    margin-right: -3rem;
+    margin-right: -2rem;
     cursor: pointer;
     position: fixed;
     top: 70%;

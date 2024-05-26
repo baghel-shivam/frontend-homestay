@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { blobUrl } from '../Redux/BaseURL'
 import '../Components/Styles/rooms.css'
 import { Link } from 'react-router-dom'
-import housekeeping from '../Images/housekeeper.png'
-import wifi from '../Images/wifi.png'
-import parkedCar from '../Images/parked-car.png'
-import AC from '../Images/air-conditioner.png'
-import TV from '../Images/television.png'
+import housekeeping from '../Images/room_features/housekeeper.png'
+import wifi from '../Images/room_features/wifi.png'
+import parkedCar from '../Images/room_features/parked-car.png'
+import AC from '../Images/room_features/air-conditioner.png'
+import TV from '../Images/room_features/television.png'
 import tag from '../Images/tag.png'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -184,7 +184,7 @@ export default function Rooms() {
                                                     <div className="carousel-inner">
                                                         {item?.img_array.length > 0 ? item?.img_array?.map((itemImg, index) => (
                                                             <div key={index} className={"carousel-item room-image-search overflow-hidden" + (index === 0 ? " active" : "")}>
-                                                                <img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." />
+                                                                <img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 " alt="..." />
                                                             </div>
                                                         )) :
                                                             <div className={"room-image-search"}>
@@ -204,7 +204,7 @@ export default function Rooms() {
                                             </div>
                                         </div>
                                         <div className="col-md-8 card-body  d-flex align-item-center justify-content-center">
-                                            <div className="card-body " style={{ height:'auto' }} onClick={() => navigate('/view-details', { state: item.id })}>
+                                            <div className="card-body " style={{ height: 'auto' }} onClick={() => navigate('/view-details', { state: item.id })}>
                                                 <div>
 
                                                     <div className='d-flex align-content-between'>
@@ -217,7 +217,7 @@ export default function Rooms() {
 
                                                 <div className="">
                                                     <span className='fs-5 text-warning'>&#9733; {item.rate}</span>
-                                                    <small className='mx-2 fs-6'> (5 Ratings)</small>
+                                                    <small className='mx-2 fs-6'> ({parseInt(Math.random() * (5 - 3) + 4)} Ratings)</small>
                                                     <div className='d-flex justify-content-start w-100 mt-2  '>
                                                         <div className=" w-75 d-flex">
                                                             {item.is_wifi_available && <img src={wifi} className='mx-3' height={25} alt='Wi-Fi' />}

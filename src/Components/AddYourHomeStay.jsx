@@ -68,7 +68,7 @@ export default function AddYourHomeStay() {
     const handleFileChange = (e) => {
         const { name } = e.target;
         const file = e.target.files[0];
-        if (file && file.size <= 5242880) { 
+        if (file && file.size <= 5242880) {
             if (name === 'front_img1') {
                 setFormData({ ...formData, front_img1: file });
             } else if (name === 'front_img2') {
@@ -116,7 +116,6 @@ export default function AddYourHomeStay() {
         const filterData = room.filter((item, index) => index !== num);
         setRooms(filterData);
     };
-
     const handleChange = (e) => {
         const { name, value, type } = e.target;
         if (type === 'file') {
@@ -128,12 +127,12 @@ export default function AddYourHomeStay() {
         }
     };
 
+    console.log(formData, 'this is data')
     const HandleChangeAddRoom = (e) => {
         const { value, name } = e.target;
         setRoomForm({ ...roomForm, [name]: value })
 
     }
-
     const notify = (msg) => toast.error(msg,
         {
             position: 'top-right',
@@ -156,7 +155,6 @@ export default function AddYourHomeStay() {
             draggable: true,
         }
     );
-
     const Agree = (accept, closeDialog) => {
         setLgShow(closeDialog)
         if (accept) {
@@ -164,40 +162,50 @@ export default function AddYourHomeStay() {
         }
         setError('');
     }
-
     useEffect(() => {
         if (AddProp.status === "succeeded") {
-            handleShow(); // Resolve with true if succeeded
+            handleShow();
         } else if (AddProp.status === "failed") {
             notify('HomeStay already exists!');
-            // notify('This HomeStay already exits!');
         }
     }, [AddProp?.status])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');  // Clear previous error messages
+        notify('');    // Clear previous notifications
+
         if (!formData.checked) {
             setError('Please accept the terms and conditions to proceed.');
             return;
         }
-
-        if (room.length === 0) {
-            notify('Add room first.');
+        if (parseInt(formData.expiration_year) > parseInt(formData.registration_year)) {
+            notify('Expiration year should be grater then registration year!');
             return;
         }
-
-        if (!formData?.front_img1 || !formData?.front_img2 || !formData?.front_img3) {
+        if (!formData.front_img1 || !formData.front_img2 || !formData.front_img3) {
             notify('Please add at least 3 Homestay images');
             return;
         }
-        try {
-            await dispatch(AddNewProperty(formData));
-        } catch (error) {
-            notify('Something went wrong!');
+        if (room.length === 0) {
+            notify('Add room first.');
+            return;
+        }else{
+            try {
+                // await dispatch(AddNewProperty(formData))
+                console.log(formData, 'this is  form data');
+                alert('form submitted')
+                notify('Property added successfully!');
+            } catch (error) {
+                notify('Something went wrong!');
+            } finally {
+    
+            }
         }
+       
+
+        
     }
-
-
 
 
     function ModalSuccess() {
@@ -317,7 +325,7 @@ export default function AddYourHomeStay() {
                                 <div className="col-md-6">
                                     <div className="mb-3">
                                         <div className="mb-3">
-                                            <input required type="tel" className="form-control" pattern="[0-9]{10}" minle0gth="10" maxlength="10" name="upi_phn_no" value={formData?.upi_phn_no} onChange={handleChange} placeholder="G-pay, PhonePay, number etc" />
+                                            <input required type="tel" className="form-control" pattern="[0-9]{10}" minlength="10" maxlength="10" name="upi_phn_no" value={formData?.upi_phn_no} onChange={handleChange} placeholder="G-pay, PhonePay, number etc" />
                                         </div>
                                     </div>
                                 </div>
@@ -326,20 +334,42 @@ export default function AddYourHomeStay() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="mb-3">
-                                        <input required type="tel" className="form-control"  minlength="15" maxlength="15" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
+                                        <input required type="tel" className="form-control" minlength="15" maxlength="15" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
                                     </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="tel" className="form-control" minlength="4" name="registration_year" value={formData?.registration_year} onChange={handleChange} placeholder="Registration Year" />
+                                        <select
+                                            required
+                                            className="form-control"
+                                            name="registration_year"
+                                            value={formData?.registration_year}
+                                            onChange={handleChange}
+                                        >
+                                            <option value="" disabled>Select Registration Year</option>
+                                            {Array.from({ length: 101 }, (_, i) => 1950 + i).map(year => (
+                                                <option key={year} value={year}>{year}</option>
+                                            ))}
+                                        </select>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
                                         <div className="mb-3">
-                                            <input required type="tel" minlength="4" className="form-control" name="expiration_year" value={formData?.expiration_year} onChange={handleChange} placeholder="Expiration Year" />
+                                            <select
+                                                required
+                                                className="form-control"
+                                                name="expiration_year"
+                                                value={formData?.expiration_year}
+                                                onChange={handleChange}
+                                            >
+                                                <option value="" disabled>Select Expiration Year</option>
+                                                {Array.from({ length: 101 }, (_, i) => 1950 + i).map(year => (
+                                                    <option key={year} value={year}>{year}</option>
+                                                ))}
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

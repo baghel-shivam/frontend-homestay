@@ -47,17 +47,20 @@ export default function Header() {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto px-lg-4 mt-lg-2">
                         <Nav.Link>
-                            <button onClick={() => handleNav(Landing_ref)} className="nav-link active add-new-property mx-lg-2" style={{ ...style, }} aria-current="page" to="/"><span className='text px-2'>Home</span><span className='mt-2'><i class="bi bi-house"></i></span></button>
+                            <button onClick={() => handleNav(Landing_ref)} className="nav-link active add-new-property mx-lg-1" style={{ ...style, }} aria-current="page" to="/"><span className='text px-2'>Home</span><span className='mt-2'><i class="bi bi-house"></i></span></button>
                         </Nav.Link>
 
                         <Nav.Link>
-                            <button onClick={() => handleNav(About_US_ref)} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, }} ><span className='text px-2'>About us</span> <span className='mt-2 w-100'><i class="bi bi-exclamation-circle"></i></span></button>
+                            <button onClick={() => handleNav(About_US_ref)} className="nav-link active add-new-property  mx-lg-1" style={{ ...style, }} ><span className='text px-2'>About us</span> <span className='mt-2 w-100'><i class="bi bi-exclamation-circle"></i></span></button>
                         </Nav.Link>
                         <Nav.Link>
-                            <button onClick={() => handleNav(Contact_ref)} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, }} ><span className='text px-3'>Contact us</span> <span className='mt-2 w-100'><i class="bi bi-telephone"></i></span></button>
+                            <button onClick={() => handleNav(Contact_ref)} className="nav-link active add-new-property  mx-lg-1" style={{ ...style, }} ><span className='text px-3'>Contact us</span> <span className='mt-2 w-100'><i class="bi bi-telephone"></i></span></button>
                         </Nav.Link>
                         <Nav.Link>
-                            <Link to={'/help'} onClick={() => handleNav('data')} className="nav-link active add-new-property  mx-lg-2" style={{ ...style, }} ><span className='text px-3'>Help</span> <span className='mt-2 w-100'><i class="bi bi-info"></i></span></Link>
+                            <Link to={'/help'} onClick={() => handleNav('data')} className="nav-link active add-new-property  mx-lg-1" style={{ ...style, }} ><span className='text px-3'>Help</span> <span className='mt-2 w-100'><i class="bi bi-info"></i></span></Link>
+                        </Nav.Link>
+                        <Nav.Link>
+                            <Link to={'/who_is_monal'} onClick={() => handleNav('data')} className="nav-link active add-new-property  mx-lg-1" style={{ ...style, }} ><span className='text px-3'>How is Monal?</span> <span className='mt-2 w-100 fw-light'>Bird</span></Link>
                         </Nav.Link>
                     </Nav>
                     <Nav>

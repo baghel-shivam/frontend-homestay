@@ -7,7 +7,6 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-// import './Styles/Swiper.css'
 import './Styles//ViewPageSwiper.css'
 
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
@@ -15,7 +14,7 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 export default function SwiperComponent({ view_data }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <>
+    <div className='' >
       <Swiper
         style={{
           '--swiper-navigation-color': '#fff',
@@ -52,6 +51,6 @@ export default function SwiperComponent({ view_data }) {
         ))}
 
       </Swiper>
-    </>
+    </div>
   );
 }

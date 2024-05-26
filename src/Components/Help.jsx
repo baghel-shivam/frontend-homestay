@@ -1,5 +1,5 @@
 import React from 'react'
-import img from '../Images/city-img (5).jpg'
+import img from '../Images/help/help_page.jpg'
 import '../Components/Styles/Help.css'
 import ts from '../Images/PremiumIcons/help-desk.png'
 import ba from '../Images/PremiumIcons/partner.png'

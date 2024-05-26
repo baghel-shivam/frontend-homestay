@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import img from '../Images/contact_us.jpg'
+import img from '../Images/contact_us/contact_us.jpg'
 export default function ContectUs(props) {
   const [showContDetails, setShowContDetails] = useState({ data: "", open: false })
   return (
@@ -32,7 +32,6 @@ export default function ContectUs(props) {
               <div className='d-flex justify-content-between'>
                 <h5 className='text-bolder'>{showContDetails.type}</h5>
                 <button onClick={() => setShowContDetails({ open: false })} type="button" class="btn-close" aria-label="Close"></button>
-
               </div>
               <hr className='m-0 p-0' />
               <div className='container'>
@@ -41,15 +40,12 @@ export default function ContectUs(props) {
                     {showContDetails.type}: {showContDetails.data}
                   </p>
                 </div>
-
-
               </div>
             </div>
           }
-
-
           <span className='sub-heading'>Have a question, feedback, or just want to say hello? We'd love to hear from you!
-            <hr /></span>
+            <hr />
+          </span>
           <p>
             Feel free to reach out to us via phone or email during our business hours. We're here to assist you with any inquiries or assistance you may need. Thank you for choosing HOMESTAY!
           </p>

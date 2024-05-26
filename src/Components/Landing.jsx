@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import './Styles/Landing.css'
 import Form from './Form'
-import bg from '../Images/bg-new.jpg'
+import bg from '../Images/landing_bg/bg.jpg'
 import TopDestination from './TopDestination';
 import WhyBook from './WhyBook';
 import WasThisPageHelpfull from './WasThisPageHelpfull';
@@ -9,8 +9,6 @@ import AboutUs from './AboutUs';
 import ContectUs from './ContectUs';
 import { StoreAbout_us_Ref, StoreContactRef, StoreLanding_Ref } from '../Redux/RefShare/Reference_Slice';
 import { useDispatch } from 'react-redux';
-import ChatBoat from './ChatBoat/ChatBoat';
-import DateRangePickerValue from './DateRange';
 
 export default function Landing() {
     const ref_about = useRef(null)

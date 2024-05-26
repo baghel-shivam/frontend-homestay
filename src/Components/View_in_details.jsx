@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import housekeeping from '../Images/housekeeper.png'
-import wifi from '../Images/wifi.png'
-import parkedCar from '../Images/parked-car.png'
-import AC from '../Images/air-conditioner.png'
-import TV from '../Images/television.png'
+import housekeeping from '../Images/room_features/housekeeper.png'
+import wifi from '../Images/room_features/wifi.png'
+import parkedCar from '../Images/room_features/parked-car.png'
+import AC from '../Images/room_features/air-conditioner.png'
+import TV from '../Images/room_features/television.png'
 import Checkout from './Checkout'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import tag from '../Images/tag.png'
 import Success from './Success'
 import { ViewDetails } from '../Redux/ViewDetails/Action'
 import { blobUrl } from '../Redux/BaseURL'
@@ -139,7 +140,6 @@ export default function View_in_details() {
             setSelectedOption(customValue);
         }
     };
-    console.log(room_details, 'this is room details')
     return (
         <div className='my-5 pt-5 container' style={{ maxWidth: '1200px' }}>
             {room_details.status === 'loading' && <Loading />}
@@ -150,6 +150,11 @@ export default function View_in_details() {
                 <div className="col-12 col-lg-7 col-md-7">
                     <div id={`carouselExampleCaptions`} className=" details-box carousel slide rounded-3 overflow-hidden">
                         <div className="">
+                            {view_data?.is_recommended &&
+                                <div className='tag_view'>
+                                    <img src={tag} className='img-class-view-details' alt='recommended tag' />
+                                </div>
+                            }
                             {view_data?.img_array?.length > 0 ? view_data?.img_array?.map((itemImg, index) => (
                                 <div key={index} className={"carousel-item view-in-detail-item" + (index === 0 ? " active" : "")}>
                                     <a href={`${blobUrl}/${itemImg?.image_field}`}><img src={`${blobUrl}/${itemImg?.image_field}`} className="d-block w-100 h-100" alt="..." /></a>
@@ -275,31 +280,31 @@ export default function View_in_details() {
                                 <strong >Amenities</strong>
                                 {view_data && (
                                     <div className="mt-2 container d-flex justify-content-evenly">
-                                        {view_data.is_wifi_available && (
+                                        {view_data?.is_wifi_available && (
                                             <div >
                                                 <img src={wifi} className="" height={25} width={25} alt="Wi-Fi" />
                                                 {/* <span className="mt-1 mx-2">Wifi</span> */}
                                             </div>
                                         )}
-                                        {view_data.is_parking_available && (
+                                        {view_data?.is_parking_available && (
                                             <div >
                                                 <img src={parkedCar} className="" width={25} height={25} alt="Parking" />
                                                 {/* <span className="mt-1 mx-2">Parking</span> */}
                                             </div>
                                         )}
-                                        {view_data.is_tv_available && (
+                                        {view_data?.is_tv_available && (
                                             <div >
                                                 <img src={TV} className="" height={25} width={25} alt="TV" />
                                                 {/* <span className="mt-1 mx/-2">TV</span> */}
                                             </div>
                                         )}
-                                        {view_data.is_ac_available && (
+                                        {view_data?.is_ac_available && (
                                             <div >
                                                 <img src={AC} className="" height={25} width={25} alt="AC" />
                                                 {/* <span className="mt-1 mx-2">AC</span> */}
                                             </div>
                                         )}
-                                        {view_data.is_housekeeping_available && (
+                                        {view_data?.is_housekeeping_available && (
                                             <div >
                                                 <img src={housekeeping} className="" width={25} height={25} alt="Housekeeping" />
                                                 {/* <span className="mt-1 mx-2">Housekeeping</span> */}
@@ -361,18 +366,18 @@ export default function View_in_details() {
                             <p className='p-2'> {view_data?.how_to_reach} </p>
                         </div>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-6  d-flex flex-wrap align-content-center">
-                        <div className='w-100 text-center'>
+                    <div className="col-12 col-md-6 col-lg-6  d-flex flex-wrap align-content-center  ">
+                        <div className='w-75 text-center mx-5'>
                             <strong className=''>Reviews</strong>
                             <div className="container  mb-3">
                                 <span>5 &#9733;</span>
                                 <div className="w-100  rate-bar">
-                                    <div className="w-75 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
+                                    <div className="w-100 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
                                     </div>
                                 </div>
                                 <span>4 &#9733;</span>
                                 <div className="w-100 rate-bar">
-                                    <div className="w-50 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
+                                    <div className="w-75 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
 
                                     </div>
                                 </div>
@@ -384,7 +389,7 @@ export default function View_in_details() {
                                 </div>
                                 <span>2 &#9733;</span>
                                 <div className="w-100 rate-bar">
-                                    <div className="w-25 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
+                                    <div className="w-0 bg-primary rate-bar-child" style={{ background: 'red', height: '10px', }}>
 
                                     </div>
                                 </div>
