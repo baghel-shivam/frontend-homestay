@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from './Loading.jsx';
 import TermsAndCond from './TermsAndCond.jsx';
 import { ToastContainer, toast } from 'react-toastify';
+import { resetAddPropStatus } from '../Redux/AddNewPro/AddPropSlice.js';
 // import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -55,6 +56,8 @@ export default function AddYourHomeStay() {
         state: '',
         city: '',
         contact_person: "",
+        registration_year: '',
+        expiration_year: '',
         price_currency: "INR",
         contact_email: '',
         contact_phn: '',
@@ -127,11 +130,9 @@ export default function AddYourHomeStay() {
         }
     };
 
-    // console.log(formData, 'this is data')
     const HandleChangeAddRoom = (e) => {
         const { value, name } = e.target;
         setRoomForm({ ...roomForm, [name]: value })
-
     }
     const notify = (msg) => toast.error(msg,
         {
@@ -162,18 +163,22 @@ export default function AddYourHomeStay() {
         }
         setError('');
     }
+
+
     useEffect(() => {
-        if (AddProp.status === "succeeded") {
+        if (AddProp?.status === "succeeded") {
             handleShow();
-        } else if (AddProp.status === "failed") {
+            dispatch(resetAddPropStatus());
+        } else if (AddProp?.status === "failed") {
             notify('HomeStay already exists!');
+            dispatch(resetAddPropStatus());
         }
-    }, [AddProp?.status])
+    }, [AddProp?.status, dispatch]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError('');  // Clear previous error messages
-
+        setError('');
         if (!formData.checked) {
             setError('Please accept the terms and conditions to proceed.');
             return;
@@ -190,7 +195,6 @@ export default function AddYourHomeStay() {
             notify('Add room first.');
             return;
         } else {
-
             try {
                 await dispatch(AddNewProperty(formData))
                 ModalSuccess()
@@ -200,9 +204,6 @@ export default function AddYourHomeStay() {
 
             }
         }
-
-
-
     }
 
 
@@ -230,7 +231,6 @@ export default function AddYourHomeStay() {
             </>
         );
     }
-
 
     return (
         <div className='container add-your-home-stay pt-3' >
@@ -331,7 +331,7 @@ export default function AddYourHomeStay() {
 
                             <div className="row">
                                 <div className="col-md-12">
-                                    <div className="mb-3">
+                                    <div className="mb-3 ">
                                         <input required type="tel" className="form-control" minlength="15" maxlength="15" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
                                     </div>
                                 </div>

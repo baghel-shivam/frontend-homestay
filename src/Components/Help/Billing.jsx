@@ -8,7 +8,29 @@ export default function Billing() {
           <h1>
             Billing Payment</h1>
           <hr />
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum totam labore quidem veritatis autem impedit. Molestiae sit hic eaque voluptates temporibus nemo id, deserunt exercitationem excepturi laudantium debitis? Repellat, repudiandae velit dolor voluptate consequuntur fugiat amet officiis? Consequuntur impedit aspernatur est ratione vel enim nesciunt maiores quam consectetur non quos officiis labore illo dolore eius deserunt rerum unde, ipsam quidem iure. Dolorum perferendis reiciendis soluta! Consequatur repellat iste minima ducimus unde totam, laboriosam iure dignissimos voluptatum voluptatibus dolorem harum dolor error cupiditate eveniet non dolorum! Eos numquam vel nostrum quibusdam, reprehenderit debitis. Sunt fugiat quas illum quidem, ea maiores alias adipisci, labore soluta reprehenderit magnam at, illo earum ab dolorem! Facilis quas labore est vero ipsam libero? Explicabo debitis tempora culpa, nemo perferendis placeat dolor atque voluptate nam reiciendis aperiam molestias hic eum voluptas velit commodi id deserunt doloribus, eveniet aut saepe labore distinctio iure repudiandae. Doloribus, voluptates velit, unde cum vero delectus explicabo maiores ullam, et commodi reprehenderit tempore eum nam molestias eveniet eligendi obcaecati vitae labore blanditiis ratione. Corporis recusandae earum sed velit, odio est atque dicta fuga vel nisi dignissimos, mollitia nulla, quo veritatis laboriosam sequi ad doloremque commodi autem minus. Nisi corporis veniam, deserunt quasi, beatae, quod eaque ratione qui placeat est tempore repellendus hic aliquam doloremque molestiae? Soluta veniam iure molestias laborum debitis delectus perspiciatis itaque assumenda modi. Natus mollitia alias quas et expedita eius ex vel minima quibusdam ducimus corrupti, voluptatibus corporis consequatur dolores laudantium molestiae fuga vitae aspernatur ratione ea qui dolore? Facere ut, aliquid quaerat accusantium eveniet illo vitae tempore veniam numquam unde sint at libero neque eaque repellat quis perferendis? Aut, qui debitis? Facere laudantium et quo sunt, nisi harum nihil incidunt sequi praesentium consectetur a quibusdam vel molestias aliquam explicabo autem? Repellat consequatur ea porro? Beatae necessitatibus vitae perferendis aut.</p>
+          <p>At LazyMonal.com, we strive to make the billing and payment process as convenient and transparent as possible for our guests. Below, you'll find all the information you need to know about billing, payment methods, and any applicable policies.
+
+Upon check-in at Home Stay, you should receive an itemized bill detailing the charges for your stay, including room rates, taxes, and any additional services or amenities you've requested.
+
+We accept the following online forms of UPI payment methods for your convenience:
+
+Google Pay: UPI detailes are given at home page. It is a digital wallet platform and online payment system developed by Google. It allows users to make payments, both online and in-person, using their mobile devices or computers. Google Pay securely stores users' credit or debit card information and facilitates transactions without the need to physically present a card.
+
+PayTM: UPI detailes are given at home page. It is an Indian digital payments and financial services platform that offers a wide range of services, including online booking and shopping, ticket booking, and money transfer. 
+
+Incase Home Stay owner does not facilitate the PayTM/Google Pay method, Home Stay owners may ask for pre-authorization that may be placed on your credit or debit card at the time of booking or check-in to ensure funds are available to cover your stay and any incidental expenses. The pre-authorization amount will be released upon check-out, and the final charges will be processed. It's purely between you and HomeStay Owner.
+
+Secure Payment Processing:
+Rest assured that your payment information is safe and secure. We utilize industry-standard encryption technology to protect your personal and financial data during online transactions.
+
+Check-Out Time: Please note that check-out time is at 8 AM or discuss it with Home Stay Owner so taht you are pre awared. Late check-out may result in additional charges.
+Incidentals: Any additional charges incurred during your stay, such as room service, mini-bar purchases, or damage to hotel property, will be added to your final bill.
+Taxes: All room rates are subject to applicable taxes, which will be included in your total bill.
+
+If you have any questions or concerns about your bill, please don't hesitate to contact our staff during your stay. We're here to assist you and address any discrepancies promptly.
+Please check with Home Stay Owner about it or let our team know if you need assistance, We are happy to help you.
+
+</p>
         </div>
       </section>
 

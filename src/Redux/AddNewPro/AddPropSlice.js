@@ -1,15 +1,20 @@
-// import {  } from './BookignAction';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AddNewProperty } from './AddPropAction';
-import { createSlice } from '@reduxjs/toolkit';
 
-const AddPropSlice = createSlice({
-    name: 'AddProp',
-    initialState: {
-        data: [],
-        status: '',
-        error: null // Change error to null initially
+const initialState = {
+    data: [],
+    status: '',
+    error: null
+};
+
+const addPropSlice = createSlice({
+    name: 'addProp',
+    initialState,
+    reducers: {
+        resetAddPropStatus(state) {
+            state.status = 'idle';
+        },
     },
-    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(AddNewProperty.pending, (state) => {
@@ -27,4 +32,5 @@ const AddPropSlice = createSlice({
     }
 });
 
-export default AddPropSlice.reducer;
+export const { resetAddPropStatus } = addPropSlice.actions;
+export default addPropSlice.reducer;

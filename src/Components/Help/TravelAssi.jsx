@@ -8,7 +8,27 @@ export default function TravelAssi() {
          <h1>
 Travel Assistance</h1>
          <hr/>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum totam labore quidem veritatis autem impedit. Molestiae sit hic eaque voluptates temporibus nemo id, deserunt exercitationem excepturi laudantium debitis? Repellat, repudiandae velit dolor voluptate consequuntur fugiat amet officiis? Consequuntur impedit aspernatur est ratione vel enim nesciunt maiores quam consectetur non quos officiis labore illo dolore eius deserunt rerum unde, ipsam quidem iure. Dolorum perferendis reiciendis soluta! Consequatur repellat iste minima ducimus unde totam, laboriosam iure dignissimos voluptatum voluptatibus dolorem harum dolor error cupiditate eveniet non dolorum! Eos numquam vel nostrum quibusdam, reprehenderit debitis. Sunt fugiat quas illum quidem, ea maiores alias adipisci, labore soluta reprehenderit magnam at, illo earum ab dolorem! Facilis quas labore est vero ipsam libero? Explicabo debitis tempora culpa, nemo perferendis placeat dolor atque voluptate nam reiciendis aperiam molestias hic eum voluptas velit commodi id deserunt doloribus, eveniet aut saepe labore distinctio iure repudiandae. Doloribus, voluptates velit, unde cum vero delectus explicabo maiores ullam, et commodi reprehenderit tempore eum nam molestias eveniet eligendi obcaecati vitae labore blanditiis ratione. Corporis recusandae earum sed velit, odio est atque dicta fuga vel nisi dignissimos, mollitia nulla, quo veritatis laboriosam sequi ad doloremque commodi autem minus. Nisi corporis veniam, deserunt quasi, beatae, quod eaque ratione qui placeat est tempore repellendus hic aliquam doloremque molestiae? Soluta veniam iure molestias laborum debitis delectus perspiciatis itaque assumenda modi. Natus mollitia alias quas et expedita eius ex vel minima quibusdam ducimus corrupti, voluptatibus corporis consequatur dolores laudantium molestiae fuga vitae aspernatur ratione ea qui dolore? Facere ut, aliquid quaerat accusantium eveniet illo vitae tempore veniam numquam unde sint at libero neque eaque repellat quis perferendis? Aut, qui debitis? Facere laudantium et quo sunt, nisi harum nihil incidunt sequi praesentium consectetur a quibusdam vel molestias aliquam explicabo autem? Repellat consequatur ea porro? Beatae necessitatibus vitae perferendis aut.</p>
+         <p>Planning your trip should be exciting, not stressful. At LazyMonal.com, we're here to provide you with comprehensive travel assistance to ensure your journey is smooth from start to finish. Here's how we can help:
+
+Destination Guides:
+Explore excursions given at website to discover insider tips, local attractions, and must-see landmarks for your chosen destination. Whether you're traveling for business or leisure, we recommend to do some basic Online search which will further help you make the most of your trip. please call to us for more help.
+
+Travel Insurance:
+Protect your investment with travel insurance. We do not offer  any travel insurance options. We recommend to explore some good insurance offerings and choose the coverage that's right for you.
+
+24/7 Customer Support:
+Have questions or need assistance during your trip? Our dedicated customer support team is available 24/7 to assist you with any inquiries or issues that may arise. Contact us via phone, email, or live chat, and we'll be happy to help.
+
+Travel Alerts and Updates:
+Stay informed about travel advisories, weather updates, and any potential disruptions to your itinerary with our real-time travel alerts. Sign up for notifications to receive timely updates about your destination and travel plans.
+
+Customized Itinerary Planning:
+Looking to create a personalized itinerary for your trip? Our travel experts can help you plan every aspect of your journey, from sightseeing tours and activities to dining reservations and local experiences. Let us tailor your itinerary to make your trip unforgettable. It is completly free of cost.
+
+Travel Tips and Advice:
+Prepare for your trip like a seasoned traveler with our travel tips and advice. Learn about packing essentials, currency exchange, cultural etiquette, safety precautions, and more to ensure a smooth and enjoyable travel experience. Make sure you keep all your medicines with you and stay aware about climate, storm, precepitation and temperature on line.
+Like One Suggetions: https://www.weatheronline.in/
+</p>
         </div>
     </section>
 

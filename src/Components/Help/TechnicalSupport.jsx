@@ -3,15 +3,32 @@ import React from 'react'
 export default function TechnicalSupport() {
   return (
     <div className='min-height'>
-    <section className='container-fluid Support card'>
+      <section className='container-fluid Support card'>
         <div className='support-child'>
-         <h1>
-Technical Support</h1>
-         <hr/>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum totam labore quidem veritatis autem impedit. Molestiae sit hic eaque voluptates temporibus nemo id, deserunt exercitationem excepturi laudantium debitis? Repellat, repudiandae velit dolor voluptate consequuntur fugiat amet officiis? Consequuntur impedit aspernatur est ratione vel enim nesciunt maiores quam consectetur non quos officiis labore illo dolore eius deserunt rerum unde, ipsam quidem iure. Dolorum perferendis reiciendis soluta! Consequatur repellat iste minima ducimus unde totam, laboriosam iure dignissimos voluptatum voluptatibus dolorem harum dolor error cupiditate eveniet non dolorum! Eos numquam vel nostrum quibusdam, reprehenderit debitis. Sunt fugiat quas illum quidem, ea maiores alias adipisci, labore soluta reprehenderit magnam at, illo earum ab dolorem! Facilis quas labore est vero ipsam libero? Explicabo debitis tempora culpa, nemo perferendis placeat dolor atque voluptate nam reiciendis aperiam molestias hic eum voluptas velit commodi id deserunt doloribus, eveniet aut saepe labore distinctio iure repudiandae. Doloribus, voluptates velit, unde cum vero delectus explicabo maiores ullam, et commodi reprehenderit tempore eum nam molestias eveniet eligendi obcaecati vitae labore blanditiis ratione. Corporis recusandae earum sed velit, odio est atque dicta fuga vel nisi dignissimos, mollitia nulla, quo veritatis laboriosam sequi ad doloremque commodi autem minus. Nisi corporis veniam, deserunt quasi, beatae, quod eaque ratione qui placeat est tempore repellendus hic aliquam doloremque molestiae? Soluta veniam iure molestias laborum debitis delectus perspiciatis itaque assumenda modi. Natus mollitia alias quas et expedita eius ex vel minima quibusdam ducimus corrupti, voluptatibus corporis consequatur dolores laudantium molestiae fuga vitae aspernatur ratione ea qui dolore? Facere ut, aliquid quaerat accusantium eveniet illo vitae tempore veniam numquam unde sint at libero neque eaque repellat quis perferendis? Aut, qui debitis? Facere laudantium et quo sunt, nisi harum nihil incidunt sequi praesentium consectetur a quibusdam vel molestias aliquam explicabo autem? Repellat consequatur ea porro? Beatae necessitatibus vitae perferendis aut.</p>
-        </div>
-    </section>
+          <h1>
+            Technical Support</h1>
+          <hr />
+          <p>Encountering technical difficulties? Don't worry – our dedicated technical support team is here to help you resolve any issues and ensure a smooth booking experience. Here's how we can assist you:
 
-</div>
+            Contact Information:
+
+            Phone Support: Call our technical support hotline at +91-9359843020 (Available 9 AM to 9 PM IST) and +1-973-906-3275  (Available 9 PM to 9 AM IST through Whats App) for immediate assistance from one of our experienced technicians.
+            Email Support: Reach out to us via email at helpLazyMonal@gmail.com, and our technical support team will respond promptly to help resolve your issue.
+            Live Chat: Access our live chat feature during operating hours to chat with a member of our technical support team in real-time.
+            FAQs: Check out our Frequently Asked Questions (FAQs) section for answers to common technical inquiries and troubleshooting tips.
+            Operating Hours:
+            Our technical support team is available to assist you 24 X 7 hours.
+
+            There are few common Technical Issues We Can Help With:
+
+            * Trouble logging in to your account
+            * Error messages or system glitches during the booking process
+            * Issues with payment processing or transactions
+            * Difficulty accessing or navigating certain features of our website or app
+          </p>
+        </div>
+      </section>
+
+    </div>
   )
 }

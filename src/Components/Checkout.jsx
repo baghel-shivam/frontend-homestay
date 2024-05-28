@@ -39,10 +39,9 @@ export default function Checkout({ state, view_data, guest_room, collectRoom, se
         }
         if (booking?.status === "succeeded") {
             const closeButton = document.querySelector(".btn-close-checkout");
+            dispatch(ViewDetails(data))
             if (closeButton) {
                 closeButton.click();
-
-                dispatch(ViewDetails(data))
             }
             setSmShow(true)
         }
@@ -124,7 +123,6 @@ export default function Checkout({ state, view_data, guest_room, collectRoom, se
                         <button type="button" style={{ zIndex: '9999' }} className="btn-close btn-close-checkout" data-bs-dismiss="modal" aria-label="Close"></button>
                         <div className="row overflow-hidden  ">
                             <div className="col img-checkout-div d-none d-lg-block">
-                                {/* <img src={checkOut} className='checkout-img' height={250} alt='Check-out-img' /> */}
                             </div>
                             <div className="col">
                                 <div className="container mt-2 text-start">

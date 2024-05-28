@@ -78,18 +78,16 @@ export default function View_in_details() {
         }
     }, [guest_room?.available_rooms, view_data?.availabel_rooms]);
 
-
+    const data = {
+        "id": state,
+        "checkin_date": formData.checkin_date,
+        "checkout_date": formData.checkout_date,
+        "total_guest": selectedOption
+    }
 
     useEffect(() => {
-        const data = {
-            "id": state,
-            "checkin_date": formData.checkin_date,
-            "checkout_date": formData.checkout_date,
-            "total_guest":selectedOption
-        }       
         dispatch(ViewDetails(data))
-
-    }, [])
+    }, [booking])
 
     const validation = () => {
         if (!collectRoom || !Array.isArray(collectRoom)) {

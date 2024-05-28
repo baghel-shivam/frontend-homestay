@@ -8,7 +8,15 @@ export default function HealthSafety() {
                     <h1>
                         Health Safety</h1>
                     <hr />
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum totam labore quidem veritatis autem impedit. Molestiae sit hic eaque voluptates temporibus nemo id, deserunt exercitationem excepturi laudantium debitis? Repellat, repudiandae velit dolor voluptate consequuntur fugiat amet officiis? Consequuntur impedit aspernatur est ratione vel enim nesciunt maiores quam consectetur non quos officiis labore illo dolore eius deserunt rerum unde, ipsam quidem iure. Dolorum perferendis reiciendis soluta! Consequatur repellat iste minima ducimus unde totam, laboriosam iure dignissimos voluptatum voluptatibus dolorem harum dolor error cupiditate eveniet non dolorum! Eos numquam vel nostrum quibusdam, reprehenderit debitis. Sunt fugiat quas illum quidem, ea maiores alias adipisci, labore soluta reprehenderit magnam at, illo earum ab dolorem! Facilis quas labore est vero ipsam libero? Explicabo debitis tempora culpa, nemo perferendis placeat dolor atque voluptate nam reiciendis aperiam molestias hic eum voluptas velit commodi id deserunt doloribus, eveniet aut saepe labore distinctio iure repudiandae. Doloribus, voluptates velit, unde cum vero delectus explicabo maiores ullam, et commodi reprehenderit tempore eum nam molestias eveniet eligendi obcaecati vitae labore blanditiis ratione. Corporis recusandae earum sed velit, odio est atque dicta fuga vel nisi dignissimos, mollitia nulla, quo veritatis laboriosam sequi ad doloremque commodi autem minus. Nisi corporis veniam, deserunt quasi, beatae, quod eaque ratione qui placeat est tempore repellendus hic aliquam doloremque molestiae? Soluta veniam iure molestias laborum debitis delectus perspiciatis itaque assumenda modi. Natus mollitia alias quas et expedita eius ex vel minima quibusdam ducimus corrupti, voluptatibus corporis consequatur dolores laudantium molestiae fuga vitae aspernatur ratione ea qui dolore? Facere ut, aliquid quaerat accusantium eveniet illo vitae tempore veniam numquam unde sint at libero neque eaque repellat quis perferendis? Aut, qui debitis? Facere laudantium et quo sunt, nisi harum nihil incidunt sequi praesentium consectetur a quibusdam vel molestias aliquam explicabo autem? Repellat consequatur ea porro? Beatae necessitatibus vitae perferendis aut.</p>
+                    <p>
+                        At LazyMonal.com, your health and safety are our top priorities. We are committed to providing a safe and hygienic environment for all our guests. Here's what we're doing to ensure your well-being:
+
+                        Health Screenings:
+
+                        Guests may be subject to health screenings upon arrival, such as temperature checks, to ensure the well-being of everyone on the premises.
+                        Anyone exhibiting symptoms of illness will be provided with appropriate support and guidance.
+
+                        We value your feedback! If you have any suggestions or concerns regarding our health and safety measures, please let us know. Your input helps us improve our services and protocols.</p>
                 </div>
             </section>
 

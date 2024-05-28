@@ -7,7 +7,19 @@ export default function Customer() {
         <div className='support-child'>
          <h1>Customer Service</h1>
          <hr/>
-         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum totam labore quidem veritatis autem impedit. Molestiae sit hic eaque voluptates temporibus nemo id, deserunt exercitationem excepturi laudantium debitis? Repellat, repudiandae velit dolor voluptate consequuntur fugiat amet officiis? Consequuntur impedit aspernatur est ratione vel enim nesciunt maiores quam consectetur non quos officiis labore illo dolore eius deserunt rerum unde, ipsam quidem iure. Dolorum perferendis reiciendis soluta! Consequatur repellat iste minima ducimus unde totam, laboriosam iure dignissimos voluptatum voluptatibus dolorem harum dolor error cupiditate eveniet non dolorum! Eos numquam vel nostrum quibusdam, reprehenderit debitis. Sunt fugiat quas illum quidem, ea maiores alias adipisci, labore soluta reprehenderit magnam at, illo earum ab dolorem! Facilis quas labore est vero ipsam libero? Explicabo debitis tempora culpa, nemo perferendis placeat dolor atque voluptate nam reiciendis aperiam molestias hic eum voluptas velit commodi id deserunt doloribus, eveniet aut saepe labore distinctio iure repudiandae. Doloribus, voluptates velit, unde cum vero delectus explicabo maiores ullam, et commodi reprehenderit tempore eum nam molestias eveniet eligendi obcaecati vitae labore blanditiis ratione. Corporis recusandae earum sed velit, odio est atque dicta fuga vel nisi dignissimos, mollitia nulla, quo veritatis laboriosam sequi ad doloremque commodi autem minus. Nisi corporis veniam, deserunt quasi, beatae, quod eaque ratione qui placeat est tempore repellendus hic aliquam doloremque molestiae? Soluta veniam iure molestias laborum debitis delectus perspiciatis itaque assumenda modi. Natus mollitia alias quas et expedita eius ex vel minima quibusdam ducimus corrupti, voluptatibus corporis consequatur dolores laudantium molestiae fuga vitae aspernatur ratione ea qui dolore? Facere ut, aliquid quaerat accusantium eveniet illo vitae tempore veniam numquam unde sint at libero neque eaque repellat quis perferendis? Aut, qui debitis? Facere laudantium et quo sunt, nisi harum nihil incidunt sequi praesentium consectetur a quibusdam vel molestias aliquam explicabo autem? Repellat consequatur ea porro? Beatae necessitatibus vitae perferendis aut.</p>
+         <p>At LazyMonal.com, we're committed to providing exceptional customer service and support to ensure your booking experience is seamless and stress-free. Our dedicated team of customer service representatives is here to assist you every step of the way. Here's how you can reach us:
+
+Contact Information:
+
+Phone: +919359843020 (Available 9 AM to 9 PM IST) and +1-973-906-3275  (Available 9 PM to 9 AM IST through Whats App)
+Email: helpLazyMonal@gmail.com
+Live Chat: Access the live chat feature on our website during operating hours for real-time assistance.
+Reservations: Assistance with booking Home Stays and exact locations of home stays.
+Modifications: Help with making changes to your existing bookings, such as date or room adjustments.
+Cancellations: Guidance on cancelling bookings and refunds, subject to our cancellation policies.
+Feedback and Suggestions:
+We value your feedback! If you have any suggestions, comments, or concerns about your booking experience, please don't hesitate to reach out to us. Your input helps us improve our services to better serve you.
+</p>
         </div>
     </section>
 

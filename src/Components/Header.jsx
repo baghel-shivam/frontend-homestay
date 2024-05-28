@@ -60,7 +60,7 @@ export default function Header() {
                             <Link to={'/help'} onClick={() => handleNav('data')} className="nav-link active add-new-property  mx-lg-1" style={{ ...style, }} ><span className='text px-3'>Help</span> <span className='mt-2 w-100'><i class="bi bi-info"></i></span></Link>
                         </Nav.Link>
                         <Nav.Link>
-                            <Link to={'/who_is_monal'} onClick={() => handleNav('data')} className="nav-link active add-new-property  mx-lg-1" style={{ ...style, }} ><span className='text px-3'>How is Monal?</span> <span className='mt-2 w-100 fw-light'>Bird</span></Link>
+                            <Link to={'/who_is_monal'} onClick={() => handleNav('data')} className="nav-link active add-new-property  mx-lg-1" style={{ ...style, }} ><span className='text px-3'>Who is Monal?</span> <span className='mt-2 w-100 fw-light'>Bird</span></Link>
                         </Nav.Link>
                     </Nav>
                     <Nav>

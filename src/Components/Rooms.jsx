@@ -89,8 +89,6 @@ export default function Rooms() {
         setPaginationData({ ...paginationData, "PageItem": currentPageItems })
     };
 
-    console.log(data, 'hello items')
-
     return (
         <div className='container Room_div' style={{ minHeight: '100vh' }}>
             <ToastContainer />
@@ -248,34 +246,32 @@ export default function Rooms() {
                                         </div>
                                     </div>
                                 </div>
-                                <hr className='my-4' />
-                                {/* {data?.data?.length > 10 && <>
-                                    <div className='w-100 d-flex justify-content-center'>
-                                        <nav aria-label="Page navigation example">
-                                            <ul className="pagination justify-content-end">
-                                                <li className="page-item disabled">
-                                                    <a className="page-link">Previous</a>
-                                                </li>
-                                                {paginationData?.numberOfPage && paginationData?.numberOfPage?.map((item, index) => {
-                                                    return (
-                                                        <li className="page-item" onClick={() => HandlePageChange(item)} key={index}><a className="page-link" href="#">{item}</a></li>
-                                                    )
-                                                })}
-
-                                                <li className="page-item">
-                                                    <a className="page-link" href="#">Next</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </>
-                                } */}
-
-
                             </>
                         )) : <div className='container d-grid justify-content-center'>
                             <span className='fs-4 text-danger mt-5'>Sorry, There is no room in this area.</span>
                         </div>
+                        }
+                        <hr className='my-4' />
+                        {data?.data?.length > 10 && <>
+                            <div className='w-100 d-flex justify-content-center'>
+                                <nav aria-label="Page navigation example">
+                                    <ul className="pagination justify-content-end">
+                                        <li className="page-item disabled">
+                                            <a className="page-link">Previous</a>
+                                        </li>
+                                        {paginationData?.numberOfPage && paginationData?.numberOfPage?.map((item, index) => {
+                                            return (
+                                                <li className="page-item" onClick={() => HandlePageChange(item)} key={index}><a className="page-link" href="#">{item}</a></li>
+                                            )
+                                        })}
+
+                                        <li className="page-item">
+                                            <a className="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </>
                         }
                     </div>
                 </div>
