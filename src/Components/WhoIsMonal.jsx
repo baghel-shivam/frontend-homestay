@@ -4,7 +4,7 @@ import '../../src/Components/Styles/Why_monal.css'
 
 export default function WhoIsMona() {
   return (
-    <div className='d-flex justify-content-center align-content-around' style={{ minHeight: '100vh', marginTop: '1.5rem' }}>
+    <div className='d-flex justify-content-center align-content-around' style={{ minHeight: '120vh', marginTop: '1.5rem' }}>
       <div id="monal-img-container" className=''>
         <img src={monal} alt='monal' id='monal_img' className="img-fluid" />
         <div className="monal-content">

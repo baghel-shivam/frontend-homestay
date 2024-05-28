@@ -1,6 +1,7 @@
 #monal-img-container {
     position: relative;
     width: 100%;
+    /* border: 2px solid; */
     height: 80% !important;
     margin: 0 auto;
 }
@@ -45,7 +46,17 @@
     .monal-content {
         width: 300px;
         left: 60%;
-        top: 100%;
+        top: 90%;
+       height: 500px;
+        overflow-y: scroll;
+    }
+
+    #monal-img-container {
+        position: relative;
+        width: 100%;
+        /* border: 2px solid; */
+        height: 80% !important;
+        margin: 0 auto;
     }
 
     #monal_img {
@@ -61,14 +72,36 @@
         width: 90%;
         left: 50%;
         top: 100%;
+        background: rgba(58, 58, 58, 0.267);
     }
+
+    #monal-img-container {
+        position: relative;
+        width: 100%;
+        /* border: 2px solid; */
+        height: 100% !important;
+        margin: 0 auto;
+        background: rgba(58, 58, 58, 0.267);
+    }
+
 }
 
 @media (max-width: 480px) {
     .monal-content {
+        /* position: relative; */
         width: 90%;
         left: 50%;
-        top: 100%;
+        top: 129%;
         padding: 10px;
+        background: rgba(58, 58, 58, 0.744);
     }
+
+    #monal-img-container {
+        position: relative;
+        width: 100%;
+        /* border: 2px solid; */
+        /* height: 00px !important; */
+        margin: 0 auto;
+    }
+
 }
