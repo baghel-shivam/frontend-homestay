@@ -20,6 +20,13 @@ export default function Rooms() {
     const [paginationData, setPaginationData] = useState([])
     const { state } = useLocation()
     const data = useSelector((state) => state.SearchRoom)
+    const [filters, setFilters] = useState({
+        is_ac_available: false,
+        is_housekeeping_available: false,
+        is_tv_available: false,
+        is_wifi_available: false,
+      });
+
 
     const notify = (msg) => toast.error(msg,
         {
@@ -35,16 +42,20 @@ export default function Rooms() {
 
     const handleFilter = (e) => {
         const { name, checked } = e.target;
-        const updatedFilterData = [...filter_data];
-        const existingItemIndex = updatedFilterData.findIndex(item => item.name === name);
-        if (existingItemIndex !== -1) {
-            updatedFilterData[existingItemIndex] = { name, checked };
-        } else {
-            updatedFilterData.push({ name, checked });
-        }
-        setFilter_data(updatedFilterData);
-    };
-
+        setFilters((prevFilters) => ({
+          ...prevFilters,
+          [name]: checked,
+        }));
+      };
+    
+      const filteredHomeStays = data?.data?.filter((homeStay) => {
+        if (filters.is_ac_available && !homeStay.is_ac_available) return false;
+        if (filters.is_ac_available && !homeStay.is_housekeeping_available) return false;
+        if (filters.is_tv_available && !homeStay.is_tv_available) return false;
+        if (filters.is_wifi_available && !homeStay.is_wifi_available) return false;
+        return true;
+      });
+   
     useEffect(() => {
         if (!data.data.length > 0) {
             notify('Room not found!')
@@ -89,85 +100,89 @@ export default function Rooms() {
         setPaginationData({ ...paginationData, "PageItem": currentPageItems })
     };
 
+    console.log(data, 'this is data')
+
     return (
         <div className='container Room_div' style={{ minHeight: '100vh' }}>
             <ToastContainer />
             <div className='row nav-form-parent'>
-                <div className="col-lg-2 nav--bar col-sm-12 col-md-2 py-4 ">
-                    <div className="container text-start d-none d-lg-block d-md-block">
+                <div className="col-lg-3 nav--bar col-sm-12 col-md-2 py-4 ">
+                    <div className="container text-start  d-lg-block d-md-block">
                         <h4>Filters</h4>
                         <hr />
-                        <div className="container my-4">
-                            <h6>Hotel Facility</h6>
-                            <div className="form-check my-3">
-                                <input className="form-check-input" name='is_ac_available' type="checkbox" disabled onChange={handleFilter} value="" id="acCheckbox" />
-                                <label className="form-check-label" htmlFor="acCheckbox">
-                                    AC
-                                </label>
+                        <div className='d-flex justify-content-between flex-wrap'>
+                            <div className="container my-4" style={{ minWidth: "150px" }}>
+                                <h6>Hotel Facility</h6>
+                                <div className="form-check my-3">
+                                    <input className="form-check-input" name='is_ac_available' type="checkbox" onChange={handleFilter} value="" id="acCheckbox" />
+                                    <label className="form-check-label" htmlFor="acCheckbox">
+                                        AC
+                                    </label>
+                                </div>
+                                <div className="form-check my-3">
+                                    <input className="form-check-input" name='is_tv_available' type="checkbox" onChange={handleFilter} value="" id="tvCheckbox" />
+                                    <label className="form-check-label" htmlFor="tvCheckbox">
+                                        TV
+                                    </label>
+                                </div>
+                                <div className="form-check my-3">
+                                    <input className="form-check-input" name='is_wifi_available' type="checkbox" onChange={handleFilter} value="" id="wifiCheckbox" />
+                                    <label className="form-check-label" htmlFor="wifiCheckbox">
+                                        Wifi
+                                    </label>
+                                </div>
+                                <div className="form-check my-3">
+                                    <input className="form-check-input" name='is_parking_available' type="checkbox" onChange={handleFilter} value="" id="parkingCheckbox" />
+                                    <label className="form-check-label" htmlFor="parkingCheckbox">
+                                        Parking
+                                    </label>
+                                </div>
                             </div>
-                            <div className="form-check my-3">
-                                <input className="form-check-input" name='is_tv_available' type="checkbox" disabled onChange={handleFilter} value="" id="tvCheckbox" />
-                                <label className="form-check-label" htmlFor="tvCheckbox">
-                                    TV
-                                </label>
-                            </div>
-                            <div className="form-check my-3">
-                                <input className="form-check-input" name='is_wifi_available' type="checkbox" disabled onChange={handleFilter} value="" id="wifiCheckbox" />
-                                <label className="form-check-label" htmlFor="wifiCheckbox">
-                                    Wifi
-                                </label>
-                            </div>
-                            <div className="form-check my-3">
-                                <input className="form-check-input" name='is_parking_available' type="checkbox" disabled onChange={handleFilter} value="" id="parkingCheckbox" />
-                                <label className="form-check-label" htmlFor="parkingCheckbox">
-                                    Parking
-                                </label>
-                            </div>
-                        </div>
-                        <hr />
-                        <div className="container my-4">
-                            <h6>Collections</h6>
-                            <div className="form-check">
-                                <input className="form-check-input" type="checkbox" value="" id="familyCheckbox" disabled />
-                                <label className="form-check-label" htmlFor="familyCheckbox">
-                                    Family
-                                </label>
-                            </div>
-                            <div className="form-check my-3">
-                                <input className="form-check-input" type="checkbox" value="" id="groupCheckbox" disabled />
-                                <label className="form-check-label" htmlFor="groupCheckbox">
-                                    For Group Travelers
-                                </label>
-                            </div>
-                            <div className="form-check my-3">
-                                <input className="form-check-input" type="checkbox" value="" id="airportCheckbox" disabled />
-                                <label className="form-check-label" htmlFor="airportCheckbox">
-                                    Near Airport
-                                </label>
-                            </div>
-                            <div className="form-check my-3">
-                                <input className="form-check-input" type="checkbox" value="" id="couplesCheckbox" disabled />
-                                <label className="form-check-label" htmlFor="couplesCheckbox">
-                                    Couples
-                                </label>
-                            </div>
-                        </div>
-                        <div className="container my-4">
-                            <h6>Check in feature</h6>
-                            <div className="form-check my-3">
-                                <input className="form-check-input" type="checkbox" value="" id="p-i-o_flexCheckDefault" disabled />
-                                <label className="form-check-label" for="p-i-o_flexCheckDefault">
-                                    Pay-in-hotel
-                                </label>
-                            </div>
+                            {/* <hr /> */}
+                            {/* <div className="container my-4" style={{minWidth:"150px"}}>
+                                <h6>Collections</h6>
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" value="" id="familyCheckbox"  />
+                                    <label className="form-check-label" htmlFor="familyCheckbox">
+                                        Family
+                                    </label>
+                                </div>
+                                <div className="form-check my-3">
+                                    <input className="form-check-input" type="checkbox" value="" id="groupCheckbox"  />
+                                    <label className="form-check-label" htmlFor="groupCheckbox">
+                                        For Group Travelers
+                                    </label>
+                                </div>
+                                <div className="form-check my-3">
+                                    <input className="form-check-input" type="checkbox" value="" id="airportCheckbox"  />
+                                    <label className="form-check-label" htmlFor="airportCheckbox">
+                                        Near Airport
+                                    </label>
+                                </div>
+                                <div className="form-check my-3">
+                                    <input className="form-check-input" type="checkbox" value="" id="couplesCheckbox"  />
+                                    <label className="form-check-label" htmlFor="couplesCheckbox">
+                                        Couples
+                                    </label>
+                                </div>
+                            </div> */}
+                            {/* <div className="container my-4" style={{minWidth:"150px"}}>
+                                <h6>Check in feature</h6>
+                                <div className="form-check my-3">
+                                    <input className="form-check-input" type="checkbox" value="" id="p-i-o_flexCheckDefault"  />
+                                    <label className="form-check-label" for="p-i-o_flexCheckDefault">
+                                        Pay-in-hotel
+                                    </label>
+                                </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
-                <div className="col-10 scroll-to-show-all-rooms text-start pt-3 ">
-                    <span className='fs-4 fw-bold  mt-5 result-text'>{data.data?.length} HomeStay in "{state?.searchData?.location.charAt(0).toUpperCase() + state?.searchData?.location.slice(1)}" </span>
+                <div className="col-9 scroll-to-show-all-rooms text-start pt-3 ">
+                    <span className='fs-4 fw-bold  mt-5 result-text'>{filteredHomeStays?.length} HomeStay in "{state?.searchData?.location.charAt(0).toUpperCase() + state?.searchData?.location.slice(1)}" </span>
                     <hr />
                     <div className='room-collections mt-5  px-lg-1 px-sm-0'>
-                        {data?.data.length > 0 ? data?.data?.map((item, roomIndex) => (
+                        {filteredHomeStays.length > 0 ? filteredHomeStays?.map((item, roomIndex) => (
                             <>
                                 <div className="card border-none mb-3" key={roomIndex} >
                                     {item.is_recommended &&
@@ -256,7 +271,7 @@ export default function Rooms() {
                             <div className='w-100 d-flex justify-content-center'>
                                 <nav aria-label="Page navigation example">
                                     <ul className="pagination justify-content-end">
-                                        <li className="page-item disabled">
+                                        <li className="page-item ">
                                             <a className="page-link">Previous</a>
                                         </li>
                                         {paginationData?.numberOfPage && paginationData?.numberOfPage?.map((item, index) => {
