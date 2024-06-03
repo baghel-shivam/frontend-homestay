@@ -43,7 +43,7 @@ function App() {
           <Route path="/view-details" element={<View_in_details />} />
           <Route path="/booking" element={<Checkout />} />
           <Route path="/help" element={<Help />} />
-          {/* <Route path="/who_is_monal" element={<WhoIsMonal />} /> */}
+          <Route path="/who_is_monal" element={<WhoIsMonal />} />
 
           <Route path="/technical-support" element={<TechnicalSupport />} />
           <Route path="/billing" element={<Billing />} />
