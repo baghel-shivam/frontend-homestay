@@ -4,7 +4,6 @@ import { useState } from 'react';
 import states from '../Demo.json'
 // import
 import Terms from '../TermAndCond.json'
-import Toast from './Toast.jsx'
 import { useDispatch, useSelector } from 'react-redux';
 import { AddNewProperty } from '../Redux/AddNewPro/AddPropAction.js';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,11 +14,13 @@ import { resetAddPropStatus } from '../Redux/AddNewPro/AddPropSlice.js';
 // import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export default function AddYourHomeStay() {
     const AddProp = useSelector((state) => state?.AddProp)
     const ref = useRef(null)
+    const [captchaValue, setCaptchaValue] = useState()
+
     const dispatch = useDispatch()
     const [lgShow, setLgShow] = useState(false);
     const [error, setError] = useState('');
@@ -807,8 +808,12 @@ export default function AddYourHomeStay() {
                                     {error && <small className="error-message text-danger">{error}</small>}
                                 </div>
                             </div>
+                            <ReCAPTCHA
+                                sitekey='6Lcd5fApAAAAAGhvn00_b-jl8k2Y-B3ASP-ESk4y'
+                                onChange={(val) => setCaptchaValue(val)}
+                            />
 
-                            <button type="submit" className="card-link mt-1 btn btn-success w-50">Submit</button>
+                            <button disabled={!captchaValue} type="submit" className="card-link mt-1 btn btn-success w-50">Submit</button>
                         </div>
                     </div>
 

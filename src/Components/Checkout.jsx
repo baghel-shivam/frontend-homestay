@@ -7,6 +7,7 @@ import Success from './Success'
 import TermsAndCond from './TermsAndCond'
 import Term from '../TermAndCond.json'
 import { ViewDetails } from '../Redux/ViewDetails/Action'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 export default function Checkout({ state, view_data, guest_room, collectRoom, selectedOption }) {
     const [data, setData] = useState()
@@ -19,6 +20,7 @@ export default function Checkout({ state, view_data, guest_room, collectRoom, se
     const [roomType, setRoomType] = useState()
     const dispatch = useDispatch()
     const [formDataTC, setFormDataTC] = useState({ checked: false });
+    const [captchaValue, setCaptchaValue] = useState()
 
     const handleChange = (e) => {
         const event = e.target
@@ -51,7 +53,7 @@ export default function Checkout({ state, view_data, guest_room, collectRoom, se
         weekday: 'short', // Short weekday name (e.g., "Sat")
         day: 'numeric', // Numeric day of the month (e.g., "9")
         month: 'short', // Short month name (e.g., "Mar")
-    };
+    };  
 
     const HandleCloseModel = () => {
         setSmShow(false)
@@ -77,10 +79,6 @@ export default function Checkout({ state, view_data, guest_room, collectRoom, se
             "selectedRooms": selecteDRooms && selecteDRooms?.map((item) => item.id)
         })
     }, [view_data, guest_room, collectRoom, selecteDRooms])
-
-
-
-
     useEffect(() => {
         if (!selecteDRooms || !Array.isArray(selecteDRooms)) return;
 
@@ -111,6 +109,9 @@ export default function Checkout({ state, view_data, guest_room, collectRoom, se
         }
         setError('');
     }
+
+    // 6Lcd5fApAAAAAGhvn00_b-jl8k2Y-B3ASP-ESk4y
+
 
     return (
         <div className='checkout-container'>
@@ -207,7 +208,11 @@ export default function Checkout({ state, view_data, guest_room, collectRoom, se
                                                     <label onClick={() => setLgShow(true)} style={{ color: '', opacity: "1", cursor: 'pointer' }} className="form-check-label text-primary" htmlFor="exampleCheck1"><small>Accept terms & conditions</small></label><br />
                                                     {error && <small className="error-message text-danger">{error}</small>}
                                                 </div>
-                                                <button type='submit' id='button' className='btn btn-success mt-2 px-5'>Request</button>
+                                                <ReCAPTCHA
+                                                    sitekey='6Lcd5fApAAAAAGhvn00_b-jl8k2Y-B3ASP-ESk4y'
+                                                    onChange={(val)=>setCaptchaValue(val)}
+                                                />
+                                                <button disabled={!captchaValue} type='submit' id='button' className='btn btn-success mt-2 px-5'>Request</button>
                                             </div>
                                         </form>
                                     </div>
