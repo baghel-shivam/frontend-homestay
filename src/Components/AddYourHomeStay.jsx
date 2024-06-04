@@ -808,12 +808,17 @@ export default function AddYourHomeStay() {
                                     {error && <small className="error-message text-danger">{error}</small>}
                                 </div>
                             </div>
+                            <div className='row'>  
+                            <div className="col d-flex justify-content-center">
                             <ReCAPTCHA
                                 sitekey='6Lcd5fApAAAAAGhvn00_b-jl8k2Y-B3ASP-ESk4y'
                                 onChange={(val) => setCaptchaValue(val)}
-                            />
-
-                            <button disabled={!captchaValue} type="submit" className="card-link mt-1 btn btn-success w-50">Submit</button>
+                            /></div>                          
+                            <div className="col d-flex justify-content-center align-content-center align-items-center" >
+                            <button disabled={!captchaValue} type="submit" className="card-link  py-1 btn btn-success w-100 h-50">Submit</button></div>                          
+                           
+                            </div>
+                            
                         </div>
                     </div>
 
