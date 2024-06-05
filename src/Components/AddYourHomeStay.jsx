@@ -65,6 +65,8 @@ export default function AddYourHomeStay() {
         how_to_reach: '',
         nearest_attraction_1: '',
         nearest_attraction_2: '',
+        accept_payment_via_cc:'',
+        cc_number: '',
         // totalRooms: '',
         checked: false,
     });
@@ -129,6 +131,7 @@ export default function AddYourHomeStay() {
                 [name]: value
             });
         }
+        console.log(formData)
     };
 
     const HandleChangeAddRoom = (e) => {
@@ -328,6 +331,24 @@ export default function AddYourHomeStay() {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" onChange={handleChange} value={formData?.accept_payment_via_cc} id="accept_payment_via_cc"/>
+                                                <label class="form-check-label" for="accept_payment_via_cc">
+                                                    Accept Payment Via CC
+                                                </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="mb-3">
+                                        <input type='number' className="form-control" id='cc_number' name="cc_number" value={formData?.cc_number} onChange={handleChange} placeholder="Credit Card No." />
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div className="row">
@@ -808,17 +829,17 @@ export default function AddYourHomeStay() {
                                     {error && <small className="error-message text-danger">{error}</small>}
                                 </div>
                             </div>
-                            <div className='row'>  
-                            <div className="col d-flex justify-content-center">
-                            <ReCAPTCHA
-                                sitekey='6Lcd5fApAAAAAGhvn00_b-jl8k2Y-B3ASP-ESk4y'
-                                onChange={(val) => setCaptchaValue(val)}
-                            /></div>                          
-                            <div className="col d-flex justify-content-center align-content-center align-items-center" >
-                            <button disabled={!captchaValue} type="submit" className="card-link  py-1 btn btn-success w-100 h-50">Submit</button></div>                          
-                           
+                            <div className='row'>
+                                <div className="col d-flex justify-content-center">
+                                    <ReCAPTCHA
+                                        sitekey='6Lcd5fApAAAAAGhvn00_b-jl8k2Y-B3ASP-ESk4y'
+                                        onChange={(val) => setCaptchaValue(val)}
+                                    /></div>
+                                <div className="col d-flex justify-content-center align-content-center align-items-center" >
+                                    <button disabled={!captchaValue} type="submit" className="card-link  py-1 btn btn-success w-100 h-50">Submit</button></div>
+
                             </div>
-                            
+
                         </div>
                     </div>
 
