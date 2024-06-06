@@ -354,7 +354,7 @@ export default function AddYourHomeStay() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="mb-3 ">
-                                        <input required type="tel" className="form-control" minlength="15" maxlength="15" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
+                                        <input required type="tel" className="form-control" minlength="15" maxlength="30" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
                                     </div>
                                 </div>
                             </div>
