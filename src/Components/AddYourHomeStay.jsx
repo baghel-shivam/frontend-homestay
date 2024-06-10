@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import '../Components/Styles/homeStayform.css'
 import { useState } from 'react';
 import states from '../Demo.json'
-// import
 import Terms from '../TermAndCond.json'
 import { useDispatch, useSelector } from 'react-redux';
 import { AddNewProperty } from '../Redux/AddNewPro/AddPropAction.js';
@@ -11,7 +10,6 @@ import Loading from './Loading.jsx';
 import TermsAndCond from './TermsAndCond.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 import { resetAddPropStatus } from '../Redux/AddNewPro/AddPropSlice.js';
-// import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -65,35 +63,31 @@ export default function AddYourHomeStay() {
         how_to_reach: '',
         nearest_attraction_1: '',
         nearest_attraction_2: '',
-        accept_payment_via_cc:'',
+        accept_payment_via_cc: false, // Initialize as false
         cc_number: '',
-        // totalRooms: '',
         checked: false,
+        is_couple_allowed:false,
+        is_tv_available:false,
+        can_locals_stay: false,
+        should_coupon_applied: false,
+        should_coupon_applied: false,
+        is_wifi_available : false,
+        is_parking_available : false,
+        is_ac_available : false,
+        is_housekeeping_available : false,
+        is_pets_allowed : false,
+        is_smoking_allowed : false,
     });
 
     const handleFileChange = (e) => {
         const { name } = e.target;
         const file = e.target.files[0];
         if (file && file.size <= 5242880) {
-            if (name === 'front_img1') {
-                setFormData({ ...formData, front_img1: file });
-            } else if (name === 'front_img2') {
-                setFormData({ ...formData, front_img2: file });
-            } else if (name === 'front_img3') {
-                setFormData({ ...formData, front_img3: file });
-            } else if (name === 'front_img4') {
-                setFormData({ ...formData, front_img4: file });
-            } else if (name === 'front_img5') {
-                setFormData({ ...formData, front_img5: file });
-            } else if (name === 'front_img6') {
-                setFormData({ ...formData, front_img6: file });
-            } else if (name === 'front_img7') {
-                setFormData({ ...formData, front_img7: file });
-            }
+            setFormData({ ...formData, [name]: file });
         } else {
             alert('Please upload an image smaller than 5 MB.');
+            e.target.value = '';
         }
-
     };
 
     const handleAddRoom = (e) => {
@@ -118,26 +112,25 @@ export default function AddYourHomeStay() {
             notify('Select Valid price & Category');
         }
     }
+
     const handleDelete = (num) => {
         const filterData = room.filter((item, index) => index !== num);
         setRooms(filterData);
     };
+
     const handleChange = (e) => {
-        const { name, value, type } = e.target;
-        if (type === 'file') {
-        } else {
-            setFormData({
-                ...formData,
-                [name]: value
-            });
-        }
-        console.log(formData)
+        const { name, value, type, checked } = e.target;
+        setFormData({
+            ...formData,
+            [name]: type === 'checkbox' ? checked : value
+        });
     };
 
     const HandleChangeAddRoom = (e) => {
         const { value, name } = e.target;
         setRoomForm({ ...roomForm, [name]: value })
     }
+
     const notify = (msg) => toast.error(msg,
         {
             position: 'top-right',
@@ -149,6 +142,7 @@ export default function AddYourHomeStay() {
             draggable: true,
         }
     );
+
     const info = (msg) => toast.info(msg,
         {
             position: 'top-right',
@@ -160,6 +154,7 @@ export default function AddYourHomeStay() {
             draggable: true,
         }
     );
+
     const Agree = (accept, closeDialog) => {
         setLgShow(closeDialog)
         if (accept) {
@@ -167,7 +162,6 @@ export default function AddYourHomeStay() {
         }
         setError('');
     }
-
 
     useEffect(() => {
         if (AddProp?.status === "succeeded") {
@@ -179,7 +173,6 @@ export default function AddYourHomeStay() {
         }
     }, [AddProp?.status, dispatch]);
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
@@ -188,7 +181,7 @@ export default function AddYourHomeStay() {
             return;
         }
         if (parseInt(formData?.expiration_year) < parseInt(formData?.registration_year)) {
-            notify('Expiration year should be grater then registration year!');
+            notify('Expiration year should be greater than registration year!');
             return;
         }
         if (!formData.front_img1 || !formData.front_img2 || !formData.front_img3) {
@@ -204,12 +197,9 @@ export default function AddYourHomeStay() {
                 ModalSuccess()
             } catch (error) {
                 notify('Something went wrong!');
-            } finally {
-
             }
         }
     }
-
 
     function ModalSuccess() {
         return (
@@ -219,11 +209,12 @@ export default function AddYourHomeStay() {
                         <Modal.Title className='text-success'>Your request has been sent!</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <p>
-                            Thank You, Your request to add homestay is sent.
-                            We will get back to you shortly, Thanks !
-
-                            LazyMonal Team
+                        <p> 
+                            Your request to add homestay is sent.
+                            We will review the request and will get back to you soon.
+                            
+                            Thanks
+                            LazyMonal Team.
                         </p>
                     </Modal.Body>
                     <Modal.Footer>
@@ -240,22 +231,21 @@ export default function AddYourHomeStay() {
         <div className='container add-your-home-stay pt-3' >
             {AddProp.status === 'loading' && <Loading />}
             {ModalSuccess()}
-            {/* {AddProp.status === 'succeeded' && <Toast msg={AddProp?.data} />} */}
             <h2 className='title' ref={ref}>Add Your HomeStay</h2>
             <form onSubmit={handleSubmit}>
-                <div className="row px-0 mt-4 container-fluid my-5 py-3  child-add-your-home-stay">
-                    <div className="col-md-6 ">
+                <div className="row px-0 mt-4 container-fluid my-5 py-3 child-add-your-home-stay">
+                    <div className="col-md-6">
                         <h5 className='text-start mx-3 mb-4'>About Your Home Stay</h5>
                         <div className="container mt-2">
                             <div className="row">
                                 <div className="col-12">
                                     <div className="mb-3">
-                                        <input required type="text" className="form-control" name="site_name" value={formData.homeStayName} onChange={handleChange} placeholder="Name of home stay" />
+                                        <input required type="text" className="form-control" name="site_name" value={formData.site_name} onChange={handleChange} placeholder="Name of home stay" />
                                     </div>
                                 </div>
                                 <div className="col-12">
                                     <div className="mb-3">
-                                        <input required type="text" className="form-control" name="full_address_one_line" value={formData.address} onChange={handleChange} placeholder="Full address " />
+                                        <input required type="text" className="form-control" name="full_address_one_line" value={formData.full_address_one_line} onChange={handleChange} placeholder="Full address " />
                                     </div>
                                 </div>
                                 <div className="col-12">
@@ -273,12 +263,11 @@ export default function AddYourHomeStay() {
                                                 <option key={index} value={item}>{item}</option>
                                             ))}
                                         </select>
-
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="text" className="form-control" name="city" value={formData.city} onChange={handleChange} placeholder="Enter city" />
+                                        <input required type="text" className="form-control" name="city" value={formData.city} onChange={handleChange} placeholder="City or dist." />
                                     </div>
                                 </div>
                             </div>
@@ -301,18 +290,17 @@ export default function AddYourHomeStay() {
                                     </div>
                                 </div>
                             </div>
-
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input required type="email" className="form-control" name="contact_email" value={formData.email} onChange={handleChange} placeholder="Enter email" />
+                                        <input required type="email" className="form-control" name="contact_email" value={formData.contact_email} onChange={handleChange} placeholder="Enter email" />
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
                                         <div className="mb-3 input-group">
                                             <span className="input-group-text">+91</span>
-                                            <input required type="tel" pattern="[0-9]{10}" minle0gth="10" maxlength="10" className="form-control" name="contact_phn" value={formData.contact_phn} onChange={handleChange} placeholder="Phone number" />
+                                            <input required type="tel" pattern="[0-9]{10}" minlength="10" maxlength="10" className="form-control" name="contact_phn" value={formData.contact_phn} onChange={handleChange} placeholder="Phone number" />
                                         </div>
                                     </div>
                                 </div>
@@ -336,25 +324,25 @@ export default function AddYourHomeStay() {
                                 <div className="col-md-6">
                                     <div className="mb-3">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" onChange={handleChange} value={formData?.accept_payment_via_cc} id="accept_payment_via_cc"/>
-                                                <label class="form-check-label" for="accept_payment_via_cc">
-                                                    Accept Payment Via CC
-                                                </label>
+                                            <input class="form-check-input" type="checkbox" name="accept_payment_via_cc" checked={formData.accept_payment_via_cc} onChange={handleChange} value={formData?.accept_payment_via_cc} id="accept_payment_via_cc" />
+                                            <label class="form-check-label" for="accept_payment_via_cc">
+                                                Accept Payment Via CC
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input type='number' className="form-control" id='cc_number' name="cc_number" value={formData?.cc_number} onChange={handleChange} placeholder="Credit Card No." />
+                                        <input type='number' className="form-control" id='cc_number' maxlength="16" minlength="16" name="cc_number" value={formData?.cc_number} onChange={handleChange} placeholder="Credit Card No." disabled={!formData.accept_payment_via_cc} />
                                     </div>
                                 </div>
-
                             </div>
-
                             <div className="row">
                                 <div className="col-md-12">
-                                    <div className="mb-3 ">
-                                        <input required type="tel" className="form-control" minlength="15" maxlength="30" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
+                                    <div className="mb-12">
+                                        <div className="mb-12">
+                                            <input required type="tel" className="form-control" minlength="15" maxlength="30" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -396,10 +384,8 @@ export default function AddYourHomeStay() {
                             </div>
                             <div className="row">
                                 <div className="col-md-12">
-                                    <div className="mb-12">
-                                        <div className="mb-12">
-                                            <input required type="text" className="form-control" maxlength="16" name="gst_no" value={formData?.gst_no} onChange={handleChange} placeholder="GST No" />
-                                        </div>
+                                    <div className="mb-3">
+                                        <input required type="text" className="form-control" maxlength="16" name="gst_no" value={formData?.gst_no} onChange={handleChange} placeholder="GST No" />
                                     </div>
                                 </div>
                             </div>
@@ -470,7 +456,6 @@ export default function AddYourHomeStay() {
                                         <input type="text" className="form-control" name="nearest_attraction_4" value={formData?.nearest_attraction_4} onChange={handleChange} placeholder="Nearest attraction point-4" />
                                     </div>
                                 </div>
-
                             </div>
                             <div className="row">
                                 <div className="col-12">
@@ -478,10 +463,8 @@ export default function AddYourHomeStay() {
                                         <input type="text" className="form-control" name="nearest_attraction_5" value={formData?.nearest_attraction_5} onChange={handleChange} placeholder="Nearest attraction point-5" />
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                     <div className="col-md-6">
                         <h5 className=' mx-3 mb-4 text-start'>More Details About Your Homestay</h5>
@@ -514,127 +497,7 @@ export default function AddYourHomeStay() {
                                             </div>
                                         </div>
                                     </div>
-                                    {/* <hr /> */}
-                                    <div className="row text-start">
-                                        <div className="col">
-                                            <div className="mb-3 form-check">
-                                                <input
-                                                    type="checkbox"
-                                                    className="form-check-input"
-                                                    name="is_couple_allowed"
-                                                    checked={roomForm.is_couple_allowed}
-                                                    onChange={() => setRoomForm({ ...roomForm, is_couple_allowed: !roomForm.is_couple_allowed })}
-                                                />
-                                                <label className="form-check-label">Couple allowed</label>
-                                            </div>
-                                            <div className="mb-3 form-check">
-                                                <input
-                                                    type="checkbox"
-                                                    className="form-check-input"
-                                                    name="is_tv_available"
-                                                    checked={roomForm.is_tv_available}
-                                                    onChange={() => setRoomForm({ ...roomForm, is_tv_available: !roomForm.is_tv_available })}
-                                                />
-                                                <label className="form-check-label">Is tv available</label>
-                                            </div>
-                                            <div className="mb-3 form-check">
-                                                <input
-                                                    type="checkbox"
-                                                    className="form-check-input"
-                                                    name="can_locals_stay"
-                                                    checked={roomForm.can_locals_stay}
-                                                    onChange={() => setRoomForm({ ...roomForm, can_locals_stay: !roomForm.can_locals_stay })}
-                                                />
-                                                <label className="form-check-label">Locals can stay</label>
-                                            </div>
-                                            <div className="mb-3 form-check">
-                                                <input
-                                                    type="checkbox"
-                                                    className="form-check-input"
-                                                    name="should_coupon_applied"
-                                                    checked={roomForm.should_coupon_applied}
-                                                    onChange={() => setRoomForm({ ...roomForm, should_coupon_applied: !roomForm.should_coupon_applied })}
-                                                />
-                                                <label className="form-check-label">Apply coupon</label>
-                                            </div>
-                                        </div>
-                                        {/* <div className="col"></div> */}
 
-                                        <div className="col-6 gap-2">
-                                            <div className="mb-3 form-check">
-                                                <input
-                                                    type="checkbox"
-                                                    className="form-check-input"
-                                                    name="is_wifi_available"
-                                                    checked={roomForm.is_wifi_available}
-                                                    onChange={() => setRoomForm({ ...roomForm, is_wifi_available: !roomForm.is_wifi_available })}
-                                                />
-                                                <label className="form-check-label">Wi-Fi available</label>
-                                            </div>
-                                            <div className="mb-3 form-check">
-                                                <input
-                                                    type="checkbox"
-                                                    className="form-check-input"
-                                                    name="is_wifi_available"
-                                                    checked={roomForm.is_parking_available}
-                                                    onChange={() => setRoomForm({ ...roomForm, is_parking_available: !roomForm.is_parking_available })}
-                                                />
-                                                <label className="form-check-label">Is parking available</label>
-                                            </div>
-                                            <div className="mb-3 form-check">
-                                                <input
-                                                    type="checkbox"
-                                                    className="form-check-input"
-                                                    name="is_wifi_available"
-                                                    checked={roomForm.is_ac_available}
-                                                    onChange={() => setRoomForm({ ...roomForm, is_ac_available: !roomForm.is_ac_available })}
-                                                />
-                                                <label className="form-check-label">Is ac available</label>
-                                            </div>
-                                            <div className="mb-3 form-check">
-                                                <input
-                                                    type="checkbox"
-                                                    className="form-check-input"
-                                                    name="is_wifi_available"
-                                                    checked={roomForm.is_housekeeping_available}
-                                                    onChange={() => setRoomForm({ ...roomForm, is_housekeeping_available: !roomForm.is_housekeeping_available })}
-                                                />
-                                                <label className="form-check-label">Is housekeeping available</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* <hr /> */}
-
-                                    <div className="row text-start">
-                                        <div className="col">
-                                            <div className="mb-3 form-check">
-                                                <input
-                                                    type="checkbox"
-                                                    className="form-check-input"
-                                                    name="is_pets_allowed"
-                                                    checked={roomForm.is_pets_allowed}
-                                                    onChange={() => setRoomForm({ ...roomForm, is_pets_allowed: !roomForm.is_pets_allowed })}
-                                                />
-                                                <label className="form-check-label">Is pets allowed</label>
-                                            </div>
-
-                                        </div>
-
-                                        <div className="col">
-                                            <div className="mb-3 form-check">
-                                                <input
-                                                    type="checkbox"
-                                                    className="form-check-input"
-                                                    name="is_smoking_allowed"
-                                                    checked={roomForm.is_smoking_allowed}
-                                                    onChange={() => setRoomForm({ ...roomForm, is_smoking_allowed: !roomForm.is_smoking_allowed })}
-                                                />
-                                                <label className="form-check-label">Is smoking allowed</label>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
                                     {room.length > 0 &&
                                         <div className="container">
                                             <div className="row text-dark">
@@ -653,10 +516,9 @@ export default function AddYourHomeStay() {
                                                 <div className="col">
                                                     <strong> Remove</strong>
                                                 </div>
-
                                             </div>
                                             {room.map((item, index) => (
-                                                <div key={index} className="row  p-2 my-1 rounded-2 bg-light shadow-lg">
+                                                <div key={index} className="row p-2 my-1 rounded-2 bg-light shadow-lg">
                                                     <div className="col">
                                                         <span>{item.category}</span>
                                                     </div>
@@ -673,15 +535,12 @@ export default function AddYourHomeStay() {
                                                                 : null
                                                             }
                                                         </span>
-
-
                                                     </div>
                                                     <div className="col">
-                                                        <span className='mx-2 btn btn-sm' onClick={() => handleDelete(index)} title="Remove"><i class="bi bi-trash text-danger"></i></span>
+                                                        <span className='mx-2 btn btn-sm' onClick={() => handleDelete(index)} title="Remove"><i className="bi bi-trash text-danger"></i></span>
                                                     </div>
                                                 </div>
                                             ))}
-
                                         </div>}
                                     <div className="row mb-3">
                                         <div className="col text-end">
@@ -693,7 +552,6 @@ export default function AddYourHomeStay() {
                                         <div className='mb-3 border-bottom'>
                                             <span className='fs-6 fw-bold py-2 w-100'>Add Some Pictures of Homestay/Rooms</span>
                                         </div>
-                                        {/* <hr/> */}
                                         <div className="row">
                                             <div className="col-12 mb-3">
                                                 <label htmlFor="frontImage1">Add Main Image 1 <small className='text-danger'>* mandatory</small></label>
@@ -702,13 +560,11 @@ export default function AddYourHomeStay() {
                                                     type="file"
                                                     className="form-control"
                                                     name="front_img1"
-                                                    // value={formData.front_img1.name}
                                                     onChange={handleFileChange}
                                                     placeholder="Add Images *"
                                                     accept=".jpg, .jpeg"
                                                 />
                                             </div>
-
                                         </div>
                                         <div className="row">
                                             <div className="col-6 mb-3">
@@ -718,13 +574,10 @@ export default function AddYourHomeStay() {
                                                     type="file"
                                                     className="form-control"
                                                     name="front_img2"
-                                                    // value={formData.front_img2}
                                                     onChange={handleFileChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
-
                                                 />
-
                                             </div>
                                             <div className="col-6 mb-3">
                                                 <label htmlFor="frontImage1">Add Main Image 3 <small className='text-danger'>* mandatory</small></label>
@@ -733,85 +586,176 @@ export default function AddYourHomeStay() {
                                                     type="file"
                                                     className="form-control"
                                                     name="front_img3"
-                                                    // value={formData.front_img3}
                                                     onChange={handleFileChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
-
                                                 />
-
                                             </div>
-
                                         </div>
                                         <div className="row">
                                             <div className="col-6 mb-3">
                                                 <label htmlFor="frontImage1">Add Main Image 4</label>
                                                 <input
-
                                                     type="file"
                                                     className="form-control"
                                                     name="front_img4"
-                                                    // value={formData.front_img4}
                                                     onChange={handleFileChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
-
                                                 />
-
                                             </div>
                                             <div className="col-6 mb-3">
                                                 <label htmlFor="frontImage1">Add Main Image 5</label>
                                                 <input
-
                                                     type="file"
                                                     className="form-control"
                                                     name="front_img5"
-                                                    // value={formData.front_img5}
                                                     onChange={handleFileChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
-
                                                 />
-
                                             </div>
                                             <div className="col-6 mb-3">
                                                 <label htmlFor="frontImage1">Add Main Image 6</label>
                                                 <input
-
                                                     type="file"
                                                     className="form-control"
                                                     name="front_img6"
-                                                    // value={formData.front_img6}
                                                     onChange={handleFileChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
-
                                                 />
-
                                             </div>
                                             <div className="col-6 mb-3">
                                                 <label htmlFor="frontImage1">Add Main Image 7</label>
                                                 <input
-
                                                     type="file"
                                                     className="form-control"
                                                     name="front_img7"
-                                                    // value={formData.front_img7}
                                                     onChange={handleFileChange}
                                                     placeholder="Add Images"
                                                     accept=".jpg, .jpeg"
                                                 />
-
                                             </div>
                                         </div>
                                     </div>
                                 </form>
-
+                            </div>
+                            <div className="row text-start">
+                                <div className="col">
+                                    <div className="mb-3 form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            name="is_couple_allowed"
+                                            checked={formData.is_couple_allowed}
+                                            onChange={handleChange}
+                                        />
+                                        <label className="form-check-label">Couple allowed</label>
+                                    </div>
+                                    <div className="mb-3 form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            name="is_tv_available"
+                                            checked={formData.is_tv_available}
+                                            onChange={handleChange}
+                                        />
+                                        <label className="form-check-label">Is tv available</label>
+                                    </div>
+                                    <div className="mb-3 form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            name="can_locals_stay"
+                                            checked={formData.can_locals_stay}
+                                            onChange={handleChange}
+                                        />
+                                        <label className="form-check-label">Locals can stay</label>
+                                    </div>
+                                    <div className="mb-3 form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            name="should_coupon_applied"
+                                            checked={formData.should_coupon_applied}
+                                            onChange={handleChange}
+                                        />
+                                        <label className="form-check-label">Apply coupon</label>
+                                    </div>
+                                </div>
+                                <div className="col-6 gap-2">
+                                    <div className="mb-3 form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            name="is_wifi_available"
+                                            checked={formData.is_wifi_available}
+                                            onChange={handleChange}
+                                        />
+                                        <label className="form-check-label">Wi-Fi available</label>
+                                    </div>
+                                    <div className="mb-3 form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            name="is_wifi_available"
+                                            checked={formData.is_parking_available}
+                                            onChange={handleChange}
+                                        />
+                                        <label className="form-check-label">Is parking available</label>
+                                    </div>
+                                    <div className="mb-3 form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            name="is_wifi_available"
+                                            checked={formData.is_ac_available}
+                                            onChange={handleChange}
+                                        />
+                                        <label className="form-check-label">Is ac available</label>
+                                    </div>
+                                    <div className="mb-3 form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            name="is_wifi_available"
+                                            checked={formData.is_housekeeping_available}
+                                            onChange={handleChange}
+                                        />
+                                        <label className="form-check-label">Is housekeeping available</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row text-start">
+                                <div className="col">
+                                    <div className="mb-3 form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            name="is_pets_allowed"
+                                            checked={roomForm.is_pets_allowed}
+                                            onChange={handleChange}
+                                        />
+                                        <label className="form-check-label">Is pets allowed</label>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="mb-3 form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            name="is_smoking_allowed"
+                                            checked={roomForm.is_smoking_allowed}
+                                            onChange={handleChange}
+                                        />
+                                        <label className="form-check-label">Is smoking allowed</label>
+                                    </div>
+                                </div>
                             </div>
                             <div className='my-2 text-left px-2'>
                                 <hr />
                                 <small className='text-danger text-justify'>LazyMonal retains the right to withhold 10% of the total booking charges from customers in advance, while the remaining 90% will be collected by the HomeStay Owner through mutually agreed-upon payment methods between both parties.</small>
-
                             </div>
                             <div className="row mt-4 px-4">
                                 <div className="mb-3 text-start form-check x-5">
@@ -837,13 +781,9 @@ export default function AddYourHomeStay() {
                                     /></div>
                                 <div className="col d-flex justify-content-center align-content-center align-items-center" >
                                     <button disabled={!captchaValue} type="submit" className="card-link  py-1 btn btn-success w-100 h-50">Submit</button></div>
-
                             </div>
-
                         </div>
                     </div>
-
-
                 </div>
             </form>
             <ToastContainer />

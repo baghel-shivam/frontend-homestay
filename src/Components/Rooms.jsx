@@ -14,6 +14,7 @@ import { useLocation } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import img from '../Images/no-image found.jpg'
 import 'react-toastify/dist/ReactToastify.css';
+
 export default function Rooms() {
     const navigate = useNavigate()
     const [filter_data, setFilter_data] = useState([])
@@ -25,8 +26,7 @@ export default function Rooms() {
         is_housekeeping_available: false,
         is_tv_available: false,
         is_wifi_available: false,
-      });
-
+    });
 
     const notify = (msg) => toast.error(msg,
         {
@@ -43,19 +43,19 @@ export default function Rooms() {
     const handleFilter = (e) => {
         const { name, checked } = e.target;
         setFilters((prevFilters) => ({
-          ...prevFilters,
-          [name]: checked,
+            ...prevFilters,
+            [name]: checked,
         }));
-      };
-    
-      const filteredHomeStays = data?.data?.filter((homeStay) => {
+    };
+
+    const filteredHomeStays = data?.data?.filter((homeStay) => {
         if (filters.is_ac_available && !homeStay.is_ac_available) return false;
-        if (filters.is_ac_available && !homeStay.is_housekeeping_available) return false;
+        if (filters.is_housekeeping_available && !homeStay.is_housekeeping_available) return false;
         if (filters.is_tv_available && !homeStay.is_tv_available) return false;
         if (filters.is_wifi_available && !homeStay.is_wifi_available) return false;
         return true;
-      });
-   
+    });
+
     useEffect(() => {
         if (!data.data.length > 0) {
             notify('Room not found!')
@@ -100,8 +100,6 @@ export default function Rooms() {
         setPaginationData({ ...paginationData, "PageItem": currentPageItems })
     };
 
-    console.log(data, 'this is data')
-
     return (
         <div className='container Room_div' style={{ minHeight: '100vh' }}>
             <ToastContainer />
@@ -138,48 +136,12 @@ export default function Rooms() {
                                     </label>
                                 </div>
                             </div>
-                            {/* <hr /> */}
-                            {/* <div className="container my-4" style={{minWidth:"150px"}}>
-                                <h6>Collections</h6>
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" id="familyCheckbox"  />
-                                    <label className="form-check-label" htmlFor="familyCheckbox">
-                                        Family
-                                    </label>
-                                </div>
-                                <div className="form-check my-3">
-                                    <input className="form-check-input" type="checkbox" value="" id="groupCheckbox"  />
-                                    <label className="form-check-label" htmlFor="groupCheckbox">
-                                        For Group Travelers
-                                    </label>
-                                </div>
-                                <div className="form-check my-3">
-                                    <input className="form-check-input" type="checkbox" value="" id="airportCheckbox"  />
-                                    <label className="form-check-label" htmlFor="airportCheckbox">
-                                        Near Airport
-                                    </label>
-                                </div>
-                                <div className="form-check my-3">
-                                    <input className="form-check-input" type="checkbox" value="" id="couplesCheckbox"  />
-                                    <label className="form-check-label" htmlFor="couplesCheckbox">
-                                        Couples
-                                    </label>
-                                </div>
-                            </div> */}
-                            {/* <div className="container my-4" style={{minWidth:"150px"}}>
-                                <h6>Check in feature</h6>
-                                <div className="form-check my-3">
-                                    <input className="form-check-input" type="checkbox" value="" id="p-i-o_flexCheckDefault"  />
-                                    <label className="form-check-label" for="p-i-o_flexCheckDefault">
-                                        Pay-in-hotel
-                                    </label>
-                                </div>
-                            </div> */}
                         </div>
                     </div>
                 </div>
                 <div className="col-9 scroll-to-show-all-rooms text-start pt-3 ">
-                    <span className='fs-4 fw-bold  mt-5 result-text'>{filteredHomeStays?.length} HomeStay in "{state?.searchData?.location.charAt(0).toUpperCase() + state?.searchData?.location.slice(1)}" </span>
+                    <span className='fs-4 fw-bold  mt-5 result-text'>We found total {filteredHomeStays?.length} home stays in "{state?.searchData?.location.charAt(0).toUpperCase() + state?.searchData?.location.slice(1)}".
+                    </span>
                     <hr />
                     <div className='room-collections mt-5  px-lg-1 px-sm-0'>
                         {filteredHomeStays.length > 0 ? filteredHomeStays?.map((item, roomIndex) => (
@@ -219,7 +181,6 @@ export default function Rooms() {
                                         <div className="col-md-8 card-body  d-flex align-item-center justify-content-center">
                                             <div className="card-body " style={{ height: 'auto' }} onClick={() => navigate('/view-details', { state: item.id })}>
                                                 <div>
-
                                                     <div className='d-flex align-content-between'>
                                                         <h4 className="">{item?.site_name} </h4> <h6 className='mt-1 mx-2'><i className="bi bi-dot"></i>{item.full_addres} </h6>
                                                     </div>
@@ -227,21 +188,18 @@ export default function Rooms() {
                                                         <small >{item?.about_this_homestay && item?.about_this_homestay.split(' ').slice(0, 15).join(' ')}...</small>
                                                     </div>
                                                 </div>
-
                                                 <div className="">
                                                     <span className='fs-5 text-warning'>&#9733; {item.rate}</span>
                                                     <small className='mx-2 fs-6'> ({parseInt(Math.random() * (5 - 3) + 4)} Ratings)</small>
                                                     <div className='d-flex justify-content-start w-100 mt-2  '>
                                                         <div className=" w-75 d-flex">
-                                                            {item.is_wifi_available && <img src={wifi} className='mx-3' height={25} alt='Wi-Fi' />}
-                                                            {item.is_tv_available && <img src={TV} className='mx-3' height={25} alt='TV' />}
-                                                            {item.is_parking_available && <img src={parkedCar} className='mx-3' height={25} alt='Parking' />}
-                                                            {item.is_ac_available && <img src={AC} className='mx-3' height={25} alt='AC' />}
-                                                            {item.is_housekeeping_available && <img src={housekeeping} className='mx-3' height={25} alt='Housekeeping' />}
+                                                            {item.is_wifi_available && <img src={wifi} className='mx-3' height={25} alt='Wi-Fi' title="Wi-Fi" />}
+                                                            {item.is_tv_available && <img src={TV} className='mx-3' height={25} alt='TV' title="TV" />}
+                                                            {item.is_parking_available && <img src={parkedCar} className='mx-3' height={25} alt='Parking' title="Parking" />}
+                                                            {item.is_ac_available && <img src={AC} className='mx-3' height={25} alt='AC' title="AC" />}
+                                                            {item.is_housekeeping_available && <img src={housekeeping} className='mx-3' height={25} alt='Housekeeping' title="Housekeeping" />}
                                                         </div>
                                                     </div>
-
-
                                                 </div>
                                                 <div className="row mt-1">
                                                     <div className="col pt-2">
@@ -292,6 +250,5 @@ export default function Rooms() {
                 </div>
             </div>
         </div>
-
     )
 }
