@@ -781,6 +781,7 @@ export default function AddYourHomeStay() {
                                     /></div>
                                 <div className="col d-flex justify-content-center align-content-center align-items-center" >
                                     <button disabled={!captchaValue} type="submit" className="card-link  py-1 btn btn-success w-100 h-50">Submit</button></div>
+                                    {/* <button  type="submit" className="card-link  py-1 btn btn-success w-100 h-50">Submit</button></div> */}
                             </div>
                         </div>
                     </div>
