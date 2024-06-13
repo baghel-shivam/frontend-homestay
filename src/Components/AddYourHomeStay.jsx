@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from 'react'
-import '../Components/Styles/homeStayform.css'
-import { useState } from 'react';
-import states from '../Demo.json'
-import Terms from '../TermAndCond.json'
+import React, { useEffect, useRef, useState } from 'react';
+import '../Components/Styles/homeStayform.css';
+import states from '../Demo.json';
+import Terms from '../TermAndCond.json';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddNewProperty } from '../Redux/AddNewPro/AddPropAction.js';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,21 +14,21 @@ import Modal from 'react-bootstrap/Modal';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 export default function AddYourHomeStay() {
-    const AddProp = useSelector((state) => state?.AddProp)
-    const ref = useRef(null)
-    const [captchaValue, setCaptchaValue] = useState()
-
-    const dispatch = useDispatch()
+    const AddProp = useSelector((state) => state?.AddProp);
+    const ref = useRef(null);
+    const [captchaValue, setCaptchaValue] = useState();
+    const dispatch = useDispatch();
     const [lgShow, setLgShow] = useState(false);
     const [error, setError] = useState('');
-    const [room, setRooms] = useState([])
+    const [room, setRooms] = useState([]);
     const [show, setShow] = useState(false);
+    const [ccError, setCcError] = useState('');
 
     const handleShow = () => setShow(true);
     const handleClose = () => {
         setShow(false);
-        window.location.reload(true)
-    }
+        window.location.reload(true);
+    };
 
     useEffect(() => {
         if (ref.current instanceof HTMLElement) {
@@ -37,7 +36,7 @@ export default function AddYourHomeStay() {
         }
     }, [ref]);
 
-    const [roomForm, setRoomForm] = useState([])
+    const [roomForm, setRoomForm] = useState([]);
     const [formData, setFormData] = useState({
         site_name: '',
         full_address_one_line: '',
@@ -66,17 +65,16 @@ export default function AddYourHomeStay() {
         accept_payment_via_cc: false, // Initialize as false
         cc_number: '',
         checked: false,
-        is_couple_allowed:false,
-        is_tv_available:false,
+        is_couple_allowed: false,
+        is_tv_available: false,
         can_locals_stay: false,
         should_coupon_applied: false,
-        should_coupon_applied: false,
-        is_wifi_available : false,
-        is_parking_available : false,
-        is_ac_available : false,
-        is_housekeeping_available : false,
-        is_pets_allowed : false,
-        is_smoking_allowed : false,
+        is_wifi_available: false,
+        is_parking_available: false,
+        is_ac_available: false,
+        is_housekeeping_available: false,
+        is_pets_allowed: false,
+        is_smoking_allowed: false,
     });
 
     const handleFileChange = (e) => {
@@ -111,15 +109,28 @@ export default function AddYourHomeStay() {
         else {
             notify('Select Valid price & Category');
         }
-    }
+    };
 
     const handleDelete = (num) => {
         const filterData = room.filter((item, index) => index !== num);
         setRooms(filterData);
     };
 
+    const validateCreditCard = (value) => {
+        if (/^\d*$/.test(value)) {
+            setCcError('');
+            return true;
+        } else {
+            setCcError('Please enter a valid credit card number.');
+            return false;
+        }
+    };
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
+        if (name === 'cc_number') {
+            validateCreditCard(value);
+        }
         setFormData({
             ...formData,
             [name]: type === 'checkbox' ? checked : value
@@ -129,7 +140,7 @@ export default function AddYourHomeStay() {
     const HandleChangeAddRoom = (e) => {
         const { value, name } = e.target;
         setRoomForm({ ...roomForm, [name]: value })
-    }
+    };
 
     const notify = (msg) => toast.error(msg,
         {
@@ -161,7 +172,7 @@ export default function AddYourHomeStay() {
             setFormData({ ...formData, checked: true });
         }
         setError('');
-    }
+    };
 
     useEffect(() => {
         if (AddProp?.status === "succeeded") {
@@ -193,13 +204,13 @@ export default function AddYourHomeStay() {
             return;
         } else {
             try {
-                await dispatch(AddNewProperty(formData))
-                ModalSuccess()
+                await dispatch(AddNewProperty(formData));
+                ModalSuccess();
             } catch (error) {
                 notify('Something went wrong!');
             }
         }
-    }
+    };
 
     function ModalSuccess() {
         return (
@@ -209,10 +220,9 @@ export default function AddYourHomeStay() {
                         <Modal.Title className='text-success'>Your request has been sent!</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <p> 
+                        <p>
                             Your request to add homestay is sent.
                             We will review the request and will get back to you soon.
-                            
                             Thanks
                             LazyMonal Team.
                         </p>
@@ -323,9 +333,9 @@ export default function AddYourHomeStay() {
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="accept_payment_via_cc" checked={formData.accept_payment_via_cc} onChange={handleChange} value={formData?.accept_payment_via_cc} id="accept_payment_via_cc" />
-                                            <label class="form-check-label" for="accept_payment_via_cc">
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="checkbox" name="accept_payment_via_cc" checked={formData.accept_payment_via_cc} onChange={handleChange} value={formData?.accept_payment_via_cc} id="accept_payment_via_cc" />
+                                            <label className="form-check-label" htmlFor="accept_payment_via_cc">
                                                 Accept Payment Via CC
                                             </label>
                                         </div>
@@ -333,7 +343,19 @@ export default function AddYourHomeStay() {
                                 </div>
                                 <div className="col-md-6">
                                     <div className="mb-3">
-                                        <input type='number' className="form-control" id='cc_number' maxlength="16" minlength="16" name="cc_number" value={formData?.cc_number} onChange={handleChange} placeholder="Credit Card No." disabled={!formData.accept_payment_via_cc} />
+                                        <input
+                                            type='text'
+                                            className={`form-control ${ccError ? 'is-invalid' : ''}`}
+                                            id='cc_number'
+                                            maxLength="16"
+                                            minLength="16"
+                                            name="cc_number"
+                                            value={formData?.cc_number}
+                                            onChange={handleChange}
+                                            placeholder="Credit Card No."
+                                            disabled={!formData.accept_payment_via_cc}
+                                        />
+                                        {ccError && <div className="invalid-feedback">{ccError}</div>}
                                     </div>
                                 </div>
                             </div>
@@ -341,7 +363,7 @@ export default function AddYourHomeStay() {
                                 <div className="col-md-12">
                                     <div className="mb-12">
                                         <div className="mb-12">
-                                            <input required type="tel" className="form-control" minlength="15" maxlength="30" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
+                                            <input required type="tel" className="form-control" minLength="15" maxLength="30" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
                                         </div>
                                     </div>
                                 </div>
@@ -385,7 +407,7 @@ export default function AddYourHomeStay() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="mb-3">
-                                        <input required type="text" className="form-control" maxlength="16" name="gst_no" value={formData?.gst_no} onChange={handleChange} placeholder="GST No" />
+                                        <input required type="text" className="form-control" maxLength="16" name="gst_no" value={formData?.gst_no} onChange={handleChange} placeholder="GST No" />
                                     </div>
                                 </div>
                             </div>
@@ -699,7 +721,7 @@ export default function AddYourHomeStay() {
                                         <input
                                             type="checkbox"
                                             className="form-check-input"
-                                            name="is_wifi_available"
+                                            name="is_parking_available"
                                             checked={formData.is_parking_available}
                                             onChange={handleChange}
                                         />
@@ -709,7 +731,7 @@ export default function AddYourHomeStay() {
                                         <input
                                             type="checkbox"
                                             className="form-check-input"
-                                            name="is_wifi_available"
+                                            name="is_ac_available"
                                             checked={formData.is_ac_available}
                                             onChange={handleChange}
                                         />
@@ -719,7 +741,7 @@ export default function AddYourHomeStay() {
                                         <input
                                             type="checkbox"
                                             className="form-check-input"
-                                            name="is_wifi_available"
+                                            name="is_housekeeping_available"
                                             checked={formData.is_housekeeping_available}
                                             onChange={handleChange}
                                         />
@@ -778,10 +800,12 @@ export default function AddYourHomeStay() {
                                     <ReCAPTCHA
                                         sitekey='6Lcd5fApAAAAAGhvn00_b-jl8k2Y-B3ASP-ESk4y'
                                         onChange={(val) => setCaptchaValue(val)}
-                                    /></div>
-                                <div className="col d-flex justify-content-center align-content-center align-items-center" >
-                                    <button disabled={!captchaValue} type="submit" className="card-link  py-1 btn btn-success w-100 h-50">Submit</button></div>
-                                    {/* <button  type="submit" className="card-link  py-1 btn btn-success w-100 h-50">Submit</button></div> */}
+                                    />
+                                </div>
+                                <div className="col d-flex justify-content-center align-content-center align-items-center">
+                                    <button disabled={!captchaValue} type="submit" className="card-link py-1 btn btn-success w-100 h-50">Submit</button>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -789,5 +813,5 @@ export default function AddYourHomeStay() {
             </form>
             <ToastContainer />
         </div>
-    )
+    );
 }

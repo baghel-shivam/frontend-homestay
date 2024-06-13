@@ -66,7 +66,7 @@ export default function Header() {
                     <Nav>
                         <Nav.Link>
                             <Link onClick={() => handleNav('data')} to='/add-homestay' className="nav-link active " style={{ ...style, }} >
-                                <button className='btn border-dark rounded-0 position-relative'>
+                                <button className='btn border-primary rounded position-relative' style={{"border-width":"2px"}}>
                                     <span className="text px-2">Add Your HomeStay</span>
 
                         <img src={free} height={40} className='' style={{ position: 'absolute', right: '-10%', top: '-10%', transform: "rotate(65deg)" }} />
