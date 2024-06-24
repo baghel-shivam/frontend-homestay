@@ -12,8 +12,6 @@ import { resetAddPropStatus } from '../Redux/AddNewPro/AddPropSlice.js';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import ReCAPTCHA from 'react-google-recaptcha';
-import axios from 'axios';
-import { url } from '../Redux/BaseURL.js';
 
 export default function AddYourHomeStay() {
     const AddProp = useSelector((state) => state?.AddProp);
@@ -51,11 +49,11 @@ export default function AddYourHomeStay() {
         front_img4: '',
         front_img5: '',
         front_img6: '',
+        registration_no: "",
         front_img7: '',
         category: "",
         state: '',
         city: '',
-        registration_no:"",
         contact_person: "",
         registration_year: '',
         expiration_year: '',
@@ -207,7 +205,7 @@ export default function AddYourHomeStay() {
             return;
         } else {
             try {
-                axios.post(`${url}/add_new_property`, formData)
+                await dispatch(AddNewProperty(formData));
                 ModalSuccess();
             } catch (error) {
                 notify('Something went wrong!');
