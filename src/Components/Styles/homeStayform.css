@@ -3,7 +3,25 @@
     margin-top: 5rem !important;
 }
 
+.Toastify__toast-theme--light {
+    margin-top: 61px !important;
+    z-index: 9999px
+}
 
+@media (max-width: 991.98px) {
+    .add-homestay-button {
+        height: 50px;
+        /* Height for small screens (sm and below) */
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 992px) {
+    .add-homestay-button {
+        height: 50px;
+        /* Height for large screens (lg and up) */
+    }
+}
 
 #Landing_form_container {
     padding: 20px;
@@ -52,7 +70,8 @@
 .highlighted:hover {
     z-index: 99999;
 }
-.bg_style{
+
+.bg_style {
     position: absolute;
     top: 0;
     left: 0;
@@ -71,7 +90,7 @@
         z-index: 9999;
     }
 
-    .bg_style{
+    .bg_style {
         position: absolute;
         top: 0;
         left: 0;
@@ -81,7 +100,7 @@
         background-position: center;
         z-index: -9999;
     }
-    
+
 }
 
 /* Media query for all small screens */

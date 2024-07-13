@@ -20,9 +20,7 @@ body {
 *{
   font-family: sans-serif !important;
 }
-.Toastify__toast-theme--light {
-  margin-top: 61px !important;
-}
+
 
 .min-height {
   min-height: 100vh;
@@ -45,8 +43,6 @@ body {
 
 }
 
-/* <!-- HTML !-->
-<button class="add-new-property" role="button"><span class="text">Button 57</span><span>Alternate text</span></button> */
 
 /* CSS */
 .add-new-property {
