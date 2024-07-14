@@ -101,6 +101,17 @@ export default function Checkout({ state, view_data, guest_room, collectRoom, se
             setError('Accept Terms and Conditions first!');
         }
     }
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = date.getUTCDate();
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        
+        const month = monthNames[date.getUTCMonth()];
+        const dayName = dayNames[date.getUTCDay()];
+    
+        return `${dayName}, ${month} ${day}`;
+      };
 
     const Agree = (accept, closeDialog) => {
         setLgShow(closeDialog)
@@ -153,7 +164,7 @@ export default function Checkout({ state, view_data, guest_room, collectRoom, se
                                                 {formData?.checkin_date ? (
                                                     <span className='fw-bolder'
                                                     >
-                                                        {new Date(formData?.checkin_date).toLocaleDateString('en-US', options)}
+                                                        {formatDate(formData?.checkin_date)}
                                                     </span>
                                                 ) : (
                                                     'Invalid Date'
@@ -165,7 +176,8 @@ export default function Checkout({ state, view_data, guest_room, collectRoom, se
                                             <small >
                                                 {formData?.checkout_date ? (
                                                     <span className='fw-bolder'>
-                                                        {new Date(formData?.checkout_date).toLocaleDateString('en-US', options)}
+                                                        {formatDate(formData?.checkout_date)}
+                                                        {/* {new Date(formData?.checkout_date).toLocaleDateString('en-US', options)} */}
                                                     </span>
                                                 ) : (
                                                     'Invalid Date'
@@ -212,7 +224,7 @@ export default function Checkout({ state, view_data, guest_room, collectRoom, se
                                                     sitekey='6Lcd5fApAAAAAGhvn00_b-jl8k2Y-B3ASP-ESk4y'
                                                     onChange={(val)=>setCaptchaValue(val)}
                                                 />
-                                                <button disabled={!captchaValue} type='submit' id='button' className='btn btn-success mt-2 px-5'>Request</button>
+                                                <button  type='submit' id='button' className='btn btn-success mt-2 px-5'>Request</button>
                                             </div>
                                         </form>
                                     </div>

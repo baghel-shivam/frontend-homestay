@@ -11,6 +11,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import { resetAddPropStatus } from '../Redux/AddNewPro/AddPropSlice.js';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 export default function AddYourHomeStay() {
@@ -66,7 +68,7 @@ export default function AddYourHomeStay() {
         accept_payment_via_cc: false, // Initialize as false
         cc_number: '',
         checked: false,
-        is_couple_allowed: false,
+        is_food_served: false,
         is_tv_available: false,
         can_locals_stay: false,
         should_coupon_applied: false,
@@ -243,8 +245,8 @@ export default function AddYourHomeStay() {
         <div className='container add-your-home-stay pt-3' >
             {AddProp.status === 'loading' && <Loading />}
             {ModalSuccess()}
-            <h2 className='title' ref={ref}>Add Your HomeStay</h2>
-            <form onSubmit={handleSubmit}>
+            <h2 className='title' ref={ref}>Add Your HomeStay</h2> 
+             <form onSubmit={handleSubmit}>
                 <div className="row px-0 mt-4 container-fluid my-5 py-3 child-add-your-home-stay">
                     <div className="col-md-6">
                         <h5 className='text-start mx-3 mb-4'>About Your Home Stay</h5>
@@ -327,7 +329,7 @@ export default function AddYourHomeStay() {
                                 <div className="col-md-6">
                                     <div className="mb-3">
                                         <div className="mb-3">
-                                            <input required type="tel" className="form-control" pattern="[0-9]{10}" minlength="10" maxlength="10" name="upi_phn_no" value={formData?.upi_phn_no} onChange={handleChange} placeholder="G-pay, PhonePay, number etc" />
+                                            <input required type="tel" className="form-control" name="upi_phn_no" value={formData?.upi_phn_no} onChange={handleChange} placeholder="G-pay, PhonePay, number etc" />
                                         </div>
                                     </div>
                                 </div>
@@ -365,7 +367,7 @@ export default function AddYourHomeStay() {
                                 <div className="col-md-12">
                                     <div className="mb-12">
                                         <div className="mb-12">
-                                            <input required type="tel" className="form-control" minLength="15" maxLength="30" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
+                                            <input required type="tel" className="form-control" name="registration_no" value={formData?.registration_no} onChange={handleChange} placeholder="Registration No" />
                                         </div>
                                     </div>
                                 </div>
@@ -381,7 +383,7 @@ export default function AddYourHomeStay() {
                                             onChange={handleChange}
                                         >
                                             <option value="" disabled>Select Registration Year</option>
-                                            {Array.from({ length: 101 }, (_, i) => 1950 + i).map(year => (
+                                            {Array.from({ length: 101 }, (_, i) => 2001 + i).map(year => (
                                                 <option key={year} value={year}>{year}</option>
                                             ))}
                                         </select>
@@ -398,7 +400,7 @@ export default function AddYourHomeStay() {
                                                 onChange={handleChange}
                                             >
                                                 <option value="" disabled>Select Expiration Year</option>
-                                                {Array.from({ length: 101 }, (_, i) => 1950 + i).map(year => (
+                                                {Array.from({ length: 101 }, (_, i) => 2001 + i).map(year => (
                                                     <option key={year} value={year}>{year}</option>
                                                 ))}
                                             </select>
@@ -409,7 +411,7 @@ export default function AddYourHomeStay() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="mb-3">
-                                        <input required type="text" className="form-control" maxLength="16" name="gst_no" value={formData?.gst_no} onChange={handleChange} placeholder="GST No" />
+                                        <input required type="text" className="form-control" name="gst_no" value={formData?.gst_no} onChange={handleChange} placeholder="GST No" />
                                     </div>
                                 </div>
                             </div>
@@ -554,7 +556,7 @@ export default function AddYourHomeStay() {
                                                     </div>
                                                     <div className="col d-flex justify-content-evenly">
                                                         <span>
-                                                            {item.is_ac_available || item.is_couple_allowed || item.is_wifi_available || item.is_housekeeping_available
+                                                            {item.is_ac_available || item.is_food_served || item.is_wifi_available || item.is_housekeeping_available
                                                                 ? '1+'
                                                                 : null
                                                             }
@@ -671,11 +673,11 @@ export default function AddYourHomeStay() {
                                         <input
                                             type="checkbox"
                                             className="form-check-input"
-                                            name="is_couple_allowed"
-                                            checked={formData.is_couple_allowed}
+                                            name="is_food_served"
+                                            checked={formData.is_food_served}
                                             onChange={handleChange}
                                         />
-                                        <label className="form-check-label">Couple allowed</label>
+                                        <label className="form-check-label">Is Food Served</label>
                                     </div>
                                     <div className="mb-3 form-check">
                                         <input
@@ -805,6 +807,7 @@ export default function AddYourHomeStay() {
                                     />
                                 </div>
                                 <div className="col d-flex justify-content-center align-content-center align-items-center">
+
                                     <button disabled={!captchaValue} type="submit" className="card-link py-1 btn btn-success w-100 add-homestay-button">Submit</button>
 
                                 </div>
