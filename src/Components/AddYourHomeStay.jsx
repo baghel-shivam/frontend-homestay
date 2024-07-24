@@ -11,8 +11,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import { resetAddPropStatus } from '../Redux/AddNewPro/AddPropSlice.js';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 export default function AddYourHomeStay() {
@@ -676,7 +674,7 @@ export default function AddYourHomeStay() {
                                             checked={formData.is_food_served}
                                             onChange={handleChange}
                                         />
-                                        <label className="form-check-label">Is Food Served</label>
+                                        <label className="form-check-label">Is food served</label>
                                     </div>
                                     <div className="mb-3 form-check">
                                         <input

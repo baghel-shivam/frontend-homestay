@@ -49,6 +49,7 @@ export default function Footer() {
               <a onClick={() => handleNav(Landing_ref)} className='nav-link active'>Why list with LazyMonal</a>
               <a onClick={() => handleNav(About_US_ref)} className='nav-link active mt-1'>Social Intiatives</a>
               <Link to='/add-homestay' className='nav-link active mt-1'>List My HomeStay</Link>
+              <Link to='/edit-homestay' className='nav-link active mt-1'>Edit My HomeStay</Link>
             </div>
           </div>
 

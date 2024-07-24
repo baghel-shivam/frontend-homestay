@@ -24,6 +24,7 @@ import TechnicalSupport from './Components/Help/TechnicalSupport'
 import TravelAssi from './Components/Help/TravelAssi'
 import ChatBoat from './Components/ChatBoat/ChatBoat';
 import WhoIsMonal from './Components/WhoIsMonal';
+import EditHomestay from './Components/EditHomestay';
 
 function App() {
   useEffect(() => {
@@ -60,6 +61,7 @@ function App() {
           <Route path="/sign-up" element={<Sign_up />} />
           <Route path="/support" element={<Support />} />
           <Route path="/add-homestay" element={<AddYourHomeStay />} />
+          <Route path="/edit-homestay" element={<EditHomestay />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
