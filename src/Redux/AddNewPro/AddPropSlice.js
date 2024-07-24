@@ -12,7 +12,7 @@ const addPropSlice = createSlice({
     initialState,
     reducers: {
         resetAddPropStatus(state) {
-            state.status = 'idle';
+            state.status = '';
         },
     },
     extraReducers: (builder) => {

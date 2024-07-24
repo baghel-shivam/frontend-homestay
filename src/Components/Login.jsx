@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom'
 export default function Login() {
     const navigate = useNavigate()
     const handleSubmit = () => {
-        // console.log('data submitted')
-    }
+      }
     return (
         <>
             <div className='container mt-5'>

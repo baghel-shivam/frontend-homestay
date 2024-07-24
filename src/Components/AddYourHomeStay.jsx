@@ -183,6 +183,7 @@ export default function AddYourHomeStay() {
             notify('HomeStay already exists!');
             dispatch(resetAddPropStatus());
         }
+        
     }, [AddProp?.status, dispatch]);
 
     const handleSubmit = async (e) => {
@@ -804,8 +805,8 @@ export default function AddYourHomeStay() {
                                     />
                                 </div>
                                 <div className="col d-flex justify-content-center align-content-center align-items-center">
-                                    <button disabled={!captchaValue} type="submit" className="card-link py-1 btn btn-success w-100 h-50">Submit</button>
-                                    {/* <button  type="submit" className="card-link py-1 btn btn-success w-100 h-50">Submit</button> */}
+
+                                    <button disabled={!captchaValue} type="submit" className="card-link py-1 btn btn-success w-100 add-homestay-button">Submit</button>
 
                                 </div>
                             </div>
